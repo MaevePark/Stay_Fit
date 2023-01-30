@@ -10,9 +10,9 @@ import org.springframework.util.StopWatch;
 @Service
 @Aspect
 public class AroundLog {
-	@Pointcut("execution(public * kh.book.b29..*Controller.*(..))")
+	@Pointcut("execution(public * kh.project.stayfit..*Controller.*(..))")
 	public void commonControllerPointcut() {}
-	@Pointcut("execution(public * kh.book.b29..*ServiceImpl.*(..))")
+	@Pointcut("execution(public * kh.project.stayfit..*ServiceImpl.*(..))")
 	public void commonServicePointcut() {}
 	
 	@Around("commonControllerPointcut()")
