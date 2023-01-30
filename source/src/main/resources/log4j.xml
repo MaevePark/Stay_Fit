@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="kh.book.b29">
+	<logger name="kh.project.stayfit">
 		<level value="debug" />
 	</logger>
 	
