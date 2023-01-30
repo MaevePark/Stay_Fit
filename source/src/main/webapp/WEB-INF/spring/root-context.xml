@@ -24,5 +24,7 @@
 	
  	<bean class="org.mybatis.spring.SqlSessionTemplate" id="sqlSession"> 
  		<constructor-arg index="0" ref="sqlSessionFactoryBean"></constructor-arg> 
- 	</bean> 
+ 	</bean>
+ 	
+ 	<tx:annotation-driven/>
 </beans>
