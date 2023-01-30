@@ -26,5 +26,4 @@
  		<constructor-arg index="0" ref="sqlSessionFactoryBean"></constructor-arg> 
  	</bean>
  	
- 	<tx:annotation-driven/>
 </beans>
