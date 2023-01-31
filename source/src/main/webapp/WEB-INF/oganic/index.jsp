@@ -15,14 +15,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" <%=request.getContextPath() %>href="/resource/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" <%=request.getContextPath() %>href="/resource/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" <%=request.getContextPath() %>href="/resource/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" <%=request.getContextPath() %>href="/resource/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" <%=request.getContextPath() %>href="/resource/css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" <%=request.getContextPath() %>href="/resource/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" <%=request.getContextPath() %>href="/resource/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" <%=request.getContextPath() %>href="/resource/css/style.css" type="text/css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/style.css" type="text/css">
 </head>
 
 <body>
