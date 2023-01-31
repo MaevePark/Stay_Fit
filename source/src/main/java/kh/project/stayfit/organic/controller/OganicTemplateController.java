@@ -5,41 +5,41 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/all")
+@RequestMapping("/oganic")
 public class OganicTemplateController {
-	@GetMapping("all")
+	@GetMapping("/all")
 	public String all() {
-		return "oganic/all";
+		return "/oganic/all";
 	}
-	@GetMapping("blog-details")
+	@GetMapping("/blog_details")
 	public String blog_details() {
 		return "oganic/blog-details";
 	}
-	@GetMapping("blog")
+	@GetMapping("/blog")
 	public String blog() {
 		return "oganic/blog";
 	}
-	@GetMapping("checkout")
+	@GetMapping("/checkout")
 	public String checkout() {
 		return "oganic/checkout";
 	}
-	@GetMapping("contact")
+	@GetMapping("/contact")
 	public String contact() {
 		return "oganic/contact";
 	}
-	@GetMapping("index")
+	@GetMapping("/index")
 	public String index() {
 		return "oganic/index";
 	}
-	@GetMapping("shop-details")
+	@GetMapping("/shop_details")
 	public String shop_details() {
 		return "oganic/shop-details";
 	}
-	@GetMapping("shop-grid")
+	@GetMapping("/shop_grid")
 	public String shop_grid() {
 		return "oganic/shop-grid";
 	}
-	@GetMapping("shop-cart")
+	@GetMapping("/shop_cart")
 	public String shop_cart() {
 		return "oganic/shop-cart";
 	}

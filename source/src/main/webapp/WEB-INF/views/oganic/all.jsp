@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 <a href="index">index</a>
 <hr>
 <a href="blog_details">blog_details</a>
@@ -21,6 +22,7 @@
 <hr>
 <a href="shop_grid">shop_grid</a>
 <hr>
-<a href="shoping_cart">shoping_cart</a>	
+<a href="shoping_cart">shoping_cart</a>
+
 </body>
 </html>
