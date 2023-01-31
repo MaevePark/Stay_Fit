@@ -1,12 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
     <!-- Hero Section Begin -->
     <section class="hero">
         <div class="container">
@@ -255,12 +249,12 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="banner__pic">
-                        <img src="img/banner/banner-1.jpg" alt="">
+                        <img src="<%=request.getContextPath() %>/resources/img/banner/banner-1.jpg" alt="">
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="banner__pic">
-                        <img src="img/banner/banner-2.jpg" alt="">
+                        <img src="<%=request.getContextPath() %>/resources/img/banner/banner-2.jpg" alt="">
                     </div>
                 </div>
             </div>
@@ -279,7 +273,7 @@
                             <div class="latest-prdouct__slider__item">
                                 <a href="#" class="latest-product__item">
                                     <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-1.jpg" alt="">
+                                        <img src="<%=request.getContextPath() %>/resources/img/latest-product/lp-1.jpg" alt="">
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h6>Crab Pool Security</h6>
@@ -288,7 +282,7 @@
                                 </a>
                                 <a href="#" class="latest-product__item">
                                     <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-2.jpg" alt="">
+                                        <img src="<%=request.getContextPath() %>/resources/img/latest-product/lp-2.jpg" alt="">
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h6>Crab Pool Security</h6>
@@ -297,7 +291,7 @@
                                 </a>
                                 <a href="#" class="latest-product__item">
                                     <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-3.jpg" alt="">
+                                        <img src="<%=request.getContextPath() %>/resources/img/latest-product/lp-3.jpg" alt="">
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h6>Crab Pool Security</h6>
@@ -308,7 +302,7 @@
                             <div class="latest-prdouct__slider__item">
                                 <a href="#" class="latest-product__item">
                                     <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-1.jpg" alt="">
+                                        <img src="<%=request.getContextPath() %>/resources/img/latest-product/lp-1.jpg" alt="">
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h6>Crab Pool Security</h6>
@@ -317,7 +311,7 @@
                                 </a>
                                 <a href="#" class="latest-product__item">
                                     <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-2.jpg" alt="">
+                                        <img src="<%=request.getContextPath() %>/resources/img/latest-product/lp-2.jpg" alt="">
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h6>Crab Pool Security</h6>
@@ -326,7 +320,7 @@
                                 </a>
                                 <a href="#" class="latest-product__item">
                                     <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-3.jpg" alt="">
+                                        <img src="<%=request.getContextPath() %>/resources/img/latest-product/lp-3.jpg" alt="">
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h6>Crab Pool Security</h6>
@@ -344,7 +338,7 @@
                             <div class="latest-prdouct__slider__item">
                                 <a href="#" class="latest-product__item">
                                     <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-1.jpg" alt="">
+                                        <img src="<%=request.getContextPath() %>/resources/img/latest-product/lp-1.jpg" alt="">
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h6>Crab Pool Security</h6>
@@ -353,7 +347,7 @@
                                 </a>
                                 <a href="#" class="latest-product__item">
                                     <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-2.jpg" alt="">
+                                        <img src="<%=request.getContextPath() %>/resources/img/latest-product/lp-2.jpg" alt="">
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h6>Crab Pool Security</h6>
@@ -362,7 +356,7 @@
                                 </a>
                                 <a href="#" class="latest-product__item">
                                     <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-3.jpg" alt="">
+                                        <img src="<%=request.getContextPath() %>/resources/img/latest-product/lp-3.jpg" alt="">
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h6>Crab Pool Security</h6>
@@ -373,7 +367,7 @@
                             <div class="latest-prdouct__slider__item">
                                 <a href="#" class="latest-product__item">
                                     <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-1.jpg" alt="">
+                                        <img src="<%=request.getContextPath() %>/resources/img/latest-product/lp-1.jpg" alt="">
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h6>Crab Pool Security</h6>
@@ -382,7 +376,7 @@
                                 </a>
                                 <a href="#" class="latest-product__item">
                                     <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-2.jpg" alt="">
+                                        <img src="<%=request.getContextPath() %>/resources/img/latest-product/lp-2.jpg" alt="">
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h6>Crab Pool Security</h6>
@@ -391,7 +385,7 @@
                                 </a>
                                 <a href="#" class="latest-product__item">
                                     <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-3.jpg" alt="">
+                                        <img src="<%=request.getContextPath() %>/resources/img/latest-product/lp-3.jpg" alt="">
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h6>Crab Pool Security</h6>
@@ -409,7 +403,7 @@
                             <div class="latest-prdouct__slider__item">
                                 <a href="#" class="latest-product__item">
                                     <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-1.jpg" alt="">
+                                        <img src="<%=request.getContextPath() %>/resources/img/latest-product/lp-1.jpg" alt="">
                                     </div>
                                     <div class="latest-product__item__text">
                                         <h6>Crab Pool Security</h6>
@@ -501,7 +495,7 @@
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="blog__item">
                         <div class="blog__item__pic">
-                            <img src="img/blog/blog-2.jpg" alt="">
+                            <img src="<%=request.getContextPath() %>/resources/img/blog/blog-2.jpg" alt="">
                         </div>
                         <div class="blog__item__text">
                             <ul>
@@ -516,7 +510,7 @@
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="blog__item">
                         <div class="blog__item__pic">
-                            <img src="img/blog/blog-3.jpg" alt="">
+                            <img src="<%=request.getContextPath() %>/resources/img/blog/blog-3.jpg" alt="">
                         </div>
                         <div class="blog__item__text">
                             <ul>
@@ -532,6 +526,3 @@
         </div>
     </section>
     <!-- Blog Section End -->
-
-</body>
-</html>
