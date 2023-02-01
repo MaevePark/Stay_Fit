@@ -3,11 +3,10 @@ package kh.project.stayfit.admin.model.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kh.project.stayfit.admin.model.dao.DashboardDao;
+import kh.project.stayfit.admin.model.dao.AdminMemberDao;
 
 @Service
-public class DashboardServiceImpl implements DashboardService {
+public class AdminMemberServiceImpl implements AdminMemberService{
 	@Autowired
-	private DashboardDao dao;
-
+	private AdminMemberDao dao;
 }

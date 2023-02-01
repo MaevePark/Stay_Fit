@@ -1,5 +1,5 @@
 package kh.project.stayfit.admin.model.service;
 
-public class ProductServiceImpl {
+public interface AdminBoardService {
 
 }
