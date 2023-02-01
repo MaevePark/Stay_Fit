@@ -8,8 +8,8 @@ import oracle.sql.TIMESTAMP;
 @ToString
 @Getter
 @Setter
-public class AdminBoardReply {//»ç¿ë¿©ºÎ ´ã´çÀÚ±â °áÁ¤ 
-	//½Å°í´ñ±Û¸ñ·ÏÆäÀÌÁö
+public class AdminBoardReply {//ì‚¬ìš©ì—¬ë¶€ ë‹´ë‹¹ìê¸° ê²°ì • 
+	//ì‹ ê³ ëŒ“ê¸€ëª©ë¡í˜ì´ì§€
 //	"MID"	NUMBER		NOT NULL,
 //	"RID"	NUMBER		NOT NULL,
 //	"REPID"	NUMBER		NOT NULL,

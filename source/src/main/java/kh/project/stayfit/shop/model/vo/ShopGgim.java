@@ -8,7 +8,7 @@ import lombok.ToString;
 @Getter
 @Setter
 public class ShopGgim {
-	//Âò¸ñ·Ï¿¡ Ãß°¡
+	//ì°œëª©ë¡ì— ì¶”ê°€
 //	"PID"	NUMBER		NOT NULL,
 //	"MID"	NUMBER		NOT NULL
 	private int pid;

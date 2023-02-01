@@ -7,8 +7,8 @@ import lombok.ToString;
 @ToString
 @Getter
 @Setter
-public class SellerProduct { //荤侩咯何 淬寸磊扁 搬沥 
-	//魄概磊其捞瘤 - 惑前格废其捞瘤 //惑前db??
+public class SellerProduct { //靷毄鞐秬 雼措嫻鞛愱赴 瓴办爼 
+	//韺愲Г鞛愴帢鞚挫 - 靸來拡氇╇韼橃澊歆� //靸來拡db??
 //	"PID"	NUMBER		NOT NULL,
 //	"CID"	NUMBER		NOT NULL,
 //	"PNAME"	VARCHAR2(500)		NOT NULL,

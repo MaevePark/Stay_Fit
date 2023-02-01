@@ -9,7 +9,7 @@ import oracle.sql.TIMESTAMP;
 @Getter
 @Setter
 public class ShopBasket {
-	//Àå¹Ù±¸´Ï¿¡ Ãß°¡
+	//ì¥ë°”êµ¬ë‹ˆì— ì¶”ê°€
 //	"PID"	NUMBER		NOT NULL,
 //	"MID"	NUMBER		NOT NULL,
 //	"PCOUNT"	NUMBER	DEFAULT 1	NOT NULL,
