@@ -35,7 +35,7 @@ public class FileSave {
 		
 		if(!multipartFile.getOriginalFilename().equals("")) {
 			System.out.println("#####################################");
-			System.out.println("파일 있워오");
+			System.out.println("파일 있음");
 			// 파일 개수가 많아지면 폴더를 따로 만들어준다.
 			//if(folder.listFiles().length > 20) {}
 			
@@ -62,7 +62,7 @@ public class FileSave {
 			}
 		} else {
 			System.out.println("#####################################");
-			System.out.println("파일 없워오");
+			System.out.println("파일 없음");
 		}
 		
 		if(!folder.exists()) {
