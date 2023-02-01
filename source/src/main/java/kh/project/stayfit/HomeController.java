@@ -39,7 +39,7 @@ public class HomeController {
 	}
 	@GetMapping("/member/mypage")
 	public ModelAndView mypage(ModelAndView mv) {
-		mv.addObject("sectionName", "/member/mypage.jsp");
+		mv.addObject("sectionName", "member/mypage.jsp");
 		mv.setViewName("index");
 		return mv;
 	}
