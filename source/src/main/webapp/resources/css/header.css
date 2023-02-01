@@ -175,7 +175,8 @@
 
 .header__top__right__auth {
 	display: inline-block;
-	margin-right: 15px;
+	/* stayfit add */
+	margin-right: 23px;
 }
 
 .header__top__right__auth a {
