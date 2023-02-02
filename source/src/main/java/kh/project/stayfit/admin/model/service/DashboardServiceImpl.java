@@ -9,5 +9,11 @@ import kh.project.stayfit.admin.model.dao.DashboardDao;
 public class DashboardServiceImpl implements DashboardService {
 	@Autowired
 	private DashboardDao dao;
+	
+//	//관리자페이지
+//	@Override
+//	public Map<String,Object> selectList() throws Exception{
+//		return ;
+//	}
 
 }

@@ -9,4 +9,14 @@ import kh.project.stayfit.admin.model.dao.AdminProductDao;
 public class AdminProductServiceImpl implements AdminProductService{
 	@Autowired
 	private AdminProductDao dao;
+	
+//	//상품 목록 페이지
+//	@Override
+//	public int selectTotalCnt(String, int) throws Exception{
+//		return ;
+//	}
+//	@Override
+//	public List<Product> selectList(int, int, String, int) throws Exception{
+//		return ;
+//	}
 }
