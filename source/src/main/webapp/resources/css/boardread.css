@@ -1,0 +1,46 @@
+@charset "UTF-8";
+
+
+/*게시글 머리 시작*/
+
+
+
+/*게시글 머리 끝*/
+
+/*게시글 몸통 시작*/
+#readContent {
+	border: 1px solid black;
+}
+
+
+.col-lg-8 {
+	max-width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+#readContent tr:first-child, #readContent tr:nth-child(2) {
+	border: 1px solid black;
+	max-width: 100%;
+	padding-left: 10px;
+}
+
+
+/*게시글 몸통 끝*/
+
+
+/*수정, 삭제, 목록 버튼 시작*/
+
+
+
+/*수정, 삭제, 목록 버튼 끝*/
+
+/*댓글영역 시작*/
+#replyArea {
+	display: flex;
+	flex-direction: column;
+	
+}
+
+
+
+/*댓글영역 끝*/
