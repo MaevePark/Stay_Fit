@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+/*가격 총액 정산 영역 시작*/
+.container > .row:nth-child(2) {
+	display: flex;
+	justify-content: right;
+}
+
+
+
+
+/*가격 총액 정산 영역 끝*/

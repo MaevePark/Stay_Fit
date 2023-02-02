@@ -1,215 +1,108 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+	<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/mycart.css" type="text/css">
 
-	<!-- Blog Section Begin -->
-    <section class="blog spad">
+	<!-- Shoping Cart Section Begin -->
+    <section class="shoping-cart spad">
         <div class="container">
             <div class="row">
-            	<!-- 마이페이지 카테고리 -->
-                <jsp:include page="/WEB-INF/views/mypage/mypagecategory.jsp"></jsp:include>
-                
-                <div class="col-lg-8 col-md-7">
-                    <div class="row">
-                        
-                        <h4 class="fw-bold py-3 mb-4">
-							<span class="text-muted fw-light">마이페이지 /</span> 장바구니
-						</h4>
-                        
-                        <div class="container-xl flex-grow-1 container-p-y">
-	                        <!-- Basic Bootstrap Table -->
-							<div class="card">
-								<h5 class="card-header">Table Basic</h5>
-								<div class="table-responsive text-nowrap">
-									<table class="table">
-										<thead>
-											<tr>
-												<th>Project</th>
-												<th>Client</th>
-												<th>Users</th>
-												<th>Status</th>
-												<th>Actions</th>
-											</tr>
-										</thead>
-										<tbody class="table-border-bottom-0">
-											<tr>
-												<td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Angular
-														Project</strong></td>
-												<td>Albert Cook</td>
-												<td>
-													<ul
-														class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
-														<li data-bs-toggle="tooltip" data-popup="tooltip-custom"
-															data-bs-placement="top" class="avatar avatar-xs pull-up"
-															title="" data-bs-original-title="Lilian Fuller"><img
-															src="../assets/img/avatars/5.png" alt="Avatar"
-															class="rounded-circle"></li>
-														<li data-bs-toggle="tooltip" data-popup="tooltip-custom"
-															data-bs-placement="top" class="avatar avatar-xs pull-up"
-															title="" data-bs-original-title="Sophia Wilkerson"><img
-															src="../assets/img/avatars/6.png" alt="Avatar"
-															class="rounded-circle"></li>
-														<li data-bs-toggle="tooltip" data-popup="tooltip-custom"
-															data-bs-placement="top" class="avatar avatar-xs pull-up"
-															title="" data-bs-original-title="Christina Parker"><img
-															src="../assets/img/avatars/7.png" alt="Avatar"
-															class="rounded-circle"></li>
-													</ul>
-												</td>
-												<td><span class="badge bg-label-primary me-1">Active</span></td>
-												<td>
-													<div class="dropdown">
-														<button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-															data-bs-toggle="dropdown">
-															<i class="bx bx-dots-vertical-rounded"></i>
-														</button>
-														<div class="dropdown-menu">
-															<a class="dropdown-item" href="javascript:void(0);"><i
-																class="bx bx-edit-alt me-1"></i> Edit</a> <a class="dropdown-item"
-																href="javascript:void(0);"><i class="bx bx-trash me-1"></i>
-																Delete</a>
-														</div>
-													</div>
-												</td>
-											</tr>
-											<tr>
-												<td><i class="fab fa-react fa-lg text-info me-3"></i> <strong>React
-														Project</strong></td>
-												<td>Barry Hunter</td>
-												<td>
-													<ul
-														class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
-														<li data-bs-toggle="tooltip" data-popup="tooltip-custom"
-															data-bs-placement="top" class="avatar avatar-xs pull-up"
-															title="" data-bs-original-title="Lilian Fuller"><img
-															src="../assets/img/avatars/5.png" alt="Avatar"
-															class="rounded-circle"></li>
-														<li data-bs-toggle="tooltip" data-popup="tooltip-custom"
-															data-bs-placement="top" class="avatar avatar-xs pull-up"
-															title="" data-bs-original-title="Sophia Wilkerson"><img
-															src="../assets/img/avatars/6.png" alt="Avatar"
-															class="rounded-circle"></li>
-														<li data-bs-toggle="tooltip" data-popup="tooltip-custom"
-															data-bs-placement="top" class="avatar avatar-xs pull-up"
-															title="" data-bs-original-title="Christina Parker"><img
-															src="../assets/img/avatars/7.png" alt="Avatar"
-															class="rounded-circle"></li>
-													</ul>
-												</td>
-												<td><span class="badge bg-label-success me-1">Completed</span></td>
-												<td>
-													<div class="dropdown">
-														<button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-															data-bs-toggle="dropdown">
-															<i class="bx bx-dots-vertical-rounded"></i>
-														</button>
-														<div class="dropdown-menu">
-															<a class="dropdown-item" href="javascript:void(0);"><i
-																class="bx bx-edit-alt me-2"></i> Edit</a> <a class="dropdown-item"
-																href="javascript:void(0);"><i class="bx bx-trash me-2"></i>
-																Delete</a>
-														</div>
-													</div>
-												</td>
-											</tr>
-											<tr>
-												<td><i class="fab fa-vuejs fa-lg text-success me-3"></i> <strong>VueJs
-														Project</strong></td>
-												<td>Trevor Baker</td>
-												<td>
-													<ul
-														class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
-														<li data-bs-toggle="tooltip" data-popup="tooltip-custom"
-															data-bs-placement="top" class="avatar avatar-xs pull-up"
-															title="" data-bs-original-title="Lilian Fuller"><img
-															src="../assets/img/avatars/5.png" alt="Avatar"
-															class="rounded-circle"></li>
-														<li data-bs-toggle="tooltip" data-popup="tooltip-custom"
-															data-bs-placement="top" class="avatar avatar-xs pull-up"
-															title="" data-bs-original-title="Sophia Wilkerson"><img
-															src="../assets/img/avatars/6.png" alt="Avatar"
-															class="rounded-circle"></li>
-														<li data-bs-toggle="tooltip" data-popup="tooltip-custom"
-															data-bs-placement="top" class="avatar avatar-xs pull-up"
-															title="" data-bs-original-title="Christina Parker"><img
-															src="../assets/img/avatars/7.png" alt="Avatar"
-															class="rounded-circle"></li>
-													</ul>
-												</td>
-												<td><span class="badge bg-label-info me-1">Scheduled</span></td>
-												<td>
-													<div class="dropdown">
-														<button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-															data-bs-toggle="dropdown">
-															<i class="bx bx-dots-vertical-rounded"></i>
-														</button>
-														<div class="dropdown-menu">
-															<a class="dropdown-item" href="javascript:void(0);"><i
-																class="bx bx-edit-alt me-2"></i> Edit</a> <a class="dropdown-item"
-																href="javascript:void(0);"><i class="bx bx-trash me-2"></i>
-																Delete</a>
-														</div>
-													</div>
-												</td>
-											</tr>
-											<tr>
-												<td><i class="fab fa-bootstrap fa-lg text-primary me-3"></i>
-													<strong>Bootstrap Project</strong></td>
-												<td>Jerry Milton</td>
-												<td>
-													<ul
-														class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
-														<li data-bs-toggle="tooltip" data-popup="tooltip-custom"
-															data-bs-placement="top" class="avatar avatar-xs pull-up"
-															title="" data-bs-original-title="Lilian Fuller"><img
-															src="../assets/img/avatars/5.png" alt="Avatar"
-															class="rounded-circle"></li>
-														<li data-bs-toggle="tooltip" data-popup="tooltip-custom"
-															data-bs-placement="top" class="avatar avatar-xs pull-up"
-															title="" data-bs-original-title="Sophia Wilkerson"><img
-															src="../assets/img/avatars/6.png" alt="Avatar"
-															class="rounded-circle"></li>
-														<li data-bs-toggle="tooltip" data-popup="tooltip-custom"
-															data-bs-placement="top" class="avatar avatar-xs pull-up"
-															title="" data-bs-original-title="Christina Parker"><img
-															src="../assets/img/avatars/7.png" alt="Avatar"
-															class="rounded-circle"></li>
-													</ul>
-												</td>
-												<td><span class="badge bg-label-warning me-1">Pending</span></td>
-												<td>
-													<div class="dropdown">
-														<button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-															data-bs-toggle="dropdown">
-															<i class="bx bx-dots-vertical-rounded"></i>
-														</button>
-														<div class="dropdown-menu">
-															<a class="dropdown-item" href="javascript:void(0);"><i
-																class="bx bx-edit-alt me-2"></i> Edit</a> <a class="dropdown-item"
-																href="javascript:void(0);"><i class="bx bx-trash me-2"></i>
-																Delete</a>
-														</div>
-													</div>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
-							<!--/ Basic Bootstrap Table -->
-                        </div>
-                        
-                        <div class="col-lg-12">
-                            <div class="product__pagination blog__pagination">
-                                <a href="#">1</a>
-                                <a href="#">2</a>
-                                <a href="#">3</a>
-                                <a href="#"><i class="fa fa-long-arrow-right"></i></a>
-                            </div>
-                        </div>
+                <div class="col-lg-12">
+                    <div class="shoping__cart__table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th class="shoping__product">Products</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="shoping__cart__item">
+                                        <img src="<%=request.getContextPath() %>/resources/img/cart/cart-1.jpg" alt="">
+                                        <h5>Vegetable’s Package</h5>
+                                    </td>
+                                    <td class="shoping__cart__price">
+                                        $55.00
+                                    </td>
+                                    <td class="shoping__cart__quantity">
+                                        <div class="quantity">
+                                            <div class="pro-qty">
+                                                <input type="text" value="1">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="shoping__cart__total">
+                                        $110.00
+                                    </td>
+                                    <td class="shoping__cart__item__close">
+                                        <span class="icon_close"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="shoping__cart__item">
+                                        <img src="<%=request.getContextPath() %>/resources/img/cart/cart-2.jpg" alt="">
+                                        <h5>Fresh Garden Vegetable</h5>
+                                    </td>
+                                    <td class="shoping__cart__price">
+                                        $39.00
+                                    </td>
+                                    <td class="shoping__cart__quantity">
+                                        <div class="quantity">
+                                            <div class="pro-qty">
+                                                <input type="text" value="1">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="shoping__cart__total">
+                                        $39.99
+                                    </td>
+                                    <td class="shoping__cart__item__close">
+                                        <span class="icon_close"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="shoping__cart__item">
+                                        <img src="<%=request.getContextPath() %>/resources/img/cart/cart-3.jpg" alt="">
+                                        <h5>Organic Bananas</h5>
+                                    </td>
+                                    <td class="shoping__cart__price">
+                                        $69.00
+                                    </td>
+                                    <td class="shoping__cart__quantity">
+                                        <div class="quantity">
+                                            <div class="pro-qty">
+                                                <input type="text" value="1">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="shoping__cart__total">
+                                        $69.99
+                                    </td>
+                                    <td class="shoping__cart__item__close">
+                                        <span class="icon_close"></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="shoping__checkout">
+                        <h5>Cart Total</h5>
+                        <ul>
+                            <li>Subtotal <span>$454.98</span></li>
+                            <li>Total <span>$454.98</span></li>
+                        </ul>
+                        <a href="#" class="primary-btn">PROCEED TO CHECKOUT</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Blog Section End -->
+    <!-- Shoping Cart Section End -->

@@ -39,8 +39,8 @@ public class OganicTemplateController {
 	public String shop_grid() {
 		return "oganic/shop-grid";
 	}
-	@GetMapping("/shop_cart")
+	@GetMapping("/shoping_cart")
 	public String shop_cart() {
-		return "oganic/shop-cart";
+		return "oganic/shoping-cart";
 	}
 }
