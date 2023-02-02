@@ -38,6 +38,9 @@
                                     <td class="shoping__cart__total">
                                         $110.00
                                     </td>
+                                    <td class="shoping__cart__go_to_buy">
+                                        <button type="button" onclick="">구매하러 가기</button>
+                                    </td>
                                     <td class="shoping__cart__item__close">
                                         <span class="icon_close"></span>
                                     </td>
@@ -60,6 +63,9 @@
                                     <td class="shoping__cart__total">
                                         $39.99
                                     </td>
+                                    <td class="shoping__cart__go_to_buy">
+                                        <button type="button" onclick="">구매하러 가기</button>
+                                    </td>
                                     <td class="shoping__cart__item__close">
                                         <span class="icon_close"></span>
                                     </td>
@@ -81,6 +87,9 @@
                                     </td>
                                     <td class="shoping__cart__total">
                                         $69.99
+                                    </td>
+                                    <td class="shoping__cart__go_to_buy">
+                                        <button type="button" onclick="">구매하러 가기</button>
                                     </td>
                                     <td class="shoping__cart__item__close">
                                         <span class="icon_close"></span>
