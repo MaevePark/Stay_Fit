@@ -19,13 +19,13 @@ public class BoardServiceImpl implements BoardService{
 //	public int selectTotalCnt() throws Exception{
 //		return ;
 //	}
-//		
+		
 //	//게시판 글 등록
 //	@Override
 //	public int write(Board) throws Exception{
 //		return ;
 //	}
-//		
+	
 //	//게시판 글 검색, 페이징
 //	@Override
 //	public List<Board> selectList(int ,int , String ) throws Exception{
@@ -35,19 +35,19 @@ public class BoardServiceImpl implements BoardService{
 //	public int selectTotalCnt(String) throws Exception{
 //		return ;
 //	}
-//		
+	
 //	//게시글 수정
 //	@Override
 //	public int update(Board ) throws Exception{
 //		return ;
 //	}
-//		
+	
 //	//게시글 삭제
 //	@Override
 //	public int delete(int) throws Exception{
 //		return ;
 //	}
-//		
+	
 //	//게시글 상세페이지
 //	@Override
 //	public List<Board> read(int ) throws Exception{
@@ -57,13 +57,13 @@ public class BoardServiceImpl implements BoardService{
 //	public List<Reply> seletList(int) throws Exception{
 //		return ;
 //	}
-//		
+	
 //	//게시글 북마크
 //	@Override
 //	public int bmark(int ,String , ???) throws Exception{
 //		return ;
 //	}
-//		
+
 //	//게시글 반응
 //	@Override
 //	public int emotion(int ,int ,int ) throws Exception{
