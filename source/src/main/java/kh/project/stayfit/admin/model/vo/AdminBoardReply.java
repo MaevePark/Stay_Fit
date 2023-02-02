@@ -1,17 +1,15 @@
 package kh.project.stayfit.admin.model.vo;
 
-import java.sql.Timestamp;
-
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-
+import java.sql.Timestamp;
 
 @ToString
 @Getter
 @Setter
-public class AdRreport {//사용여부 담당자기 결정 
-	//신고댓글목록페이지  // RREPORT테이블
+public class AdminBoardReply {//사용여부 담당자기 결정 
+	//신고댓글목록페이지
 //	"MID"	NUMBER		NOT NULL,
 //	"RID"	NUMBER		NOT NULL,
 //	"REPID"	NUMBER		NOT NULL,
