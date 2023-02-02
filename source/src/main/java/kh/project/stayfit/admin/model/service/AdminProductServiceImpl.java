@@ -19,4 +19,5 @@ public class AdminProductServiceImpl implements AdminProductService{
 //	public List<Product> selectList(int, int, String, int) throws Exception{
 //		return ;
 //	}
+	
 }
