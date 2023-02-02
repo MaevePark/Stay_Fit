@@ -17,4 +17,13 @@ public class BoardController {
 		
 		return mv;
 	}
+	
+	@GetMapping("/read")
+	public ModelAndView boardRead(ModelAndView mv) {
+		
+		mv.addObject("sectionName", "board/read.jsp");
+		mv.setViewName("index");
+		
+		return mv;
+	}
 }
