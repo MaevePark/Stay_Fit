@@ -11,7 +11,7 @@
 						<div class="header__top__right">
 
                             <div class="header__top__right__auth">
-                                <a href="<%=request.getContextPath()%>/logout"><i class="fa fa-user"></i> 마이페이지</a>
+                                <a href="<%=request.getContextPath()%>/mypage/myprofile"><i class="fa fa-user"></i> 마이페이지</a>
                             </div>
 						
 							<div class="header__top__right__auth">
