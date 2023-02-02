@@ -7,7 +7,7 @@ import lombok.ToString;
 @ToString
 @Getter
 @Setter
-public class ShopGgim {
+public class ShopWish {
 	//찜목록에 추가
 //	"PID"	NUMBER		NOT NULL,
 //	"MID"	NUMBER		NOT NULL
