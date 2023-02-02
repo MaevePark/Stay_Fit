@@ -8,5 +8,10 @@ import org.springframework.stereotype.Repository;
 public class DashboardDao {
 	@Autowired
 	private SqlSession sqlsession;
+	
+	//관리자페이지
+//	public Map<String,Object> selectList() throws Exception{
+//		return sqlsession. ;
+//	}
 
 }

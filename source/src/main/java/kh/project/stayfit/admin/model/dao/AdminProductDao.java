@@ -8,5 +8,13 @@ import org.springframework.stereotype.Repository;
 public class AdminProductDao {
 	@Autowired
 	private SqlSession sqlsession;
+	
+//	//상품 목록 페이지
+//	public int selectTotalCnt(String, int) throws Exception{
+//		return sqlsession.;
+//	}
+//	public List<Product> selectList(int, int, String, int) throws Exception{
+//		return sqlsession.;
+//	}
 
 }

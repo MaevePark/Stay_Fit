@@ -8,5 +8,13 @@ import org.springframework.stereotype.Repository;
 public class AdminMemberDao {
 	@Autowired
 	private SqlSession sqlsession;
+	
+//	//회원목록조회
+//	public int selectTotalCnt(String ) throws Exception{
+//		return sqlsession.;
+//	}
+//	public List<Member> selectList(int, int, String) throws Exception{
+//		return sqlsession.;
+//	}
 
 }
