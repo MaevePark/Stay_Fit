@@ -8,9 +8,10 @@
                         <div class="blog__sidebar__item">
                             <h4>Categories</h4>
                             <ul>
-                                <li><a href="<%=request.getContextPath()%>/mypage/mywish">식단</a></li>
-                                <li><a href="<%=request.getContextPath()%>/mypage/mycart">팁&노하우</a></li>
-                                <li><a href="<%=request.getContextPath()%>/mypage/myproduct">고민&질문</a></li>
+                            	<li><a href="<%=request.getContextPath()%>/board/list?bcid=0">공지사항</a></li>
+                                <li><a href="<%=request.getContextPath()%>/board/list?bcid=1">식단</a></li>
+                                <li><a href="<%=request.getContextPath()%>/board/list?bcid=2">팁&노하우</a></li>
+                                <li><a href="<%=request.getContextPath()%>/board/list?bcid=3">고민&질문</a></li>
                             </ul>
                         </div>
                     </div>

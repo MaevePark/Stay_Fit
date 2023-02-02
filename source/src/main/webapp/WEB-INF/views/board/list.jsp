@@ -12,19 +12,40 @@
                 <div class="col-lg-8 col-md-7">
                     <div class="row">
                         
-                        
+                        <% String boardTitle = "";
+                        switch(request.getParameter("bcid")) {
+							case "0":
+								boardTitle = "공지사항";
+								break;
+								
+							case "1":
+								boardTitle = "식단";
+								break;
+								
+							case "2":
+								boardTitle = "팁&노하우";
+								break;
+								
+							case "3":
+								boardTitle = "고민&질문";
+								break;
+							}
+							
+							
+							%>
                         <h4 class="fw-bold py-3 mb-4">
-							<span class="text-muted fw-light">마이페이지 /</span> 북마크
+							<span class="text-muted fw-light">마이페이지 /</span> <%=boardTitle %>
+							
 						</h4>
                         
                         <div class="hero__search__form">
                             <form action="#">
                                 <div class="hero__search__categories">
                                     <select name="">
-                                    	<option value="1" selected>카테고리 전체</option>
-                                    	<option value="2">식단</option>
-                                    	<option value="3">팁&노하우</option>
-                                    	<option value="4">고민&질문</option>
+                                    	<option value="0" <%if(request.getParameter("bcid").equals("0")){ %> selected <%} %>>공지사항</option>
+                                    	<option value="1" <%if(request.getParameter("bcid").equals("1")){ %> selected <%} %>>식단</option>
+                                    	<option value="2" <%if(request.getParameter("bcid").equals("2")){ %> selected <%} %>>팁&노하우</option>
+                                    	<option value="3" <%if(request.getParameter("bcid").equals("3")){ %> selected <%} %>>고민&질문</option>
                                     </select>
                                 </div>
                                 <div class="hero__search__categories">
