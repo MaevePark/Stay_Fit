@@ -7,12 +7,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/mypage")
-public class MyProfileController {
+public class MyWishController {
 	
-	@GetMapping("/myprofile")
-	public ModelAndView myProfile(ModelAndView mv) {
+	@GetMapping("/mywish")
+	public ModelAndView myWish(ModelAndView mv) {
 		
-		mv.addObject("sectionName", "mypage/myprofile.jsp");
+		mv.addObject("sectionName", "mypage/mywish.jsp");
 		mv.setViewName("index");
 		
 		return mv;

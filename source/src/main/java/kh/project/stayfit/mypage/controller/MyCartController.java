@@ -7,15 +7,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/mypage")
-public class MyProfileController {
+public class MyCartController {
+
 	
-	@GetMapping("/myprofile")
-	public ModelAndView myProfile(ModelAndView mv) {
+	@GetMapping("/mycart")
+	public ModelAndView myCart(ModelAndView mv) {
 		
-		mv.addObject("sectionName", "mypage/myprofile.jsp");
+		mv.addObject("sectionName", "mypage/mycart.jsp");
 		mv.setViewName("index");
 		
 		return mv;
 	}
-
 }
