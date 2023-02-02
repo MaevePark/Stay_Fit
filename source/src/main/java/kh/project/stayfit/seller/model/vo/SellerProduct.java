@@ -7,6 +7,23 @@ import lombok.ToString;
 @ToString
 @Getter
 @Setter
-public class SellerProduct {
+public class SellerProduct { //사용여부 담당자기 결정 
+	//판매자페이지 - 상품목록페이지 //상품db??
+//	"PID"	NUMBER		NOT NULL,
+//	"CID"	NUMBER		NOT NULL,
+//	"PNAME"	VARCHAR2(500)		NOT NULL,
+//	"PIMAGE"	VARCHAR2(500)		NOT NULL,
+//	"PPRICE"	NUMBER		NOT NULL,
+//	"PSALES"	NUMBER	DEFAULT 0	NULL,
+//	"PSTOCK"	NUMBER	DEFAULT 0	NULL,
+//	"PSALE"	NUMBER(2)	DEFAULT 0	NOT NULL
+	private int pid;
+	private int cid;
+	private String pname;
+	private String pimage;
+	private int pprice;
+	private int psales;
+	private int pstock;
+	private int psale;
 
 }

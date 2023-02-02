@@ -15090,7 +15090,9 @@ html:not(.layout-menu-fixed) .menu-inner-shadow {
   padding: 0.625rem 1rem;
 }
 .menu-vertical .menu-header {
-  margin: 1rem 0 0.5rem 0;
+  /* stayfit modify
+  margin: 1rem 0 0.5rem 0; */
+  margin: 0.5rem 0 1rem 0;
   padding: 0.625rem 2rem 0.625rem 2rem;
 }
 .menu-vertical .menu-item .menu-link {
