@@ -41,43 +41,8 @@
 					                            Donec rutrum congue leo eget malesuada. Curabitur non nulla sit amet nisl tempus convallis
 					                            quis ac lectus. Donec sollicitudin molestie malesuada. Nulla quis lorem ut libero malesuada
 					                            feugiat. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.</p>
-					                        <h3>The corner window forms a place within a place that is a resting point within the large
-					                            space.</h3>
-					                        <p>The study area is located at the back with a view of the vast nature. Together with the other
-					                            buildings, a congruent story has been managed in which the whole has a reinforcing effect on
-					                            the components. The use of materials seeks connection to the main house, the adjacent
-					                            stables</p>
 					                    </div>
-					                    <div class="blog__details__content">
-					                        <div class="row">
-					                            <div class="col-lg-6">
-					                                <div class="blog__details__author">
-					                                    <div class="blog__details__author__pic">
-					                                        <img src="img/blog/details/details-author.jpg" alt="">
-					                                    </div>
-					                                    <div class="blog__details__author__text">
-					                                        <h6>Michael Scofield</h6>
-					                                        <span>Admin</span>
-					                                    </div>
-					                                </div>
-					                            </div>
-					                            <div class="col-lg-6">
-					                                <div class="blog__details__widget">
-					                                    <ul>
-					                                        <li><span>Categories:</span> Food</li>
-					                                        <li><span>Tags:</span> All, Trending, Cooking, Healthy Food, Life Style</li>
-					                                    </ul>
-					                                    <div class="blog__details__social">
-					                                        <a href="#"><i class="fa fa-facebook"></i></a>
-					                                        <a href="#"><i class="fa fa-twitter"></i></a>
-					                                        <a href="#"><i class="fa fa-google-plus"></i></a>
-					                                        <a href="#"><i class="fa fa-linkedin"></i></a>
-					                                        <a href="#"><i class="fa fa-envelope"></i></a>
-					                                    </div>
-					                                </div>
-					                            </div>
-					                        </div>
-					                    </div>
+					                    
 					                </div>
 								</td>
 							</tr>
@@ -85,7 +50,7 @@
 						</table>
 						
 						<!-- 버튼 -->
-						<div>
+						<div id="button_parent">
 							<!-- 수정, 삭제 버튼은 본인이 작성한 글일때만 출력. -->
 							<button type="button" onclick="">수정</button>
 							<button type="button" onclick="">삭제</button>

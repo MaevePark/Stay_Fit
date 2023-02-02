@@ -8,12 +8,15 @@
 /*게시글 머리 끝*/
 
 /*게시글 몸통 시작*/
-#readContent {
-	border: 1px solid black;
+#readContent tr:first-child > td:last-child, #readContent tr:nth-child(2) > td:last-child {
+	text-align: right;
 }
 
-
 .col-lg-8 {
+	max-width: 100%;
+}
+
+.col-lg-8 .row {
 	max-width: 100%;
 	display: flex;
 	flex-direction: column;
@@ -23,16 +26,24 @@
 	max-width: 100%;
 	padding-left: 10px;
 }
-
+.blog__details__text {
+	margin-bottom: 15px;
+}
 
 /*게시글 몸통 끝*/
 
-
 /*수정, 삭제, 목록 버튼 시작*/
 
-
+#button_parent {
+	display: flex;
+	justify-content: right;
+}
+#button_parent > button {
+	margin-left: 5px;
+}
 
 /*수정, 삭제, 목록 버튼 끝*/
+
 
 /*댓글영역 시작*/
 #replyArea {
@@ -40,7 +51,10 @@
 	flex-direction: column;
 	
 }
-
+#replyArea > div:first-child {
+	display: flex;
+	justify-content: center;
+}
 
 
 /*댓글영역 끝*/
