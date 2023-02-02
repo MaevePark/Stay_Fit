@@ -29,3 +29,18 @@
 	width: 60%
 }
 /*검색창 끝*/
+
+
+/*리스트업 테이블 시작*/
+.card-header {
+	display: flex;
+	justify-content: space-between;
+}
+
+
+
+
+/*리스트업 테이블 끝*/
+
+
+

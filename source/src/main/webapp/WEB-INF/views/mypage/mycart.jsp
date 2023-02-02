@@ -7,6 +7,9 @@
     <section class="shoping-cart spad">
         <div class="container">
             <div class="row">
+            	<!-- 마이페이지 카테고리 -->
+                <jsp:include page="/WEB-INF/views/mypage/mypagecategory.jsp"></jsp:include>
+            
                 <div class="col-lg-12">
                     <div class="shoping__cart__table">
                         <table>
