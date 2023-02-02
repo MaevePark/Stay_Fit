@@ -19,11 +19,11 @@
 							</div>
 						
 							<div class="header__top__right__auth">
-                                <a href="#"><i class="fa fa-heart"></i></a>
+                                <a href="<%=request.getContextPath()%>/mypage/mywish"><i class="fa fa-heart"></i></a>
                             </div>
                             
 							<div class="header__top__right__auth">
-                                <a href="#"><i class="fa fa-shopping-bag"></i></a>
+                                <a href="<%=request.getContextPath()%>/mypage/mycart"><i class="fa fa-shopping-bag"></i></a>
                             </div>
 						
 						<!-- 비회원, 로그아웃
@@ -58,9 +58,9 @@
 							</li>
 							<li><a href="#">건강관리</a>
 								<ul class="header__menu__dropdown">
-									<li><a href="<%=request.getContextPath()%>/shop">칼로리 처방 받기</a></li>
-									<li><a href="<%=request.getContextPath()%>/shop">BMI 지수 조회</a></li>
-									<li><a href="<%=request.getContextPath()%>/shop">보건소 조회</a></li>
+									<li><a href="<%=request.getContextPath()%>/health/bmimeasure">칼로리 처방 받기</a></li>
+									<li><a href="<%=request.getContextPath()%>/health/bmimeasure">BMI 지수 조회</a></li>
+									<li><a href="<%=request.getContextPath()%>/health/bmimeasure">보건소 조회</a></li>
 								</ul>
 							</li>
 							<li><a href="<%=request.getContextPath()%>/diary">다이어리</a></li>
