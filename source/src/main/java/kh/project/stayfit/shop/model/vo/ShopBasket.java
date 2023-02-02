@@ -1,9 +1,10 @@
 package kh.project.stayfit.shop.model.vo;
 
+import java.sql.Timestamp;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import oracle.sql.TIMESTAMP;
 
 @ToString
 @Getter
@@ -18,5 +19,5 @@ public class ShopBasket {
 	private int pid;
 	private int mid;
 	private int pcount;
-	private TIMESTAMP cupdate; //String?? oracle.sql?? java.sql??
+	private Timestamp cupdate; //담당자 import확인
 }
