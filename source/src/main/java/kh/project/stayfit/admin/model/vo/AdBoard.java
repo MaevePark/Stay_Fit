@@ -7,11 +7,12 @@ import java.sql.Timestamp;
 import lombok.Getter;
 import lombok.ToString;
 
+
 @ToString
 @Getter
 @Setter
-public class AdminBoard {//사용여부 담당자기 결정 
-	//게시물 목록 페이지
+public class AdBoard {//사용여부 담당자기 결정 
+	//게시물 목록 페이지 //BOARD테이블
 //	"BID"	NUMBER		NOT NULL,
 //	"BCID"	NUMBER		NOT NULL,
 //	"MID"	NUMBER		NOT NULL,
@@ -26,7 +27,7 @@ public class AdminBoard {//사용여부 담당자기 결정
 	private int bcid;
 	private int mid;
 	private String btitle;
-	private String bcontent;
+	private String bcontent; 
 	private int bpick;
 	private Timestamp bcreate; 
 	private Timestamp bupdate; 
