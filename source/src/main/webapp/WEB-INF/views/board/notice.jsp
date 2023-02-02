@@ -14,7 +14,7 @@
 		<div class="table-responsive text-nowrap">
 			<table class="table">
 				<thead>
-					<tr>
+					<tr> 
 						<th>Project</th>
 						<th>Client</th>
 						<th>Users</th>
