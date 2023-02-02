@@ -7,12 +7,9 @@ import lombok.ToString;
 @ToString
 @Getter
 @Setter
-public class BoardEmotion {
+public class BookMark {
 //	"MID"	NUMBER		NOT NULL,
-//	"BID"	NUMBER		NOT NULL,
-//	"EMO"	NUMBER		NOT NULL
+//	"BID"	NUMBER		NOT NULL
 	private int mid;
 	private int bid;
-	private int emo;
-
 }
