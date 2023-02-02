@@ -9,34 +9,5 @@ import kh.project.stayfit.seller.model.dao.ProductDao;
 public class ProductServiceImpl implements ProductService{
 	@Autowired
 	private ProductDao dao;
-	
-//	//판매자페이지
-//	@Override
-//	public int selectTotalCnt(String, int) throws Exception{
-//		return ;
-//	}
-//	@Override
-//	public List<Product> selectList(int, int, String, int) throws Exception{
-//		return ;
-//	}
-	
-//	//상품수정lo
-//	@Override
-//	public Product selectOne(int? ) throws Exception{
-//		return ;
-//	}
-	
-//	//상품수정do
-//	@Override
-//	public int update(???, ???) throws Exception{
-//		return ;
-//	}
-
-//	//상품등록do
-//	@Override
-//	public int insert(Product) throws Exception{
-//		return ;
-//	}
-
 
 }
