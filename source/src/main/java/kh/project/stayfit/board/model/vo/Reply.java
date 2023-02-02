@@ -7,7 +7,7 @@ import lombok.ToString;
 @ToString
 @Getter
 @Setter
-public class BoardReply {
+public class Reply {
 //	"RID"	NUMBER		NOT NULL,
 //	"BID"	NUMBER		NOT NULL,
 //	"MID"	NUMBER		NOT NULL,

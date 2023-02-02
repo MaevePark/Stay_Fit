@@ -7,10 +7,12 @@ import lombok.ToString;
 @ToString
 @Getter
 @Setter
-public class BoardLikeReply {
-//	"RID"	NUMBER		NOT NULL,
-//	"MID"	NUMBER		NOT NULL
-	private int rid;
+public class Bemotion {
+//	"MID"	NUMBER		NOT NULL,
+//	"BID"	NUMBER		NOT NULL,
+//	"EMO"	NUMBER		NOT NULL
 	private int mid;
+	private int bid;
+	private int emo;
 
 }

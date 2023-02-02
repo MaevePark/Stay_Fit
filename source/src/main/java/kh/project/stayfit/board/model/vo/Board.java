@@ -19,6 +19,7 @@ public class Board {
 //	"BCREATE"	TIMESTAMP	DEFAULT CURRENT_TIMESTAMP	NOT NULL,
 //	"BUPDATE"	TIMESTAMP	DEFAULT CURRENT_TIMESTAMP	NOT NULL,
 //	"BSTATE"	CHAR(1)	DEFAULT 'A'	NOT NULL
+//	"BVIEWCOUNT"	NUMBER	DEFAULT 0	NOT NULL
 	
 	private int bid;
 	private int bcid;
@@ -29,5 +30,6 @@ public class Board {
 	private TIMESTAMP bcreate; //String?? oracle.sql?? java.sql??
 	private TIMESTAMP bupdate; //String?? oracle.sql?? java.sql??
 	private char bstate;
+	private int bviewcount;
 
 }

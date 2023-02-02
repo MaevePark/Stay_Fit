@@ -7,9 +7,10 @@ import lombok.ToString;
 @ToString
 @Getter
 @Setter
-public class Bmark {
-//	"MID"	NUMBER		NOT NULL,
-//	"BID"	NUMBER		NOT NULL
+public class ReplyLike {
+//	"RID"	NUMBER		NOT NULL,
+//	"MID"	NUMBER		NOT NULL
+	private int rid;
 	private int mid;
-	private int bid;
+
 }
