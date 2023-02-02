@@ -1,15 +1,14 @@
-package kh.project.stayfit.admin.model.vo;
+package kh.project.stayfit.board.model.vo;
 
-import lombok.Getter;
-import lombok.Setter;
 import lombok.ToString;
 import oracle.sql.TIMESTAMP;
+import lombok.Getter;
+import lombok.Setter;
 
 @ToString
 @Getter
 @Setter
-public class AdminBoardReply {//사용여부 담당자기 결정 
-	//신고댓글목록페이지
+public class Rreport {
 //	"MID"	NUMBER		NOT NULL,
 //	"RID"	NUMBER		NOT NULL,
 //	"REPID"	NUMBER		NOT NULL,
@@ -18,5 +17,4 @@ public class AdminBoardReply {//사용여부 담당자기 결정
 	private int rid;
 	private int repid;
 	private TIMESTAMP rcreate; //String?? oracle.sql?? java.sql??
-
 }
