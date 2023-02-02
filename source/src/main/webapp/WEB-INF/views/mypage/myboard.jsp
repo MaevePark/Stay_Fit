@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/mypage.css" type="text/css">
 
 	<!-- Blog Section Begin -->
     <section class="blog spad">
@@ -27,6 +29,28 @@
 							<span class="text-muted fw-light">마이페이지 /</span> 작성한 글
 						</h4>
                         <%} %>
+                        
+                        <div class="hero__search__form">
+                            <form action="#">
+                                <div class="hero__search__categories">
+                                    <select name="">
+                                    	<option value="1" selected>카테고리 전체</option>
+                                    	<option value="2">식단</option>
+                                    	<option value="3">팁&노하우</option>
+                                    	<option value="4">고민&질문</option>
+                                    </select>
+                                </div>
+                                <div class="hero__search__categories">
+                                	<select name="">
+                                    	<option value="1" selected>전체</option>
+                                    	<option value="2">작성자</option>
+                                    	<option value="3">제목</option>
+                                    </select>
+                                </div>
+                                <input type="text" placeholder="검색어를 입력해주세요.">
+                                <button type="submit" class="site-btn">SEARCH</button>
+                            </form>
+                        </div>
                         
                         <div class="container-xl flex-grow-1 container-p-y">
 	                        <!-- Basic Bootstrap Table -->
