@@ -8,5 +8,5 @@ import lombok.ToString;
 @Getter
 @Setter
 public class Read {
-
+//	게시글 상세페이지
 }

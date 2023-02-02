@@ -8,5 +8,9 @@ import lombok.ToString;
 @Getter
 @Setter
 public class BoardLikeReply {
+//	"RID"	NUMBER		NOT NULL,
+//	"MID"	NUMBER		NOT NULL
+	private int rid;
+	private int mid;
 
 }
