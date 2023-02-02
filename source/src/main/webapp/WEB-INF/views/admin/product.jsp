@@ -74,26 +74,73 @@
             <!-- Content -->
 
             <div class="container-xxl flex-grow-1 container-p-y">
-              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Tables /</span> Basic Tables</h4>
+              <h3 class="fw-bold py-3 mb-4 row justify-content-center"><span class="text-muted fw-light"></span>상품 목록 </h3>
+              
+              
+              <!-- 검색 조건 -->
+              <!-- 상품명 -->
+              <!-- 카테고리 -->
+              <div class="col-xxl">
+			    <div class="card mb-4">
+			      <div class="card-body">
+			        <form>
+			          <div class="row mb-3">
+			            <label class="col-sm-2 col-form-label" for="basic-default-name">상품명</label>
+			            <div class="col-sm-10">
+			              <input type="text" class="form-control" id="basic-default-name" placeholder="상품명을 입력하세요">
+			            </div>
+			          </div>
+			          <div class="row mb-3">
+			            <label class="col-sm-2 col-form-label" for="basic-default-name">카테고리</label>
+			            <div class="col-sm-10">
+			              <div class="btn-group">
+					        <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">카테고리를 선택하세요  &nbsp;</button>
+					        <ul class="dropdown-menu">
+					          <li><a class="dropdown-item" href="javascript:void(0);">Action</a></li>
+					          <li><a class="dropdown-item" href="javascript:void(0);">Another action</a></li>
+					          <li><a class="dropdown-item" href="javascript:void(0);">Something else here</a></li>
+					          <li>
+					            <hr class="dropdown-divider">
+					          </li>
+					          <li><a class="dropdown-item" href="javascript:void(0);">Separated link</a></li>
+					        </ul>
+					      </div>
+			            </div>
+			          </div>
+			          <div class="row justify-content-center">
+			            <div class="pagination justify-content-center" style="padding: 0">
+				          <button type="button" class="btn btn-primary" style="margin-right: 10px">검색</button>
+				          <button type="button" class="btn btn-secondary">초기화</button>
+				        </div>
+			          </div>
+			        </form>
+			      </div>
+			    </div>
+			  </div>
 
+              <p style="margin-left: 20px">총 n건</p>
+              
               <!-- Basic Bootstrap Table -->
               <div class="card">
-                <h5 class="card-header">Table Basic</h5>
                 <div class="table-responsive text-nowrap">
+                  	
                   <table class="table">
                     <thead>
                       <tr>
-                        <th>Project</th>
-                        <th>Client</th>
-                        <th>Users</th>
-                        <th>Status</th>
-                        <th>Actions</th>
+                        <th>상품 ID</th>
+                        <th>카테고리</th>
+                        <th>상품명</th>
+                        <th>대표이미지</th>
+                        <th>판매가</th>
+                        <th>판매량</th>
+                        <th>재고수량</th>
                       </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
                       <tr>
-                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Angular Project</strong></td>
-                        <td>Albert Cook</td>
+                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i>122</td>
+                        <td>건강간식·음료</td>
+                        <td><strong>디카페인 보리 커피</strong></td>
                         <td>
                           <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
                             <li
@@ -101,50 +148,20 @@
                               data-popup="tooltip-custom"
                               data-bs-placement="top"
                               class="avatar avatar-xs pull-up"
-                              title="Lilian Fuller"
-                            >
-                              <img src="<%=request.getContextPath() %>/resources/admin/assets/img/avatars/5.png" alt="Avatar" class="rounded-circle" />
-                            </li>
-                            <li
-                              data-bs-toggle="tooltip"
-                              data-popup="tooltip-custom"
-                              data-bs-placement="top"
-                              class="avatar avatar-xs pull-up"
-                              title="Sophia Wilkerson"
+                              title="Christina Parker"
                             >
                               <img src="<%=request.getContextPath() %>/resources/admin/assets/img/avatars/6.png" alt="Avatar" class="rounded-circle" />
                             </li>
-                            <li
-                              data-bs-toggle="tooltip"
-                              data-popup="tooltip-custom"
-                              data-bs-placement="top"
-                              class="avatar avatar-xs pull-up"
-                              title="Christina Parker"
-                            >
-                              <img src="<%=request.getContextPath() %>/resources/admin/assets/img/avatars/7.png" alt="Avatar" class="rounded-circle" />
-                            </li>
                           </ul>
                         </td>
-                        <td><span class="badge bg-label-primary me-1">Active</span></td>
-                        <td>
-                          <div class="dropdown">
-                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                              <i class="bx bx-dots-vertical-rounded"></i>
-                            </button>
-                            <div class="dropdown-menu">
-                              <a class="dropdown-item" href="javascript:void(0);"
-                                ><i class="bx bx-edit-alt me-1"></i> Edit</a
-                              >
-                              <a class="dropdown-item" href="javascript:void(0);"
-                                ><i class="bx bx-trash me-1"></i> Delete</a
-                              >
-                            </div>
-                          </div>
-                        </td>
+                        <td>5,000</td>
+                        <td>0</td>
+                        <td>10</td>
                       </tr>
                       <tr>
-                        <td><i class="fab fa-react fa-lg text-info me-3"></i> <strong>React Project</strong></td>
-                        <td>Barry Hunter</td>
+                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i>122</td>
+                        <td>건강간식·음료</td>
+                        <td><strong>디카페인 보리 커피</strong></td>
                         <td>
                           <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
                             <li
@@ -152,158 +169,47 @@
                               data-popup="tooltip-custom"
                               data-bs-placement="top"
                               class="avatar avatar-xs pull-up"
-                              title="Lilian Fuller"
-                            >
-                              <img src="<%=request.getContextPath() %>/resources/admin/assets/img/avatars/5.png" alt="Avatar" class="rounded-circle" />
-                            </li>
-                            <li
-                              data-bs-toggle="tooltip"
-                              data-popup="tooltip-custom"
-                              data-bs-placement="top"
-                              class="avatar avatar-xs pull-up"
-                              title="Sophia Wilkerson"
+                              title="Christina Parker"
                             >
                               <img src="<%=request.getContextPath() %>/resources/admin/assets/img/avatars/6.png" alt="Avatar" class="rounded-circle" />
                             </li>
-                            <li
-                              data-bs-toggle="tooltip"
-                              data-popup="tooltip-custom"
-                              data-bs-placement="top"
-                              class="avatar avatar-xs pull-up"
-                              title="Christina Parker"
-                            >
-                              <img src="<%=request.getContextPath() %>/resources/admin/assets/img/avatars/7.png" alt="Avatar" class="rounded-circle" />
-                            </li>
                           </ul>
                         </td>
-                        <td><span class="badge bg-label-success me-1">Completed</span></td>
-                        <td>
-                          <div class="dropdown">
-                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                              <i class="bx bx-dots-vertical-rounded"></i>
-                            </button>
-                            <div class="dropdown-menu">
-                              <a class="dropdown-item" href="javascript:void(0);"
-                                ><i class="bx bx-edit-alt me-2"></i> Edit</a
-                              >
-                              <a class="dropdown-item" href="javascript:void(0);"
-                                ><i class="bx bx-trash me-2"></i> Delete</a
-                              >
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td><i class="fab fa-vuejs fa-lg text-success me-3"></i> <strong>VueJs Project</strong></td>
-                        <td>Trevor Baker</td>
-                        <td>
-                          <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
-                            <li
-                              data-bs-toggle="tooltip"
-                              data-popup="tooltip-custom"
-                              data-bs-placement="top"
-                              class="avatar avatar-xs pull-up"
-                              title="Lilian Fuller"
-                            >
-                              <img src="<%=request.getContextPath() %>/resources/admin/assets/img/avatars/5.png" alt="Avatar" class="rounded-circle" />
-                            </li>
-                            <li
-                              data-bs-toggle="tooltip"
-                              data-popup="tooltip-custom"
-                              data-bs-placement="top"
-                              class="avatar avatar-xs pull-up"
-                              title="Sophia Wilkerson"
-                            >
-                              <img src="<%=request.getContextPath() %>/resources/admin/assets/img/avatars/6.png" alt="Avatar" class="rounded-circle" />
-                            </li>
-                            <li
-                              data-bs-toggle="tooltip"
-                              data-popup="tooltip-custom"
-                              data-bs-placement="top"
-                              class="avatar avatar-xs pull-up"
-                              title="Christina Parker"
-                            >
-                              <img src="<%=request.getContextPath() %>/resources/admin/assets/img/avatars/7.png" alt="Avatar" class="rounded-circle" />
-                            </li>
-                          </ul>
-                        </td>
-                        <td><span class="badge bg-label-info me-1">Scheduled</span></td>
-                        <td>
-                          <div class="dropdown">
-                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                              <i class="bx bx-dots-vertical-rounded"></i>
-                            </button>
-                            <div class="dropdown-menu">
-                              <a class="dropdown-item" href="javascript:void(0);"
-                                ><i class="bx bx-edit-alt me-2"></i> Edit</a
-                              >
-                              <a class="dropdown-item" href="javascript:void(0);"
-                                ><i class="bx bx-trash me-2"></i> Delete</a
-                              >
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <i class="fab fa-bootstrap fa-lg text-primary me-3"></i> <strong>Bootstrap Project</strong>
-                        </td>
-                        <td>Jerry Milton</td>
-                        <td>
-                          <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
-                            <li
-                              data-bs-toggle="tooltip"
-                              data-popup="tooltip-custom"
-                              data-bs-placement="top"
-                              class="avatar avatar-xs pull-up"
-                              title="Lilian Fuller"
-                            >
-                              <img src="<%=request.getContextPath() %>/resources/admin/assets/img/avatars/5.png" alt="Avatar" class="rounded-circle" />
-                            </li>
-                            <li
-                              data-bs-toggle="tooltip"
-                              data-popup="tooltip-custom"
-                              data-bs-placement="top"
-                              class="avatar avatar-xs pull-up"
-                              title="Sophia Wilkerson"
-                            >
-                              <img src="<%=request.getContextPath() %>/resources/admin/assets/img/avatars/6.png" alt="Avatar" class="rounded-circle" />
-                            </li>
-                            <li
-                              data-bs-toggle="tooltip"
-                              data-popup="tooltip-custom"
-                              data-bs-placement="top"
-                              class="avatar avatar-xs pull-up"
-                              title="Christina Parker"
-                            >
-                              <img src="<%=request.getContextPath() %>/resources/admin/assets/img/avatars/7.png" alt="Avatar" class="rounded-circle" />
-                            </li>
-                          </ul>
-                        </td>
-                        <td><span class="badge bg-label-warning me-1">Pending</span></td>
-                        <td>
-                          <div class="dropdown">
-                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                              <i class="bx bx-dots-vertical-rounded"></i>
-                            </button>
-                            <div class="dropdown-menu">
-                              <a class="dropdown-item" href="javascript:void(0);"
-                                ><i class="bx bx-edit-alt me-2"></i> Edit</a
-                              >
-                              <a class="dropdown-item" href="javascript:void(0);"
-                                ><i class="bx bx-trash me-2"></i> Delete</a
-                              >
-                            </div>
-                          </div>
-                        </td>
+                        <td>5,000</td>
+                        <td>0</td>
+                        <td>10</td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
+                
+                <!-- 페이지네이션 -->
+                <ul class="pagination justify-content-center" style="margin: 40px 0 24px 0">
+	              <li class="page-item prev">
+	                <a class="page-link" href="javascript:void(0);"><i class="tf-icon bx bx-chevrons-left"></i></a>
+	              </li>
+	              <li class="page-item">
+	                <a class="page-link" href="javascript:void(0);">1</a>
+	              </li>
+	              <li class="page-item">
+	                <a class="page-link" href="javascript:void(0);">2</a>
+	              </li>
+	              <li class="page-item active">
+	                <a class="page-link" href="javascript:void(0);">3</a>
+	              </li>
+	              <li class="page-item">
+	                <a class="page-link" href="javascript:void(0);">4</a>
+	              </li>
+	              <li class="page-item">
+	                <a class="page-link" href="javascript:void(0);">5</a>
+	              </li>
+	              <li class="page-item next">
+	                <a class="page-link" href="javascript:void(0);"><i class="tf-icon bx bx-chevrons-right"></i></a>
+	              </li>
+	            </ul>
               </div>
               <!--/ Basic Bootstrap Table -->
 
-              <hr class="my-5" />
 
             </div>
             <!-- / Content -->

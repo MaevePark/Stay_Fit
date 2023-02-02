@@ -88,7 +88,7 @@
 			<!-- 게시판 -->
 <c:choose>
 	<c:when test="${currentMenu == 4 || currentMenu == 5}">			
-            <li class="menu-item open">
+            <li class="menu-item active open">
     </c:when>
 	<c:otherwise>
 			<li class="menu-item">

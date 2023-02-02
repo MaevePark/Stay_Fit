@@ -6224,7 +6224,9 @@ a.invert-bg-dark:hover, a.invert-bg-dark:focus {
 }
 .table th {
   text-transform: uppercase;
+  /* stayfit delete 
   font-size: 0.75rem;
+  */
   letter-spacing: 1px;
 }
 .table:not(.table-dark) th {
@@ -6233,7 +6235,9 @@ a.invert-bg-dark:hover, a.invert-bg-dark:focus {
 
 .table-border-bottom-0 tr:last-child td,
 .table-border-bottom-0 tr:last-child th {
+  /* stayfit delete
   border-bottom-width: 0;
+  */	
 }
 
 .table.table-dark .btn.btn-icon {
@@ -7606,7 +7610,9 @@ button:focus {
 
 .form-label,
 .col-form-label {
+  /* stayfit delete
   font-size: 0.75rem;
+  */
   text-transform: uppercase;
   letter-spacing: inherit;
 }
