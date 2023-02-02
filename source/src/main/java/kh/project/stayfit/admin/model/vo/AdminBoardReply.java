@@ -3,7 +3,7 @@ package kh.project.stayfit.admin.model.vo;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import oracle.sql.TIMESTAMP;
+import java.sql.Timestamp;
 
 @ToString
 @Getter
@@ -17,6 +17,6 @@ public class AdminBoardReply {//사용여부 담당자기 결정
 	private int mid;
 	private int rid;
 	private int repid;
-	private TIMESTAMP rcreate; //String?? oracle.sql?? java.sql??
+	private Timestamp rcreate; //String?? oracle.sql?? java.sql??
 
 }

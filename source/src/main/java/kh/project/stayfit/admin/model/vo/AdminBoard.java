@@ -1,9 +1,11 @@
 package kh.project.stayfit.admin.model.vo;
 
 import lombok.Setter;
+
+import java.sql.Timestamp;
+
 import lombok.Getter;
 import lombok.ToString;
-import oracle.sql.TIMESTAMP;
 
 @ToString
 @Getter
@@ -24,9 +26,9 @@ public class AdminBoard {//사용여부 담당자기 결정
 	private int bcid;
 	private int mid;
 	private String btitle;
-	private String bcontent; //String?? CLOB??
+	private String bcontent;
 	private int bpick;
-	private TIMESTAMP bcreate; //String?? oracle.sql?? java.sql??
-	private TIMESTAMP bupdate; //String?? oracle.sql?? java.sql??
+	private Timestamp bcreate; 
+	private Timestamp bupdate; 
 	private char bstate;
 }

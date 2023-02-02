@@ -1,9 +1,10 @@
 package kh.project.stayfit.board.model.vo;
 
+import java.sql.Timestamp;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import oracle.sql.TIMESTAMP;
 
 @ToString
 @Getter
@@ -26,8 +27,8 @@ public class Board {
 	private String btitle;
 	private String bcontent; //String?? CLOB??
 	private int bpick;
-	private TIMESTAMP bcreate; //String?? oracle.sql?? java.sql??
-	private TIMESTAMP bupdate; //String?? oracle.sql?? java.sql??
+	private Timestamp bcreate; //String?? oracle.sql?? java.sql??
+	private Timestamp bupdate; //String?? oracle.sql?? java.sql??
 	private char bstate;
 
 }
