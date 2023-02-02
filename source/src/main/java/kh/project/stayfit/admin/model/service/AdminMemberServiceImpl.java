@@ -19,4 +19,5 @@ public class AdminMemberServiceImpl implements AdminMemberService{
 //	public List<Member> selectList(int, int, String) throws Exception{
 //		return ;
 //	}
+	
 }
