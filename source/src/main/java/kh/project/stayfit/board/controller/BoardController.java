@@ -9,10 +9,10 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/board")
 public class BoardController {
 
-	@GetMapping("/notice")
+	@GetMapping("/list")
 	public ModelAndView boardGet(ModelAndView mv) {
 		
-		mv.addObject("sectionName", "board/notice.jsp");
+		mv.addObject("sectionName", "board/list.jsp");
 		mv.setViewName("index");
 		
 		return mv;
