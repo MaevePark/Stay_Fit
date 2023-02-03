@@ -8,23 +8,45 @@
     <section class="blog spad">
         <div class="container">
             <div class="row">
-            	<!-- 마이페이지 카테고리 -->
-                <jsp:include page="/WEB-INF/views/mypage/mypagecategory.jsp"></jsp:include>
+            	<!-- 게시판 카테고리 -->
+                <jsp:include page="/WEB-INF/views/board/boardcategory.jsp"></jsp:include>
                 
                 <div class="col-lg-8 col-md-7">
                     <div class="row">
+                    
+                    <div class="hero__search__form">
+                            <form action="#">
+                                <div class="hero__search__categories">
+                                    <select name="">
+                                    	<option value="1" selected>카테고리 전체</option>
+                                    	<option value="2">식단</option>
+                                    	<option value="3">팁&노하우</option>
+                                    	<option value="4">고민&질문</option>
+                                    </select>
+                                </div>
+                                <div class="hero__search__categories">
+                                	<select name="">
+                                    	<option value="1" selected>전체</option>
+                                    	<option value="2">작성자</option>
+                                    	<option value="3">제목</option>
+                                    </select>
+                                </div>
+                                <input type="text" placeholder="검색어를 입력해주세요.">
+                                <button type="submit" class="site-btn">SEARCH</button>
+                            </form>
+                        </div>
 						
 						<table id="readContent">
 							<!-- 타이틀1  -->
 							<tr>
 								<td>제목</td>
-								<td>작성자</td>
+								<td>조회수</td>
 								
 							</tr>
 							<!-- 타이틀1  -->
 							<tr>
-								<td>조회수</td>
-								<td>수정 혹은 작성일자</td>
+								<td>작성자</td>
+								<td>YYYY.MM.DD</td>
 							</tr>
 						
 							<!-- 컨텐츠  -->
@@ -52,8 +74,8 @@
 						<!-- 버튼 -->
 						<div id="button_parent">
 							<!-- 수정, 삭제 버튼은 본인이 작성한 글일때만 출력. -->
-							<button type="button" onclick="">수정</button>
-							<button type="button" onclick="">삭제</button>
+							<!-- <button type="button" onclick="">수정</button>
+							<button type="button" onclick="">삭제</button> -->
 							<button type="button" onclick="">목록</button>
 						</div>
 						
@@ -71,9 +93,51 @@
                         	</div>
                         	
                         	<!-- 댓글 -->
-                        	<div>
-                        	댓글영역
-                        	</div>
+                        	<table id="readReply">
+							<tr>
+								<td>
+								<div class="blog__sidebar__recent__item__pic">
+									<img
+										src="<%=request.getContextPath()%>/resources/img/user/user-mini.png"
+										alt="">
+								</div>
+								<div class="blog__sidebar__recent__item__text">
+									<span>USER</span>
+									<div>09 Kinds Of Vegetables Protect The Liver</div>	
+								</div>
+								</td>
+								<td>YYYY.MM.DD</td>
+							</tr>
+							<tr>
+								<td>
+								<div class="blog__sidebar__recent__item__pic">
+									<img
+										src="<%=request.getContextPath()%>/resources/img/user/user-mini.png"
+										alt="">
+								</div>
+								<div class="blog__sidebar__recent__item__text">
+									<span>USER</span>
+									<div>09 Kinds Of Vegetables Protect The Liver</div>	
+								</div>
+								</td>
+								<td>YYYY.MM.DD</td>
+							</tr>
+							<tr>
+								<td>
+								<div class="blog__sidebar__recent__item__pic">
+									<img
+										src="<%=request.getContextPath()%>/resources/img/user/user-mini.png"
+										alt="">
+								</div>
+								<div class="blog__sidebar__recent__item__text">
+									<span>USER</span>
+									<div>09 Kinds Of Vegetables Protect The Liver</div>	
+								</div>
+								</td>
+								<td>YYYY.MM.DD</td>
+							</tr>
+							
+							</table>
                         
                         </div>
                         
