@@ -2,7 +2,6 @@ package kh.project.stayfit.mypage.model.service;
 
 import java.util.List;
 
-import kh.project.stayfit.board.model.vo.Bmark;
 import kh.project.stayfit.board.model.vo.Board;
 
 public interface MyBoardService {	
