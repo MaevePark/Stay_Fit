@@ -31,7 +31,7 @@
 								break;
 							}%>
                         <h4 class="fw-bold py-3 mb-4">
-							<span class="text-muted fw-light">마이페이지 /</span> <%=boardTitle %>
+							<span class="text-muted fw-light">게시판 /</span> <%=boardTitle %>
 							
 						</h4>
                         
@@ -60,9 +60,52 @@
                         </div>
                         <!-- 검색창 끝 -->
                         
+                        <!--식단에만 포함  이미지만 보이는 버튼-->
+                        <!-- <label for="thumbnale"><input type="checkbox" id="thumbnale" name="" value="" checked> 이미지 첨부 글 포함</label> -->
                         
-                        <label for="thumbnale"><input type="checkbox" id="thumbnale" name="" value="" checked> 이미지 첨부 글 포함</label>
-                        
+                        <!--  <div class="container-xl flex-grow-1 container-p-y"> -->
+	                        <!-- Basic Bootstrap Table -->
+							<div class="card" style="border: none">
+								
+								<div class="table-responsive text-nowrap">
+									<table class="table">
+										<thead>
+											<tr>
+												<th>게시판</th>
+												<th>제목</th>
+												<th>작성자</th>
+												<th>조회수</th>
+												<th>작성일</th>
+											</tr>
+										</thead>
+										<tbody class="table-border-bottom-0">
+											<tr>
+												<td>CATEGORY</td>
+												<td>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
+												<td>USER</td>
+												<td>VIEWCOUNT</td>
+												<td>YYYY.MM.DD</td>
+											</tr>
+											<tr>
+												<td>CATEGORY</td>
+												<td>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
+												<td>USER</td>
+												<td>VIEWCOUNT</td>
+												<td>YYYY.MM.DD</td>
+											</tr>
+											<tr>
+												<td>CATEGORY</td>
+												<td>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
+												<td>USER</td>
+												<td>VIEWCOUNT</td>
+												<td>YYYY.MM.DD</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<!--/ Basic Bootstrap Table -->
+                        </div>
                         
                         
                         <div class="col-lg-12">
@@ -76,7 +119,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+      <!--   </div> -->
     </section>
     <!-- Blog Section End -->
     

@@ -3,7 +3,7 @@
     
     <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/boardlist.css" type="text/css">
     
-				<div class="col-lg-4 col-md-5">
+				<div class="col-lg-4 col-md-5" style="max-width:20%">  <!--style직접 확정 후 삭제  -->
                     <div class="blog__sidebar">
                         <div class="blog__sidebar__item">
                             <h4>Categories</h4>
