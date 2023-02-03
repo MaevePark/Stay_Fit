@@ -7,6 +7,7 @@
                         <div class="blog__sidebar__item">
                             <h4>Categories</h4>
                             <ul>
+                            	<!-- TODO 이동페이지 수정 -->
                                 <li><a href="<%=request.getContextPath()%>/mypage/mywish">칼로리 처방 받기</a></li>
                                 <li><a href="<%=request.getContextPath()%>/mypage/mycart">BMI 지수 조회</a></li>
                                 <li><a href="<%=request.getContextPath()%>/mypage/myproduct">보건소 조회</a></li>
