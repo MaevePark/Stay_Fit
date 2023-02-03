@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/style.css" type="text/css">
     <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/header.css" type="text/css">
     <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/footer.css" type="text/css">
-    <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/board.css"/>
+   <%--  <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/board.css"/> 없음--%>
     
 </head>
 
