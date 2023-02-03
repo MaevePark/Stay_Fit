@@ -6,13 +6,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping
+@RequestMapping("/health")
 public class HealthCenterController {
 	
-	@GetMapping("/healthcenter")
+	@GetMapping("/centerlist")
 	public ModelAndView healthCenter(ModelAndView mv) {
 		
-		mv.addObject("sectionName", "보건소.jsp");
+		mv.addObject("sectionName", "health/centerlist.jsp");
 		mv.setViewName("index");
 		
 		return mv;
