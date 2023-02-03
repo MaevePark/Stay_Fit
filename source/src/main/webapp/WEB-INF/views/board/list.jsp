@@ -6,7 +6,7 @@
     <section class="blog spad">
         <div class="container">
             <div class="row">
-            	<!-- 마이페이지 카테고리 -->
+            	<!-- 게시판 카테고리 -->
                 <jsp:include page="/WEB-INF/views/board/boardcategory.jsp"></jsp:include>
                 
                 <div class="col-lg-8 col-md-7">
