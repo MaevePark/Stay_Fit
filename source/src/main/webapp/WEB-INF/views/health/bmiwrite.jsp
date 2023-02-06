@@ -13,7 +13,7 @@
                     <div class="row">
                         
                         <h4 class="fw-bold py-3 mb-4">
-							<span class="text-muted fw-light">건강관리 /</span> 사용자 정보
+							<span class="text-muted fw-light">건강관리 /</span> BMI 지수 확인
 						</h4>
                         <br>
                         <br>
