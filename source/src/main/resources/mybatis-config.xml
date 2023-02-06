@@ -2,12 +2,17 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
 <configuration>
 
-	<!-- <typeAliases>
-		<typeAlias type="kh.semi.score_my_day.member.model.vo.MemberVO" alias="MemberVO"/>
-	</typeAliases> -->
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL" />
+	</settings>
+
+	<typeAliases>
+		<typeAlias type="kh.project.stayfit.admin.model.vo.AdminDashboard1" alias="AdminDashboard1"/>
+	</typeAliases>
 	
 	<mappers>
 		<mapper resource="mappers/member-mapper.xml"/>
+		<mapper resource="mappers/admin-mapper.xml"/>
 	</mappers>
 
 
