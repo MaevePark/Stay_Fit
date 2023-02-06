@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -25,7 +27,14 @@
     <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/style.css" type="text/css">
     <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/header.css" type="text/css">
     <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/footer.css" type="text/css">
-   <%--  <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/board.css"/> 없음--%>
+    
+    
+   	<%--  <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/board.css"/> 없음--%>
+    
+    
+    <c:if test="${sectionName eq 'mypage/mywish.jsp' }">
+		<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/mypagecategory.css" type="text/css">
+	</c:if>
     
 </head>
 
