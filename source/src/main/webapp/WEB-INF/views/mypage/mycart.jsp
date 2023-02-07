@@ -13,6 +13,12 @@
 			<jsp:include page="/WEB-INF/views/mypage/mypagecategory.jsp"></jsp:include>
 
 			<div class="col-lg-10">
+			
+				<h4 class="fw-bold py-3 mb-4">
+					<span class="text-muted fw-light">마이페이지 /</span> 장바구니
+				</h4>
+			
+			
 				<div class="shoping__cart__table">
 					<table>
 						<thead>
