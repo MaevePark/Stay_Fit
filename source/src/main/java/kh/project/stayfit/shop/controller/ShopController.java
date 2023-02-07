@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/shop")
 public class ShopController {
 	
-	@GetMapping({"", "/", "/main","/index"})
+	@GetMapping({"", "/", "/main"})
 	public ModelAndView shopMainPage(ModelAndView mv) {
 		mv.addObject("sectionName", "shop/main.jsp");
 		mv.setViewName("index");
