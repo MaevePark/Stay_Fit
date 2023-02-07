@@ -15,45 +15,6 @@ $(function() {
   // Total Revenue Report Chart - Bar Chart
   // --------------------------------------------------------------------
   
-//  $.getJSON("http://localhost:8090/stayfit/admin/dashboard/chart1", function(response) {
-//	  
-//	console.log(여기);
-//	  
-//	chart.updateSeries([{
-//	  data: response
-//	}])
-//    	  
-//  });
-  
-  $.ajax({
-	  url: "chart1",
-      async: true,
-      //data: JSON.stringify(data),
-      type: "POST",
-      dataType:"json",
-      contentType: "application/json; charset=utf-8",
-      success:function(data){
-          
-    	  console.log(여기);
-    	  
-          var chartData = [];
-          
-          $.each(data, function(){
-        	  chartData.push(data);
-        	  console.log(data);
-          });
-  	  
-    	  chart.updateSeries([{
-    	    data: chartData
-    	  }])
-      },
-	  error : function(request, status, errordata){
-		  alert("error code:" + request.status + "\n"
-				+ "message:" + request.responseText + "\n"
-				+ "error" + errordata + "\n");
-	  }
-  });
-  
   const totalRevenueChartEl = document.querySelector('#totalRevenueChart');
   const totalRevenueChartOptions = {
       series: [
@@ -304,11 +265,46 @@ $(function() {
         }
       }
     };
+  
   if (typeof totalRevenueChartEl !== undefined && totalRevenueChartEl !== null) {
     const totalRevenueChart = new ApexCharts(totalRevenueChartEl, totalRevenueChartOptions);
     totalRevenueChart.render();
   }
-
+  
+//	var token = $("meta[name='_csrf']").attr("content");
+//	var header = $("meta[name='_csrf_header']").attr("content");
+//	var token = 'fetch';
+//	var header = "X-CSRF-TOKEN";
+  
+  $.ajax({
+	  url: "chart1",
+      //async: true,
+	  //contentType: 'application/json',
+	  //data: JSON.stringify(data),
+	  //data:{a:123},
+      type: "post",
+      dataType:"json",
+      //contentType: "application/json; charset=utf-8",
+      success:function(data){
+    	  console.log(data);
+    	  
+          var chartData = [];
+          
+          for (let i = 0; i<data.length;i++){    				  
+        	  chartData.push(data[i].revenue);    				  
+		  }
+          console.log(chartData);
+  	  
+          totalRevenueChart.updateSeries([{
+    	    data: chartData
+    	  }])
+      },
+	  error : function(request, status, errordata){
+		  alert("error code:" + request.status + "\n"
+				+ "message:" + request.responseText + "\n"
+				+ "error" + errordata + "\n");
+	  }
+  });
  
 
   // Order Statistics Chart
@@ -383,11 +379,12 @@ $(function() {
 
   // Income Chart - Area chart
   // --------------------------------------------------------------------
+  
   const incomeChartEl = document.querySelector('#incomeChart'),
     incomeChartConfig = {
       series: [
         {
-          data: [24, 21, 30, 22, 42, 26, 35, 29]
+          data: [24, 21, 30, 22, 42, 26, 35, 29, 42, 26, 35, 29]
         }
       ],
       chart: {
@@ -451,7 +448,7 @@ $(function() {
         }
       },
       xaxis: {
-        categories: ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
         axisBorder: {
           show: false
         },

@@ -9,6 +9,7 @@ import lombok.ToString;
 @Setter
 public class AdminDashboard1 {
 	
+	private String mm;
 	private int revenue;
 
 }

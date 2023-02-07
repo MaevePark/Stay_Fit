@@ -12,6 +12,8 @@
   data-template="vertical-menu-template-free"
 >
   <head>
+  	<meta name="_csrf" th:content="${_csrf.token}"/>
+	<meta name="_csrf_header" th:content="${_csrf.headerName}"/>
     <meta charset="utf-8" />
     <meta
       name="viewport"

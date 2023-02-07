@@ -2,11 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="admin">
   
-  	<!-- 대시보드 - 첫번째 총 수익 차트 -->
+  	<!-- 대시보드 - 첫번째 차트 -->
 	<select id="selectChart1" resultType="AdminDashboard1">
-		SELECT (O.OCOUNT * P.PPRICE) * 0.1
+		SELECT SUBSTR(TO_CHAR(ODATE, 'YYYY/MM/DD'), 6, 2) AS MM, SUM(O.OCOUNT * P.PPRICE * 0.1) AS REVENUE
 		    FROM "ORDER" O JOIN PRODUCT P ON O.PID = P.PID
+		    WHERE SUBSTR(TO_CHAR(ODATE, 'YYYY/MM/DD'), 1, 4) = '2022'
+		    GROUP BY SUBSTR(TO_CHAR(ODATE, 'YYYY/MM/DD'), 6, 2)
+		    ORDER BY MM ASC
 	</select>
+<!--   
+  	대시보드 - 두번째 차트
+	<select id="selectChart2" resultType="AdminDashboard2">
+
+	</select>
+   -->
+<!--  
+	<select id="selectChart3" resultType="AdminDashboard3">
+		SELECT SUBSTR(TO_CHAR(ODATE, 'YYYY/MM/DD'), 6, 2) AS MM, COUNT(OID) AS CNT
+		    FROM "ORDER"
+		    WHERE SUBSTR(TO_CHAR(ODATE, 'YYYY/MM/DD'), 1, 4) = '2022'
+		    GROUP BY SUBSTR(TO_CHAR(ODATE, 'YYYY/MM/DD'), 6, 2)
+		    ORDER BY MM ASC
+	</select> -->
 	
   	
   
