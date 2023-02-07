@@ -9,7 +9,7 @@
 	<!-- Namespaces에서 context, tx 추가 -->
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-	<context:property-placeholder location="classpath:driver.properties"/>
+	<context:property-placeholder location="classpath:datasource.properties"/>
  	<bean class="org.apache.commons.dbcp.BasicDataSource" id="basicDataSource"> 
  		<property name="driverClassName" value="${db.driver}"></property> 
  		<property name="url" value="${db.url}"></property> 
