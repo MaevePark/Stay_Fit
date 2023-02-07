@@ -9,20 +9,20 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/health")
 public class BmiController {
 	
-	@GetMapping("/bmimeasure")
-	public ModelAndView bmiMeasure(ModelAndView mv) {
+	@GetMapping("/bmiwrite")
+	public ModelAndView bmiWrite(ModelAndView mv) {
 		
-		mv.addObject("sectionName", "health/bmimeasure.jsp");
+		mv.addObject("sectionName", "health/bmiwrite.jsp");
 		mv.setViewName("index");
 		
 		return mv;
 	}
-	@GetMapping("/bmiresult")
-	public ModelAndView bmiResult(ModelAndView mv) {
-		
-		mv.addObject("sectionName", "health/bmiresult.jsp");
-		mv.setViewName("index");
-		
-		return mv;
-	}
+//	@GetMapping("/bmilist")
+//	public ModelAndView bmiResult(ModelAndView mv) {
+//		
+//		mv.addObject("sectionName", "health/bmilist.jsp");
+//		mv.setViewName("index");
+//		
+//		return mv;
+//	}
 }

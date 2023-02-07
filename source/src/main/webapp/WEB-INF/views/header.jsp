@@ -58,8 +58,8 @@
 							</li>
 							<li><a href="#">건강관리</a>
 								<ul class="header__menu__dropdown">
-									<li><a href="<%=request.getContextPath()%>/health/bmimeasure">칼로리 처방 받기</a></li>
-									<li><a href="<%=request.getContextPath()%>/health/bmimeasure">BMI 지수 조회</a></li>
+									<li><a href="<%=request.getContextPath()%>/health/caloriewrite">칼로리 처방 받기</a></li>
+									<li><a href="<%=request.getContextPath()%>/health/bmiwrite">BMI 지수 조회</a></li>
 									<li><a href="<%=request.getContextPath()%>/health/centerlist">보건소 조회</a></li>
 								</ul>
 							</li>
