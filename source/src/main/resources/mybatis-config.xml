@@ -10,6 +10,7 @@
 		<typeAlias type="kh.project.stayfit.admin.model.vo.AdminDashboard1" alias="AdminDashboard1"/>
 		<typeAlias type="kh.project.stayfit.admin.model.vo.AdminDashboard2" alias="AdminDashboard2"/>
 		<typeAlias type="kh.project.stayfit.admin.model.vo.AdminDashboard3" alias="AdminDashboard3"/>
+		<typeAlias type="kh.project.stayfit.admin.model.vo.AdminMember" alias="AdminMember"/>
 	</typeAliases>
 	
 	<mappers>

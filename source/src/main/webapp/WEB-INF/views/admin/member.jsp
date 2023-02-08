@@ -113,7 +113,7 @@
 			    </div>
 			  </div>
 
-              <p style="margin-left: 20px">총 n건</p>
+              <p id="displayCount" style="margin-left: 20px">총 n건</p>
               
               <!-- Basic Bootstrap Table -->
               <div class="card">
@@ -132,8 +132,8 @@
                         <th>회원가입일</th>
                       </tr>
                     </thead>
-                    <tbody class="table-border-bottom-0">
-                    
+                    <tbody id="dataTableBody" class="table-border-bottom-0">
+<%--                     
                       <tr>
                         <td>
                           <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
@@ -155,14 +155,15 @@
                         <td>10,000</td>
                         <td>2023.02.02</td>
                       </tr>
-                      
+               --%>        
                     </tbody>
                   </table>
                 </div>
                 
                 <!-- 페이지네이션 -->
-                <ul class="pagination justify-content-center" style="margin: 40px 0 24px 0">
-	              <li class="page-item prev">
+                <ul id = "pagingul" class="pagination justify-content-center" style="margin: 40px 0 24px 0">
+                
+<!-- 	          <li class="page-item prev">
 	                <a class="page-link" href="javascript:void(0);"><i class="tf-icon bx bx-chevrons-left"></i></a>
 	              </li>
 	              <li class="page-item">
@@ -182,7 +183,8 @@
 	              </li>
 	              <li class="page-item next">
 	                <a class="page-link" href="javascript:void(0);"><i class="tf-icon bx bx-chevrons-right"></i></a>
-	              </li>
+	              </li> 
+-->
 	            </ul>
               </div>
               <!--/ Basic Bootstrap Table -->
@@ -230,4 +232,72 @@
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
   </body>
+
+<script>
+
+let totalData; //총 데이터 수
+let dataPerPage = 10; //한 페이지에 나타낼 글 수
+let pageCount = 5; //페이징에 나타낼 페이지 수
+let globalCurrentPage = 1; //현재 페이지
+let dataList = []; //표시하려하는 데이터 리스트
+
+$(function() {
+	 
+	$.ajax({
+		method: "GET",
+		url: "memberlist",
+		dataType: "json",
+		success: function (data) {
+		   	//totalData(총 데이터 수) 구하기
+		   	totalData = data.length;
+         	//데이터 대입
+		   	for (let i = 0; i < data.length; i++){    				  
+		   		dataList.push(data[i]);  				  
+			}
+			console.log(dataList);
+		}
+	});
+	//글 목록 표시 호출 (테이블 생성)
+	displayData(1, dataPerPage);
+	
+	//페이징 표시 호출
+	paging(totalData, dataPerPage, pageCount, 1);
+});
+
+//현재 페이지(currentPage)와 페이지당 글 개수(dataPerPage) 반영
+function displayData(currentPage, dataPerPage) {
+	let chartHtml = "";
+
+	//Number로 변환하지 않으면 아래에서 +를 할 경우 스트링 결합이 되어버림.. 
+	currentPage = Number(currentPage);
+	dataPerPage = Number(dataPerPage);
+	
+	console.log(dataList);
+	console.log(dataList[0]);
+	
+	for (let i = (currentPage - 1) * dataPerPage; i < (currentPage - 1) * dataPerPage + dataPerPage; i++) {
+		console.log(dataList[i]);
+		chartHtml += 
+			"<tr>" +
+				"<td>" + 
+	                "<ul class='list-unstyled users-list m-0 avatar-group d-flex align-items-center'>" +
+		                "<li data-bs-toggle='tooltip' data-popup='tooltip-custom' data-bs-placement='top' class='avatar avatar-xs pull-up'>" +
+		                  "<img src='" + dataList[i].profimg + "' alt='Avatar' class='rounded-circle' />" +
+		                "</li>" +
+	                "</ul>" +
+				"</td>" +
+				"<td>" + dataList[i].mid + "</td>" +
+				"<td>" + dataList[i].memail + "</td>" +
+				"<td>" + dataList[i].mname + "</td>" +
+				"<td>" + dataList[i].postcnt + "</td>" +
+				"<td>" + dataList[i].replycnt + "</td>" +
+				"<td>" + dataList[i].payment + "</td>" +
+				"<td>" + dataList[i].mcreate + "</td>" +
+			"</tr>";
+	}
+	$("#dataTableBody").html(chartHtml);
+	console.log(chartHtml);
+}
+</script>
+
 </html>

@@ -19,7 +19,6 @@
 		    ORDER BY CID ASC
 	</select>
 
- 
  	<!-- 대시보드 - 세번째 차트 -->
 	<select id="selectChart3" resultType="AdminDashboard3">
 		SELECT SUBSTR(TO_CHAR(ODATE, 'YYYY/MM/DD'), 6, 2) AS MM, COUNT(OID) AS CNT
@@ -29,6 +28,16 @@
 		    ORDER BY MM ASC
 	</select>
 	
+  	<!-- 회원 -->
+	<select id="selectMember" resultType="AdminMember">
+		SELECT M.PROFIMG, M.MID, M.MEMAIL, M.MNAME, 
+		        (SELECT COUNT(*) FROM BOARD B WHERE B.MID = M.MID) AS POSTCNT, 
+		        (SELECT COUNT(*) FROM REPLY R WHERE R.MID = M.MID) AS REPLYCNT, 
+		        NVL((SELECT SUM(P.PPRICE * O.OCOUNT) FROM PRODUCT P JOIN "ORDER" O ON P.PID = O.PID WHERE O.MID = M.MID), 0) AS PAYMENT, 
+		        TO_CHAR(M.MCREATE, 'YYYY.MM.DD') AS MCREATE
+		    FROM MEMBER M 
+		    WHERE M.MROLE = 'M' AND M.MSTATE = 'A'
+	</select>
   	
   
 </mapper>
