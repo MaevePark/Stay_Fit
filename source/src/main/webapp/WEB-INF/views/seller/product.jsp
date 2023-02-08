@@ -74,7 +74,7 @@
             <!-- Content -->
 
             <div class="container-xxl flex-grow-1 container-p-y">
-              <h3 class="fw-bold py-3 mb-4 row justify-content-center"><span class="text-muted fw-light"></span>상품 목록 </h3>
+              <h3 class="fw-bold py-3 mb-4 row justify-content-center"><span class="text-muted fw-light"></span>상품 관리 </h3>
               
               
               <!-- 검색 조건 -->
@@ -177,7 +177,7 @@
 				                  <div class="row">
 				                    <div class="col mb-3">
 				                      <label for="nameWithTitle" class="form-label">상품명<span style="font-size: 0.75rem; color: #696cff;"> (필수)</span></label>
-				                      <input type="text" id="nameWithTitle" class="form-control" placeholder="예) 미주라 통밀도너츠">
+				                      <input type="text" id="nameWithTitle" class="form-control" value="">
 				                    </div>
 				                  </div>
 				                  <div class="row">
@@ -189,19 +189,13 @@
 				                  <div class="row">
 				                    <div class="col mb-3">
 				                      <label for="nameWithTitle" class="form-label">판매가<span style="font-size: 0.75rem; color: #696cff;"> (필수)</span></label>
-				                      <input type="text" id="nameWithTitle" class="form-control">
-				                    </div>
-				                  </div>
-				                  <div class="row">
-				                    <div class="col mb-3">
-				                      <label for="nameWithTitle" class="form-label">판매량</label>
-				                      <input type="text" id="nameWithTitle" class="form-control">
+				                      <input type="text" id="nameWithTitle" class="form-control" value="">
 				                    </div>
 				                  </div>
 				                  <div class="row">
 				                    <div class="col mb-3">
 				                      <label for="nameWithTitle" class="form-label">재고수량</label>
-				                      <input type="text" id="nameWithTitle" class="form-control">
+				                      <input type="text" id="nameWithTitle" class="form-control" value="">
 				                    </div>
 				                  </div>
 				                </div>

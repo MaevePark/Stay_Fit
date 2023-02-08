@@ -41,19 +41,19 @@
               </a>
               <ul class="menu-sub">
               
-            <!-- 상품 목록 -->
+            <!-- 상품 관리 -->
 <c:choose>
 	<c:when test="${currentMenu == 1}">
             <li class="menu-item active">
               <a href="<%=request.getContextPath()%>/seller/product" class="menu-link">
-                <div>상품 목록</div>
+                <div>상품 관리</div>
               </a>
             </li>
 	</c:when>
 	<c:otherwise>
             <li class="menu-item">
               <a href="<%=request.getContextPath()%>/seller/product" class="menu-link">
-                <div>상품 목록</div>
+                <div>상품 관리</div>
               </a>
             </li>
 	</c:otherwise>
