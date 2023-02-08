@@ -8,7 +8,7 @@
 			<div class="categories__slider owl-carousel">
 				<div class="col-lg-3">
 					<div class="categories__item set-bg"
-						data-setbg="<%=request.getContextPath()%>/resources/img/categories/meal.jpg">
+						data-setbg="<%=request.getContextPath()%>/resources/img/main/meal.jpg">
 						<h5>
 							<a href="#">맞춤식단</a>
 						</h5>
@@ -16,7 +16,7 @@
 				</div>
 				<div class="col-lg-3">
 					<div class="categories__item set-bg"
-						data-setbg="<%=request.getContextPath()%>/resources/img/categories/salad.jpg">
+						data-setbg="<%=request.getContextPath()%>/resources/img/main/salad.jpg">
 						<h5>
 							<a href="#">샐러드</a>
 						</h5>
@@ -24,7 +24,7 @@
 				</div>
 				<div class="col-lg-3">
 					<div class="categories__item set-bg"
-						data-setbg="<%=request.getContextPath()%>/resources/img/categories/meal3.jpg">
+						data-setbg="<%=request.getContextPath()%>/resources/img/main/meal3.jpg">
 						<h5>
 							<a href="#">인기상품</a>
 						</h5>
