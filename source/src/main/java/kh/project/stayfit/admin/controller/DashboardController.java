@@ -16,6 +16,8 @@ import com.google.gson.Gson;
 
 import kh.project.stayfit.admin.model.service.DashboardService;
 import kh.project.stayfit.admin.model.vo.AdminDashboard1;
+import kh.project.stayfit.admin.model.vo.AdminDashboard2;
+import kh.project.stayfit.admin.model.vo.AdminDashboard3;
 
 @Controller
 @RequestMapping("/admin")
@@ -38,10 +40,29 @@ public class DashboardController {
 	@PostMapping("/chart1")
 	@ResponseBody
 	public String selectChart1() throws Exception {
-		System.out.println("컨트롤러");
 
 		List<AdminDashboard1> list = service.selectChart1();
 
+		return new Gson().toJson(list);
+	}
+	
+	// 두번째 차트
+	@PostMapping("/chart2")
+	@ResponseBody
+	public String selectChart2() throws Exception {
+		
+		List<AdminDashboard2> list = service.selectChart2();
+		
+		return new Gson().toJson(list);
+	}
+	
+	// 세번째 차트
+	@PostMapping("/chart3")
+	@ResponseBody
+	public String selectChart3() throws Exception {
+		
+		List<AdminDashboard3> list = service.selectChart3();
+		
 		return new Gson().toJson(list);
 	}
 	
