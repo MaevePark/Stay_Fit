@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!-- Blog Section Begin -->
     <section class="blog spad">
         <div class="container">
@@ -79,35 +81,26 @@
 												<th>작성일</th>
 											</tr>
 										</thead>
+
 										<tbody class="table-border-bottom-0">
-											<tr>
-												<td>CATEGORY</td>
-												<td><a href="<%=request.getContextPath()%>/board/read" style="color: #626262;">In id ultrices orci, quis hendrerit leo.</a></td>
-												<td>USER</td>
-												<td>VIEWCOUNT</td>
-												<td>YYYY.MM.DD</td>
-											</tr>
-											<tr>
-												<td>CATEGORY</td>
-												<td><a href="<%=request.getContextPath()%>/board/read" style="color: #626262;">In id ultrices orci, quis hendrerit leo.</a></td>
-												<td>USER</td>
-												<td>VIEWCOUNT</td>
-												<td>YYYY.MM.DD</td>
-											</tr>
-											<tr>
-												<td>CATEGORY</td>
-												<td><a href="<%=request.getContextPath()%>/board/read" style="color: #626262;">In id ultrices orci, quis hendrerit leo.</a></td>
-												<td>USER</td>
-												<td>VIEWCOUNT</td>
-												<td>YYYY.MM.DD</td>
-											</tr>
-											<tr>
-												<td>CATEGORY</td>
-												<td><a href="<%=request.getContextPath()%>/board/read" style="color: #626262;">In id ultrices orci, quis hendrerit leo.</a></td>
-												<td>USER</td>
-												<td>VIEWCOUNT</td>
-												<td>YYYY.MM.DD</td>
-											</tr>
+										<!--여기부터   -->
+											<c:choose>
+												<c:when test="${empty boardlist }" >
+													<tr><td colspan="5" align="center">데이터가 없습니다.</td></tr>
+												</c:when> 
+												<c:when test="${!empty boardlist}">
+													<c:forEach var="list" items="${boardlist}">
+														<tr>
+															<td><c:out value="${list.bcname}"/></td>
+															<td><a href="<%=request.getContextPath()%>/board/read" style="color: #626262;"><c:out value="${list.btitle}" /></a></td>
+															<td><c:out value="${list.mname}"/></td>
+															<td><c:out value="${list.bviewcount}"/></td>
+															<td><fmt:formatDate pattern="YY/MM/DD HH:MM" value="${list.bcreate}"/></td>		
+														</tr>
+													</c:forEach>
+												</c:when>
+											</c:choose>
+										<!--여기까지   -->
 										</tbody>
 										
 									</table>
