@@ -32,5 +32,8 @@ public class Board {
 	private Timestamp bupdate; //String?? oracle.sql?? java.sql??
 	private char bstate;
 	private int bviewcount;
+	private String bcname;
+	private String mname;
+
 
 }
