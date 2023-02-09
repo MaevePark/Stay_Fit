@@ -45,6 +45,32 @@
     <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
 
     <!-- Page CSS -->
+  	<style>
+	#sortOption {
+	    display: inline-block;
+	    font-weight: 400;
+	    line-height: 1.53;
+	    vertical-align: middle;
+	    cursor: pointer;
+	    -webkit-user-select: none;
+	    -moz-user-select: none;
+	    color: #8592a3;
+    	border-color: #8592a3;
+    	background: transparent;
+    	padding: 0.4375rem 0.875rem 0.4375rem 0.875rem;
+    	font-size: 0.9375rem;
+	    border-radius: 0.375rem;
+	    transition: all 0.2s ease-in-out;
+	    appearance : none ;
+  		-webkit-appearance : none ;
+	}
+	#sortOption::-ms-expand {
+	  	display : none ;
+	}
+	#sortOption option[disabled] {
+		display: none;
+	}
+    </style>
 
     <!-- Helpers -->
     <script src="<%=request.getContextPath() %>/resources/admin/assets/vendor/js/helpers.js"></script>
@@ -92,14 +118,12 @@
 			          <div class="row mb-3">
 			            <label class="col-sm-2 col-form-label" for="basic-default-name">정렬 기준</label>
 			            <div class="col-sm-10">
-			              <div class="btn-group">
-					        <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">정렬 기준을 선택하세요  &nbsp;</button>
-					        <ul class="dropdown-menu">
-					          <li><a class="dropdown-item" href="javascript:void(0);">게시글 수 많은순</a></li>
-					          <li><a class="dropdown-item" href="javascript:void(0);">댓글 수 많은순</a></li>
-					          <li><a class="dropdown-item" href="javascript:void(0);">총 주문금액 높은순</a></li>
-					        </ul>
-					      </div>
+				          <select id="sortOption" required>
+						    <option value="0" class="dropdown-item" disabled selected>정렬 기준을 선택하세요  &nbsp; ∨</option>
+						    <option value="1" class="dropdown-item">게시글 수 많은순</option>
+						    <option value="2" class="dropdown-item">댓글 수 많은순</option>
+						    <option value="3" class="dropdown-item">총 주문금액 높은순</option>
+						  </select>
 			            </div>
 			          </div>
 			          <div class="row justify-content-center">
@@ -113,7 +137,7 @@
 			    </div>
 			  </div>
 
-              <p id="displayCount" style="margin-left: 20px">총 n건</p>
+              <p id="displayCount" style="margin-left: 20px"></p>
               
               <!-- Basic Bootstrap Table -->
               <div class="card">
@@ -235,6 +259,7 @@
 
 <script>
 
+// 1. 데이터 호출
 let totalData; //총 데이터 수
 let dataPerPage = 10; //한 페이지에 나타낼 글 수
 let pageCount = 5; //페이징에 나타낼 페이지 수
@@ -255,15 +280,16 @@ $(function() {
 		   		dataList.push(data[i]);  				  
 			}
 			console.log(dataList);
+			
+			//글 목록 표시 호출 (테이블 생성)
+			displayData(1, dataPerPage);
+			//페이징 표시 호출
+			paging(totalData, dataPerPage, pageCount, 1);
 		}
 	});
-	//글 목록 표시 호출 (테이블 생성)
-	displayData(1, dataPerPage);
-	
-	//페이징 표시 호출
-	paging(totalData, dataPerPage, pageCount, 1);
 });
 
+// 2. 글 목록 출력 함수
 //현재 페이지(currentPage)와 페이지당 글 개수(dataPerPage) 반영
 function displayData(currentPage, dataPerPage) {
 	let chartHtml = "";
@@ -298,6 +324,93 @@ function displayData(currentPage, dataPerPage) {
 	$("#dataTableBody").html(chartHtml);
 	console.log(chartHtml);
 }
+
+// 3. 페이징  함수 
+function paging(totalData, dataPerPage, pageCount, currentPage) {
+	console.log("currentPage : " + currentPage);
+	
+	// 총 페이지 수
+	totalPage = Math.ceil(totalData / dataPerPage);
+	
+	if (totalPage < pageCount) {
+	  	pageCount = totalPage;
+	}
+	
+	// 페이지 그룹
+	let pageGroup = Math.ceil(currentPage / pageCount);
+	let last = pageGroup * pageCount; //화면에 보여질 마지막 페이지 번호
+	
+	if (last > totalPage) {
+	  	last = totalPage;
+	}
+	
+	let first = last - (pageCount - 1); //화면에 보여질 첫번째 페이지 번호
+	let next = last + 1;
+	let prev = first - 1;
+	
+	let pageHtml = "";
+	
+	if (prev > 0) {
+	  	pageHtml += 
+	  		"<li class='page-item prev'>" +
+        		"<a class='page-link' href='#' id='prev'><i class='tf-icon bx bx-chevrons-left'></i></a>" +
+        	"</li>";
+	}
+	
+	//페이징 번호 표시 
+	for (var i = first; i <= last; i++) {
+	  	if (currentPage == i) {
+	    	pageHtml +=
+	            "<li class='page-item active'>" +
+	            	"<a class='page-link' href='#' id='" + i + "'>" + i + "</a>" +
+	          	"</li>";
+	  	} else {
+	    	pageHtml += 
+              	"<li class='page-item'>" +
+	            	"<a class='page-link' href='#' id='" + i + "'>" + i + "</a>" +
+	          	"</li>";
+	  	}
+	}
+	
+	if (last < totalPage) {
+	  	pageHtml += 
+	  		"<li class='page-item next'>" +
+	    		"<a class='page-link' href='#' id='next'><i class='tf-icon bx bx-chevrons-right'></i></a>" +
+	    	"</li>";
+	}
+	
+	$("#pagingul").html(pageHtml);
+	let displayCount = "";
+	displayCount = "현재 1 - " + totalPage + " 페이지 / " + totalData + "건";
+	$("#displayCount").text(displayCount);
+	
+	
+	//페이징 번호 클릭 이벤트 
+	$("#pagingul li a").click(function() {
+	  	let $id = $(this).attr("id");
+	  	selectedPage = $(this).text();
+	
+	  	if ($id == "next") selectedPage = next;
+	  	if ($id == "prev") selectedPage = prev;
+	  
+	  	//전역변수에 선택한 페이지 번호를 담기
+	  	globalCurrentPage = selectedPage;
+	  	//페이징 표시 재호출
+	  	paging(totalData, dataPerPage, pageCount, selectedPage);
+	  	//글 목록 표시 재호출
+	  	displayData(selectedPage, dataPerPage);
+	});
+}
+/*
+// 정렬 기준 선택시
+$("#dataPerPage").change(function () {
+	
+    dataPerPage = $("#dataPerPage").val();
+    //전역 변수에 담긴 globalCurrent 값을 이용하여 페이지 이동없이 글 표시개수 변경 
+    paging(totalData, dataPerPage, pageCount, globalCurrentPage);
+    displayData(globalCurrentPage, dataPerPage);
+}); 
+*/
 </script>
 
 </html>
