@@ -17,7 +17,6 @@ public class BoardDao {
 	public List<Board> boardlist() {
 		List<Board> blist = null;
 		blist = sqlsession.selectList("board.selectboard");
-		System.out.println("BoardDao boardlist :" +blist);
 		return blist;
 	}
 

@@ -18,7 +18,6 @@ public class BoardServiceImpl implements BoardService{
 	public List<Board> boardlist() throws Exception{
 		List<Board> blist = null;
 		blist = dao.boardlist();
-		System.out.println("BoardService boardlist:" +blist);
 		return blist;
 	}
 	
