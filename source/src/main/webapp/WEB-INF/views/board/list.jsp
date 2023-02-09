@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!-- Blog Section Begin -->
     <section class="blog spad">
         <div class="container">
@@ -93,7 +95,7 @@
 															<td><a href="<%=request.getContextPath()%>/board/read" style="color: #626262;"><c:out value="${list.btitle}" /></a></td>
 															<td><c:out value="${list.mname}"/></td>
 															<td><c:out value="${list.bviewcount}"/></td>
-															<td><c:out value="${list.bcreate}"/></td>
+															<td><fmt:formatDate pattern="YY/MM/DD HH:MM" value="${list.bcreate}"/></td>		
 														</tr>
 													</c:forEach>
 												</c:when>
