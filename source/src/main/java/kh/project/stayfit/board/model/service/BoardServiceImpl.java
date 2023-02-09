@@ -1,14 +1,26 @@
 package kh.project.stayfit.board.model.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kh.project.stayfit.board.model.dao.BoardDao;
+import kh.project.stayfit.board.model.vo.Board;
 
 @Service
 public class BoardServiceImpl implements BoardService{
 	@Autowired
 	private BoardDao dao;
+	
+	//게시판 list페이지 글목록 출력
+	@Override
+	public List<Board> boardlist() throws Exception{
+		List<Board> blist = null;
+		blist = dao.boardlist();
+		System.out.println("BoardService boardlist:" +blist);
+		return blist;
+	}
 	
 //	//커뮤니티 글목록 페이지,페이징
 //	@Override
