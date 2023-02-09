@@ -54,15 +54,20 @@
 								<td colspan="2">
 									<div class="col-lg-8 col-md-7 order-md-1 order-1">
 					                    <div class="blog__details__text">
-					                        <img src="<%=request.getContextPath() %>/resources/img/blog/details/details-pic.jpg" alt="">
-					                        <p>Sed porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet
-					                            dui. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Mauris blandit
-					                            aliquet elit, eget tincidunt nibh pulvinar a. Vivamus magna justo, lacinia eget consectetur
-					                            sed, convallis at tellus. Sed porttitor lectus nibh. Donec sollicitudin molestie malesuada.
-					                            Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Proin eget tortor risus.
-					                            Donec rutrum congue leo eget malesuada. Curabitur non nulla sit amet nisl tempus convallis
-					                            quis ac lectus. Donec sollicitudin molestie malesuada. Nulla quis lorem ut libero malesuada
-					                            feugiat. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.</p>
+					                        <%-- <img src="<%=request.getContextPath() %>/resources/img/blog/details/details-pic.jpg" alt=""> --%>
+					                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+					                        Aliquam mattis non mauris at ornare. Fusce a nulla eget tortor accumsan sodales non non libero.
+					                         Mauris at nisl sit amet dui vulputate lobortis. Phasellus sit amet sem consequat, interdum odio pharetra, varius lorem.
+					                          Maecenas eros augue, elementum eu venenatis id, blandit at erat. Nam ut tincidunt nisl. Pellentesque et sagittis elit.
+					                           Vestibulum pellentesque rhoncus condimentum.
+					                            Maecenas eu gravida nunc. Ut turpis nisl, vehicula venenatis scelerisque id, rhoncus vel turpis.
+					                             Ut at tortor at nulla aliquet dictum. Etiam id nisi a elit tempus dapibus. Maecenas cursus interdum leo, quis molestie elit consectetur sit amet.
+					                              Integer sit amet sem vel lacus mollis scelerisque.</p>
+					                              <br>
+					                              <br>
+					                              <br>
+					                              <br>
+					                              
 					                    </div>
 					                    
 					                </div>
@@ -74,25 +79,45 @@
 						<!-- 버튼 -->
 						<div id="button_parent">
 							<!-- 수정, 삭제 버튼은 본인이 작성한 글일때만 출력. -->
-							<!-- <button type="button" onclick="">수정</button>
-							<button type="button" onclick="">삭제</button> -->
-							<button type="button" onclick="">목록</button>
+							<button type="button" class="site-btn" onclick="">수정</button>
+							<button type="button" class="site-btn" onclick="">삭제</button>
+							<button type="button" class="site-btn" onclick="">목록</button>
 						</div>
 						
-                        
-                        <div id="replyArea">
+                        	<br>
+                        	<br>
+                       <div id="replyArea">
                         	<!-- 게시글 이모티콘 -->
                         	<div>
                         		<div id="emote">
-                        			<label for="0"><input type="radio" id="0" name="" value="0"><span>도움됐어요</span></label>
+                        			<label for="4"><input type="radio" id="4" name="" value="5"><span>북마크</span></label>
+                        			<label for="0"><input type="radio" id="0" name="" value="0">
+                        			<%-- <img src="<%=request.getContextPath()%>/resources/img/board-read/happy3.png"> --%>
+                        			<span>도움됐어요</span></label>
                         			<label for="1"><input type="radio" id="1" name="" value="1"><span>응원해요</span></label>
                         			<label for="2"><input type="radio" id="2" name="" value="2"><span>궁금해요</span></label>
-                        			<label for="3"><input type="radio" id="3" name="" value="3"><span>부러워요</span></label>
-                        			<label for="4"><input type="radio" id="4" name="" value="4"><span>예뻐요</span></label>
+                        			<label for="3"><input type="radio" id="3" name="" value="3"><span>대단해요</span></label>
+                        			<label for="4"><input type="radio" id="4" name="" value="4"><span>멋있어요</span></label>
                         		</div>
                         	</div>
-                        	
+                        	<br>
+			
                         	<!-- 댓글 -->
+                        	<!-- 댓글 작성  -->
+                        	<!-- <div id="hero__search__form" class="comment-write">
+                        		<form id="comment-data">	
+                        			<texttarea id="comment" class="textarea" placeholder="댓글등록" >
+                        			</texttarea>
+                        		</form>
+                        	</div> -->
+                        	<div class="hero__search__form">
+                            <form action="#">
+                                <input type="text" placeholder="댓글을 작성해주세요">
+                                <button type="submit" class="site-btn">댓글 등록</button>
+                            </form>
+                        </div>
+                        	
+                        	<!--댓글 리스트  -->
                         	<table id="readReply">
 							<tr>
 								<td>
@@ -103,7 +128,7 @@
 								</div>
 								<div class="blog__sidebar__recent__item__text">
 									<span>USER</span>
-									<div>09 Kinds Of Vegetables Protect The Liver</div>	
+									<div>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>	
 								</div>
 								</td>
 								<td>YYYY.MM.DD</td>
@@ -117,7 +142,7 @@
 								</div>
 								<div class="blog__sidebar__recent__item__text">
 									<span>USER</span>
-									<div>09 Kinds Of Vegetables Protect The Liver</div>	
+									<div>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>	
 								</div>
 								</td>
 								<td>YYYY.MM.DD</td>
@@ -131,7 +156,7 @@
 								</div>
 								<div class="blog__sidebar__recent__item__text">
 									<span>USER</span>
-									<div>09 Kinds Of Vegetables Protect The Liver</div>	
+									<div>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>	
 								</div>
 								</td>
 								<td>YYYY.MM.DD</td>

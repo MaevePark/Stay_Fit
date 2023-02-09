@@ -9,7 +9,7 @@
             	<!-- 게시판 카테고리 -->
                 <jsp:include page="/WEB-INF/views/board/boardcategory.jsp"></jsp:include>
                 
-                <div class="col-lg-8 col-md-7">
+                <div class="col-lg-10 col-md-10">
                     <div class="row">
                         
                         <% String boardTitle = "";
@@ -64,10 +64,11 @@
                         <!-- <label for="thumbnale"><input type="checkbox" id="thumbnale" name="" value="" checked> 이미지 첨부 글 포함</label> -->
                         
                         <!--  <div class="container-xl flex-grow-1 container-p-y"> -->
+                        
 	                        <!-- Basic Bootstrap Table -->
-							<div class="card" style="border: none">
+							 <div class="" style="border: none; width:100%">
 								
-								<div class="table-responsive text-nowrap">
+								<div class="table-responsive text-nowrap" >
 									<table class="table">
 										<thead>
 											<tr>
@@ -81,33 +82,118 @@
 										<tbody class="table-border-bottom-0">
 											<tr>
 												<td>CATEGORY</td>
-												<td>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
+												<td><a href="<%=request.getContextPath()%>/board/read" style="color: #626262;">In id ultrices orci, quis hendrerit leo.</a></td>
 												<td>USER</td>
 												<td>VIEWCOUNT</td>
 												<td>YYYY.MM.DD</td>
 											</tr>
 											<tr>
 												<td>CATEGORY</td>
-												<td>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
+												<td><a href="<%=request.getContextPath()%>/board/read" style="color: #626262;">In id ultrices orci, quis hendrerit leo.</a></td>
 												<td>USER</td>
 												<td>VIEWCOUNT</td>
 												<td>YYYY.MM.DD</td>
 											</tr>
 											<tr>
 												<td>CATEGORY</td>
-												<td>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
+												<td><a href="<%=request.getContextPath()%>/board/read" style="color: #626262;">In id ultrices orci, quis hendrerit leo.</a></td>
+												<td>USER</td>
+												<td>VIEWCOUNT</td>
+												<td>YYYY.MM.DD</td>
+											</tr>
+											<tr>
+												<td>CATEGORY</td>
+												<td><a href="<%=request.getContextPath()%>/board/read" style="color: #626262;">In id ultrices orci, quis hendrerit leo.</a></td>
 												<td>USER</td>
 												<td>VIEWCOUNT</td>
 												<td>YYYY.MM.DD</td>
 											</tr>
 										</tbody>
+										
 									</table>
+									
 								</div>
-							</div>
+							</div> 
 							<!--/ Basic Bootstrap Table -->
-                        </div>
-                        
-                        
+							
+			<%-- <div class="" style="width:100%">
+				<div class="row"  >
+					<div class="col-lg-6 col-md-6 col-sm-6">
+						<div class="blog__item">
+							<div class="blog__item__pic">
+								<img
+									src="<%=request.getContextPath()%>/resources/img/blog/blog-2.jpg"
+									alt="">
+							</div>
+							<div class="blog__item__text">
+								<ul>
+									<li><i class="fa fa-calendar-o"></i> May 4,2019</li>
+									<li><i class="fa fa-comment-o"></i> 5</li>
+								</ul>
+								<h5>
+									<a href="#">Lorem ipsum dolor sit amet, consectetur..</a>
+								</h5>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6">
+						<div class="blog__item">
+							<div class="blog__item__pic">
+								<img
+									src="<%=request.getContextPath()%>/resources/img/blog/blog-2.jpg"
+									alt="">
+							</div>
+							<div class="blog__item__text">
+								<ul>
+									<li><i class="fa fa-calendar-o"></i> May 4,2019</li>
+									<li><i class="fa fa-comment-o"></i> 5</li>
+								</ul>
+								<h5>
+									<a href="#">Lorem ipsum dolor sit amet, consectetur..</a>
+								</h5>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6">
+						<div class="blog__item">
+							<div class="blog__item__pic">
+								<img
+									src="<%=request.getContextPath()%>/resources/img/blog/blog-2.jpg"
+									alt="">
+							</div>
+							<div class="blog__item__text">
+								<ul>
+									<li><i class="fa fa-calendar-o"></i> May 4,2019</li>
+									<li><i class="fa fa-comment-o"></i> 5</li>
+								</ul>
+								<h5>
+									<a href="#">Lorem ipsum dolor sit amet, consectetur..</a>
+								</h5>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6">
+						<div class="blog__item">
+							<div class="blog__item__pic">
+								<img
+									src="<%=request.getContextPath()%>/resources/img/blog/blog-3.jpg"
+									alt="">
+							</div>
+							<div class="blog__item__text">
+								<ul>
+									<li><i class="fa fa-calendar-o"></i> May 4,2019</li>
+									<li><i class="fa fa-comment-o"></i> 5</li>
+								</ul>
+								<h5>
+									<a href="#">Lorem ipsum dolor sit amet, consectetur..</a>
+								</h5>
+						</div>
+					</div>				
+			</div>
+			</div>
+                        </div> --%>
+                
+                                                
                         <div class="col-lg-12">
                             <div class="product__pagination blog__pagination">
                                 <a href="#">1</a>
