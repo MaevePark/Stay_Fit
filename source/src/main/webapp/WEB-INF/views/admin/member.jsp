@@ -156,63 +156,15 @@
                         <th>회원가입일</th>
                       </tr>
                     </thead>
-                    <tbody id="dataTableBody" class="table-border-bottom-0">
-<%--                     
-                      <tr>
-                        <td>
-                          <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
-                            <li
-                              data-bs-toggle="tooltip"
-                              data-popup="tooltip-custom"
-                              data-bs-placement="top"
-                              class="avatar avatar-xs pull-up"
-                            >
-                              <img src="<%=request.getContextPath() %>/resources/admin/assets/img/avatars/6.png" alt="Avatar" class="rounded-circle" />
-                            </li>
-                          </ul>
-                        </td>
-                        <td>122</td>
-                        <td>stayfit@stayfit.com</td>
-                        <td>스테이핏</td>
-                        <td>5</td>
-                        <td>10</td>
-                        <td>10,000</td>
-                        <td>2023.02.02</td>
-                      </tr>
-               --%>        
-                    </tbody>
+                    <tbody id="dataTableBody" class="table-border-bottom-0"></tbody>
                   </table>
                 </div>
                 
                 <!-- 페이지네이션 -->
-                <ul id = "pagingul" class="pagination justify-content-center" style="margin: 40px 0 24px 0">
-                
-<!-- 	          <li class="page-item prev">
-	                <a class="page-link" href="javascript:void(0);"><i class="tf-icon bx bx-chevrons-left"></i></a>
-	              </li>
-	              <li class="page-item">
-	                <a class="page-link" href="javascript:void(0);">1</a>
-	              </li>
-	              <li class="page-item">
-	                <a class="page-link" href="javascript:void(0);">2</a>
-	              </li>
-	              <li class="page-item active">
-	                <a class="page-link" href="javascript:void(0);">3</a>
-	              </li>
-	              <li class="page-item">
-	                <a class="page-link" href="javascript:void(0);">4</a>
-	              </li>
-	              <li class="page-item">
-	                <a class="page-link" href="javascript:void(0);">5</a>
-	              </li>
-	              <li class="page-item next">
-	                <a class="page-link" href="javascript:void(0);"><i class="tf-icon bx bx-chevrons-right"></i></a>
-	              </li> 
--->
-	            </ul>
+                <ul id = "pagingul" class="pagination justify-content-center" style="margin: 40px 0 24px 0"></ul>
+              
               </div>
               <!--/ Basic Bootstrap Table -->
-
 
             </div>
             <!-- / Content -->
@@ -287,6 +239,9 @@ $(function() {
 			paging(totalData, dataPerPage, pageCount, 1);
 		}
 	});
+	
+	// 이 위치에서 위 displayData, paging 함수들을 호출하면 ajax에서 데이터를 가져오기 전에 호출되어 undefined오류날 수 있음. 
+	// -> async: false (동기 방식) 추가하든지, 위처럼 success 안에 위치시키든지 해야함 
 });
 
 // 2. 글 목록 출력 함수
@@ -298,10 +253,8 @@ function displayData(currentPage, dataPerPage) {
 	currentPage = Number(currentPage);
 	dataPerPage = Number(dataPerPage);
 	
-	console.log(dataList);
-	console.log(dataList[0]);
-	
-	for (let i = (currentPage - 1) * dataPerPage; i < (currentPage - 1) * dataPerPage + dataPerPage; i++) {
+	// ((currentPage - 1) * dataPerPage + dataPerPage)가 40, totalData가 36라면 -> 36이 선택되도록 Math.min()함수 사용 -> 결과 : 30 ~ 35인덱스 출력
+	for (let i = (currentPage - 1) * dataPerPage; i < Math.min((currentPage - 1) * dataPerPage + dataPerPage, totalData); i++) {
 		console.log(dataList[i]);
 		chartHtml += 
 			"<tr>" +
@@ -381,7 +334,7 @@ function paging(totalData, dataPerPage, pageCount, currentPage) {
 	
 	$("#pagingul").html(pageHtml);
 	let displayCount = "";
-	displayCount = "현재 1 - " + totalPage + " 페이지 / " + totalData + "건";
+	displayCount = "총 " + totalData + "건";
 	$("#displayCount").text(displayCount);
 	
 	
