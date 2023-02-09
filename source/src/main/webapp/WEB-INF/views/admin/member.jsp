@@ -118,12 +118,16 @@
 			          <div class="row mb-3">
 			            <label class="col-sm-2 col-form-label" for="basic-default-name">정렬 기준</label>
 			            <div class="col-sm-10">
-				          <select id="sortOption" required>
-						    <option value="0" class="dropdown-item" disabled selected>정렬 기준을 선택하세요  &nbsp; ∨</option>
-						    <option value="1" class="dropdown-item">게시글 수 많은순</option>
-						    <option value="2" class="dropdown-item">댓글 수 많은순</option>
-						    <option value="3" class="dropdown-item">총 주문금액 높은순</option>
-						  </select>
+			              <div class="btn-group">
+			              
+					        <button type="button" id="dropdownbtn" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">정렬 기준을 선택하세요  &nbsp;</button>
+					        <ul class="dropdown-menu">
+					          <li><a data-value="1" class="dropdown-item">게시글 수 많은순</a></li>
+					          <li><a data-value="2" class="dropdown-item">댓글 수 많은순</a></li>
+					          <li><a data-value="3" class="dropdown-item">총 주문금액 높은순</a></li>
+					        </ul>
+					        
+					      </div>
 			            </div>
 			          </div>
 			          <div class="row justify-content-center">
@@ -211,6 +215,19 @@
 
 <script>
 
+// <드롭다운메뉴>
+$(".dropdown-item").click(function() {
+	
+	var dropdownValue = $(this).attr("data-value");
+	var dropdownText = $(this).text();
+	
+	$("#dropdownbtn").val(dropdownValue);
+	$("#dropdownbtn").text(dropdownText + " ");
+}); 
+
+//------------------------------------------------------------------------------
+// <회원목록출력>
+
 // 1. 데이터 호출
 let totalData; //총 데이터 수
 let dataPerPage = 10; //한 페이지에 나타낼 글 수
@@ -275,7 +292,6 @@ function displayData(currentPage, dataPerPage) {
 			"</tr>";
 	}
 	$("#dataTableBody").html(chartHtml);
-	console.log(chartHtml);
 }
 
 // 3. 페이징  함수 
