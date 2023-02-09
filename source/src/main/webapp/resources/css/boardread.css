@@ -50,8 +50,32 @@
 
 /*수정, 삭제, 목록 버튼 끝*/
 
+/*댓글 이모티콘 영역  */
+#emote label[type="radio"]{
+	display:none;
+}
+
 
 /*댓글영역 시작*/
+/*댓글 작성  */
+.comment-write{
+	background: #f9f9f9;
+	border: 1px solid #ececec;
+	padding : 15px;
+	position: relative;
+	margint-top :12px;
+}
+.textarea{
+	width:591px; 
+	height:65px; 
+	border: 1px solid #c8c8c8;
+	background: #fff;
+	color #a2a2a2;
+	line-height: 1.4;
+	padding : 5px;
+	font-size:13px;
+}
+/*댓글리스트  */
 #replyArea {
 	display: flex;
 	flex-direction: column;
