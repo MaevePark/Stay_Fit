@@ -76,7 +76,7 @@
 							<!-- 수정, 삭제 버튼은 본인이 작성한 글일때만 출력. -->
 							<button type="button" class="site-btn" onclick="">수정</button>
 							<button type="button" class="site-btn" onclick="">삭제</button>
-							<button type="button" class="site-btn" onclick="">목록</button>
+							<button type="button" class="site-btn" onclick="location.href='list?bcid=${read.bcid}'">목록</button>
 						</div>
 						
                         	<br>
