@@ -21,6 +21,14 @@ public class BoardServiceImpl implements BoardService{
 		return blist;
 	}
 	
+	//게시글 read 상세페이지
+	@Override
+	public Board read(int bid) throws Exception{
+		Board bone = null;
+		bone = dao.read(bid);
+		return bone;		
+	}
+	
 //	//커뮤니티 글목록 페이지,페이징
 //	@Override
 //	public List<Board> selectList(int, int) throws Exception{

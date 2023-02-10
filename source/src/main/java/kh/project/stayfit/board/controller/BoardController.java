@@ -22,12 +22,18 @@ public class BoardController {
 
 	@GetMapping("/list")
 	public String list(Model m) throws Exception {
-		List<Board> blist;
-		blist = srv.boardlist();
+		List<Board> blist = srv.boardlist();
 		m.addAttribute("sectionName", "board/list.jsp");
 		m.addAttribute("boardlist", blist);
 		return "index";
 		
+	}
+	@GetMapping("/read.do")
+	public String read(Model m, int bid) throws Exception {
+		Board bone = srv.read(bid);
+		m.addAttribute("sectionName", "board/read.jsp");
+		m.addAttribute("read", bone);
+		return "index";
 	}
 	
 	@GetMapping("/read")

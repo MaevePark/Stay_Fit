@@ -19,6 +19,13 @@ public class BoardDao {
 		blist = sqlsession.selectList("board.selectboard");
 		return blist;
 	}
+	
+	//게시글 read 상세페이지
+	public Board read(int bid){
+		Board bone = null;
+		bone = sqlsession.selectOne("board.selectone", bid);
+		return bone;
+	} 
 
 //	//커뮤니티 글목록 페이지,페이징
 //	public List<Board> selectList(int, int) throws Exception{

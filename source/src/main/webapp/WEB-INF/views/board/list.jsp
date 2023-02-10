@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
@@ -91,10 +90,10 @@
 												<c:when test="${!empty boardlist}">
 													<c:forEach var="list" items="${boardlist}">
 														<tr>
-															<td><c:out value="${list.bcname}"/></td>
-															<td><a href="<%=request.getContextPath()%>/board/read" style="color: #626262;"><c:out value="${list.btitle}" /></a></td>
-															<td><c:out value="${list.mname}"/></td>
-															<td><c:out value="${list.bviewcount}"/></td>
+															<td>${list.bcname}</td>
+															<td><a href="<%=request.getContextPath()%>/board/read.do?bid=${list.bid}" style="color: #626262;">${list.btitle}</a></td>
+															<td>${list.mname}</td>
+															<td>${list.bviewcount}</td>
 															<td><fmt:formatDate pattern="YY/MM/DD HH:MM" value="${list.bcreate}"/></td>		
 														</tr>
 													</c:forEach>

@@ -4,6 +4,10 @@
 	
 	
 	<select id="selectboard" resultType="Board">
-		select bcname, btitle, mname, bviewcount, bcreate from board b join bcategory bc on b.bcid = bc.bcid join member m on b.mid=m.mid
+		select bid, bcname, btitle, mname, bviewcount, bcreate from board b join bcategory bc on b.bcid = bc.bcid join member m on b.mid=m.mid
+	</select>
+	
+	<select id="selectone" resultType="Board" parameterType="int">
+		select bid, bcname, btitle, bcontent, mname, bviewcount, bcreate from board b join bcategory bc on b.bcid = bc.bcid join member m on b.mid=m.mid where bid=#{bid}
 	</select>
 </mapper>
