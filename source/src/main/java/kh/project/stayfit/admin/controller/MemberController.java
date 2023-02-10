@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -35,9 +36,11 @@ public class MemberController {
 	// 목록 출력
 	@GetMapping("/memberlist")
 	@ResponseBody
-	public String selectMember() throws Exception {
-
-		List<AdminMember> list = service.selectMember();
+	public String selectMember(@RequestParam(name="searchword", required=false) String searchword,
+								@RequestParam("sort") String sort
+								) throws Exception {
+		
+		List<AdminMember> list = service.selectMember(searchword, sort);
 
 		return new Gson().toJson(list);
 	}

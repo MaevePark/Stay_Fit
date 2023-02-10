@@ -110,9 +110,9 @@
 			      <div class="card-body">
 			        <form>
 			          <div class="row mb-3">
-			            <label class="col-sm-2 col-form-label" for="basic-default-name">회원 ID</label>
+			            <label class="col-sm-2 col-form-label" for="basic-default-name">닉네임</label>
 			            <div class="col-sm-10">
-			              <input type="text" class="form-control" id="basic-default-name" placeholder="회원 ID를 입력하세요">
+			              <input type="text" class="form-control" id="basic-default-name" placeholder="닉네임을 입력하세요">
 			            </div>
 			          </div>
 			          <div class="row mb-3">
@@ -120,7 +120,7 @@
 			            <div class="col-sm-10">
 			              <div class="btn-group">
 			              
-					        <button type="button" id="dropdownbtn" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">정렬 기준을 선택하세요  &nbsp;</button>
+					        <button type="button" id="dropdownbtn" value="0" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">정렬 기준을 선택하세요  </button>
 					        <ul class="dropdown-menu">
 					          <li><a data-value="1" class="dropdown-item">게시글 수 많은순</a></li>
 					          <li><a data-value="2" class="dropdown-item">댓글 수 많은순</a></li>
@@ -132,8 +132,8 @@
 			          </div>
 			          <div class="row justify-content-center">
 			            <div class="pagination justify-content-center" style="padding: 0">
-				          <button type="button" class="btn btn-primary" style="margin-right: 10px">검색</button>
-				          <button type="button" class="btn btn-secondary">초기화</button>
+				          <button type="button" id="searchbtn" class="btn btn-primary" style="margin-right: 10px">검색</button>
+				          <button type="button" id="resetbtn" class="btn btn-secondary">초기화</button>
 				        </div>
 			          </div>
 			        </form>
@@ -214,7 +214,7 @@
   </body>
 
 <script>
-
+//------------------------------------------------------------------------------
 // <드롭다운메뉴>
 $(".dropdown-item").click(function() {
 	
@@ -228,7 +228,8 @@ $(".dropdown-item").click(function() {
 //------------------------------------------------------------------------------
 // <회원목록출력>
 
-// 1. 데이터 호출
+let searchword; //검색단어
+let sort; //정렬기준
 let totalData; //총 데이터 수
 let dataPerPage = 10; //한 페이지에 나타낼 글 수
 let pageCount = 5; //페이징에 나타낼 페이지 수
@@ -236,30 +237,47 @@ let globalCurrentPage = 1; //현재 페이지
 let dataList = []; //표시하려하는 데이터 리스트
 
 $(function() {
-	 
+	
+	getData();
+	
+	$("#searchbtn").click(getData);
+	$("#resetbtn").click(resetData);
+});
+
+// 1. 데이터 호출 함수
+function getData() {
+	
+	searchword = $("#basic-default-name").val();
+	sort = $("#dropdownbtn").val();
+	
+	console.log("searchword : " + searchword);
+	console.log("sort : " + sort);
+	
 	$.ajax({
-		method: "GET",
 		url: "memberlist",
+		method: "GET",
+		data: { 'searchword': searchword, 'sort': sort },
+//		data : "searchword=" + searchword + "&sort=" + sort,
 		dataType: "json",
 		success: function (data) {
 		   	//totalData(총 데이터 수) 구하기
 		   	totalData = data.length;
          	//데이터 대입
+         	dataList = []; // 전역변수기때문에 매번 초기화해줘야함. 안그러면 기존 데이터가 있는 상태에서 push됨
 		   	for (let i = 0; i < data.length; i++){    				  
 		   		dataList.push(data[i]);  				  
 			}
 			console.log(dataList);
 			
-			//글 목록 표시 호출 (테이블 생성)
+			// 글 목록 출력 함수 호출 (테이블 생성)
 			displayData(1, dataPerPage);
-			//페이징 표시 호출
+			// 페이징  함수  호출
 			paging(totalData, dataPerPage, pageCount, 1);
 		}
 	});
-	
 	// 이 위치에서 위 displayData, paging 함수들을 호출하면 ajax에서 데이터를 가져오기 전에 호출되어 undefined오류날 수 있음. 
 	// -> async: false (동기 방식) 추가하든지, 위처럼 success 안에 위치시키든지 해야함 
-});
+}
 
 // 2. 글 목록 출력 함수
 //현재 페이지(currentPage)와 페이지당 글 개수(dataPerPage) 반영
@@ -272,7 +290,6 @@ function displayData(currentPage, dataPerPage) {
 	
 	// ((currentPage - 1) * dataPerPage + dataPerPage)가 40, totalData가 36라면 -> 36이 선택되도록 Math.min()함수 사용 -> 결과 : 30 ~ 35인덱스 출력
 	for (let i = (currentPage - 1) * dataPerPage; i < Math.min((currentPage - 1) * dataPerPage + dataPerPage, totalData); i++) {
-		console.log(dataList[i]);
 		chartHtml += 
 			"<tr>" +
 				"<td>" + 
@@ -370,16 +387,43 @@ function paging(totalData, dataPerPage, pageCount, currentPage) {
 	  	displayData(selectedPage, dataPerPage);
 	});
 }
-/*
-// 정렬 기준 선택시
-$("#dataPerPage").change(function () {
+
+//검색조건 초기화 함수
+function resetData() {
 	
-    dataPerPage = $("#dataPerPage").val();
-    //전역 변수에 담긴 globalCurrent 값을 이용하여 페이지 이동없이 글 표시개수 변경 
-    paging(totalData, dataPerPage, pageCount, globalCurrentPage);
-    displayData(globalCurrentPage, dataPerPage);
-}); 
-*/
+	searchword = null;
+	sort = 0;
+	
+	$("#basic-default-name").val(null);
+	$("#dropdownbtn").val(0);
+	$("#dropdownbtn").text("정렬 기준을 선택하세요  ");
+	
+	$.ajax({
+		url: "memberlist",
+		method: "GET",
+		data: { 'searchword': searchword, 'sort': sort },
+		dataType: "json",
+		success: function (data) {
+		   	//totalData(총 데이터 수) 구하기
+		   	totalData = data.length;
+	      	//데이터 대입
+	      	dataList = []; // 전역변수기때문에 매번 초기화해줘야함. 안그러면 기존 데이터가 있는 상태에서 push됨
+		   	for (let i = 0; i < data.length; i++){    				  
+		   		dataList.push(data[i]);  				  
+			}
+			console.log(dataList);
+			
+			// 글 목록 출력 함수 호출 (테이블 생성)
+			displayData(1, dataPerPage);
+			// 페이징  함수  호출
+			paging(totalData, dataPerPage, pageCount, 1);
+		}
+	});
+}
+
+// 참고사이트 -> https://mchch.tistory.com/140
+//------------------------------------------------------------------------------
+
 </script>
 
 </html>
