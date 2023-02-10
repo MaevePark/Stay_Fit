@@ -28,6 +28,11 @@ public class BoardServiceImpl implements BoardService{
 		bone = dao.read(bid);
 		return bone;		
 	}
+	//게시글 조회수 증가
+	public int bvcupdate(int bid) throws Exception{
+		int bvcount = dao.bvcupdate(bid);
+		return bvcount;
+	}
 	
 //	//커뮤니티 글목록 페이지,페이징
 //	@Override

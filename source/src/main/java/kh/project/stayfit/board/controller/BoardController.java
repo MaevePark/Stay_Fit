@@ -28,9 +28,13 @@ public class BoardController {
 		return "index";
 		
 	}
+	//게시글 read 상세페이지
 	@GetMapping("/read.do")
 	public String read(Model m, int bid) throws Exception {
+		//상세보기
 		Board bone = srv.read(bid);
+		//조회수 증가
+		int bvcount= srv.bvcupdate(bid);
 		m.addAttribute("sectionName", "board/read.jsp");
 		m.addAttribute("read", bone);
 		return "index";

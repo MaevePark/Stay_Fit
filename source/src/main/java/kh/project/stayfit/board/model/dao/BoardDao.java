@@ -27,6 +27,11 @@ public class BoardDao {
 		return bone;
 	} 
 
+	public int bvcupdate(int bid) {
+		int bvcount = sqlsession.update("board.bvcupdate", bid);
+		return 0;
+	} 
+
 //	//커뮤니티 글목록 페이지,페이징
 //	public List<Board> selectList(int, int) throws Exception{
 //		return sqlsession.;
