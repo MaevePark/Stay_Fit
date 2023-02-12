@@ -1,13 +1,36 @@
 package kh.project.stayfit.board.model.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import kh.project.stayfit.board.model.vo.Board;
 
 @Repository
 public class BoardDao {
 	@Autowired
 	private SqlSession sqlsession;
+	
+	//게시판 list페이지 글목록 출력
+	public List<Board> boardlist() {
+		List<Board> blist = null;
+		blist = sqlsession.selectList("board.selectboard");
+		return blist;
+	}
+	
+	//게시글 read 상세페이지
+	public Board read(int bid){
+		Board bone = null;
+		bone = sqlsession.selectOne("board.selectone", bid);
+		return bone;
+	} 
+
+	public int bvcupdate(int bid) {
+		int bvcount = sqlsession.update("board.bvcupdate", bid);
+		return 0;
+	} 
 
 //	//커뮤니티 글목록 페이지,페이징
 //	public List<Board> selectList(int, int) throws Exception{

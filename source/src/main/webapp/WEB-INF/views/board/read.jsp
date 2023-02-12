@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
     
     <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/boardread.css" type="text/css">
@@ -39,14 +41,14 @@
 						<table id="readContent">
 							<!-- 타이틀1  -->
 							<tr>
-								<td>제목</td>
-								<td>조회수</td>
+								<td>${read.btitle}</td>
+								<td>${read.bviewcount}</td>
 								
 							</tr>
 							<!-- 타이틀1  -->
 							<tr>
-								<td>작성자</td>
-								<td>YYYY.MM.DD</td>
+								<td>${read.mname}</td>
+								<td><fmt:formatDate pattern="YY/MM/DD" value="${read.bcreate}"/></td>
 							</tr>
 						
 							<!-- 컨텐츠  -->
@@ -55,14 +57,7 @@
 									<div class="col-lg-8 col-md-7 order-md-1 order-1">
 					                    <div class="blog__details__text">
 					                        <%-- <img src="<%=request.getContextPath() %>/resources/img/blog/details/details-pic.jpg" alt=""> --%>
-					                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-					                        Aliquam mattis non mauris at ornare. Fusce a nulla eget tortor accumsan sodales non non libero.
-					                         Mauris at nisl sit amet dui vulputate lobortis. Phasellus sit amet sem consequat, interdum odio pharetra, varius lorem.
-					                          Maecenas eros augue, elementum eu venenatis id, blandit at erat. Nam ut tincidunt nisl. Pellentesque et sagittis elit.
-					                           Vestibulum pellentesque rhoncus condimentum.
-					                            Maecenas eu gravida nunc. Ut turpis nisl, vehicula venenatis scelerisque id, rhoncus vel turpis.
-					                             Ut at tortor at nulla aliquet dictum. Etiam id nisi a elit tempus dapibus. Maecenas cursus interdum leo, quis molestie elit consectetur sit amet.
-					                              Integer sit amet sem vel lacus mollis scelerisque.</p>
+					                        <p>${read.bcontent}</p>
 					                              <br>
 					                              <br>
 					                              <br>
@@ -81,7 +76,7 @@
 							<!-- 수정, 삭제 버튼은 본인이 작성한 글일때만 출력. -->
 							<button type="button" class="site-btn" onclick="">수정</button>
 							<button type="button" class="site-btn" onclick="">삭제</button>
-							<button type="button" class="site-btn" onclick="">목록</button>
+							<button type="button" class="site-btn" onclick="location.href='list?bcid=${read.bcid}'">목록</button>
 						</div>
 						
                         	<br>

@@ -1,6 +1,17 @@
 package kh.project.stayfit.board.model.service;
 
+import java.util.List;
+
+import kh.project.stayfit.board.model.vo.Board;
+
 public interface BoardService {
+	
+	//게시판 list페이지 글목록 출력
+	public List<Board> boardlist() throws Exception;
+	//게시글 read 상세피이지
+	public Board read(int bid) throws Exception;
+	//게시글 조회수 증가
+	public int bvcupdate(int bid) throws Exception;
 	
 //	//커뮤니티 글목록 페이지,페이징
 //	public List<Board> selectList(int, int) throws Exception;

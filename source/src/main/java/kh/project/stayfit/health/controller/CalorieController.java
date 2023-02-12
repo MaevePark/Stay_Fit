@@ -10,9 +10,17 @@ import org.springframework.web.servlet.ModelAndView;
 public class CalorieController {
 	
 	@GetMapping("/caloriewrite")
-	public ModelAndView caloriWrite(ModelAndView mv) {
+	public ModelAndView calorieWrite(ModelAndView mv) {
 		
 		mv.addObject("sectionName", "health/caloriewrite.jsp");
+		mv.setViewName("index");
+		
+		return mv;
+	}
+	@GetMapping("/calorielist")
+	public ModelAndView calorielist(ModelAndView mv) {
+		
+		mv.addObject("sectionName", "health/calorielist.jsp");
 		mv.setViewName("index");
 		
 		return mv;
