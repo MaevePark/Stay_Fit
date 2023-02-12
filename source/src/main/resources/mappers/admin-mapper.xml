@@ -29,7 +29,7 @@
 	</select>
 	
   	<!-- 회원 -->
-	<select id="selectMember" resultType="AdminMember">
+	<select id="selectMember" parameterType="map" resultType="AdminMember">
 		SELECT M.PROFIMG, M.MID, M.MEMAIL, M.MNAME, 
 		        (SELECT COUNT(*) FROM BOARD B WHERE B.MID = M.MID) AS POSTCNT, 
 		        (SELECT COUNT(*) FROM REPLY R WHERE R.MID = M.MID) AS REPLYCNT, 
@@ -37,7 +37,29 @@
 		        TO_CHAR(M.MCREATE, 'YYYY.MM.DD') AS MCREATE
 		    FROM MEMBER M 
 		    WHERE M.MROLE = 'M' AND M.MSTATE = 'A'
+		    <if test="searchword != null and !searchword.equals('')">
+				AND MNAME LIKE '%'||#{searchword}||'%'
+			</if>
+			<choose>
+				<when test="sort == 1"> <!-- 게시글수많은순 -->
+					ORDER BY POSTCNT DESC, MID ASC
+				</when>
+				<when test="sort == 2"> <!-- 댓글수많은순 -->
+					ORDER BY REPLYCNT DESC, MID ASC
+				</when>
+				<when test="sort == 3"> <!-- 총주문금액높은순 -->
+					ORDER BY PAYMENT DESC, MID ASC
+				</when>
+				<otherwise>
+					ORDER BY MID ASC
+				</otherwise>
+			</choose>
 	</select>
   	
+  
+  
+  
+  
+  
   
 </mapper>
