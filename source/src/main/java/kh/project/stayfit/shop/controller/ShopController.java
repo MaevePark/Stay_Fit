@@ -18,7 +18,7 @@ public class ShopController {
 		return mv;
 	}
 	
-	@GetMapping({"go"})
+	@GetMapping({"/go"})
 	public ModelAndView crawl(ModelAndView mv) {
 		Crawling.crawl();
 		return mv;
