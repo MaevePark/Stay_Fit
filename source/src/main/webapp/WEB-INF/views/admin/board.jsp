@@ -228,8 +228,10 @@ $(".dropdown-item").click(function() {
 // <라디오버튼>
 $("input[name=radioOptions]").click(function() {
 	
-	$("input[name=radioOptions]").attr('checked', false); //name이 radioOptions인 라디오 버튼 일괄 해제
-	$(this).attr('checked', true); //선택한 radio만 체크
+	$("input[name=radioOptions]").prop('checked', false); //name이 radioOptions인 라디오 버튼 일괄 해제
+	$(this).prop('checked', true); //선택한 radio만 체크
+	// attr(X) prop(O) 
+	// ★★★ disabled, selected, checked와 같은 속성값을 확인 또는 변경하는 경우는 .prop()를 사용!! ★★★
 });
 
 //------------------------------------------------------------------------------
@@ -323,6 +325,7 @@ function displayData(currentPage, dataPerPage) {
 			"</tr>";
 	}
 	$("#dataTableBody").html(chartHtml);
+	$("button.delete").on("click", boardDeleteHandler); // <삭제 방법 1>
 }
 
 // 3. 페이징  함수 
@@ -412,8 +415,10 @@ function resetData() {
 	$("#basic-default-name").val(null);
 	$("#dropdownbtn").val(0);
 	$("#dropdownbtn").text("게시판을 선택하세요  ");
-	$("input[name=radioOptions]").attr('checked', false); //name이 radioOptions인 라디오 버튼 일괄 해제
-	$("#inlineRadio").attr('checked', true); //첫번째 radio만 체크
+	$("input[name=radioOptions]").prop('checked', false); //name이 radioOptions인 라디오 버튼 일괄 해제
+	$("#inlineRadio").prop('checked', true); //첫번째 radio만 체크
+	// attr(X) prop(O) 
+	// ★★★ disabled, selected, checked와 같은 속성값을 확인 또는 변경하는 경우는 .prop()를 사용!! ★★★
 	
 	console.log("searchword : " + searchword);
 	console.log("category : " + category);
@@ -445,7 +450,13 @@ function resetData() {
 // 참고사이트 -> https://mchch.tistory.com/140
 //------------------------------------------------------------------------------
 
-$("button.delete").on("click", function(){
+// <게시물 삭제>
+
+// <삭제 방법 1> : html태그를 다 로딩한 후의 위치에 $("button.delete").on("click", deleteHandler); 작성
+// -> 그 위치에 이 함수를 넣지 않고 그냥 <script>밑에 $("button.delete").on("click", function(){ 처럼 작성하면
+// <script>태그는 위에서부터 쭉 실행되니까.. 윈도우가 완벽히 로드되기도 전에 click이벤트가 먼저 발생해서 해당  태그를 인식할 수 없음.
+// 따라서 html태그들이 다 생성된 후의 위치에 click이벤트를 걸어줘야함!
+function boardDeleteHandler() {
 	
 	var bid = $(this).siblings("input[type=hidden]").val();
 	console.log(bid);
@@ -463,8 +474,27 @@ $("button.delete").on("click", function(){
    			getData();
 		 }
    	});  
-});
+}
+// <삭제 방법 2> : 태그에 직접 onclick='boardDelete(this)' 속성 부여
+function boardDelete(thisEle){
 	
+	var bid = $(thisEle).siblings("input[type=hidden]").val();
+	console.log(bid);
+	    
+    $.ajax({
+   		url : "boarddelete",
+   		type : "post",
+   		data: { 'bid' : bid },
+   		success: function(data){
+   			if(data == 1) {
+				alert("게시물 삭제 성공");
+			} else {
+				alert("게시물 삭제 실패");
+			}
+   			getData();
+		 }
+   	});  
+}
 </script>
 
 </html>
