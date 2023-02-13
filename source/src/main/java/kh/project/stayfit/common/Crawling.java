@@ -1,69 +1,67 @@
 package kh.project.stayfit.common;
 
+import java.time.Duration;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Crawling {
 	public static void crawl() {
 		WebDriver driver = null;
+		WebDriverWait wait = null;
 		try {
 			// drvier 설정 - 저는 d드라이브 work 폴더에 있습니다.
 			System.setProperty("webdriver.chrome.driver", "D:\\chrome_driver\\chromedriver.exe");
 			ChromeOptions options = new ChromeOptions();
-			options.addArguments("--headless", "--disable-gpu","-no-sandbox");
 			options.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36");
 			options.addArguments("lang=ko_KR");
-			
-			
+			options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
+			options.setExperimentalOption("useAutomationExtension", false);
+
 			// Chrome 드라이버 인스턴스 설정
-			driver = new ChromeDriver();
-			
-//			driver.execute_cdp_cmd
-//			("Page.addScriptToEvaluateOnNewDocument"
-//					, {"source": """ Object.defineProperty(navigator, 'webdriver', { get: () => undefined }) """});
-			
+			driver = new ChromeDriver(options);
+			wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+			// WebElement firstResult = new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(By.xpath("//a/h3")));
 			// 스크립트를 사용하기 위한 캐스팅
 			JavascriptExecutor js = (JavascriptExecutor) driver;
+
+			// URL로 접속
+			driver.get("https://login.coupang.com/login/login.pang?rtnUrl=https%3A%2F%2Fwww.coupang.com%2Fnp%2Fpost%2Flogin%3Fr%3Dhttps%253A%252F%252Fwww.coupang.com%252Fnp%252Fcategories%252F432482%253FlistSize%253D60%2526brand%253D%2526offerCondition%253D%2526filterType%253D%2526isPriceRange%253Dfalse%2526minPrice%253D%2526maxPrice%253D%2526page%253D1%2526channel%253Duser%2526fromComponent%253DY%2526selectedPlpKeepFilter%253D%2526sorter%253DbestAsc%2526filter%253D%2526component%253D432382%2526rating%253D0");
 			
-			js.executeScript("", "");
-			
-			
-			// 블로그 URL로 접속
-			//driver.get("https://www.coupang.com/np/categories/194276");
-			driver.get("https://www.coupang.com/np/categories/432482?listSize=60&brand=&offerCondition=&filterType=&isPriceRange=false&minPrice=&maxPrice=&page=1&channel=user&fromComponent=Y&selectedPlpKeepFilter=&sorter=bestAsc&filter=&component=432382&rating=0");
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			// 대기 설정
-			//driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-			// xpath로 element를 찾는다. 이 xpath는 명월 일지 블로그의 왼쪽 메뉴의 Dev note의 Javascript, Jquery,
-			// Css 카테고리다.
+			Thread.sleep(1000);
+			WebElement element = driver.findElement(By.xpath("//*[@id=\'login-email-input\']"));
+			element.sendKeys("qudwn980226@naver.com");
+			Thread.sleep(1000);
+			element = driver.findElement(By.xpath("//*[@id=\'login-password-input\']"));
+			element.sendKeys("chzh10424!");
+			Thread.sleep(1000);
+			element = driver.findElement(By.cssSelector("body > div.member-wrapper.member-wrapper--flex > div > div > form > div.login__content.login__content--trigger > button"));
+			element.sendKeys(Keys.ENTER);
 			
 			//WebElement element = driver.findElement(By.xpath("//*[@id='category432381']/li[1]/label"));
 			// 클릭한다. 사실 element.click()로도 클릭이 가능한데 가끔 호환성 에러가 발생하는 경우가 있다.
 			//js.executeScript("arguments[0].click();", element);
+//			WebElement element = driver.findElement(By.xpath("//*[@id=\'login\']/a"));
+//			element.sendKeys(Keys.ENTER);
 			
 			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
 //			while (true) {
 //				try {
 //					// css selector로 element를 찾는다.
@@ -111,4 +109,6 @@ public class Crawling {
 //			driver.close();
 		}
 	}
+	
+	
 }

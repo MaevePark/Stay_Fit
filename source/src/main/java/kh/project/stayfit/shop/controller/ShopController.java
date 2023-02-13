@@ -7,6 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kh.project.stayfit.common.Crawling;
 
+
 @Controller
 @RequestMapping("/shop")
 public class ShopController {
