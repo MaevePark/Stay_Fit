@@ -96,16 +96,15 @@
 			            <label class="col-sm-2 col-form-label" for="basic-default-name">게시판</label>
 			            <div class="col-sm-10">
 			              <div class="btn-group">
-					        <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">게시판을 선택하세요  &nbsp;</button>
+			              
+					        <button type="button" id="dropdownbtn" value="0" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">게시판을 선택하세요  </button>
 					        <ul class="dropdown-menu">
-					          <li><a class="dropdown-item" href="javascript:void(0);">Action</a></li>
-					          <li><a class="dropdown-item" href="javascript:void(0);">Another action</a></li>
-					          <li><a class="dropdown-item" href="javascript:void(0);">Something else here</a></li>
-					          <li>
-					            <hr class="dropdown-divider">
-					          </li>
-					          <li><a class="dropdown-item" href="javascript:void(0);">Separated link</a></li>
+					          <li><a data-value="1" class="dropdown-item">공지사항</a></li>
+					          <li><a data-value="2" class="dropdown-item">식단</a></li>
+					          <li><a data-value="3" class="dropdown-item">팁&노하우</a></li>
+					          <li><a data-value="4" class="dropdown-item">고민&질문</a></li>
 					        </ul>
+					        
 					      </div>
 			            </div>
 			          </div>
@@ -114,11 +113,15 @@
 			            <label class="col-sm-2 col-form-label" for="basic-default-name">게시물 상태</label>
 			            <div class="col-sm-10" style="padding: 8px 13px">
 							<div class="form-check form-check-inline">
-				              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+				              <input class="form-check-input" type="radio" name="radioOptions" id="inlineRadio" value="0" checked>
+				              <label class="form-check-label" for="inlineRadio">전체</label>
+				            </div>
+							<div class="form-check form-check-inline">
+				              <input class="form-check-input" type="radio" name="radioOptions" id="inlineRadio1" value="1">
 				              <label class="form-check-label" for="inlineRadio1">활성화된 게시물</label>
 				            </div>
 				            <div class="form-check form-check-inline">
-				              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+				              <input class="form-check-input" type="radio" name="radioOptions" id="inlineRadio2" value="2">
 				              <label class="form-check-label" for="inlineRadio2">비활성화된 게시물</label>
 				            </div>
 			            </div>
@@ -126,8 +129,8 @@
 			          
 			          <div class="row justify-content-center">
 			            <div class="pagination justify-content-center" style="padding: 0">
-				          <button type="button" class="btn btn-primary" style="margin-right: 10px">검색</button>
-				          <button type="button" class="btn btn-secondary">초기화</button>
+				          <button type="button" id="searchbtn" class="btn btn-primary" style="margin-right: 10px">검색</button>
+				          <button type="button" id="resetbtn" class="btn btn-secondary">초기화</button>
 				        </div>
 			          </div>
 			        </form>
@@ -135,7 +138,7 @@
 			    </div>
 			  </div>
 
-              <p style="margin-left: 20px">총 n건</p>
+              <p id="displayCount" style="margin-left: 20px"></p>
               
               <!-- Basic Bootstrap Table -->
               <div class="card">
@@ -154,59 +157,15 @@
                         <th>삭제</th>
                       </tr>
                     </thead>
-                    <tbody class="table-border-bottom-0">
-                      <tr>
-                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i>122</td>
-                        <td>고민&질문</td>
-                        <td><strong>PT 질문 있습니다</strong></td>
-                        <td>stayfit@stayfit.com</td>
-                        <td>25</td>
-                        <td>2023.02.02</td>
-                        <td>활성화</td>
-                        <td>
-                          <button type="button" class="btn btn-secondary btn-sm">삭제</button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i>122</td>
-                        <td>고민&질문</td>
-                        <td><strong>PT 질문 있습니다</strong></td>
-                        <td>stayfit@stayfit.com</td>
-                        <td>25</td>
-                        <td>2023.02.02</td>
-                        <td>비활성화</td>
-                        <td>
-                          <button type="button" class="btn btn-secondary btn-sm">삭제</button>
-                        </td>
-                      </tr>
-                    </tbody>
+                    
+                    <tbody id="dataTableBody" class="table-border-bottom-0"></tbody>
+                    
                   </table>
                 </div>
                 
                 <!-- 페이지네이션 -->
-                <ul class="pagination justify-content-center" style="margin: 40px 0 24px 0">
-	              <li class="page-item prev">
-	                <a class="page-link" href="javascript:void(0);"><i class="tf-icon bx bx-chevrons-left"></i></a>
-	              </li>
-	              <li class="page-item">
-	                <a class="page-link" href="javascript:void(0);">1</a>
-	              </li>
-	              <li class="page-item">
-	                <a class="page-link" href="javascript:void(0);">2</a>
-	              </li>
-	              <li class="page-item active">
-	                <a class="page-link" href="javascript:void(0);">3</a>
-	              </li>
-	              <li class="page-item">
-	                <a class="page-link" href="javascript:void(0);">4</a>
-	              </li>
-	              <li class="page-item">
-	                <a class="page-link" href="javascript:void(0);">5</a>
-	              </li>
-	              <li class="page-item next">
-	                <a class="page-link" href="javascript:void(0);"><i class="tf-icon bx bx-chevrons-right"></i></a>
-	              </li>
-	            </ul>
+                <ul id = "pagingul" class="pagination justify-content-center" style="margin: 40px 0 24px 0"></ul>
+              
               </div>
               <!--/ Basic Bootstrap Table -->
 
@@ -253,4 +212,260 @@
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
   </body>
+
+<script>
+//------------------------------------------------------------------------------
+// <드롭다운메뉴>
+$(".dropdown-item").click(function() {
+	
+	var dropdownValue = $(this).attr("data-value");
+	var dropdownText = $(this).text();
+	
+	$("#dropdownbtn").val(dropdownValue);
+	$("#dropdownbtn").text(dropdownText + " ");
+}); 
+//------------------------------------------------------------------------------
+// <라디오버튼>
+$("input[name=radioOptions]").click(function() {
+	
+	$("input[name=radioOptions]").attr('checked', false); //name이 radioOptions인 라디오 버튼 일괄 해제
+	$(this).attr('checked', true); //선택한 radio만 체크
+});
+
+//------------------------------------------------------------------------------
+// <게시물목록출력>
+
+let searchword; //검색단어
+let category; //게시판종류
+let state; //활성화/비활성화
+let totalData; //총 데이터 수
+let dataPerPage = 10; //한 페이지에 나타낼 글 수
+let pageCount = 5; //페이징에 나타낼 페이지 수
+let globalCurrentPage = 1; //현재 페이지
+let dataList = []; //표시하려하는 데이터 리스트
+
+$(function() {
+	
+	getData();
+	
+	$("#searchbtn").click(getData); // 데이터 호출 함수
+	$("#resetbtn").click(resetData); // 검색조건,목록 초기화 함수
+});
+
+// 1. 데이터 호출 함수
+function getData() {
+	
+	searchword = $("#basic-default-name").val();
+	category = $("#dropdownbtn").val();
+	state = $("input[name=radioOptions]:checked").val();
+	
+	console.log("searchword : " + searchword);
+	console.log("category : " + category);
+	console.log("state : " + state);
+	
+	$.ajax({
+		url: "boardlist",
+		method: "GET",
+		data: { 'searchword': searchword, 'category': category, 'state': state },
+		dataType: "json",
+		success: function (data) {
+		   	//totalData(총 데이터 수) 구하기
+		   	totalData = data.length;
+         	//데이터 대입
+         	dataList = []; // 전역변수기때문에 매번 초기화해줘야함. 안그러면 기존 데이터가 있는 상태에서 push됨
+		   	for (let i = 0; i < data.length; i++){    				  
+		   		dataList.push(data[i]);  				  
+			}
+			console.log(dataList);
+			
+			// 글 목록 출력 함수 호출 (테이블 생성)
+			displayData(1, dataPerPage);
+			// 페이징  함수  호출
+			paging(totalData, dataPerPage, pageCount, 1);
+		}
+	});
+	// 이 위치에서 위 displayData, paging 함수들을 호출하면 ajax에서 데이터를 가져오기 전에 호출되어 undefined오류날 수 있음. 
+	// -> async: false (동기 방식) 추가하든지, 위처럼 success 안에 위치시키든지 해야함 
+}
+
+// 2. 글 목록 출력 함수
+//현재 페이지(currentPage)와 페이지당 글 개수(dataPerPage) 반영
+function displayData(currentPage, dataPerPage) {
+	let chartHtml = "";
+	
+	//totalData가 0건인 경우
+	if(totalData == 0){
+		chartHtml +=
+			"<tr>" +
+				"<td colspan='8' style='text-align: center;'>검색 결과가 없습니다.</td>" + 
+			"</tr>";
+	}
+
+	//Number로 변환하지 않으면 아래에서 +를 할 경우 스트링 결합이 되어버림.. 
+	currentPage = Number(currentPage);
+	dataPerPage = Number(dataPerPage);
+	
+	// ((currentPage - 1) * dataPerPage + dataPerPage)가 40, totalData가 36라면 -> 36이 선택되도록 Math.min()함수 사용 -> 결과 : 30 ~ 35인덱스 출력
+	for (let i = (currentPage - 1) * dataPerPage; i < Math.min((currentPage - 1) * dataPerPage + dataPerPage, totalData); i++) {
+		chartHtml += 
+			"<tr>" +
+				"<td>" + dataList[i].bid + "</td>" +
+				"<td>" + dataList[i].bcname + "</td>" +
+				"<td>" + dataList[i].btitle + "</td>" +
+				"<td>" + dataList[i].mid + "</td>" +
+				"<td>" + dataList[i].bviewcount + "</td>" +
+				"<td>" + dataList[i].bcreate + "</td>" +
+				"<td>" + dataList[i].bstate + "</td>" +
+				"<td>" + 
+					"<button type='button' class='btn btn-secondary btn-sm delete'>삭제</button>" + 
+					"<input type='hidden' name='bid' value='" + dataList[i].bid + "'>" +
+				"</td>" +
+			"</tr>";
+	}
+	$("#dataTableBody").html(chartHtml);
+}
+
+// 3. 페이징  함수 
+function paging(totalData, dataPerPage, pageCount, currentPage) {
+	console.log("currentPage : " + currentPage);
+	
+	// 총 페이지 수
+	totalPage = Math.ceil(totalData / dataPerPage);
+	
+	if (totalPage < pageCount) {
+	  	pageCount = totalPage;
+	}
+	
+	// 페이지 그룹
+	let pageGroup = Math.ceil(currentPage / pageCount);
+	let last = pageGroup * pageCount; //화면에 보여질 마지막 페이지 번호
+	
+	if (last > totalPage) {
+	  	last = totalPage;
+	}
+	
+	let first = last - (pageCount - 1); //화면에 보여질 첫번째 페이지 번호
+	let next = last + 1;
+	let prev = first - 1;
+	
+	let pageHtml = "";
+	
+	if (prev > 0) {
+	  	pageHtml += 
+	  		"<li class='page-item prev'>" +
+        		"<a class='page-link' href='#' id='prev'><i class='tf-icon bx bx-chevrons-left'></i></a>" +
+        	"</li>";
+	}
+	
+	//페이징 번호 표시 
+	for (var i = first; i <= last; i++) {
+	  	if (currentPage == i) {
+	    	pageHtml +=
+	            "<li class='page-item active'>" +
+	            	"<a class='page-link' href='#' id='" + i + "'>" + i + "</a>" +
+	          	"</li>";
+	  	} else {
+	    	pageHtml += 
+              	"<li class='page-item'>" +
+	            	"<a class='page-link' href='#' id='" + i + "'>" + i + "</a>" +
+	          	"</li>";
+	  	}
+	}
+	
+	if (last < totalPage) {
+	  	pageHtml += 
+	  		"<li class='page-item next'>" +
+	    		"<a class='page-link' href='#' id='next'><i class='tf-icon bx bx-chevrons-right'></i></a>" +
+	    	"</li>";
+	}
+	
+	$("#pagingul").html(pageHtml);
+	let displayCount = "";
+	displayCount = "총 " + totalData + "건";
+	$("#displayCount").text(displayCount);
+	
+	
+	//페이징 번호 클릭 이벤트 
+	$("#pagingul li a").click(function() {
+	  	let $id = $(this).attr("id");
+	  	selectedPage = $(this).text();
+	
+	  	if ($id == "next") selectedPage = next;
+	  	if ($id == "prev") selectedPage = prev;
+	  
+	  	//전역변수에 선택한 페이지 번호를 담기
+	  	globalCurrentPage = selectedPage;
+	  	//페이징 표시 재호출
+	  	paging(totalData, dataPerPage, pageCount, selectedPage);
+	  	//글 목록 표시 재호출
+	  	displayData(selectedPage, dataPerPage);
+	});
+}
+
+// 검색조건,목록 초기화 함수
+function resetData() {
+	
+	searchword = null;
+	category = 0;
+	state = 0;
+	
+	$("#basic-default-name").val(null);
+	$("#dropdownbtn").val(0);
+	$("#dropdownbtn").text("게시판을 선택하세요  ");
+	$("input[name=radioOptions]").attr('checked', false); //name이 radioOptions인 라디오 버튼 일괄 해제
+	$("#inlineRadio").attr('checked', true); //첫번째 radio만 체크
+	
+	console.log("searchword : " + searchword);
+	console.log("category : " + category);
+	console.log("state : " + state);
+	
+	$.ajax({
+		url: "boardlist",
+		method: "GET",
+		data: { 'searchword': searchword, 'category': category, 'state': state },
+		dataType: "json",
+		success: function (data) {
+		   	//totalData(총 데이터 수) 구하기
+		   	totalData = data.length;
+         	//데이터 대입
+         	dataList = []; // 전역변수기때문에 매번 초기화해줘야함. 안그러면 기존 데이터가 있는 상태에서 push됨
+		   	for (let i = 0; i < data.length; i++){    				  
+		   		dataList.push(data[i]);  				  
+			}
+			console.log(dataList);
+			
+			// 글 목록 출력 함수 호출 (테이블 생성)
+			displayData(1, dataPerPage);
+			// 페이징  함수  호출
+			paging(totalData, dataPerPage, pageCount, 1);
+		}
+	});
+}
+
+// 참고사이트 -> https://mchch.tistory.com/140
+//------------------------------------------------------------------------------
+
+$("button.delete").on("click", function(){
+function boardDelete() {
+	
+	var bid = $(this).siblings("input[type=hidden]").val();
+	console.log(bid);
+	    
+    $.ajax({
+   		url : "boarddelete",
+   		type : "post",
+   		data: { 'bid' : bid },
+   		success: function(data){
+   			if(data == 1) {
+				alert("게시물 삭제 성공");
+			} else {
+				alert("게시물 삭제 실패");
+			}
+   			getData();
+		 }
+   	});  
+});
+	
+</script>
+
 </html>

@@ -240,8 +240,8 @@ $(function() {
 	
 	getData();
 	
-	$("#searchbtn").click(getData);
-	$("#resetbtn").click(resetData);
+	$("#searchbtn").click(getData); // 데이터 호출 함수
+	$("#resetbtn").click(resetData); // 검색조건,목록 초기화 함수
 });
 
 // 1. 데이터 호출 함수
@@ -388,7 +388,7 @@ function paging(totalData, dataPerPage, pageCount, currentPage) {
 	});
 }
 
-//검색조건 초기화 함수
+// 검색조건,목록 초기화 함수
 function resetData() {
 	
 	searchword = null;

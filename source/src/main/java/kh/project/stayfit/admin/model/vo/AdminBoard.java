@@ -24,12 +24,10 @@ public class AdminBoard {
 //	"BSTATE"	CHAR(1)	DEFAULT 'A'	NOT NULL
 	
 	private int bid;
-	private int bcid;
-	private int mid;
+	private String bcname;
 	private String btitle;
-	private String bcontent; 
-	private int bpick;
-	private Timestamp bcreate; 
-	private Timestamp bupdate; 
-	private char bstate;
+	private int mid;
+	private int bviewcount; 
+	private String bcreate;
+	private String bstate;
 }

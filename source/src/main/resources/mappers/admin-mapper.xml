@@ -55,8 +55,51 @@
 				</otherwise>
 			</choose>
 	</select>
+	
+  	<!-- 게시물 -->
+	<select id="selectBoard" parameterType="map" resultType="AdminBoard">
+		SELECT B.BID, BC.BCNAME, B.BTITLE, B.MID, B.BVIEWCOUNT, 
+		        TO_CHAR(B.BCREATE, 'YYYY.MM.DD') AS BCREATE, 
+		        DECODE(B.BSTATE, 'A', '활성화', '비활성화') AS BSTATE
+		    FROM BOARD B JOIN BCATEGORY BC ON B.BCID = BC.BCID
+		    
+			<where> <!-- WHERE을 구문 앞에 추가해줌. AND/OR로 시작한다면 없애줌 -->
+				<if test="searchword != null and !searchword.equals('')">
+					AND BTITLE LIKE '%'||#{searchword}||'%'
+				</if>
+				<choose>
+					<when test="category == 1"> <!-- 공지사항 -->
+						AND BC.BCID = 0
+					</when>
+					<when test="category == 2"> <!-- 식단 -->
+						AND BC.BCID = 1
+					</when>
+					<when test="category == 3"> <!-- 팁&노하우 -->
+						AND BC.BCID = 2
+					</when>
+					<when test="category == 4"> <!-- 고민&질문 -->
+						AND BC.BCID = 3
+					</when>
+				</choose>
+				<if test="state != null and !state.equals('')">
+					<choose>
+						<when test="state == 1"> <!-- 활성화 -->
+							AND BSTATE = 'A'
+						</when>
+						<when test="state == 2"> <!-- 비활성화 -->
+							AND BSTATE = 'D'
+						</when>
+					</choose>
+				</if>
+			</where>
+			
+		    ORDER BY B.BID DESC
+	</select>
   	
-  
+  	<delete id="deleteBoard" parameterType="string">
+		DELETE FROM BOARD
+		    WHERE BID = #{bid}
+  	</delete>
   
   
   
