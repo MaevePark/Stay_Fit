@@ -17,6 +17,7 @@ public class CalorieController {
 		
 		return mv;
 	}
+	
 	@GetMapping("/calorielist")
 	public ModelAndView calorielist(ModelAndView mv) {
 		
