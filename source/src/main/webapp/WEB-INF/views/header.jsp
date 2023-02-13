@@ -56,7 +56,7 @@
 									<li><a href="<%=request.getContextPath()%>/board/list?bcid=3">고민&질문</a></li>
 								</ul>
 							</li>
-							<li><a href="#">건강관리</a>
+							<li><a a href="<%=request.getContextPath()%>/health/caloriewrite">건강관리</a>
 								<ul class="header__menu__dropdown">
 									<li><a href="<%=request.getContextPath()%>/health/caloriewrite">칼로리 처방 받기</a></li>
 									<li><a href="<%=request.getContextPath()%>/health/bmiwrite">BMI 지수 조회</a></li>
