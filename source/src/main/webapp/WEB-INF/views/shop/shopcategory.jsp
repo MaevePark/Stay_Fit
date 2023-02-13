@@ -5,6 +5,7 @@
 <div class="col-lg-2 col-md-5">
 	<div class="sidebar">
 
+		<button type="button" onclick="location.href='<%=request.getContextPath()%>/shop/go'">크롤링 실행!</button>
 		<div class="sidebar__item">
 			<h4>Department</h4>
 			<ul>

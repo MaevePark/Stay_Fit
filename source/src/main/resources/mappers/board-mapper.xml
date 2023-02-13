@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="board">
+	
+	
+	<select id="selectboard" resultType="Board">
+		select bid, bcname, btitle, mname, bviewcount, bcreate from board b join bcategory bc on b.bcid = bc.bcid join member m on b.mid=m.mid
+	</select>
+	
+	<select id="selectone" resultType="Board" parameterType="int">
+		select bc.bcid, bid, bcname, btitle, bcontent, mname, bviewcount, bcreate 
+		from board b join bcategory bc on b.bcid = bc.bcid join member m on b.mid=m.mid where bid=#{bid}
+	</select>
+	
+	<update id="bvcupdate" parameterType="int">
+		update board set bviewcount = bviewcount + 1 where bid=#{bid}
+	</update>
+</mapper>

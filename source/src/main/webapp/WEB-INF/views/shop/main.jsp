@@ -20,10 +20,10 @@
 									<div class="hero__search__form">
 										<form action="#">
 											<select name="">
-												<option value="1" selected>카테고리 전체</option>
-												<option value="2" <%if(request.getParameter("searchProduct").equals("1")) {%>selected<%}; %>>>Fresh Meat</option>
-												<option value="3">Vegetables</option>
-												<option value="4">Fruit & Nut Gifts</option>
+												<option value="0" <%if(request.getParameter("searchProduct").equals("0")) {%>selected<%} %>>카테고리 전체</option>
+												<option value="1" <%if(request.getParameter("searchProduct").equals("1")) {%>selected<%} %>>Fresh Meat</option>
+												<option value="2" <%if(request.getParameter("searchProduct").equals("2")) {%>selected<%} %>>Vegetables</option>
+												<option value="3" <%if(request.getParameter("searchProduct").equals("3")) {%>selected<%} %>>Fruit & Nut Gifts</option>
 											</select>
 											
 											<input type="text" name="searchProduct" id="searchProduct" placeholder="검색어를 입력해주세요.">

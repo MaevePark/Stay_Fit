@@ -7,9 +7,9 @@ import lombok.ToString;
 @ToString
 @Getter
 @Setter
-public class AdminDashboard1 {
+public class AdminDashboard2 {
 	
-	private String mm;
-	private int revenue;
+	private String cid;
+	private int sales;
 
 }

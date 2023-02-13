@@ -12,6 +12,8 @@
   data-template="vertical-menu-template-free"
 >
   <head>
+  	<meta name="_csrf" th:content="${_csrf.token}"/>
+	<meta name="_csrf_header" th:content="${_csrf.headerName}"/>
     <meta charset="utf-8" />
     <meta
       name="viewport"
@@ -92,22 +94,56 @@
                 </div>
                 <!--/ 총 수익 (Total Revenue Chart) -->
                                 
-                <!-- 카테고리별 주문 수요(Order Statics Chart) -->
+                <!-- 카테고리별 판매 비율(Order Statics Chart) -->
                 <div class="col-6 col-md-6 col-lg-6 col-xl-6 order-2 mb-4">
                   <div class="card h-100">
                     <div class="card-header d-flex align-items-center justify-content-between pb-0">
                       <div class="card-title mb-0">
-                        <h5 class="m-0 me-2">카테고리별 주문 수요 현황</h5>
+                        <h5 class="m-0 me-2">카테고리별 판매 비율 현황</h5>
                       </div>
                     </div>
-                    <div class="card-body d-flex justify-content-center align-items-center mb-3">
+                    <div class="card-body d-flex justify-content-evenly align-items-center mb-3" style="padding: 24px">
                       
                       <div id="orderStatisticsChart"></div>
+                      
+                      <ul class="p-0 m-0">
+				          <li class="d-flex mb-4 mt-4 pb-1">
+				            <div class="avatar flex-shrink-0 me-3">
+				              <span class="avatar-initial rounded bg-label-primary"><i class="bx"></i></span>
+				            </div>
+				            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-4">
+				              <div class="me-2">
+				                <h6 class="mb-0">즉석밥/볶음밥</h6>
+				              </div>
+				            </div>
+				          </li>
+				          <li class="d-flex mb-4 mt-4 pb-1">
+				            <div class="avatar flex-shrink-0 me-3">
+				              <span class="avatar-initial rounded bg-label-info"><i class="bx"></i></span>
+				            </div>
+				            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-4">
+				              <div class="me-2">
+				                <h6 class="mb-0">샐러드/도시락</h6>
+				              </div>
+				            </div>
+				          </li>
+				          <li class="d-flex mb-4 mt-4 pb-1">
+				            <div class="avatar flex-shrink-0 me-3">
+				              <span class="avatar-initial rounded bg-label-success"><i class="bx"></i></span>
+				            </div>
+				            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-4">
+				              <div class="me-2">
+				                <h6 class="mb-0">기타</h6>
+				              </div>
+				            </div>
+				          </li>
+
+				        </ul>
                       
                     </div>
                   </div>
                 </div>
-                <!--/ 카테고리별 주문 비율(Order Statics Chart) -->
+                <!--/ 카테고리별 판매 비율(Order Statics Chart) -->
 
                 <!-- 주문 수 (Sales Volume Chart) -->
                 <div class="col-6 col-md-6 col-lg-6 order-3 mb-4">

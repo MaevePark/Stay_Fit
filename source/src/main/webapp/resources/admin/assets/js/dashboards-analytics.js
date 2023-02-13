@@ -12,49 +12,11 @@ $(function() {
   axisColor = config.colors.axisColor;
   borderColor = config.colors.borderColor;
 
-  // Total Revenue Report Chart - Bar Chart
   // --------------------------------------------------------------------
-  
-//  $.getJSON("http://localhost:8090/stayfit/admin/dashboard/chart1", function(response) {
-//	  
-//	console.log(여기);
-//	  
-//	chart.updateSeries([{
-//	  data: response
-//	}])
-//    	  
-//  });
-  
-  $.ajax({
-	  url: "chart1",
-      async: true,
-      //data: JSON.stringify(data),
-      type: "POST",
-      dataType:"json",
-      contentType: "application/json; charset=utf-8",
-      success:function(data){
-          
-    	  console.log(여기);
-    	  
-          var chartData = [];
-          
-          $.each(data, function(){
-        	  chartData.push(data);
-        	  console.log(data);
-          });
-  	  
-    	  chart.updateSeries([{
-    	    data: chartData
-    	  }])
-      },
-	  error : function(request, status, errordata){
-		  alert("error code:" + request.status + "\n"
-				+ "message:" + request.responseText + "\n"
-				+ "error" + errordata + "\n");
-	  }
-  });
+  // <첫번째 차트> - Total Revenue Report Chart - Bar Chart
   
   const totalRevenueChartEl = document.querySelector('#totalRevenueChart');
+  // 차트 옵션 생성
   const totalRevenueChartOptions = {
       series: [
 	  {
@@ -304,31 +266,65 @@ $(function() {
         }
       }
     };
-  if (typeof totalRevenueChartEl !== undefined && totalRevenueChartEl !== null) {
-    const totalRevenueChart = new ApexCharts(totalRevenueChartEl, totalRevenueChartOptions);
-    totalRevenueChart.render();
-  }
-
+  
+  // 차트 생성
+  const totalRevenueChart = new ApexCharts(totalRevenueChartEl, totalRevenueChartOptions);
+  totalRevenueChart.render();
+  
+//	var token = $("meta[name='_csrf']").attr("content");
+//	var header = $("meta[name='_csrf_header']").attr("content");
+//	var token = 'fetch';
+//	var header = "X-CSRF-TOKEN";
+  
+  $.ajax({
+	  url: "chart1",
+	  //data: JSON.stringify(data),
+	  //contentType: 'application/json',
+      type: "post",
+      dataType:"json",
+      success:function(data){
+    	  console.log(data);
+    	  
+    	  let chartData = [];
+          
+          for (let i = 0; i < data.length; i++){    				  
+        	  chartData.push(data[i].revenue);    				  
+		  }
+  	  
+          totalRevenueChart.updateSeries([
+        	  {
+        		  data: chartData
+        	  }
+          ]);
+      },
+	  error : function(request, status, errordata){
+		  alert("error code:" + request.status + "\n"
+				+ "message:" + request.responseText + "\n"
+				+ "error" + errordata + "\n");
+	  }
+  });
  
 
-  // Order Statistics Chart
   // --------------------------------------------------------------------
-  const chartOrderStatistics = document.querySelector('#orderStatisticsChart'),
-    orderChartConfig = {
+  // <두번째 차트> - Order Statistics Chart
+  
+  const chartOrderStatistics = document.querySelector('#orderStatisticsChart')
+  // 차트 옵션 생성
+  const orderChartConfig = {
       chart: {
-        height: 165,
-        width: 130,
+        height: 230,
+        width: 230,
         type: 'donut'
       },
-      labels: ['Electronic', 'Sports', 'Decor', 'Fashion'],
-      series: [85, 15, 50, 50],
-      colors: [config.colors.primary, config.colors.secondary, config.colors.info, config.colors.success],
+      labels: ['즉석밥/볶음밥', '샐러드/도시락', '기타'],
+      series: [85, 15, 50],
+      colors: [config.colors.primary, config.colors.info, config.colors.success],
       stroke: {
         width: 5,
         colors: cardColor
       },
       dataLabels: {
-        enabled: false,
+        enabled: true,
         formatter: function (val, opt) {
           return parseInt(val) + '%';
         }
@@ -346,7 +342,7 @@ $(function() {
       plotOptions: {
         pie: {
           donut: {
-            size: '75%',
+            size: '60%',
             labels: {
               show: true,
               value: {
@@ -355,7 +351,7 @@ $(function() {
                 color: headingColor,
                 offsetY: -15,
                 formatter: function (val) {
-                  return parseInt(val) + '%';
+                  return parseInt(val) + '건';
                 }
               },
               name: {
@@ -365,29 +361,55 @@ $(function() {
               total: {
                 show: true,
                 fontSize: '0.8125rem',
-                color: axisColor,
-                label: 'Weekly',
-                formatter: function (w) {
-                  return '38%';
-                }
+                color: axisColor
               }
             }
           }
         }
       }
     };
-  if (typeof chartOrderStatistics !== undefined && chartOrderStatistics !== null) {
-    const statisticsChart = new ApexCharts(chartOrderStatistics, orderChartConfig);
-    statisticsChart.render();
-  }
 
-  // Income Chart - Area chart
+  // 차트 생성
+  const statisticsChart = new ApexCharts(chartOrderStatistics, orderChartConfig);
+  statisticsChart.render();
+
+//  $.ajax({
+//	  url: "chart2",
+//	  //data: JSON.stringify(data),
+//	  //contentType: 'application/json',
+//      type: "post",
+//      dataType:"json",
+//      success:function(data){
+//    	  console.log(data);
+//    	  
+//    	  let chartData = [];
+//          
+//          for (let i = 0; i < data.length; i++){    				  
+//        	  chartData.push(data[i].sales);    				  
+//		  }
+//  	  
+//          statisticsChart.updateSeries([
+//        	  {
+//        		  data: chartData
+//        	  }
+//          ]);
+//      },
+//	  error : function(request, status, errordata){
+//		  alert("error code:" + request.status + "\n"
+//				+ "message:" + request.responseText + "\n"
+//				+ "error" + errordata + "\n");
+//	  }
+//  });
+  
   // --------------------------------------------------------------------
-  const incomeChartEl = document.querySelector('#incomeChart'),
-    incomeChartConfig = {
+  // <세번째 차트> - Income Chart - Area chart
+  
+  const incomeChartEl = document.querySelector('#incomeChart')
+  // 차트 옵션 생성
+  const incomeChartConfig = {
       series: [
         {
-          data: [24, 21, 30, 22, 42, 26, 35, 29]
+          data: []
         }
       ],
       chart: {
@@ -446,12 +468,12 @@ $(function() {
         padding: {
           top: -20,
           bottom: -8,
-          left: -10,
+          left: 8,
           right: 8
         }
       },
       xaxis: {
-        categories: ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
         axisBorder: {
           show: false
         },
@@ -469,16 +491,42 @@ $(function() {
       yaxis: {
         labels: {
           show: false
-        },
-        min: 10,
-        max: 50,
-        tickAmount: 4
+        }
       }
     };
-  if (typeof incomeChartEl !== undefined && incomeChartEl !== null) {
-    const incomeChart = new ApexCharts(incomeChartEl, incomeChartConfig);
-    incomeChart.render();
-  }
+  
+  // 차트 생성
+  const incomeChart = new ApexCharts(incomeChartEl, incomeChartConfig);
+  incomeChart.render();
 
-
+  $.ajax({
+	  url: "chart3",
+	  //data: JSON.stringify(data),
+	  //contentType: 'application/json',
+      type: "post",
+      dataType:"json",
+      success:function(data){
+    	  console.log(data);
+    	  
+          let chartData = [];
+          
+          for (let i = 0; i < data.length; i++){    				  
+        	  chartData.push(data[i].cnt);    				  
+		  }
+  	  
+          incomeChart.updateSeries([
+        	  {
+        		  data: chartData
+        	  }
+          ]);
+      },
+	  error : function(request, status, errordata){
+		  alert("error code:" + request.status + "\n"
+				+ "message:" + request.responseText + "\n"
+				+ "error" + errordata + "\n");
+	  }
+  });
+  
+  
+  
 });

@@ -42,5 +42,15 @@
 
 /*리스트업 테이블 끝*/
 
+/* 버튼  */
+#button_parent {
+	
+}
+#button_parent > button {
+	margin-left: 5px;
+	display: relative; !important
+	justify-content: right; !implrtant
+}
+/*버튼 끝  */
 
 
