@@ -41,7 +41,7 @@
 			<div class="row">
 				<div class="col-lg-3">
 					<div class="header__logo">
-						<a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath()%>/resources/img/logo.png" alt=""></a>
+						<a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath()%>/resources/img/STAY_FIT_logo.png" alt=""></a>
 					</div>
 				</div>
 				<div class="col-lg-6">

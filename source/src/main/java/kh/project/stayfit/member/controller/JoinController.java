@@ -12,7 +12,15 @@ public class JoinController {
 	@GetMapping("/join")
 	public ModelAndView join(ModelAndView mv) {
 		
-		mv.addObject("sectionName", "회원가입.jsp");
+		mv.addObject("sectionName", "member/join.jsp");
+		mv.setViewName("index");
+		
+		return mv;
+	}
+	@GetMapping("/pwfind")
+	public ModelAndView pwfind(ModelAndView mv) {
+		
+		mv.addObject("sectionName", "member/pwfind.jsp");
 		mv.setViewName("index");
 		
 		return mv;

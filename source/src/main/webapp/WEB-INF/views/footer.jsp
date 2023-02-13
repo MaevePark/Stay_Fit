@@ -8,7 +8,7 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer__about">
                         <div class="footer__about__logo">
-                            <a href="./index.html"><img src="<%=request.getContextPath() %>/resources/img/logo.png" alt=""></a>
+                            <a href="./index.html"><img src="<%=request.getContextPath() %>/resources/img/STAY_FIT_footer_logo.png" alt=""></a>
                         </div>
                         <ul>
                             <li>Address: 60-49 Road 11378 New York</li>
