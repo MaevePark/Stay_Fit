@@ -8,6 +8,11 @@
 	</select>
 	
 	<select id="selectone" resultType="Board" parameterType="int">
-		select bid, bcname, btitle, bcontent, mname, bviewcount, bcreate from board b join bcategory bc on b.bcid = bc.bcid join member m on b.mid=m.mid where bid=#{bid}
+		select bc.bcid, bid, bcname, btitle, bcontent, mname, bviewcount, bcreate 
+		from board b join bcategory bc on b.bcid = bc.bcid join member m on b.mid=m.mid where bid=#{bid}
 	</select>
+	
+	<update id="bvcupdate" parameterType="int">
+		update board set bviewcount = bviewcount + 1 where bid=#{bid}
+	</update>
 </mapper>

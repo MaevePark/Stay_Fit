@@ -25,8 +25,8 @@ public class BoardDao {
 		Board bone = null;
 		bone = sqlsession.selectOne("board.selectone", bid);
 		return bone;
-	} 
-
+	}
+	//게시글 조회수 증가
 	public int bvcupdate(int bid) {
 		int bvcount = sqlsession.update("board.bvcupdate", bid);
 		return 0;
