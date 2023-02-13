@@ -446,7 +446,6 @@ function resetData() {
 //------------------------------------------------------------------------------
 
 $("button.delete").on("click", function(){
-function boardDelete() {
 	
 	var bid = $(this).siblings("input[type=hidden]").val();
 	console.log(bid);
