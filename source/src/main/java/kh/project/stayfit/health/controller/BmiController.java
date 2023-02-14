@@ -17,12 +17,13 @@ public class BmiController {
 		
 		return mv;
 	}
-//	@GetMapping("/bmilist")
-//	public ModelAndView bmiResult(ModelAndView mv) {
-//		
-//		mv.addObject("sectionName", "health/bmilist.jsp");
-//		mv.setViewName("index");
-//		
-//		return mv;
-//	}
+	
+	@GetMapping("/bmilist")
+	public ModelAndView bmiResult(ModelAndView mv) {
+		
+		mv.addObject("sectionName", "health/bmilist.jsp");
+		mv.setViewName("index");
+		
+		return mv;
+	}
 }
