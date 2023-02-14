@@ -1,22 +1,22 @@
 @charset "UTF-8";
 
 /* table 정렬 시작*/
-.table table-bordered {
+.table-health {
     border: 1px solid #dedede;
 }
 
-.table table-bordered th {
+.table-health th {
 	border-top: 1px solid #e5e5e5;
     background: #f5f5f5;
     padding: 22px 0 22px 14px;
     text-align: left;
     line-height: 1.4;
 }
-.table table-bordered td {
+.table-health td {
 	border-top: 1px solid #e5e5e5;
 	padding: 20px 10px 14px;
 }
-.table table-bordered td .dash {
+.table-health td .dash {
     line-height: 37px;
     vertical-align: top;
     display: inline-block;
