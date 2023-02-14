@@ -12,6 +12,7 @@
 		<typeAlias type="kh.project.stayfit.admin.model.vo.AdminDashboard3" alias="AdminDashboard3"/>
 		<typeAlias type="kh.project.stayfit.admin.model.vo.AdminMember" alias="AdminMember"/>
 		<typeAlias type="kh.project.stayfit.admin.model.vo.AdminBoard" alias="AdminBoard"/>
+		<typeAlias type="kh.project.stayfit.admin.model.vo.AdminReport" alias="AdminReport"/>
 		<typeAlias type="kh.project.stayfit.board.model.vo.Board" alias="Board"/>
 	</typeAliases>
 	

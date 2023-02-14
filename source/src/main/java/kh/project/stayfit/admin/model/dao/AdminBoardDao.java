@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import kh.project.stayfit.admin.model.vo.AdminBoard;
 import kh.project.stayfit.admin.model.vo.AdminMember;
+import kh.project.stayfit.admin.model.vo.AdminReport;
 
 @Repository
 public class AdminBoardDao {
@@ -17,7 +18,7 @@ public class AdminBoardDao {
 	@Autowired
 	private SqlSession sqlsession;
 
-	// 목록 출력
+	// 게시물 목록 출력
 	public List<AdminBoard> selectBoard(String searchword, String category, String state) throws Exception {
 
 		// 매개변수 여러개를 넘겨줘야 하는 경우 -> Map으로 하나로 만듦
@@ -35,4 +36,14 @@ public class AdminBoardDao {
 		return sqlsession.delete("admin.deleteBoard", bid);
 	}
 
+	// 신고댓글 목록 출력
+	public List<AdminReport> selectReport(String reason, String sort) throws Exception {
+
+		// 매개변수 여러개를 넘겨줘야 하는 경우 -> Map으로 하나로 만듦
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("reason", reason);
+		map.put("sort", sort);
+
+		return sqlsession.selectList("admin.selectReport", map);
+	}
 }

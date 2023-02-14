@@ -118,11 +118,11 @@
 				            </div>
 							<div class="form-check form-check-inline">
 				              <input class="form-check-input" type="radio" name="radioOptions" id="inlineRadio1" value="1">
-				              <label class="form-check-label" for="inlineRadio1">활성화된 게시물</label>
+				              <label class="form-check-label" for="inlineRadio1">정상 게시물</label>
 				            </div>
 				            <div class="form-check form-check-inline">
 				              <input class="form-check-input" type="radio" name="radioOptions" id="inlineRadio2" value="2">
-				              <label class="form-check-label" for="inlineRadio2">비활성화된 게시물</label>
+				              <label class="form-check-label" for="inlineRadio2">삭제된 게시물</label>
 				            </div>
 			            </div>
 			          </div>

@@ -2,7 +2,12 @@ package kh.project.stayfit.admin.model.service;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.google.gson.Gson;
+
 import kh.project.stayfit.admin.model.vo.AdminBoard;
+import kh.project.stayfit.admin.model.vo.AdminReport;
 
 public interface AdminBoardService {
 	
@@ -12,5 +17,7 @@ public interface AdminBoardService {
 	//게시물삭제
 	public int deleteBoard(String bid) throws Exception;
 
+	//신고댓글목록조회
+	public List<AdminReport> selectReport(String reason, String sort) throws Exception;
 
 }

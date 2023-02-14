@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kh.project.stayfit.admin.model.dao.AdminBoardDao;
 import kh.project.stayfit.admin.model.vo.AdminBoard;
+import kh.project.stayfit.admin.model.vo.AdminReport;
 
 @Service
 public class AdminBoardServiceImpl implements AdminBoardService {
@@ -14,7 +15,7 @@ public class AdminBoardServiceImpl implements AdminBoardService {
 	@Autowired
 	private AdminBoardDao dao;
 
-	
+	//게시물목록조회
 	@Override
 	public List<AdminBoard> selectBoard(String searchword, String category, String state) throws Exception {
 		return dao.selectBoard(searchword, category, state);
@@ -24,6 +25,12 @@ public class AdminBoardServiceImpl implements AdminBoardService {
 	@Override
 	public int deleteBoard(String bid) throws Exception {
 		return dao.deleteBoard(bid);
+	}
+	
+	//신고댓글목록조회
+	@Override
+	public List<AdminReport> selectReport(String reason, String sort) throws Exception {
+		return dao.selectReport(reason, sort);
 	}
 	
 	
