@@ -20,8 +20,8 @@
 						<span class="text-muted fw-light">건강관리 /</span> BMI 지수 확인
 					</h4>
 					<!-- BMI 지수 입력 시작  -->
-					<form class="form-floating" action="<%=request.getContextPath()%>/health/bmilist">
-						<table class="table table-bordered">
+					<form id="form" class="form-floating" action="<%=request.getContextPath()%>/health/bmilist" method="get">
+						<table class="table-health">
 							<colgroup>
 								<col style="width: 150px">
 								<col style="width: 650px">
@@ -124,7 +124,8 @@
 						</table>
 						<!-- 확인 버튼 시작 -->
 						<div class="col-lg-12 text-center">
-							<a href="javascript:;" class="site-btn" onclick="bmi_view();">확인</a>	
+							<button type="submit" class="site-btn">확인</button>
+							<!-- <a href="javascript:;" class="site-btn" onclick="bmilist();">확인</a>	 -->
 						</div>
 						<!-- 확인 버튼 끝 -->
 					</form>
@@ -138,7 +139,7 @@
 <script>
 //<--------------------------------------------------------------------
 //1. bmi 페이지 입력값 없을 시 alert 창 띄우기  시작 
-function bmi_view() {
+/* function bmilist() {
 	if ($("#byear").val().replace(/(^\s*)|(\s*$)/g, "") == '') {
 		alert("태어난 년도를 입력해주세요.");
 		$("#byear").val("");
@@ -177,7 +178,7 @@ function bmi_view() {
 	var frm = document.frm;
 	frm.action = ""
 	frm.submit();
-}
+} */
 //1. bmi 페이지 입력값 없을 시 alert 창 띄우기  끝
 //-------------------------------------------------------------------->
 </script>
