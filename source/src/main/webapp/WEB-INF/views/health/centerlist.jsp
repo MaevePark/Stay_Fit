@@ -7,28 +7,13 @@
     <section class="blog spad">
         <div class="container">
             <div class="row">
-            	<!-- 마이페이지 카테고리 -->
+            	<!-- 건강관리 페이지 카테고리 -->
                 <jsp:include page="/WEB-INF/views/health/healthcategory.jsp"></jsp:include>
                 
                 <div class="col-lg-8 col-md-7">
                     <div class="row">
                         
-                        
-                        <!-- 여기 조건에다 출력 조건까지 같이 넣어줄 예정 -->
-<%--                         <%String type = request.getParameter("type");
-                        if(type.equals("bookmark")) {%>
-                        <h4 class="fw-bold py-3 mb-4">
-							<span class="text-muted fw-light">마이페이지 /</span> 북마크
-						</h4>
-                        <%} else if(type.equals("likereply")) {%>
-                        <h4 class="fw-bold py-3 mb-4">
-							<span class="text-muted fw-light">마이페이지 /</span> 공감한 글
-						</h4>
-                        <%} else if(type.equals("myboard")) { %>
-                        <h4 class="fw-bold py-3 mb-4">
-							<span class="text-muted fw-light">마이페이지 /</span> 작성한 글
-						</h4>
-                        <%} %> --%>
+  
                         
                         <div class="hero__search__form">
                             <form action="#">
