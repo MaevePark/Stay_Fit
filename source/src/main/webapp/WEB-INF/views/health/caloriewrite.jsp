@@ -19,9 +19,8 @@
 						<span class="text-muted fw-light">건강관리 /</span> 칼로리 처방 받기
 					</h4>
 					<!-- 칼로리 처방 입력 시작  -->
-					<form name="frm" class="form-floating"
-						action="<%=request.getContextPath()%>/health/calorielist">
-						<table class="table table-bordered">
+					<form class="form-floating" action="<%=request.getContextPath()%>/health/calorielist" method="get">
+						<table class="table-health">
 							<colgroup>
 								<col style="width: 150px">
 								<col style="width: 650px">
@@ -174,22 +173,22 @@
 						</table>
 						<!-- 칼로리 처방 받기 버튼 시작 -->
 						<div class="col-lg-12 text-center">
-							<a href="javascript:;" class="site-btn" onclick="calorie_view();">칼로리 처방 받기</a>				
+							<button type="submit" class="site-btn">칼로리 처방 받기</button>
+							<!-- <a href="javascript:;" class="site-btn" onclick="calorie_view();">칼로리 처방 받기</a> -->				
 						</div>
 						<!-- 칼로리 처방 받기 버튼 끝 -->
-					</form>
-					
+					</form>		
 					<!-- 칼로리 처방 입력 끝 -->
 				</div>
 			</div>
 		</div>
-	</div>>
+	</div>
 </section>
 <!-- Blog Section End -->
 <script>
 //<--------------------------------------------------------------------
 // 1. 칼로리 처방 페이지 입력값 없을 시 alert 창 띄우기  시작 
-function calorie_view(){
+/* function calorie_view(){
 	if ($("#stature").val().replace(/(^\s*)|(\s*$)/g, "") == ''){
 		alert("키를 입력해주세요.");
 		$("#stature").val("");
@@ -242,7 +241,7 @@ function calorie_view(){
  	var frm = document.frm;
  	frm.action = "/health/calorielist.jsp"
  	frm.submit();
-}
+} */
 //1. 칼로리 처방 페이지 입력값 없을 시 alert 창 띄우기  끝 
 //-------------------------------------------------------------------->
 
