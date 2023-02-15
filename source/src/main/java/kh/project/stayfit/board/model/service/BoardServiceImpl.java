@@ -29,6 +29,7 @@ public class BoardServiceImpl implements BoardService{
 		return bone;		
 	}
 	//게시글 조회수 증가
+	@Override
 	public int bvcupdate(int bid) throws Exception{
 		int bvcount = dao.bvcupdate(bid);
 		return bvcount;

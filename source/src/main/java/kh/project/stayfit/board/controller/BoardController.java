@@ -40,10 +40,11 @@ public class BoardController {
 		return "index";
 	}
 	
-	@GetMapping("/read")
-	public ModelAndView boardRead(ModelAndView mv) {
+	//글등록페이지
+	@GetMapping("/write")
+	public ModelAndView boardwrite(ModelAndView mv) {
 		
-		mv.addObject("sectionName", "board/read.jsp");
+		mv.addObject("sectionName", "board/write.jsp");
 		mv.setViewName("index");
 		
 		return mv;

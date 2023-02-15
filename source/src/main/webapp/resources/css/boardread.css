@@ -12,11 +12,11 @@
 	text-align: right;
 }
 
-.col-lg-8 {
+.col-lg-10 {
 	max-width: 100%;
 }
 
-.col-lg-8 .row {
+.col-lg-10 .row {
 	max-width: 100%;
 	display: flex;
 	flex-direction: column;
@@ -41,6 +41,7 @@
 /*수정, 삭제, 목록 버튼 시작*/
 
 #button_parent {
+	padding-bottom: 20px;
 	display: flex;
 	justify-content: right;
 }
@@ -51,8 +52,56 @@
 /*수정, 삭제, 목록 버튼 끝*/
 
 /*댓글 이모티콘 영역  */
-#emote label[type="radio"]{
-	display:none;
+#emotion{
+	padding-top: 80px;
+}
+#emote{
+	flex-direction: row;
+}
+#emote > label{	
+	margin-bottom: 10px;
+} 
+label >input{
+	width: 45px;
+    height: 45px;	
+}
+label[for="0"] > input{
+	background:url(../img/board-read/happy.png);
+}
+label[for="1"] > input{
+	background:url(../img/board-read/wink.png);
+}
+label[for="2"] > input{
+	background:url(../img/board-read/thinking.png);
+}
+label[for="3"] > input{
+	background:url(../img/board-read/surprised.png);
+}
+label[for="4"] > input{
+	background:url(../img/board-read/cool.png);
+}
+#emote input[type="radio"]{
+	appearance:none; 
+}
+
+label > input:checked{
+  	width:45px;
+	height:45px;
+}
+label[for="0"] > input:checked{
+	background:url(../img/board-read/happy2.png);
+}
+label[for="1"] > input:checked{
+	background:url(../img/board-read/wink2.png);
+}
+label[for="2"] > input:checked{
+	background:url(../img/board-read/thinking2.png);
+}
+label[for="3"] > input:checked{
+	background:url(../img/board-read/surprised2.png);
+}
+label[for="4"] > input:checked{
+	background:url(../img/board-read/cool2.png);
 }
 
 

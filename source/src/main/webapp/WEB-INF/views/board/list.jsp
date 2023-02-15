@@ -184,7 +184,9 @@
 			</div>
 			</div>
                         </div> --%>
-                
+                        <div id="button_parent">
+							<button type="button" class="site-btn" onclick="location.href='<%=request.getContextPath()%>/board/write';">글등록</button>
+                		</div>
                                                 
                         <div class="col-lg-12">
                             <div class="product__pagination blog__pagination">
