@@ -21,14 +21,15 @@ public class Crawling {
 		try {
 			// drvier 설정 - 저는 d드라이브 work 폴더에 있습니다.
 			System.setProperty("webdriver.chrome.driver", "D:\\chrome_driver\\chromedriver.exe");
-			ChromeOptions options = new ChromeOptions();
-			options.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36");
-			options.addArguments("lang=ko_KR");
+//			ChromeOptions options = new ChromeOptions();
+//			options.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36");
+//			options.addArguments("lang=ko_KR");
 //			options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
 //			options.setExperimentalOption("useAutomationExtension", false);
 
 			// Chrome 드라이버 인스턴스 설정
-			driver = new ChromeDriver(options);
+//			driver = new ChromeDriver(options);
+			driver = new ChromeDriver();
 			wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
 			// WebElement firstResult = new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(By.xpath("//a/h3")));
@@ -62,25 +63,33 @@ public class Crawling {
 			int z = 0;
 			while(loop) {
 				List<WebElement> elements = driver.findElements(By.cssSelector("a.prominent"));
+				// 마지막 페이지를 제외한 나머지 페이지는 10개
 				int n = elements.size();
 				System.out.println("------------------------------------------------------------------------");
 				System.out.println("이 페이지에서 추출할 상품 개수 : "+n+"개");
 				for (int i = 0; i < n; i++) {
-					Thread.sleep(1000);
+//					Thread.sleep(2000);
 					z = i;
+					if(i==8) {
+						System.out.println("6번째 디버깅");
+					}
 					element = driver.findElement(By.xpath("//*[@id=\"content\"]/table/tbody/tr/td[1]/div/table/tbody/tr[" + (z + 1) + "]/td/a[1]"));
-					element.click();
-					Thread.sleep(1000);
+					element.sendKeys(Keys.ENTER);
+//					wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"content\"]/table/tbody/tr/td[1]/div/table/tbody/tr[" + (z + 1) + "]/td/a[1]")));
+					Thread.sleep(3000);
 					
 					element = driver.findElement(By.xpath("//*[@id=\"content\"]/table/tbody/tr/td[1]/div/div/div/table/tbody/tr/td/div[2]/h2/a"));
 					locbrandList.add(element.getText());
 					element = driver.findElement(By.xpath("//*[@id=\"content\"]/table/tbody/tr/td[1]/div/div/div/table/tbody/tr/td/div[2]/h1"));
 					productList.add(element.getText());
 					System.out.println("******************************************************************");
+					System.out.println(i);
 					System.out.println("상품 명 : "+element.getText());
-					
+
 					element = driver.findElement(By.xpath("//*[@id=\"content\"]/table/tbody/tr/td[1]/div/table/tbody/tr/td[1]/div[1]/div[4]"));
+					
 					if(element.getText().contains("(") && element.getText().contains(")")) { //1인분 (140 g) 형식으로 제공되는 경우
+						System.out.println("---4");
 						int idx1 = element.getText().indexOf("(");
 						int idx2 = element.getText().indexOf(")");
 						if(element.getText().substring(idx2-1, idx2).equals("g")) {
@@ -91,9 +100,7 @@ public class Crawling {
 							capunitList.add(element.getText().substring(idx2-2, idx2));
 						}
 					} else {
-						
-						
-						
+						System.out.println("---5");
 						if(element.getText().contains("g")) {
 							int idx1 = element.getText().indexOf("g");
 							sersizeList.add(Double.parseDouble(element.getText().substring(0, idx1 - 1)));
@@ -106,7 +113,7 @@ public class Crawling {
 						
 						
 					}
-					
+					System.out.println("---6");
 					
 					element = driver.findElement(By.xpath("//*[@id=\"content\"]/table/tbody/tr/td[1]/div/table/tbody/tr/td[1]/div[1]/div[12]"));
 					int idx = element.getText().indexOf(" kcal");
@@ -125,8 +132,9 @@ public class Crawling {
 					carbogList.add(Double.parseDouble(element.getText().substring(0, idx)));
 					Thread.sleep(1000);
 					driver.navigate().back();
+					System.out.println("---7");
 				}
-				
+				System.out.println("---8");
 				element = driver.findElement(By.xpath("//*[@id=\"content\"]/table/tbody/tr/td[1]/div/div[3]/span[2]/a"));
 				
 				if(driver.findElements(By.cssSelector("#content > table > tbody > tr > td.leftCell > div > div.searchResultsPaging > span.next")).size() < 1) {
@@ -162,7 +170,7 @@ public class Crawling {
 			e.printStackTrace();
 		} finally {
 			//driver.close();
-			driver.quit();
+			//driver.quit();
 		}
 	}
 	
