@@ -65,7 +65,7 @@ public class ProductController {
 								HttpServletRequest request
 								) throws Exception {
 
-		String savedFileName = null;// FileSave.saveFile(multipartFile, FileSave.FILE_PRODUCT_PATH, request);
+		String savedFileName = FileSave.saveFile(multipartFile, FileSave.FILE_PRODUCT_PATH, request);
 		String localFilePath = request.getSession().getServletContext().getRealPath("") + FileSave.FILE_PRODUCT_PATH;
 
 		Dotenv dotenv = Dotenv.load();
