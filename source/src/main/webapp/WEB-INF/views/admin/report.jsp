@@ -298,18 +298,19 @@ function displayData(currentPage, dataPerPage) {
 				"<td>" + dataList[i].rcreate + "</td>" +
 				"<td>" + dataList[i].cnt + "</td>" +
 				"<td>" + 
-					"<button type='button' class='btn btn-secondary btn-sm delete'>삭제</button>" + 
-					"<input type='hidden' name='bid' value='" + dataList[i].rid + "'>" +
+					"<button type='button' class='btn btn-secondary btn-sm replydelete'>삭제</button>" + 
+					"<input type='hidden' name='rid' value='" + dataList[i].rid + "'>" +
 				"</td>" +
 				"<td>" + 
-					"<button type='button' class='btn btn-secondary btn-sm delete'>신고 취소</button>" + 
-					"<input type='hidden' name='bid' value='" + dataList[i].rid + "'>" +
-					"<input type='hidden' name='bid' value='" + dataList[i].reporter + "'>" +
+					"<button type='button' class='btn btn-secondary btn-sm reportdelete'>신고 취소</button>" + 
+					"<input type='hidden' name='rid' value='" + dataList[i].rid + "'>" +
+					"<input type='hidden' name='reporter' value='" + dataList[i].reporter + "'>" +
 				"</td>" +
 			"</tr>";
 	}
 	$("#dataTableBody").html(chartHtml);
-	//$("button.delete").on("click", replyDeleteHandler); // <삭제 방법 1>
+	$("button.replydelete").on("click", replyDeleteHandler); // <삭제 방법 1>
+	$("button.reportdelete").on("click", reportDeleteHandler); // <삭제 방법 1>
 }
 
 //3. 페이징  함수 
@@ -428,6 +429,54 @@ function resetData() {
 
 //참고사이트 -> https://mchch.tistory.com/140
 //------------------------------------------------------------------------------
+
+// <댓글 삭제>
+// <삭제 방법 1> : html태그를 다 로딩한 후의 위치에 $("button.replydelete").on("click", replyDeleteHandler); 작성
+function replyDeleteHandler() {
+	
+	let rid = $(this).siblings("input[type=hidden]").val();
+	console.log(rid);
+	    
+    $.ajax({
+   		url : "replydelete",
+   		type : "post",
+   		data: { 'rid' : rid },
+   		success: function(data){
+   			if(data == 1) {
+				alert("댓글 삭제 성공");
+			} else {
+				alert("댓글 삭제 실패");
+			}
+   			getData();
+		 }
+   	});  
+}
+
+// <신고 취소>
+// <삭제 방법 1> : html태그를 다 로딩한 후의 위치에 $("button.reportdelete").on("click", reportDeleteHandler); 작성
+function reportDeleteHandler() {
+	
+	let rid = $(this).siblings("input[name=rid]").val();
+	let reporter = $(this).siblings("input[name=reporter]").val();
+	console.log(rid);
+	console.log(reporter);
+	    
+    $.ajax({
+   		url : "reportdelete",
+   		type : "post",
+   		data: { 'rid' : rid, 'reporter' : reporter },
+   		success: function(data){
+   			if(data == 1) {
+				alert("신고 취소 성공");
+			} else {
+				alert("신고 취소 실패");
+			}
+   			getData();
+		 }
+   	});  
+}
+
+
 </script>
 
 </html>

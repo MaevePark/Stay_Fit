@@ -33,5 +33,17 @@ public class AdminBoardServiceImpl implements AdminBoardService {
 		return dao.selectReport(reason, sort);
 	}
 	
+	//신고댓글 삭제
+	@Override
+	public int deleteReply(String rid) throws Exception {
+		return dao.deleteReply(rid);
+	}
+	
+	//신고 삭제
+	@Override
+	public int deleteReport(String rid, String reporter) throws Exception {
+		return dao.deleteReport(rid, reporter);
+	}
+	
 	
 }

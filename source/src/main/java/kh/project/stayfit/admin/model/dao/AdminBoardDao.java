@@ -32,7 +32,6 @@ public class AdminBoardDao {
 
 	// 게시물 삭제
 	public int deleteBoard(String bid) throws Exception {
-		
 		return sqlsession.delete("admin.deleteBoard", bid);
 	}
 
@@ -45,5 +44,20 @@ public class AdminBoardDao {
 		map.put("sort", sort);
 
 		return sqlsession.selectList("admin.selectReport", map);
+	}
+	
+	// 신고댓글 삭제
+	public int deleteReply(String rid) throws Exception {
+		return sqlsession.delete("admin.deleteReply", rid);
+	}
+	
+	// 신고 삭제
+	public int deleteReport(String rid, String reporter) throws Exception {
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("rid", rid);
+		map.put("reporter", reporter);
+		
+		return sqlsession.delete("admin.deleteReport", map);
 	}
 }

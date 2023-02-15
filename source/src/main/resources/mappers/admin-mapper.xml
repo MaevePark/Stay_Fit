@@ -151,7 +151,15 @@
 			</choose>
   	</select>
   
+    <delete id="deleteReply" parameterType="string">
+		DELETE FROM REPLY
+		    WHERE RID = #{rid}
+  	</delete>
   
+    <delete id="deleteReport" parameterType="map">
+		DELETE FROM RREPORT
+		    WHERE RID = #{rid} AND MID = #{reporter} 
+  	</delete>
   
   
   

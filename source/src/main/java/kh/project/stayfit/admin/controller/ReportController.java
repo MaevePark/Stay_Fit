@@ -46,15 +46,27 @@ public class ReportController {
 		return new Gson().toJson(list);
 	}
 	
-//	// 신고댓글 삭제
-//	@PostMapping("/reportdelete")
-//	@ResponseBody
-//	public int deleteBoard(@RequestParam("bid") String bid) throws Exception {
-//		
-//		int result = service.deleteBoard(bid);
-//
-//		return result;
-//	}
+	// 신고댓글 삭제
+	@PostMapping("/replydelete")
+	@ResponseBody
+	public int deleteReply(@RequestParam("rid") String rid) throws Exception {
+		
+		int result = service.deleteReply(rid);
+
+		return result;
+	}
+	
+	// 신고 삭제
+	@PostMapping("/reportdelete")
+	@ResponseBody
+	public int deleteReport(@RequestParam("rid") String rid,
+							@RequestParam("reporter") String reporter
+							) throws Exception {
+		
+		int result = service.deleteReport(rid, reporter);
+		
+		return result;
+	}
 	
 	
 	
