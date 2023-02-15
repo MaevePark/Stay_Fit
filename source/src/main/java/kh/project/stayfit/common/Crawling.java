@@ -63,7 +63,8 @@ public class Crawling {
 			while(loop) {
 				List<WebElement> elements = driver.findElements(By.cssSelector("a.prominent"));
 				int n = elements.size();
-				
+				System.out.println("------------------------------------------------------------------------");
+				System.out.println("이 페이지에서 추출할 상품 개수 : "+n+"개");
 				for (int i = 0; i < n; i++) {
 					Thread.sleep(1000);
 					z = i;
@@ -75,6 +76,8 @@ public class Crawling {
 					locbrandList.add(element.getText());
 					element = driver.findElement(By.xpath("//*[@id=\"content\"]/table/tbody/tr/td[1]/div/div/div/table/tbody/tr/td/div[2]/h1"));
 					productList.add(element.getText());
+					System.out.println("******************************************************************");
+					System.out.println("상품 명 : "+element.getText());
 					
 					element = driver.findElement(By.xpath("//*[@id=\"content\"]/table/tbody/tr/td[1]/div/table/tbody/tr/td[1]/div[1]/div[4]"));
 					if(element.getText().contains("(") && element.getText().contains(")")) { //1인분 (140 g) 형식으로 제공되는 경우
@@ -159,7 +162,7 @@ public class Crawling {
 			e.printStackTrace();
 		} finally {
 			//driver.close();
-			//driver.quit();
+			driver.quit();
 		}
 	}
 	
