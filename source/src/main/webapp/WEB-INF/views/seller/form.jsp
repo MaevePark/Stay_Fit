@@ -81,58 +81,60 @@
 			      <div class="card-body">
 			      
 			      	<!-- 폼 시작 -->
-			        <form>
+			        <form action="<%=request.getContextPath() %>/seller/productinsert" method="post" enctype="multipart/form-data">
 			          <div class="row mb-3">
-			            <label class="col-sm-2 col-form-label" for="basic-default-name">카테고리
-			              <span style="font-size: 0.75rem; color: #696cff;">(필수)</span>
-			            </label>
+			            <label class="col-sm-2 col-form-label">카테고리 <span style="font-size: 0.75rem; color: #696cff;"> (필수)</span></label>
 			            <div class="col-sm-10">
 			              <div class="btn-group">
-					        <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">카테고리를 선택하세요  &nbsp;</button>
+					        <button type="button" id="dropdownbtn" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">카테고리를 선택하세요  </button>
 					        <ul class="dropdown-menu">
-					          <li><a class="dropdown-item" href="javascript:void(0);">Action</a></li>
-					          <li><a class="dropdown-item" href="javascript:void(0);">Another action</a></li>
-					          <li><a class="dropdown-item" href="javascript:void(0);">Something else here</a></li>
-					          <li>
-					            <hr class="dropdown-divider">
-					          </li>
-					          <li><a class="dropdown-item" href="javascript:void(0);">Separated link</a></li>
+					          <li><a data-value="1" class="dropdown-item">샐러드·도시락·볶음밥</a></li>
+					          <li><a data-value="2" class="dropdown-item">닭가슴살</a></li>
+					          <li><a data-value="3" class="dropdown-item">건강간식·음료</a></li>
 					        </ul>
 					      </div>
 			            </div>
 			          </div>
+			          <input type="hidden" name="cid" id="cid" required value="1">
+			          
 			          <div class="row mb-3">
-			            <label class="col-sm-2 col-form-label" for="basic-default-name">상품명
-			              <span style="font-size: 0.75rem; color: #696cff;">(필수)</span>
-			            </label>
+			            <label class="col-sm-2 col-form-label">상품명 <span style="font-size: 0.75rem; color: #696cff;"> (필수)</span></label>
 			            <div class="col-sm-10">
-			              <input type="text" class="form-control" id="basic-default-name" placeholder="예) 미주라 통밀도너츠">
+			              <input type="text" name="pname" class="form-control" placeholder="예) 미주라 통밀도너츠" required>
 			            </div>
 			          </div>
+			          
 			          <div class="row mb-3">
-			            <label class="col-sm-2 col-form-label" for="basic-default-name">대표이미지</label>
+			            <label class="col-sm-2 col-form-label">대표이미지 <span style="font-size: 0.75rem; color: #696cff;"> (필수)</span></label>
 			            <div class="col-sm-10">
-			              <input class="form-control" type="file" id="formFile">
+			              <input type="file" class="form-control" name="uploadFile" id="formFile" required>
+			            </div><!-- name을 vo의 필드명과 동일하게 작성하면 vo에 넣을 수 없음 -->
+			          </div>
+			          
+			          <div class="row mb-3">
+			            <label class="col-sm-2 col-form-label">판매가 <span style="font-size: 0.75rem; color: #696cff;"> (필수)</span></label>
+			            <div class="col-sm-10">
+			              <input type="text" name="pprice" class="form-control" required>
 			            </div>
 			          </div>
+			          
 			          <div class="row mb-3">
-			            <label class="col-sm-2 col-form-label" for="basic-default-name">판매가
-			              <span style="font-size: 0.75rem; color: #696cff;">(필수)</span>
-			            </label>
+			            <label class="col-sm-2 col-form-label">재고수량</label>
 			            <div class="col-sm-10">
-			              <input type="text" class="form-control" id="basic-default-name">
+			              <input type="text" name="pstock" class="form-control">
 			            </div>
 			          </div>
+			          
 			          <div class="row mb-3">
-			            <label class="col-sm-2 col-form-label" for="basic-default-name">재고수량</label>
+			            <label class="col-sm-2 col-form-label">상품 URL <span style="font-size: 0.75rem; color: #696cff;"> (필수)</span></label>
 			            <div class="col-sm-10">
-			              <input type="text" class="form-control" id="basic-default-name">
+			              <input type="text" name="plink" class="form-control" required>
 			            </div>
 			          </div>
 			          
 			          <div class="row justify-content-center">
 			            <div class="pagination justify-content-center" style="padding: 0">
-				          <button type="button" class="btn btn-primary">등록</button>
+				          <button type="submit" id="submit" class="btn btn-primary">등록</button>
 				        </div>
 			          </div>
 			        </form>
@@ -184,4 +186,21 @@
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
   </body>
+  
+<script>
+//------------------------------------------------------------------------------
+// <드롭다운메뉴>
+$(".dropdown-item").click(function() {
+	
+	$("#dropdownbtn").val($(this).data("value"));
+	$("#dropdownbtn").text($(this).text() + " ");
+	
+	// input type hidden에 카테고리 선택값 넣어줌
+	$("#cid").val($(this).data("value"));
+	console.log($("#cid").val());
+}); 
+
+//------------------------------------------------------------------------------
+</script>
+
 </html>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="seller">
+  
+  	<!-- 상품목록 -->
+  	<select id="selectProduct" parameterType="map" resultType="SellerProduct">
+  		SELECT P.PID, C.CNAME, P.PNAME, P.PIMAGE, TO_CHAR(P.PPRICE, '999,999,999') AS PPRICE, P.PSALES, P.PSTOCK, P.PLINK
+    		FROM PRODUCT P JOIN CATEGORY C ON P.CID = C.CID
+  	</select>
+  	
+  	
+  	<!-- 상품수정 -->
+  	
+  	
+  	
+  	<!-- 상품등록 -->
+  	<insert id="insertProduct" parameterType="SellerProduct">
+	  	INSERT INTO PRODUCT (PID, CID, PNAME, PIMAGE, PPRICE, PSTOCK, PLINK) 
+		    VALUES ((SELECT NVL(MAX(PID), 0)+1 FROM PRODUCT),
+		        #{cid}, #{pname}, #{pimage}, #{pprice}, #{pstock}, #{plink})
+  	</insert>
+  
+</mapper>
