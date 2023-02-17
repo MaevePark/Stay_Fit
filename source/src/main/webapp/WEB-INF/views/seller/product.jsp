@@ -182,7 +182,7 @@
 				                  </div>
 				                  <div class="row">
 				                    <div class="col mb-3">
-				                      <label for="nameWithTitle" class="form-label">대표이미지</label>
+				                      <label for="nameWithTitle" class="form-label">대표이미지<span style="font-size: 0.75rem; color: #696cff;"> (필수)</span></label>
 				                      <input class="form-control" type="file" id="formFile">
 				                    </div>
 				                  </div>
@@ -195,6 +195,12 @@
 				                  <div class="row">
 				                    <div class="col mb-3">
 				                      <label for="nameWithTitle" class="form-label">재고수량</label>
+				                      <input type="text" id="nameWithTitle" class="form-control" value="">
+				                    </div>
+				                  </div>
+				                  <div class="row">
+				                    <div class="col mb-3">
+				                      <label for="nameWithTitle" class="form-label">상품 URL<span style="font-size: 0.75rem; color: #696cff;"> (필수)</span></label>
 				                      <input type="text" id="nameWithTitle" class="form-control" value="">
 				                    </div>
 				                  </div>

@@ -10,7 +10,15 @@
   	
   	
   	<!-- 상품수정 -->
-  	
+  	<update id="updateProduct" parameterType="SellerProduct">
+	  	UPDATE PRODUCT SET 
+	        PNAME = #{pname},
+	        PIMAGE = #{pimage},
+	        PPRICE = #{pprice},
+	        PSTOCK = #{pstock},
+	        PLINK = #{plink}
+	    WHERE PID = #{pid}
+  	</update>
   	
   	
   	<!-- 상품등록 -->

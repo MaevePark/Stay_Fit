@@ -1,5 +1,6 @@
 package kh.project.stayfit.seller.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,11 +13,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import com.google.gson.Gson;
 
 import io.github.cdimascio.dotenv.Dotenv;
 import kh.project.stayfit.common.FileSave;
@@ -54,13 +57,35 @@ public class ProductController {
 		return mv;
 	}
 
+	
 	// 상품목록
+	@GetMapping("/productlist")
+	@ResponseBody
+	public String selectProduct(@RequestParam(name="searchword", required=false) String searchword,
+								@RequestParam("category") String category,
+								@RequestParam("sort") String sort
+								) throws Exception {
+		
+		List<SellerProduct> list = service.selectProduct(searchword, category, sort);
 
+		return new Gson().toJson(list);
+	}
+
+	
+	// 상품수정
+	@GetMapping("/productupdate")
+	@ResponseBody
+	public int updateProduct(SellerProduct vo) throws Exception{
+		
+		int result = service.updateProduct(vo);
+
+		return result;
+	}
 	
 	
 	// 상품등록
 	@PostMapping("/productinsert")
-	public String insertProduct(SellerProduct vo, 
+	public String insertProduct(SellerProduct vo, // 파라미터들을 @RequestParam으로 받지 않고 vo로도 받을 수 있음 (name과 vo의 필드명이 같다면)
 								@RequestParam("uploadFile") MultipartFile multipartFile,
 								HttpServletRequest request
 								) throws Exception {
