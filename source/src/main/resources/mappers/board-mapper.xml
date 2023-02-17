@@ -3,8 +3,9 @@
 <mapper namespace="board">
 	
 	
-	<select id="selectboard" resultType="Board">
+	<select id="selectboard" resultType="Board" parameterType="int">
 		select bid, bcname, btitle, mname, bviewcount, bcreate from board b join bcategory bc on b.bcid = bc.bcid join member m on b.mid=m.mid
+		where b.bcid=#{bcid}
 		ORDER BY b.bid desc
 	</select>
 	

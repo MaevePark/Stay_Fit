@@ -15,9 +15,9 @@ public class BoardServiceImpl implements BoardService{
 	
 	//게시판 list페이지 글목록 출력
 	@Override
-	public List<Board> boardlist() throws Exception{
+	public List<Board> boardlist(int bcid) throws Exception{
 		List<Board> blist = null;
-		blist = dao.boardlist();
+		blist = dao.boardlist(bcid);
 		return blist;
 	}
 	

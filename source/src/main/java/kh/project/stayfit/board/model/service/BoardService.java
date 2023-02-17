@@ -7,7 +7,7 @@ import kh.project.stayfit.board.model.vo.Board;
 public interface BoardService {
 	
 	//게시판 list페이지 글목록 출력
-	public List<Board> boardlist() throws Exception;
+	public List<Board> boardlist(int bcid) throws Exception;
 	//게시글 read 상세피이지
 	public Board read(int bid) throws Exception;
 	//게시글 조회수 증가

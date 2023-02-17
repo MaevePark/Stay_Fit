@@ -204,7 +204,7 @@
 <script>
 //게시글 삭제
 function del(bid){
-	var check = confirm("게시글을 삭제하시겠습니까?");
+	var check = confirm("게시글을 삭제하겠습니까?");
 	
 	if(check==true){
 		$.ajax({

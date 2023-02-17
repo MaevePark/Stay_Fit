@@ -14,9 +14,9 @@ public class BoardDao {
 	private SqlSession sqlsession;
 	
 	//게시판 list페이지 글목록 출력
-	public List<Board> boardlist() {
+	public List<Board> boardlist(int bcid) {
 		List<Board> blist = null;
-		blist = sqlsession.selectList("board.selectboard");
+		blist = sqlsession.selectList("board.selectboard", bcid);
 		return blist;
 	}
 	
