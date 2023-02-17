@@ -82,7 +82,7 @@
 										</thead>
 
 										<tbody class="table-border-bottom-0">
-										<!--여기부터   -->
+										<!--여기부터 게시글 list   -->
 											<c:choose>
 												<c:when test="${empty boardlist }" >
 													<tr><td colspan="5" align="center">데이터가 없습니다.</td></tr>
@@ -99,95 +99,18 @@
 													</c:forEach>
 												</c:when>
 											</c:choose>
-										<!--여기까지   -->
-										</tbody>
-										
-									</table>
-									
+										<!--여기까지  게시글 list -->
+										</tbody>			
+									</table>						
 								</div>
 							</div> 
-							<!--/ Basic Bootstrap Table -->
 							
-			<%-- <div class="" style="width:100%">
-				<div class="row"  >
-					<div class="col-lg-6 col-md-6 col-sm-6">
-						<div class="blog__item">
-							<div class="blog__item__pic">
-								<img
-									src="<%=request.getContextPath()%>/resources/img/blog/blog-2.jpg"
-									alt="">
-							</div>
-							<div class="blog__item__text">
-								<ul>
-									<li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-									<li><i class="fa fa-comment-o"></i> 5</li>
-								</ul>
-								<h5>
-									<a href="#">Lorem ipsum dolor sit amet, consectetur..</a>
-								</h5>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-6 col-md-6 col-sm-6">
-						<div class="blog__item">
-							<div class="blog__item__pic">
-								<img
-									src="<%=request.getContextPath()%>/resources/img/blog/blog-2.jpg"
-									alt="">
-							</div>
-							<div class="blog__item__text">
-								<ul>
-									<li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-									<li><i class="fa fa-comment-o"></i> 5</li>
-								</ul>
-								<h5>
-									<a href="#">Lorem ipsum dolor sit amet, consectetur..</a>
-								</h5>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-6 col-md-6 col-sm-6">
-						<div class="blog__item">
-							<div class="blog__item__pic">
-								<img
-									src="<%=request.getContextPath()%>/resources/img/blog/blog-2.jpg"
-									alt="">
-							</div>
-							<div class="blog__item__text">
-								<ul>
-									<li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-									<li><i class="fa fa-comment-o"></i> 5</li>
-								</ul>
-								<h5>
-									<a href="#">Lorem ipsum dolor sit amet, consectetur..</a>
-								</h5>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-6 col-md-6 col-sm-6">
-						<div class="blog__item">
-							<div class="blog__item__pic">
-								<img
-									src="<%=request.getContextPath()%>/resources/img/blog/blog-3.jpg"
-									alt="">
-							</div>
-							<div class="blog__item__text">
-								<ul>
-									<li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-									<li><i class="fa fa-comment-o"></i> 5</li>
-								</ul>
-								<h5>
-									<a href="#">Lorem ipsum dolor sit amet, consectetur..</a>
-								</h5>
-						</div>
-					</div>				
-			</div>
-			</div>
-                        </div> --%>
+						<!--게시판 글등록  -->	
                         <div id="button_parent">
-							<button type="button" class="site-btn" onclick="location.href='<%=request.getContextPath()%>/board/write';">글등록</button>
+							<button type="button" class="site-btn" onclick="location.href='write'">글등록</button>
                 		</div>
-                                                
+                        <!-- 게시판 글등록  -->
+                                               
                         <div class="col-lg-12">
                             <div class="product__pagination blog__pagination">
                                 <a href="#">1</a>

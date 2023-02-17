@@ -4,9 +4,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
-<link rel="stylesheet"
-	href="<%=request.getContextPath() %>/resources/css/boardread.css"
-	type="text/css">
+<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/boardread.css" type="text/css">
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 
 <!-- Blog Section Begin -->
 <section class="blog spad">
@@ -64,45 +63,47 @@
 					</table>
 
 					<!-- 게시글 이모티콘 -->
-						<div class="container" id="emotion">
-							<form>
-								<div id="emote" class="row" >
-									<label for="0" class="col text-center"> <input
-										type="radio" id="0" name="emotion" value="0">
-										<p>감사해요</p>
-									</label> <label for="1" class="col text-center"> <input
-										type="radio" id="1" name="emotion" value="1">
-										<p>응원해요</p>
-									</label> <label for="2" class="col text-center"> <input
-										type="radio" id="2" name="emotion" value="2">
-										<p>궁금해요</p>
-									</label> <label for="3" class="col text-center"> <input
-										type="radio" id="3" name="emotion" value="3">
-										<p>대단해요</p>
-									</label> <label for="4" class="col text-center"> <input
-										type="radio" id="4" name="emotion" value="4">
-										<p>멋있어요</p>
-									</label>
-								</div>
-							</form>
-						</div>
+					<div class="container" id="emotion">
+						<form>
+							<div id="emote" class="row">
+								<label for="0" class="col text-center"> <input
+									type="radio" id="0" name="emotion" value="0">
+									<p>감사해요</p>
+								</label> <label for="1" class="col text-center"> <input
+									type="radio" id="1" name="emotion" value="1">
+									<p>응원해요</p>
+								</label> <label for="2" class="col text-center"> <input
+									type="radio" id="2" name="emotion" value="2">
+									<p>궁금해요</p>
+								</label> <label for="3" class="col text-center"> <input
+									type="radio" id="3" name="emotion" value="3">
+									<p>대단해요</p>
+								</label> <label for="4" class="col text-center"> <input
+									type="radio" id="4" name="emotion" value="4">
+									<p>멋있어요</p>
+								</label>
+							</div>
+						</form>
+					</div>
 					<!-- 게시글 이모티콘 여기까지 -->
-					
-					
+
+
 					<!-- 버튼 -->
 					<div id="button_parent">
 						<!-- 수정, 삭제 버튼은 본인이 작성한 글일때만 출력. -->
 						<%-- <c:if test="${sessionScope.principal.mid == board.user }"> --%>
-							<input type="hidden" id="board-bcid" value="${read.bid }"/>
-							<button type="button" class="site-btn" id="btn-upd" onclick="">수정</button>
-							<button class="site-btn" id="btn-del" onclick="boardDelete(${read.bid})">삭제</button>
+						<form>
+						<input type="hidden" id="board-bcid" value="${read.bid }" >
+						<button type="button" class="site-btn" id="btn-upd" onclick="">수정</button>
+						<button type="button" class="site-btn" id="btn-del" onclick="del(${read.bid})">삭제</button>
+						</form>
 						<%-- </c:if> --%>
 						<button type="button" class="site-btn"
 							onclick="location.href='list?bcid=${read.bcid}'">목록</button>
 					</div>
 					<!--버튼 여기까지  -->
 
-					
+
 					<!-- 북마크 보류-->
 					<!-- <label for="bookmark"> <input type="radio" id="bookmark"
 						name="" value="5">
@@ -201,10 +202,27 @@
 	</div>
 </section>
 <script>
-function boardDelete(bid){
-	let bid=${read.bid};
-	//let writer=${read.mid} //사용자와 작성자가 동일할경우
-	location.href="delete?bid="+bid;
+//게시글 삭제
+function del(bid){
+	var check = confirm("게시글을 삭제하시겠습니까?");
+	
+	if(check==true){
+		$.ajax({
+			type : "POST",
+			url : "delete",
+			data : {"bid" : bid},
+			dataType : "Json",
+		}).done(function(){
+			alert("게시글 삭제 성공");
+			location.href = "list?bcid=${read.bcid}"
+		}).fail(function(error){
+			alert("게시글을 삭제할 수 없습니다. 다시 시도해주세요.");
+			console.log(error);
+		});
+	}else{
+		alert("취소하였습니다.");
+	}	
 }
+
 </script>
 <!-- Blog Section End -->

@@ -34,6 +34,10 @@ public class BoardServiceImpl implements BoardService{
 		int bvcount = dao.bvcupdate(bid);
 		return bvcount;
 	}
+	//게시글 삭제
+	public int bdelete(int bid)throws Exception{
+		return dao.bdelete(bid);
+	}
 	
 //	//커뮤니티 글목록 페이지,페이징
 //	@Override

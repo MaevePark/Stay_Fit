@@ -36,7 +36,7 @@
 							</div>
 						</form>
 					</div>
-
+					<form>
 					<div class="form-group ">
 						<input type="text" name="title" class="form-control"
 							placeholder="enter title" required="required">
@@ -46,9 +46,11 @@
 							name="content"></textarea>
 					</div>
 					<div class="button_parent">
-					<button type="submit" class="site-btn">등록</button>
+					<button type="submit" class="site-btn" onclick="send(this.form)">등록</button>
+					<button type="submit" class="site-btn" onclick="location.href='list">취소</button>
 					<button type="submit" class="site-btn">미리보기</button>
 					</div>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -58,6 +60,8 @@
 			lang: 'ko-KR',
 			height: 400
 		});
+		
+		
 
 </script>
 </section>
