@@ -5,6 +5,7 @@
 	
 	<select id="selectboard" resultType="Board">
 		select bid, bcname, btitle, mname, bviewcount, bcreate from board b join bcategory bc on b.bcid = bc.bcid join member m on b.mid=m.mid
+		ORDER BY b.bid desc
 	</select>
 	
 	<select id="selectone" resultType="Board" parameterType="int">
@@ -15,4 +16,8 @@
 	<update id="bvcupdate" parameterType="int">
 		update board set bviewcount = bviewcount + 1 where bid=#{bid}
 	</update>
+	
+	<delete id="bdelete" parameterType="int">
+		delete from board where bid=#{bid}
+	</delete>
 </mapper>

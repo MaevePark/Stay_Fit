@@ -29,8 +29,12 @@ public class BoardDao {
 	//게시글 조회수 증가
 	public int bvcupdate(int bid) {
 		int bvcount = sqlsession.update("board.bvcupdate", bid);
-		return 0;
+		return bvcount;
 	} 
+	//게시글 삭제
+	public int bdelete(int bid) {
+		return sqlsession.delete("board.bdelete", bid);
+	}
 
 //	//커뮤니티 글목록 페이지,페이징
 //	public List<Board> selectList(int, int) throws Exception{

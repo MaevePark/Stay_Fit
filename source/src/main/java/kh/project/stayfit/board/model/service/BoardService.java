@@ -12,6 +12,8 @@ public interface BoardService {
 	public Board read(int bid) throws Exception;
 	//게시글 조회수 증가
 	public int bvcupdate(int bid) throws Exception;
+	//게시글 삭제
+	public int bdelete(int bid) throws Exception;
 	
 //	//커뮤니티 글목록 페이지,페이징
 //	public List<Board> selectList(int, int) throws Exception;

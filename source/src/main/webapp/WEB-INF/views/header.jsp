@@ -48,7 +48,7 @@
 					<nav class="header__menu">
 						<ul>
 							<li class="active"><a href="<%=request.getContextPath()%>/shop">상품</a></li>
-							<li><a href="#">게시판</a>
+							<li><a href="<%=request.getContextPath()%>/board/list?bcid=0">게시판</a>
 								<ul class="header__menu__dropdown">
 									<li><a href="<%=request.getContextPath()%>/board/list?bcid=0">공지사항</a></li>
 									<li><a href="<%=request.getContextPath()%>/board/list?bcid=1">식단</a></li>
