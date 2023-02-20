@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.cloudinary.json.JSONArray;
+import org.cloudinary.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
@@ -18,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cloudinary.Cloudinary;
+import com.cloudinary.api.ApiResponse;
 import com.cloudinary.utils.ObjectUtils;
 import com.google.gson.Gson;
 
@@ -85,7 +88,8 @@ public class ProductController {
 	
 	// 상품등록
 	@PostMapping("/productinsert")
-	public String insertProduct(SellerProduct vo, // 파라미터들을 @RequestParam으로 받지 않고 vo로도 받을 수 있음 (name과 vo의 필드명이 같다면)
+	public ModelAndView insertProduct(ModelAndView mv,
+								SellerProduct vo, // 파라미터들을 @RequestParam으로 받지 않고 vo로도 받을 수 있음 (name과 vo의 필드명이 같다면)
 								@RequestParam("uploadFile") MultipartFile multipartFile,
 								HttpServletRequest request
 								) throws Exception {
@@ -100,11 +104,14 @@ public class ProductController {
 		try {
 			// 이미지 업로드
 			Map params1 = ObjectUtils.asMap("use_filename", true, "unique_filename", false, "overwrite", true);
-			System.out.println(cloudinary.uploader().upload(localFilePath + savedFileName, params1));
+			Map result = cloudinary.uploader().upload(localFilePath + savedFileName, params1); // 업로드시 map형태로 파일정보를 리턴함.
+			System.out.println("★★★ result : " + result);
+			String url = result.get("secure_url").toString();
+			System.out.println("★★★ url : " + url);
 			
-			// vo에 이미지 url 저장 TODO
-			vo.setPimage(localFilePath + savedFileName);
-
+			// vo에 이미지 url 저장
+			vo.setPimage(url);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -112,10 +119,15 @@ public class ProductController {
 		int result = service.insertProduct(vo);
 		
 		if(result == 1) {
-			return "redirect:/seller/product";
+			mv.addObject("func", "productInsertSuccess");
+			mv.addObject("msg", "상품 등록에 성공하였습니다.");
+			mv.setViewName("/seller/resultAlert");
+			return mv;
 		} else {
-			return "redirect:/error"; // TODO
+			mv.addObject("func", "productInsertSuccess");
+			mv.addObject("msg", "상품 등록에 실패하였습니다.");
+			mv.setViewName("/seller/resultAlert");
+			return mv;
 		}
-
 	}
 }
