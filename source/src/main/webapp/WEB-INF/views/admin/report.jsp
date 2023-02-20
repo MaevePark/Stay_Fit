@@ -144,8 +144,6 @@
                         <th>작성자</th>
                         <th>신고 시간</th>
                         <th>신고 횟수</th>
-                        <th>댓글 삭제</th>
-                        <th>신고 취소</th>
                       </tr>
                     </thead>
                     <tbody id="dataTableBody" class="table-border-bottom-0"></tbody>
@@ -298,11 +296,11 @@ function displayData(currentPage, dataPerPage) {
 				"<td>" + dataList[i].rcreate + "</td>" +
 				"<td>" + dataList[i].cnt + "</td>" +
 				"<td>" + 
-					"<button type='button' class='btn btn-secondary btn-sm replydelete'>삭제</button>" + 
+					"<button type='button' class='btn btn-secondary btn-sm replydelete'>댓글삭제</button>" + 
 					"<input type='hidden' name='rid' value='" + dataList[i].rid + "'>" +
 				"</td>" +
 				"<td>" + 
-					"<button type='button' class='btn btn-secondary btn-sm reportdelete'>신고 취소</button>" + 
+					"<button type='button' class='btn btn-secondary btn-sm reportdelete'>신고취소</button>" + 
 					"<input type='hidden' name='rid' value='" + dataList[i].rid + "'>" +
 					"<input type='hidden' name='reporter' value='" + dataList[i].reporter + "'>" +
 				"</td>" +

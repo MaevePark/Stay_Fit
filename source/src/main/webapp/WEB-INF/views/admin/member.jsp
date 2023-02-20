@@ -110,9 +110,9 @@
 			      <div class="card-body">
 			        <form>
 			          <div class="row mb-3">
-			            <label class="col-sm-2 col-form-label" for="basic-default-name">닉네임</label>
+			            <label class="col-sm-2 col-form-label" for="searchword">닉네임</label>
 			            <div class="col-sm-10">
-			              <input type="text" class="form-control" id="basic-default-name" placeholder="닉네임을 입력하세요">
+			              <input type="text" class="form-control" id="searchword" placeholder="닉네임을 입력하세요">
 			            </div>
 			          </div>
 			          <div class="row mb-3">
@@ -247,7 +247,7 @@ $(function() {
 // 1. 데이터 호출 함수
 function getData() {
 	
-	searchword = $("#basic-default-name").val();
+	searchword = $("#searchword").val();
 	sort = $("#dropdownbtn").val();
 	
 	console.log("searchword : " + searchword);
@@ -283,6 +283,14 @@ function getData() {
 //현재 페이지(currentPage)와 페이지당 글 개수(dataPerPage) 반영
 function displayData(currentPage, dataPerPage) {
 	let chartHtml = "";
+	
+	//totalData가 0건인 경우
+	if(totalData == 0){
+		chartHtml +=
+			"<tr>" +
+				"<td colspan='8' style='text-align: center;'>검색 결과가 없습니다.</td>" + 
+			"</tr>";
+	}
 
 	//Number로 변환하지 않으면 아래에서 +를 할 경우 스트링 결합이 되어버림.. 
 	currentPage = Number(currentPage);
@@ -394,7 +402,7 @@ function resetData() {
 	searchword = null;
 	sort = 0;
 	
-	$("#basic-default-name").val(null);
+	$("#searchword").val(null);
 	$("#dropdownbtn").val(0);
 	$("#dropdownbtn").text("정렬 기준을 선택하세요  ");
 	

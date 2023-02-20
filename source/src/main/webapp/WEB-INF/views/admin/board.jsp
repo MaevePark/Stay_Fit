@@ -86,9 +86,9 @@
 			        <form>
 			        
 			          <div class="row mb-3">
-			            <label class="col-sm-2 col-form-label" for="basic-default-name">제목</label>
+			            <label class="col-sm-2 col-form-label" for="searchword">제목</label>
 			            <div class="col-sm-10">
-			              <input type="text" class="form-control" id="basic-default-name" placeholder="제목을 입력하세요">
+			              <input type="text" class="form-control" id="searchword" placeholder="제목을 입력하세요">
 			            </div>
 			          </div>
 			          
@@ -154,7 +154,6 @@
                         <th>조회수</th>
                         <th>작성일</th>
                         <th>상태</th>
-                        <th>삭제</th>
                       </tr>
                     </thead>
                     
@@ -257,7 +256,7 @@ $(function() {
 // 1. 데이터 호출 함수
 function getData() {
 	
-	searchword = $("#basic-default-name").val();
+	searchword = $("#searchword").val();
 	category = $("#dropdownbtn").val();
 	state = $("input[name=radioOptions]:checked").val();
 	
@@ -299,7 +298,7 @@ function displayData(currentPage, dataPerPage) {
 	if(totalData == 0){
 		chartHtml +=
 			"<tr>" +
-				"<td colspan='8' style='text-align: center;'>검색 결과가 없습니다.</td>" + 
+				"<td colspan='9' style='text-align: center;'>검색 결과가 없습니다.</td>" + 
 			"</tr>";
 	}
 
@@ -319,12 +318,17 @@ function displayData(currentPage, dataPerPage) {
 				"<td>" + dataList[i].bcreate + "</td>" +
 				"<td>" + dataList[i].bstate + "</td>" +
 				"<td>" + 
-					"<button type='button' class='btn btn-secondary btn-sm delete'>삭제</button>" + 
+					"<button type='button' class='btn btn-secondary btn-sm link'>글보기</button>" + 
+					"<input type='hidden' name='bid' value='" + dataList[i].bid + "'>" +
+				"</td>" +
+				"<td>" + 
+					"<button type='button' class='btn btn-secondary btn-sm delete'>글삭제</button>" + 
 					"<input type='hidden' name='bid' value='" + dataList[i].bid + "'>" +
 				"</td>" +
 			"</tr>";
 	}
 	$("#dataTableBody").html(chartHtml);
+	$("button.link").on("click", linkClickHandler);
 	$("button.delete").on("click", boardDeleteHandler); // <삭제 방법 1>
 }
 
@@ -412,7 +416,7 @@ function resetData() {
 	category = 0;
 	state = 0;
 	
-	$("#basic-default-name").val(null);
+	$("#searchword").val(null);
 	$("#dropdownbtn").val(0);
 	$("#dropdownbtn").text("게시판을 선택하세요  ");
 	$("input[name=radioOptions]").prop('checked', false); //name이 radioOptions인 라디오 버튼 일괄 해제
@@ -449,6 +453,13 @@ function resetData() {
 
 // 참고사이트 -> https://mchch.tistory.com/140
 //------------------------------------------------------------------------------
+
+// <글보기 링크 이동>
+function linkClickHandler() {
+	
+	var bid = $(this).siblings("input[type=hidden]").val();
+	window.open('${pageContext.request.contextPath}/board/read.do?bid=' + bid); // 새 창에 열기
+}
 
 // <게시물 삭제>
 
