@@ -70,11 +70,12 @@ public class ShopController {
 			// 스크립트를 사용하기 위한 캐스팅
 			JavascriptExecutor js = (JavascriptExecutor) driver;
 
-			// URL로 접속
+			// URL 접속
 			driver.get("https://www.fatsecret.kr/%EC%B9%BC%EB%A1%9C%EB%A6%AC-%EC%98%81%EC%96%91%EC%86%8C/");
 			
+			WebElement element = null;
 			Thread.sleep(1000);
-			WebElement element = driver.findElement(By.xpath("//*[@id=\"ctl12_ctl04_ByFood\"]"));
+			element = driver.findElement(By.xpath("//*[@id=\"ctl12_ctl04_ByFood\"]"));
 			element.click();
 			element.sendKeys("다신샵");
 			Thread.sleep(1000);
@@ -97,6 +98,8 @@ public class ShopController {
 			int z = 0;
 			while(loop) {
 				Thread.sleep(3000);
+				element = driver.findElement(By.cssSelector("#content > table > tbody > tr > td.leftCell > div > div.searchResultsPaging > a.strong"));
+				System.out.println("페이지 : "+element.getText());
 				List<WebElement> elements = driver.findElements(By.cssSelector("a.prominent"));
 				// 마지막 페이지를 제외한 나머지 페이지는 10개
 				int n = elements.size();
