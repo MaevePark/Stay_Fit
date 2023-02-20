@@ -80,14 +80,16 @@ public class Crawling {
 					
 					element = driver.findElement(By.xpath("//*[@id=\"content\"]/table/tbody/tr/td[1]/div/div/div/table/tbody/tr/td/div[2]/h2/a"));
 					locbrandList.add(element.getText());
+					Thread.sleep(1000);
 					element = driver.findElement(By.xpath("//*[@id=\"content\"]/table/tbody/tr/td[1]/div/div/div/table/tbody/tr/td/div[2]/h1"));
 					productList.add(element.getText());
+					Thread.sleep(1000);
 					System.out.println("******************************************************************");
 					System.out.println(i);
 					System.out.println("상품 명 : "+element.getText());
 
 					element = driver.findElement(By.xpath("//*[@id=\"content\"]/table/tbody/tr/td[1]/div/table/tbody/tr/td[1]/div[1]/div[4]"));
-					
+					Thread.sleep(1000);
 					if(element.getText().contains("(") && element.getText().contains(")")) { //1인분 (140 g) 형식으로 제공되는 경우
 						System.out.println("---4");
 						int idx1 = element.getText().indexOf("(");
@@ -95,38 +97,36 @@ public class Crawling {
 						if(element.getText().substring(idx2-1, idx2).equals("g")) {
 							sersizeList.add(Double.parseDouble(element.getText().substring(idx1 + 1, idx2 - 2)));
 							capunitList.add(element.getText().substring(idx2-1, idx2));
-						} else {
+						} else { 
 							sersizeList.add(Double.parseDouble(element.getText().substring(idx1 + 1, idx2 - 3)));
 							capunitList.add(element.getText().substring(idx2-2, idx2));
 						}
-					} else {
+					} else { //단품 상품으로, 1회 제공량이 따로 명시되지 않은 경우
 						System.out.println("---5");
 						if(element.getText().contains("g")) {
 							int idx1 = element.getText().indexOf("g");
 							sersizeList.add(Double.parseDouble(element.getText().substring(0, idx1 - 1)));
-							capunitList.add(element.getText().substring(idx1 - 1, idx1));
+							capunitList.add(element.getText().substring(idx1, idx1+1));
 						} else if(element.getText().contains("ml")) {
 							int idx1 = element.getText().indexOf("ml");
 							sersizeList.add(Double.parseDouble(element.getText().substring(0, idx1 - 2)));
-							capunitList.add(element.getText().substring(idx1 - 2, idx1));
+							capunitList.add(element.getText().substring(idx1 - 1, idx1+1));
 						}
-						
-						
 					}
 					System.out.println("---6");
-					
+					Thread.sleep(1000);
 					element = driver.findElement(By.xpath("//*[@id=\"content\"]/table/tbody/tr/td[1]/div/table/tbody/tr/td[1]/div[1]/div[12]"));
 					int idx = element.getText().indexOf(" kcal");
 					kcalList.add(Double.parseDouble(element.getText().substring(0, idx)));
-					
+					Thread.sleep(1000);
 					element = driver.findElement(By.xpath("//*[@id=\"content\"]/table/tbody/tr/td[1]/div/table/tbody/tr/td[1]/div[1]/div[15]"));
 					idx = element.getText().indexOf("g");
 					proteingList.add(Double.parseDouble(element.getText().substring(0, idx)));
-					
+					Thread.sleep(1000);
 					element = driver.findElement(By.xpath("//*[@id=\"content\"]/table/tbody/tr/td[1]/div/table/tbody/tr/td[1]/div[1]/div[21]"));
 					idx = element.getText().indexOf("g");
 					fatgList.add(Double.parseDouble(element.getText().substring(0, idx)));
-					
+					Thread.sleep(1000);
 					element = driver.findElement(By.xpath("//*[@id=\"content\"]/table/tbody/tr/td[1]/div/table/tbody/tr/td[1]/div[1]/div[24]"));
 					idx = element.getText().indexOf("g");
 					carbogList.add(Double.parseDouble(element.getText().substring(0, idx)));
@@ -135,9 +135,9 @@ public class Crawling {
 					System.out.println("---7");
 				}
 				System.out.println("---8");
-				element = driver.findElement(By.xpath("//*[@id=\"content\"]/table/tbody/tr/td[1]/div/div[3]/span[2]/a"));
-				
-				if(driver.findElements(By.cssSelector("#content > table > tbody > tr > td.leftCell > div > div.searchResultsPaging > span.next")).size() < 1) {
+				Thread.sleep(1000);
+				element = driver.findElement(By.cssSelector("span.next"));
+				if(element != null) {
 					loop = false;
 				} else {
 					element.click();
