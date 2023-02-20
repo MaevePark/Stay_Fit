@@ -1,5 +1,6 @@
 package kh.project.stayfit.shop.controller;
 
+import java.text.DecimalFormat;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,6 +13,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -49,17 +51,19 @@ public class ShopController {
 		WebDriver driver = null;
 		WebDriverWait wait = null;
 		try {
+			DecimalFormat df = new DecimalFormat("#.##"); 
 			// drvier 설정 - 저는 d드라이브 work 폴더에 있습니다.
 			System.setProperty("webdriver.chrome.driver", "D:\\chrome_driver\\chromedriver.exe");
-//			ChromeOptions options = new ChromeOptions();
+			ChromeOptions options = new ChromeOptions();
 //			options.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36");
 //			options.addArguments("lang=ko_KR");
+			options.addArguments("headless");
 //			options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
 //			options.setExperimentalOption("useAutomationExtension", false);
 
 			// Chrome 드라이버 인스턴스 설정
-//			driver = new ChromeDriver(options);
-			driver = new ChromeDriver();
+			driver = new ChromeDriver(options);
+			//driver = new ChromeDriver();
 			wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
 			// WebElement firstResult = new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(By.xpath("//a/h3")));
@@ -92,33 +96,32 @@ public class ShopController {
 			Boolean loop = true;
 			int z = 0;
 			while(loop) {
+				Thread.sleep(3000);
 				List<WebElement> elements = driver.findElements(By.cssSelector("a.prominent"));
 				// 마지막 페이지를 제외한 나머지 페이지는 10개
 				int n = elements.size();
 				System.out.println("------------------------------------------------------------------------");
 				System.out.println("이 페이지에서 추출할 상품 개수 : "+n+"개");
-				for (int i = 0; i < 2; i++) {
+				for (int i=0; i<n; i++) {
 					z = i;
 					element = driver.findElement(By.xpath("//*[@id=\"content\"]/table/tbody/tr/td[1]/div/table/tbody/tr[" + (z + 1) + "]/td/a[1]"));
 					element.sendKeys(Keys.ENTER);
 					Thread.sleep(3000);
 					
-					element = driver.findElement(By.xpath("//*[@id=\"content\"]/table/tbody/tr/td[1]/div/div/div/table/tbody/tr/td/div[2]/h2/a"));
-					Thread.sleep(1000);
-					System.out.println("왜 죽어");
-					System.out.println(element.getText());
-					locbrandList.add(element.getText());
-					element = driver.findElement(By.xpath("//*[@id=\"content\"]/table/tbody/tr/td[1]/div/div/div/table/tbody/tr/td/div[2]/h1"));
-					System.out.println("왜 죽어2");
-					System.out.println(element.getText());
-					productList.add(element.getText());
-					Thread.sleep(1000);
 					System.out.println("******************************************************************");
 					System.out.println(i);
+					//브랜드
+					element = driver.findElement(By.xpath("//*[@id=\"content\"]/table/tbody/tr/td[1]/div/div/div/table/tbody/tr/td/div[2]/h2/a"));
+					Thread.sleep(500);
+					System.out.println("상품 브랜드 : "+element.getText());
+					locbrandList.add(element.getText());
+					element = driver.findElement(By.xpath("//*[@id=\"content\"]/table/tbody/tr/td[1]/div/div/div/table/tbody/tr/td/div[2]/h1"));
 					System.out.println("상품 명 : "+element.getText());
-
+					productList.add(element.getText());
+					Thread.sleep(500);
 					element = driver.findElement(By.xpath("//*[@id=\"content\"]/table/tbody/tr/td[1]/div/table/tbody/tr/td[1]/div[1]/div[4]"));
-					Thread.sleep(1000);
+					Thread.sleep(500);
+					
 					if(element.getText().contains("(") && element.getText().contains(")")) { //1인분 (140 g) 형식으로 제공되는 경우
 						System.out.println("---4");
 						int idx1 = element.getText().indexOf("(");
@@ -143,35 +146,42 @@ public class ShopController {
 						}
 					}
 					System.out.println("---6");
-					Thread.sleep(1000);
-					element = driver.findElement(By.xpath("//*[@id=\"content\"]/table/tbody/tr/td[1]/div/table/tbody/tr/td[1]/div[1]/div[12]"));
-					int idx = element.getText().indexOf(" kcal");
-					kcalList.add(Double.parseDouble(element.getText().substring(0, idx)));
-					Thread.sleep(1000);
-					element = driver.findElement(By.xpath("//*[@id=\"content\"]/table/tbody/tr/td[1]/div/table/tbody/tr/td[1]/div[1]/div[15]"));
+					Thread.sleep(500);
+					
+					//칼로리
+					element = driver.findElement(By.xpath("//*[@id=\"content\"]/table/tbody/tr/td[1]/div/table/tbody/tr/td[3]/div/table[1]/tbody/tr/td[1]/div[2]"));
+					kcalList.add(Double.parseDouble(df.format(Double.parseDouble(element.getText()))));
+					Thread.sleep(500);
+					
+					//탄수화물
+					element = driver.findElement(By.xpath("//*[@id=\"content\"]/table/tbody/tr/td[1]/div/table/tbody/tr/td[3]/div/table[1]/tbody/tr/td[5]/div[2]"));
+					int idx = element.getText().indexOf("g");
+					carbogList.add(Double.parseDouble(df.format(Double.parseDouble(element.getText().substring(0, idx)))));
+					Thread.sleep(500);
+					
+					//단백질
+					element = driver.findElement(By.xpath("//*[@id=\"content\"]/table/tbody/tr/td[1]/div/table/tbody/tr/td[3]/div/table[1]/tbody/tr/td[7]/div[2]"));
 					idx = element.getText().indexOf("g");
-					proteingList.add(Double.parseDouble(element.getText().substring(0, idx)));
-					Thread.sleep(1000);
-					element = driver.findElement(By.xpath("//*[@id=\"content\"]/table/tbody/tr/td[1]/div/table/tbody/tr/td[1]/div[1]/div[21]"));
+					proteingList.add(Double.parseDouble(df.format(Double.parseDouble(element.getText().substring(0, idx)))));
+					Thread.sleep(500);
+					
+					//지방
+					element = driver.findElement(By.xpath("//*[@id=\"content\"]/table/tbody/tr/td[1]/div/table/tbody/tr/td[3]/div/table[1]/tbody/tr/td[3]/div[2]"));
 					idx = element.getText().indexOf("g");
-					fatgList.add(Double.parseDouble(element.getText().substring(0, idx)));
-					Thread.sleep(1000);
-					element = driver.findElement(By.xpath("//*[@id=\"content\"]/table/tbody/tr/td[1]/div/table/tbody/tr/td[1]/div[1]/div[24]"));
-					idx = element.getText().indexOf("g");
-					carbogList.add(Double.parseDouble(element.getText().substring(0, idx)));
-					Thread.sleep(1000);
+					fatgList.add(Double.parseDouble(df.format(Double.parseDouble(element.getText().substring(0, idx)))));
+					Thread.sleep(500);
 					driver.navigate().back();
 					System.out.println("---7");
+					Thread.sleep(3000);
 				}
 				System.out.println("---8");
 				Thread.sleep(1000);
-				element = driver.findElement(By.cssSelector("span.next"));
-				if(element != null) {
+				elements = driver.findElements(By.cssSelector("span.next > a"));
+				if(elements.size() < 1) {
 					loop = false;
 				} else {
-					element.click();
+					elements.get(0).sendKeys(Keys.ENTER);
 				}
-				
 			}
 			
 			allParams.put("locbrand", locbrandList);
@@ -207,7 +217,6 @@ public class ShopController {
 				
 				nvoList.add(nvo);
 			}
-			System.out.println("그래서 결과는 ");
 			System.out.println(service.insertNutrition(nvoList));
 			
 		} catch (Throwable e) {
