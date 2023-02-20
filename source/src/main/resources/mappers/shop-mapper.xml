@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="shop">
+	<!-- 상품등록 -->
+  	<insert id="insertNutrition" parameterType="arraylist">
+  	INSERT all 
+  	<foreach collection="list" item="vo" index="idx">
+	  	INTO NUTRITION (
+	  		ID, PRODUCT, LOCBRAND, SERSIZE, CAPUNIT, KCAL, PROTEING, FATG, CARBOG) 
+		    VALUES (MAXID+${idx}
+		    	, #{vo.product}, #{vo.locbrand}, #{vo.sersize}, #{vo.capunit}, #{vo.kcal}, #{vo.proteing}, #{vo.fatg}, #{vo.carbog})
+  	</foreach>
+	SELECT NVL(MAX(ID), 0)+1 MAXID FROM NUTRITION
+  	</insert>
+  	
+  	
+
+
+
+</mapper>
