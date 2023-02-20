@@ -88,10 +88,17 @@
 			              <div class="btn-group">
 					        <button type="button" id="dropdownbtn" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">카테고리를 선택하세요  </button>
 					        <ul class="dropdown-menu">
-					          <li><a data-value="1" class="dropdown-item">샐러드·도시락·볶음밥</a></li>
+					          <li><a data-value="1" class="dropdown-item">샐러드&도시락&볶음밥</a></li>
 					          <li><a data-value="2" class="dropdown-item">닭가슴살</a></li>
-					          <li><a data-value="3" class="dropdown-item">건강간식·음료</a></li>
+					          <li><a data-value="3" class="dropdown-item">밥&면</a></li>
+					          <li><a data-value="4" class="dropdown-item">간편요리&반찬</a></li>
+					          <li><a data-value="5" class="dropdown-item">베이커리&떡</a></li>
+					          <li><a data-value="6" class="dropdown-item">분식&만두&치킨</a></li>
+					          <li><a data-value="7" class="dropdown-item">건강간식&음료</a></li>
+					          <li><a data-value="8" class="dropdown-item">단백질&시리얼&간식</a></li>
+					          <li><a data-value="9" class="dropdown-item">건강&다이어트</a></li>
 					        </ul>
+
 					      </div>
 			            </div>
 			          </div>
@@ -108,7 +115,7 @@
 			            <label class="col-sm-2 col-form-label">대표이미지 <span style="font-size: 0.75rem; color: #696cff;"> (필수)</span></label>
 			            <div class="col-sm-10">
 			              <input type="file" class="form-control" name="uploadFile" id="formFile" required>
-			            </div><!-- name을 vo의 필드명과 동일하게 작성하면 vo에 넣을 수 없음 -->
+			            </div><!-- file타입은 name을 vo의 필드명과 동일하게 작성하면 vo에 들어가려다가 고꾸라짐. 다르게 작성해야함 -->
 			          </div>
 			          
 			          <div class="row mb-3">

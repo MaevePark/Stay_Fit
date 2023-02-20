@@ -6,6 +6,37 @@
   	<select id="selectProduct" parameterType="map" resultType="SellerProduct">
   		SELECT P.PID, C.CNAME, P.PNAME, P.PIMAGE, TO_CHAR(P.PPRICE, '999,999,999') AS PPRICE, P.PSALES, P.PSTOCK, P.PLINK
     		FROM PRODUCT P JOIN CATEGORY C ON P.CID = C.CID
+   			<where>
+				<if test="searchword != null and !searchword.equals('')">
+					AND P.PNAME LIKE '%'||#{searchword}||'%'
+				</if>
+				<if test="category != 0">
+					AND P.CID = #{category}
+				</if>
+			</where>
+			<choose>
+				<when test="sort == 1">
+					ORDER BY P.PPRICE DESC, P.PID DESC
+				</when>
+				<when test="sort == 2">
+					ORDER BY P.PPRICE ASC, P.PID DESC
+				</when>
+				<when test="sort == 3">
+					ORDER BY P.PSALES DESC, P.PID DESC
+				</when>
+				<when test="sort == 4">
+					ORDER BY P.PSALES ASC, P.PID DESC
+				</when>
+				<when test="sort == 5">
+					ORDER BY P.PSTOCK DESC, P.PID DESC
+				</when>
+				<when test="sort == 6">
+					ORDER BY P.PSTOCK ASC, P.PID DESC
+				</when>
+				<otherwise>
+					ORDER BY P.PID DESC
+				</otherwise>
+			</choose>
   	</select>
   	
   	
