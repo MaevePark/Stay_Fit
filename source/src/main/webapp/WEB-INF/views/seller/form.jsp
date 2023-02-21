@@ -121,7 +121,7 @@
 			          <div class="row mb-3">
 			            <label class="col-sm-2 col-form-label">판매가 <span style="font-size: 0.75rem; color: #696cff;"> (필수)</span></label>
 			            <div class="col-sm-10">
-			              <input type="text" name="pprice" class="form-control" required>
+			              <input type="text" name="pricenum" class="form-control" required>
 			            </div>
 			          </div>
 			          

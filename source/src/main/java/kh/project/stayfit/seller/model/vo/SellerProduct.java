@@ -22,7 +22,8 @@ public class SellerProduct {
 	private String cname;
 	private String pname;
 	private String pimage;
-	private String pprice;
+	private String pricechar;
+	private Integer pricenum;
 	private Integer psales; // int -> Integer로 바꾸면 insert등 할 때 입력값이 없어도 오류안남
 	private Integer pstock;
 	private String plink;

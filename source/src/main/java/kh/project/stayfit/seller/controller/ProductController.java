@@ -76,9 +76,34 @@ public class ProductController {
 
 	
 	// 상품수정
-	@GetMapping("/productupdate")
+	@PostMapping("/productupdate")
 	@ResponseBody
-	public int updateProduct(SellerProduct vo) throws Exception{
+	public int updateProduct(SellerProduct vo, // 파라미터들을 @RequestParam으로 받지 않고 vo로도 받을 수 있음 (name과 vo의 필드명이 같다면)
+							@RequestParam("uploadFile") MultipartFile multipartFile, // 대신 얘는 name 다르게 해서 이렇게 따로 받아줘야함
+							HttpServletRequest request
+							) throws Exception {
+		
+		String savedFileName = FileSave.saveFile(multipartFile, FileSave.FILE_PRODUCT_PATH, request);
+		String localFilePath = request.getSession().getServletContext().getRealPath("") + FileSave.FILE_PRODUCT_PATH;
+
+		Dotenv dotenv = Dotenv.load();
+		Cloudinary cloudinary = new Cloudinary(dotenv.get("CLOUDINARY_URL"));
+		cloudinary.config.secure = true;
+		
+		try {
+			// 이미지 업로드
+			Map params1 = ObjectUtils.asMap("use_filename", true, "unique_filename", false, "overwrite", true);
+			Map result = cloudinary.uploader().upload(localFilePath + savedFileName, params1); // 업로드시 map형태로 파일정보를 리턴함.
+			System.out.println("★★★ result : " + result);
+			String url = result.get("secure_url").toString();
+			System.out.println("★★★ url : " + url);
+			
+			// vo에 이미지 url 저장
+			vo.setPimage(url);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		int result = service.updateProduct(vo);
 
@@ -90,7 +115,7 @@ public class ProductController {
 	@PostMapping("/productinsert")
 	public ModelAndView insertProduct(ModelAndView mv,
 								SellerProduct vo, // 파라미터들을 @RequestParam으로 받지 않고 vo로도 받을 수 있음 (name과 vo의 필드명이 같다면)
-								@RequestParam("uploadFile") MultipartFile multipartFile,
+								@RequestParam("uploadFile") MultipartFile multipartFile, // 대신 얘는 name 다르게 해서 이렇게 따로 받아줘야함
 								HttpServletRequest request
 								) throws Exception {
 

@@ -4,7 +4,7 @@
   
   	<!-- 상품목록 -->
   	<select id="selectProduct" parameterType="map" resultType="SellerProduct">
-  		SELECT P.PID, C.CNAME, P.PNAME, P.PIMAGE, TO_CHAR(P.PPRICE, '999,999,999') AS PPRICE, P.PSALES, P.PSTOCK, P.PLINK
+		SELECT P.PID, C.CNAME, P.PNAME, P.PIMAGE, TO_CHAR(P.PPRICE, '999,999,999') AS PRICECHAR, P.PPRICE AS PRICENUM, P.PSALES, P.PSTOCK, P.PLINK
     		FROM PRODUCT P JOIN CATEGORY C ON P.CID = C.CID
    			<where>
 				<if test="searchword != null and !searchword.equals('')">
@@ -16,10 +16,10 @@
 			</where>
 			<choose>
 				<when test="sort == 1">
-					ORDER BY P.PPRICE DESC, P.PID DESC
+					ORDER BY PRICENUM DESC, P.PID DESC
 				</when>
 				<when test="sort == 2">
-					ORDER BY P.PPRICE ASC, P.PID DESC
+					ORDER BY PRICENUM ASC, P.PID DESC
 				</when>
 				<when test="sort == 3">
 					ORDER BY P.PSALES DESC, P.PID DESC
@@ -45,7 +45,7 @@
 	  	UPDATE PRODUCT SET 
 	        PNAME = #{pname},
 	        PIMAGE = #{pimage},
-	        PPRICE = #{pprice},
+	        PPRICE = #{pricenum},
 	        PSTOCK = #{pstock},
 	        PLINK = #{plink}
 	    WHERE PID = #{pid}
@@ -56,7 +56,7 @@
   	<insert id="insertProduct" parameterType="SellerProduct">
 	  	INSERT INTO PRODUCT (PID, CID, PNAME, PIMAGE, PPRICE, PSTOCK, PLINK) 
 		    VALUES ((SELECT NVL(MAX(PID), 0)+1 FROM PRODUCT),
-		        #{cid}, #{pname}, #{pimage}, #{pprice}, #{pstock}, #{plink})
+		        #{cid}, #{pname}, #{pimage}, #{pricenum}, #{pstock}, #{plink})
   	</insert>
   
 </mapper>

@@ -177,40 +177,45 @@
 	                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 	                </div>
 	                <div class="modal-body">
-	                  <div class="row">
-	                    <div class="col mb-3">
-	                      <label for="nameWithTitle" class="form-label">상품명<span style="font-size: 0.75rem; color: #696cff;"> (필수)</span></label>
-	                      <input type="text" id="nameWithTitle" class="form-control" value="">
-	                    </div>
-	                  </div>
-	                  <div class="row">
-	                    <div class="col mb-3">
-	                      <label for="nameWithTitle" class="form-label">대표이미지<span style="font-size: 0.75rem; color: #696cff;"> (필수)</span></label>
-	                      <input class="form-control" type="file" id="formFile">
-	                    </div>
-	                  </div>
-	                  <div class="row">
-	                    <div class="col mb-3">
-	                      <label for="nameWithTitle" class="form-label">판매가<span style="font-size: 0.75rem; color: #696cff;"> (필수)</span></label>
-	                      <input type="text" id="nameWithTitle" class="form-control" value="">
-	                    </div>
-	                  </div>
-	                  <div class="row">
-	                    <div class="col mb-3">
-	                      <label for="nameWithTitle" class="form-label">재고수량</label>
-	                      <input type="text" id="nameWithTitle" class="form-control" value="">
-	                    </div>
-	                  </div>
-	                  <div class="row">
-	                    <div class="col mb-3">
-	                      <label for="nameWithTitle" class="form-label">상품 URL<span style="font-size: 0.75rem; color: #696cff;"> (필수)</span></label>
-	                      <input type="text" id="nameWithTitle" class="form-control" value="">
-	                    </div>
-	                  </div>
+	                
+		              <form id="updateForm" name="updateForm" method="post" enctype="multipart/form-data">
+		              
+	                      <input type="hidden" name="pid" id="pid" class="form-control" required>
+		                  <div class="row">
+		                    <div class="col mb-3">
+		                      <label for="pname" class="form-label">상품명<span style="font-size: 0.75rem; color: #696cff;"> (필수)</span></label>
+		                      <input type="text" name="pname" id="pname" class="form-control" required>
+		                    </div>
+		                  </div>
+		                  <div class="row">
+		                    <div class="col mb-3">
+		                      <label for="uploadFile" class="form-label">대표이미지<span style="font-size: 0.75rem; color: #696cff;"> (필수)</span></label>
+				              <input type="file" name="uploadFile" id="uploadFile" class="form-control" required>
+		                    </div> <!-- file타입은 name을 vo의 필드명과 동일하게 작성하면 vo에 들어가려다가 고꾸라짐. 다르게 작성해야함 -->
+		                  </div>
+		                  <div class="row">
+		                    <div class="col mb-3">
+		                      <label for="pricenum" class="form-label">판매가<span style="font-size: 0.75rem; color: #696cff;"> (필수)</span></label>
+		                      <input type="text" name="pricenum" id="pricenum" class="form-control" required>
+		                    </div>
+		                  </div>
+		                  <div class="row">
+		                    <div class="col mb-3">
+		                      <label for="pstock" class="form-label">재고수량</label>
+		                      <input type="text" name="pstock" id="pstock" class="form-control">
+		                    </div>
+		                  </div>
+		                  <div class="row">
+		                    <div class="col mb-3">
+		                      <label for="plink" class="form-label">상품 URL<span style="font-size: 0.75rem; color: #696cff;"> (필수)</span></label>
+		                      <input type="text" name="plink" id="plink" class="form-control" required>
+		                    </div>
+		                  </div>
+		              </form>
 	                </div>
 	                <div class="modal-footer">
 	                  <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">닫기</button>
-	                  <button type="button" class="btn btn-primary">등록</button>
+	                  <button type="button" class="btn btn-primary" onclick="productUpdate(event)">등록</button>
 	                </div>
 	              </div>
 	            </div>
@@ -360,7 +365,7 @@ function displayData(currentPage, dataPerPage) {
 		                "</li>" +
 	                "</ul>" +
 				"</td>" +
-				"<td>" + dataList[i].pprice + "</td>" +
+				"<td>" + dataList[i].pricechar + "</td>" +
 				"<td>" + dataList[i].psales + "</td>" +
 				"<td>" + dataList[i].pstock + "</td>" +
 				"<td>" + 
@@ -369,12 +374,13 @@ function displayData(currentPage, dataPerPage) {
 				"</td>" +
 				"<td>" + 
 					"<button type='button' class='btn btn-secondary btn-sm update' data-bs-toggle='modal' data-bs-target='#updateModal'>상품수정</button>" + 
-					"<input type='hidden' name='pid' value='" + dataList[i].pid + "'>" +
+					"<input type='hidden' name='pricenum' value='" + dataList[i].pricenum + "'>" +
 				"</td>" +
 			"</tr>";
 	}
 	$("#dataTableBody").html(chartHtml);
 	$("button.link").on("click", linkClickHandler);
+	$("button.update").on("click", modalShowHandler);
 }
 
 // 3. 페이징  함수 
@@ -495,36 +501,68 @@ function resetData() {
 }
 
 // 참고사이트 -> https://mchch.tistory.com/140
-//------------------------------------------------------------------------------
 
+//------------------------------------------------------------------------------
 // <상품 보기 링크 이동>
 function linkClickHandler() {
 	
-	var plink = $(this).siblings("input[type=hidden]").val();
+	let plink = $(this).siblings("input[type=hidden]").val();
 	window.open(plink); // 새 창에 열기
 }
 
-// <게시물 수정>
+//------------------------------------------------------------------------------
+// <상품 수정>
 
-function boardDeleteHandler() {
+// 1. 모달창에 기존 정보 가져오기
+function modalShowHandler() {
 	
-	var bid = $(this).siblings("input[type=hidden]").val();
-	console.log(bid);
-	    
-    $.ajax({
-   		url : "boarddelete",
-   		type : "post",
-   		data: { 'bid' : bid },
-   		success: function(data){
-   			if(data == 1) {
-				alert("게시물 삭제 성공");
-			} else {
-				alert("게시물 삭제 실패");
-			}
-   			getData();
-		 }
-   	});  
+	// 상품ID, 상품명, 판매가, 재고수량, 상품URL
+	let pid = $(this).parent().siblings().eq(0).text();
+	let pname = $(this).parent().siblings().eq(2).text();
+	let pricenum = $(this).siblings("input[type=hidden]").val();
+	let pstock = $(this).parent().siblings().eq(6).text();
+	let plink = $(this).parent().siblings().eq(7).children("input[type=hidden]").val();
+	
+	$("#pid").val(pid);
+	$("#pname").val(pname);
+	$("#pricenum").val(pricenum);
+	$("#pstock").val(pstock);
+	$("#plink").val(plink);
 }
+
+// 2. 수정된 정보 업데이트
+function productUpdate(e) {
+	e.preventDefault(); // form 안에 submit 역할을 하는 버튼을 누르면 창이 새로고침하여 실행되는데, 새로 실행하지 않게 하고싶을 경우 (submit은 작동됨)
+	
+	var form = document.getElementById('updateForm');
+	form.method = 'post';
+	form.enctype = 'multipart/form-data';
+	var fileData = new FormData(form);
+	
+    $.ajax({
+  		url : "productupdate",
+  		type : "post",
+  		enctype: 'multipart/form-data',
+  	    cache: false,
+  		data: fileData, // url로 전달'할' 데이터
+  		async: false,
+  	    contentType : false,
+  	    processData : false, 
+  	    dataType: 'json',
+  		success: function(data){ // url로부터 전달'받은' 데이터
+			if(data > 0) {
+				alert("상품 수정에 성공하였습니다.");
+			} else {
+				alert("상품 수정에 실패하였습니다.");
+			}
+			$('#updateForm')[0].reset(); // 폼내용 삭제
+			$('#updateModal').modal('hide'); // 폼 닫기
+			
+			getData(); // 데이터 새로 가져오기
+		}
+	});  
+}
+
 
 </script>
 
