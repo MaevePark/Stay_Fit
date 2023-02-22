@@ -42,7 +42,7 @@
 				<div class="hero__search__form">
 					<form action="#">
 						<div class="hero__search__categories">
-							<select name="">
+							<select name="boardCategory">
 								<option value="1" selected>카테고리 전체</option>
 								<option value="2">식단</option>
 								<option value="3">팁&노하우</option>
@@ -50,13 +50,13 @@
 							</select>
 						</div>
 						<div class="hero__search__categories">
-							<select name="">
+							<select name="searchRange">
 								<option value="1" selected>전체</option>
-								<option value="2">작성자</option>
-								<option value="3">제목</option>
+								<option value="2">제목</option>
+								<option value="3">내용</option>
 							</select>
 						</div>
-						<input type="text" placeholder="검색어를 입력해주세요.">
+						<input type="text" name="searchword" placeholder="검색어를 입력해주세요.">
 						<button type="submit" class="site-btn">SEARCH</button>
 					</form>
 				</div>

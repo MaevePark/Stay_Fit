@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mypage">
+
+	<!-- 프로필 정보 -->
+	<select id="selectProfile" parameterType="MypageMember" resultType="MypageMember">
+		SELECT MID, MROLE, MEMAIL, MNAME, MCREATE, MUPDATE, PROFIMG
+			FROM MEMBER
+				WHERE MSTATE='A' AND MID=${}
+	</select>
+	<!-- 프로필사진 변경 -->
+	<update id="updateProfileImg" parameterType="MypageMember">
+		UPDATE MEMBER SET PROFIMG=#{}, MUPDATE=SYSTIMESTAMP WHERE MID=#{}
+	</update>
+	<!-- 닉네임 변경 -->
+	<update id="updateNickname" parameterType="MypageMember">
+		UPDATE MEMBER SET MNAME=#{}, MUPDATE=SYSTIMESTAMP WHERE MID=#{}
+	</update>
+	<!-- 비밀번호 변경 -->
+	<update id="updatePassword" parameterType="MypageMember">
+		UPDATE MEMBER SET MPW=#{}, MUPDATE=SYSTIMESTAMP WHERE MID=#{} AND MPW=#{}
+	</update>
+	
+	
+	
+	
+	
+	
+	<!-- 찜목록 리스트업 -->
+	<select id="selectMyWish" parameterType="int" resultType="map">
+		SELECT P.CID, P.PNAME, P.PIMAGE, P.PPRICE, P.PSALE, P.PlINK 
+			FROM PRODUCT P JOIN WISH W 
+				ON P.PID=W.PID AND W.MID=${}
+	</select>
+	<!-- 찜목록 삭제 -->
+	<delete id="deleteMyWish" parameterType="MypageWish">
+		DELETE FROM WISH WHERE PID=${} AND MID=${}
+	</delete>
+	
+	
+	
+	<!-- 장바구니 리스트업 -->
+	<select id="selectCart" parameterType="int" resultType="map">
+		SELECT C.PID, C.PCOUNT, C.CUPDATE, P.CID, P.PNAME, P.PIMAGE, P.PPRICE, P.PSALE, P.PLINK 
+			FROM CART C JOIN PRODUCT P 
+				ON C.PID=P.PID AND C.MID=${}
+	</select>
+	<!-- 장바구니 삭제 -->
+	<delete id="deleteCart" parameterType="MypageCart">
+		DELETE FROM CART WHERE PID=${} AND MID=${}
+	</delete>
+	<!-- 장바구니 수량 수정 -->
+	<update id="updateCartProductCount" parameterType="MypageCart">
+		UPDATE CART SET PCOUNT=${} WHERE PID=${} AND MID=${}
+	</update>
+	
+	
+	
+	
+	
+	<!-- 장바구니 구매(장바구니 삭제) + 구매기록 등록 -->
+	<insert id="">
+		<!-- 구매기록 테이블에 데이터 삽입 -->
+		<!-- 트리거를 통해 삽입되면 해당 상품을 장바구니에서 삭제 -->
+	</insert>
+	
+	
+	
+	
+	
+	<!-- 작성한 글 select -->
+	<select id="selectMyBoard" parameterType="int" resultType="MypageBoard">
+		SELECT BID, MID, BTITLE, BPICK, BCREATE, BUPDATE, BVIEWCOUNT 
+			FROM BOARD WHERE MID=${} AND 
+			<where>
+				<if test="boardCategory != 1">
+					<choose>
+						<when test="2">
+							BCID=0 AND 
+						</when>
+						<when test="3">
+							BCID=1 AND 
+						</when>
+						<when test="4">
+							BCID=2 AND 
+						</when>
+					</choose>
+				</if>
+			</where>
+			<where>
+				<if test="searchword != null and !searchword.equals('')">
+					<choose>
+						<when test="searchRange == 1">
+							(BTITLE LIKE '%'||#{searchword}||'%' OR BCONTENT LIKE '%'||#{searchword}||'%') 
+						</when>
+						<when test="searchRange == 2">
+							BTITLE LIKE '%'||#{searchword}||'%' 
+						</when>
+						<when test="searchRange == 3">
+							BCONTENT LIKE '%'||#{searchword}||'%' 
+						</when>
+					</choose>
+				</if>
+			</where>
+			AND BSTATE='A' 
+			ORDER BY BID DESC
+	</select>
+	<!-- 작성한 댓글 select -->
+	<select id="selectMyReply">
+		SELECT R.RID, R.BID, B.BTITLE, R.RCONTENT
+			FROM BOARD B JOIN REPLY R  ON B.BID = R.RID
+			AND R.MID=${} 
+			WHERE 
+			<where>
+				<if test="boardCategory != 1">
+					<choose>
+						<when test="2">
+							B.BCID=0 AND 
+						</when>
+						<when test="3">
+							B.BCID=1 AND 
+						</when>
+						<when test="4">
+							B.BCID=2 AND 
+						</when>
+					</choose>
+				</if>
+			</where>
+			<where>
+				<if test="searchword != null and !searchword.equals('')">
+					R.RCONTENT LIKE '%'||#{searchword}||'%' 
+				</if>
+			</where>
+			AND B.BSTATE='A' 
+			ORDER BY BID DESC
+	</select>
+	<!-- 북마크한 글 select -->
+	<select id="selectBMark">
+		SELECT B.BID, B.BTITLE, B.BPICK, B.BREATE, B.BUPDATE, B.BVIEWCOUNT 
+			FROM BOARD B JOIN BOOKMARK BM ON BM.BID = B.BID 
+			AND BM.MID=${} 
+			WHERE 			
+			<where>
+				<if test="boardCategory != 1">
+					<choose>
+						<when test="2">
+							B.BCID=0 AND 
+						</when>
+						<when test="3">
+							B.BCID=1 AND 
+						</when>
+						<when test="4">
+							B.BCID=2 AND 
+						</when>
+					</choose>
+				</if>
+			</where>
+			<where>
+				<if test="searchword != null and !searchword.equals('')">
+					<choose>
+						<when test="searchRange == 1">
+							(B.BTITLE LIKE '%'||#{searchword}||'%' OR B.BCONTENT LIKE '%'||#{searchword}||'%') 
+						</when>
+						<when test="searchRange == 2">
+							B.BTITLE LIKE '%'||#{searchword}||'%' 
+						</when>
+						<when test="searchRange == 3">
+							B.BCONTENT LIKE '%'||#{searchword}||'%' 
+						</when>
+					</choose>
+				</if>
+			</where>
+			AND BSTATE='A'
+			ORDER BY B.BID DESC
+			
+	</select>
+	<!-- 북마크한 글 delete -->
+	<select id="deleteBMark">
+	
+	
+	
+	
+	
+	
+	</select>
+	<!-- 관심 댓글 select -->
+	<select id="selectLikeReply">
+	
+	</select>
+
+
+
+
+
+</mapper>
