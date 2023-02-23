@@ -34,6 +34,9 @@ public class Paging {
 //		</c:if>
 //	</div>
 	
+	// *** 만약 검색 조건이 포함되어 있는 경우 ***
+	// 위 HTML 요소의 a태그 이동 경로에 파라미터 값으로 검색 조건과 내용을 포함시켜 컨트롤러로 넘겨주면 된다.
+	
 	
 	public static Map<String, Object> paging(int page, int totalCnt, int limits, int pageLimit) {
 		
