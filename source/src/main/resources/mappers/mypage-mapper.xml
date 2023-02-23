@@ -3,23 +3,23 @@
 <mapper namespace="mypage">
 
 	<!-- 프로필 정보 -->
-	<select id="selectProfile" parameterType="MypageMember" resultType="MypageMember">
-		SELECT MID, MROLE, MEMAIL, MNAME, MCREATE, MUPDATE, PROFIMG
-			FROM MEMBER
-				WHERE MSTATE='A' AND MID=${}
-	</select>
+<!-- 	<select id="selectProfile" parameterType="MypageMember" resultType="MypageMember"> -->
+<!-- 		SELECT MID, MROLE, MEMAIL, MNAME, MCREATE, MUPDATE, PROFIMG -->
+<!-- 			FROM MEMBER -->
+<!-- 				WHERE MSTATE='A' AND MID=${} -->
+<!-- 	</select> -->
 	<!-- 프로필사진 변경 -->
-	<update id="updateProfileImg" parameterType="MypageMember">
-		UPDATE MEMBER SET PROFIMG=#{}, MUPDATE=SYSTIMESTAMP WHERE MID=#{}
-	</update>
+<!-- 	<update id="updateProfileImg" parameterType="MypageMember"> -->
+<!-- 		UPDATE MEMBER SET PROFIMG=#{}, MUPDATE=SYSTIMESTAMP WHERE MID=#{} -->
+<!-- 	</update> -->
 	<!-- 닉네임 변경 -->
-	<update id="updateNickname" parameterType="MypageMember">
-		UPDATE MEMBER SET MNAME=#{}, MUPDATE=SYSTIMESTAMP WHERE MID=#{}
-	</update>
+<!-- 	<update id="updateNickname" parameterType="MypageMember"> -->
+<!-- 		UPDATE MEMBER SET MNAME=#{}, MUPDATE=SYSTIMESTAMP WHERE MID=#{} -->
+<!-- 	</update> -->
 	<!-- 비밀번호 변경 -->
-	<update id="updatePassword" parameterType="MypageMember">
-		UPDATE MEMBER SET MPW=#{}, MUPDATE=SYSTIMESTAMP WHERE MID=#{} AND MPW=#{}
-	</update>
+<!-- 	<update id="updatePassword" parameterType="MypageMember"> -->
+<!-- 		UPDATE MEMBER SET MPW=#{}, MUPDATE=SYSTIMESTAMP WHERE MID=#{} AND MPW=#{} -->
+<!-- 	</update> -->
 	
 	
 	
@@ -27,14 +27,19 @@
 	
 	
 	<!-- 찜목록 리스트업 -->
-	<select id="selectMyWish" parameterType="int" resultType="map">
-		SELECT P.CID, P.PNAME, P.PIMAGE, P.PPRICE, P.PSALE, P.PlINK 
+	<select id="selectMyWish" parameterType="int" resultType="ShopProduct">
+		SELECT P.PID, P.CID, P.PNAME, P.PIMAGE, P.PPRICE, P.PSALE, P.PlINK 
 			FROM PRODUCT P JOIN WISH W 
-				ON P.PID=W.PID AND W.MID=${}
+				ON P.PID=W.PID AND W.MID=${mid}
+	</select>
+	<select id="selectMyWishCount" parameterType="int" resultType="int">
+		SELECT COUNT(P.PID) 
+			FROM PRODUCT P JOIN WISH W 
+				ON P.PID=W.PID AND W.MID=${mid}
 	</select>
 	<!-- 찜목록 삭제 -->
-	<delete id="deleteMyWish" parameterType="MypageWish">
-		DELETE FROM WISH WHERE PID=${} AND MID=${}
+	<delete id="deleteMyWish" parameterType="int">
+		DELETE FROM WISH WHERE PID=${} AND MID=${mid}
 	</delete>
 	
 	
@@ -43,11 +48,16 @@
 	<select id="selectCart" parameterType="int" resultType="map">
 		SELECT C.PID, C.PCOUNT, C.CUPDATE, P.CID, P.PNAME, P.PIMAGE, P.PPRICE, P.PSALE, P.PLINK 
 			FROM CART C JOIN PRODUCT P 
-				ON C.PID=P.PID AND C.MID=${}
+				ON C.PID=P.PID AND C.MID=${mid}
+	</select>
+	<select id="selectMyCartCount" parameterType="int" resultType="int">
+		SELECT COUNT(P.PID) 
+			FROM PRODUCT P JOIN CART C 
+				ON P.PID=C.PID AND C.MID=${mid}
 	</select>
 	<!-- 장바구니 삭제 -->
 	<delete id="deleteCart" parameterType="MypageCart">
-		DELETE FROM CART WHERE PID=${} AND MID=${}
+		DELETE FROM CART WHERE PID=${} AND MID=${mid}
 	</delete>
 	<!-- 장바구니 수량 수정 -->
 	<update id="updateCartProductCount" parameterType="MypageCart">
@@ -56,8 +66,17 @@
 	
 	
 	
-	
-	
+	<!-- 구매기록 리스트업 -->
+	<select id="selectOrder" parameterType="int" resultType="MypageOrder">
+		SELECT O.OID, O.PID, O.ODATE, O.OCOUNT
+			FROM ORDER O JOIN PRODUCT P 
+				ON O.PID=P.PID AND O.MID=${mid}
+	</select>
+	<select id="selectMyOrderCount" parameterType="int" resultType="int">
+		SELECT COUNT(P.PID) 
+			FROM ORDER O JOIN PRODUCT P 
+				ON P.PID=O.PID AND O.MID=${mid}
+	</select>
 	<!-- 장바구니 구매(장바구니 삭제) + 구매기록 등록 -->
 	<insert id="">
 		<!-- 구매기록 테이블에 데이터 삽입 -->
@@ -69,7 +88,7 @@
 	
 	
 	<!-- 작성한 글 select -->
-	<select id="selectMyBoard" parameterType="int" resultType="MypageBoard">
+	<select id="selectMyBoard" parameterType="map" resultType="MypageBoard">
 		SELECT BID, MID, BTITLE, BPICK, BCREATE, BUPDATE, BVIEWCOUNT 
 			FROM BOARD WHERE MID=${} AND 
 			<where>

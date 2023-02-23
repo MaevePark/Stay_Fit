@@ -2,21 +2,21 @@ package kh.project.stayfit.mypage.model.service;
 
 import java.util.List;
 
+import kh.project.stayfit.mypage.model.vo.MypageOrder;
+import kh.project.stayfit.shop.model.vo.ShopProduct;
+
 public interface MyProductService {
 	
-	//TODO List <Wish>, <Basket>, <Bought> 담당자 확인 후 수정
-	//TODO selectTotalCnt 담당자 확인 후 수정
-	
 	//찜목록 호출
-//	public List<Wish> selectProductList(int a, int b, String c) throws Exception; //selectProductList(int, int, String): List<Wish>
-//	public int selectTotalCnt(int a, int b, String c) throws Exception; //selectTotalCnt(int, int, String): int
+	public List<ShopProduct> selectWishProductList(int mid, int currentPageNum, int limits) throws Exception;
+	public int selectWishTotalCnt(int mid) throws Exception;
 	
 	//장바구니 호출
-//	public List<Basket> selectProductList(int a, int b, String c) throws Exception; //selectProductList(int, int, String): List<Basket>
-//	public int selectTotalCnt(int a, int b, String c) throws Exception; //selectTotalCnt(int, int, String): int
+	public List<ShopProduct> selectCartProductList(int mid, int currentPageNum, int limits) throws Exception;
+	public int selectCartTotalCnt(int mid) throws Exception;
 	
 	//구매기록 호출
-//	public List<Bought> selectProductList(int a, int b, String c) throws Exception; //selectProductList(int, int, String): List<Bought>
-//	public int selectTotalCnt(int a, int b, String c) throws Exception; //selectTotalCnt(int, int, String): int
+	public List<MypageOrder> selectOrderProductList(int mid, int currentPageNum, int limits) throws Exception;
+	public int selectOrderTotalCnt(int mid) throws Exception;
 	
 }
