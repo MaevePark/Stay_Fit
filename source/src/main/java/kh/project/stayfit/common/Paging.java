@@ -1,15 +1,7 @@
 package kh.project.stayfit.common;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import kh.project.stayfit.mypage.model.service.MyProductService;
-import kh.project.stayfit.mypage.model.vo.MypageOrder;
-import kh.project.stayfit.shop.model.vo.ShopProduct;
 
 public class Paging {	
 	
@@ -18,12 +10,32 @@ public class Paging {
 	// totalCnt : 총 게시글 수
 	// limits : 페이지당 표기할 개수
 	// pageLimit : 페이징에 한번에 나타낼 개수 ( << < 3, 4, 5, 6, 7 > >> )
+	
+	// 다음과 같이 HTML 요소 작성
+//	<div class="product__pagination blog__pagination">
+//		<c:if test="${pagingMap.start != 1}">
+//			<a href="<%=request.getContextPath()%>/mypage/mywish?page=1"> << </a>
+//		</c:if>
+//		<c:if test="${pagingMap.currentPage != 1}">
+//			<a href="<%=request.getContextPath()%>/mypage/mywish?page=${pagingMap.currentPage -1}"> < </a>
+//		</c:if>
+//		
+//		
+//		<c:forEach begin="${pagingMap.start }" end="${pagingMap.end }" var="num">                                
+//			<a href="<%=request.getContextPath()%>/mypage/mywish?page=${num}">${num}</a>
+//		</c:forEach>
+//		
+//		
+//		<c:if test="${pagingMap.currentPage != pagingMap.totalPageCnt}">
+//			<a href="<%=request.getContextPath()%>/mypage/mywish?page=${pagingMap.currentPage +1}"> > </a>
+//		</c:if>
+//		<c:if test="${pagingMap.end != pagingMap.totalPageCnt}">
+//			<a href="<%=request.getContextPath()%>/mypage/mywish?page=${pagingMap.totalPageCnt }"> >> </a>
+//		</c:if>
+//	</div>
+	
+	
 	public static Map<String, Object> paging(int page, int totalCnt, int limits, int pageLimit) {
-		//int currentPageNum = Integer.parseInt(currentPageNumStr);
-		
-		
-		
-		//int page = Integer.parseInt(currentPageNumStr);
 		
 		int end = 0;
 		int start = 0;
@@ -45,7 +57,7 @@ public class Paging {
 		// 5. 맞다면 최대 페이지로 표기
 		// 6. 아니라면 현 페이지+2
 		System.out.println("마지막 리스트1 : "+end);
-		end = (end >= totalPageCnt)? totalPageCnt : ((page < (pageLimit/2)+1)? pageLimit :  page+2);
+		end = (page+2 >= totalPageCnt)? totalPageCnt : ((page < (pageLimit/2)+1)? pageLimit :  page+2);
 		
 		System.out.println("-----------------------------------------------------");
 		System.out.println("현재 페이지 : "+page);
