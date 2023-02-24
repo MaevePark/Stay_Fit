@@ -189,8 +189,27 @@
 		                  </div>
 		                  <div class="row">
 		                    <div class="col mb-3">
-		                      <label for="uploadFile" class="form-label">대표이미지<span style="font-size: 0.75rem; color: #696cff;"> (필수)</span></label>
-				              <input type="file" name="uploadFile" id="uploadFile" class="form-control" required>
+		                      <label for="upload" class="form-label">대표이미지<span style="font-size: 0.75rem; color: #696cff;"> (필수)</span></label>
+		                      <div class="d-flex align-items-start align-items-sm-center gap-4">
+					          
+					          <img src="" id="thumbnail" class="d-block rounded" height="100" width="100">
+		                      <input type="hidden" name="pimage"> <!-- '이전 사진으로'클릭 대비해서 기존 이미지 저장해놓기 -->
+					          
+					            <div class="button-wrapper">
+					              <label for="upload" class="btn btn-primary me-2" tabindex="0">
+					                <span class="d-none d-sm-block">새로운 사진 업로드</span>
+					                <i class="bx bx-upload d-block d-sm-none"></i>
+					                
+					                <input type="file" name="upload" id="upload" class="file-input" hidden="" accept="image/png, image/jpeg">
+					              
+					              </label>
+					              <button type="button" class="btn btn-outline-secondary image-reset">
+					                <i class="bx bx-reset d-block d-sm-none"></i>
+					                <span class="d-none d-sm-block">이전 사진으로</span>
+					              </button>
+					            </div>
+					          </div>
+					          
 		                    </div> <!-- file타입은 name을 vo의 필드명과 동일하게 작성하면 vo에 들어가려다가 고꾸라짐. 다르게 작성해야함 -->
 		                  </div>
 		                  <div class="row">
@@ -374,6 +393,7 @@ function displayData(currentPage, dataPerPage) {
 				"</td>" +
 				"<td>" + 
 					"<button type='button' class='btn btn-secondary btn-sm update' data-bs-toggle='modal' data-bs-target='#updateModal'>상품수정</button>" + 
+					"<input type='hidden' name='pimage' value='" + dataList[i].pimage + "'>" +
 					"<input type='hidden' name='pricenum' value='" + dataList[i].pricenum + "'>" +
 				"</td>" +
 			"</tr>";
@@ -519,18 +539,44 @@ function modalShowHandler() {
 	// 상품ID, 상품명, 판매가, 재고수량, 상품URL
 	let pid = $(this).parent().siblings().eq(0).text();
 	let pname = $(this).parent().siblings().eq(2).text();
-	let pricenum = $(this).siblings("input[type=hidden]").val();
+	let pimage = $(this).siblings("input[name=pimage]").val();
+	let pricenum = $(this).siblings("input[name=pricenum]").val();
 	let pstock = $(this).parent().siblings().eq(6).text();
 	let plink = $(this).parent().siblings().eq(7).children("input[type=hidden]").val();
-	
+
 	$("#pid").val(pid);
 	$("#pname").val(pname);
+	$("#thumbnail").prop("src", pimage);
+	$("input[name=pimage]").val(pimage); 
+	// '이전 사진으로'클릭 대비해서 기존 이미지 저장해놓기 -> input name이 pimage니까 vo의 pimage필드에 그대로 들어갈거임
 	$("#pricenum").val(pricenum);
 	$("#pstock").val(pstock);
 	$("#plink").val(plink);
+	
+	
+// 2. 이미지 첨부, 썸네일 부분 (새로운 사진 업로드, 이전 사진으로)
+	
+	let thumbnail = document.getElementById('thumbnail');
+  	const fileInput = document.querySelector('.file-input');
+  	const resetFileInput = document.querySelector('.image-reset');
+
+  	// 이전 사진 변수에 저장
+   	const originalImage = thumbnail.src;
+	console.log("originalImage : " + originalImage);
+   	
+   	fileInput.onchange = function() { // 새로운 사진 업로드
+      	if (fileInput.files[0]) {
+      		thumbnail.src = window.URL.createObjectURL(fileInput.files[0]);
+      	}
+   	};
+   	resetFileInput.onclick = function() { // 이전 사진으로
+   		thumbnail.src = originalImage;
+   		fileInput.value = ''; // <input type="file"> 값 지워주기
+   	};
 }
 
-// 2. 수정된 정보 업데이트
+
+// 3. 수정된 정보 업데이트
 function productUpdate(e) {
 	e.preventDefault(); // form 안에 submit 역할을 하는 버튼을 누르면 창이 새로고침하여 실행되는데, 새로 실행하지 않게 하고싶을 경우 (submit은 작동됨)
 	
