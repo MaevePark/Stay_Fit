@@ -107,7 +107,11 @@
     <jsp:include page="/WEB-INF/views/header.jsp"/>
     <!-- Header Section End -->
 	
+	
+	<!-- Section Begin -->
     <jsp:include page="/WEB-INF/views/${sectionName}"/>
+    <!-- Section End -->
+    
     
     <!-- Footer Section Begin -->
     <jsp:include page="/WEB-INF/views/footer.jsp"/>
