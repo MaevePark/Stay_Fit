@@ -6,7 +6,7 @@ import java.util.Map;
 
 public interface MyBoardService {
 	
-	//작성글 호출
+	// 게시판 북마크, 관심 댓글, 작성한 글, 작성한 댓글 
 	public List<Map<String, Object>> selectBoardList(
 			int mid
 			, String type
