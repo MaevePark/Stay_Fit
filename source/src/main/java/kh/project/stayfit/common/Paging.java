@@ -11,6 +11,11 @@ public class Paging {
 	// limits : 페이지당 표기할 개수
 	// pageLimit : 페이징에 한번에 나타낼 개수 ( << < 3, 4, 5, 6, 7 > >> )
 	
+	// ModelAndView를 사용하고 있다면
+	// mv.addObject("pagingMap", pagingMap);
+	// 로 
+	
+	
 	// 다음과 같이 HTML 요소 작성
 //	<div class="product__pagination blog__pagination">
 //		<c:if test="${pagingMap.start != 1}">

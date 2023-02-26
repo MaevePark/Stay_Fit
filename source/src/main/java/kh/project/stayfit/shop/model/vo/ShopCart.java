@@ -19,5 +19,5 @@ public class ShopCart {
 	private int pid;
 	private int mid;
 	private int pcount;
-	private Timestamp cupdate; //담당자 import확인
+	private Timestamp ccreate; //담당자 import확인
 }

@@ -11,5 +11,5 @@ public class MypageCart {
 	private int pid;
 	private int mid;
 	private int pcount;
-	private String cupdate;
+	private String ccreate;
 }

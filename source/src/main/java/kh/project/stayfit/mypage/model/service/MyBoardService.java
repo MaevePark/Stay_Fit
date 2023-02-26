@@ -1,18 +1,28 @@
 package kh.project.stayfit.mypage.model.service;
 
 import java.util.List;
+import java.util.Map;
 
-import kh.project.stayfit.board.model.vo.Board;
 
-public interface MyBoardService {	
-
-	//TODO selectTotalCnt 담당자 확인 후 수정
+public interface MyBoardService {
 	
 	//작성글 호출
-//	public List<Board> selectBoardList(int a, int b, String c) throws Exception; //selectBoardList(int, int, String): List<Board>
-//	public int selectTotalCnt(int a, int b, String c) throws Exception; //selectTotalCnt(int, int, String): int
+	public List<Map<String, Object>> selectBoardList(
+			int mid
+			, String type
+			, int boardCategory
+			, int searchRange
+			, String searchword
+			, int page
+			, int limits
+			) throws Exception;
+	public int selectBoardTotalCnt(
+			int mid
+			, String type
+			, int boardCategory
+			, int searchRange
+			, String searchword
+			) throws Exception;
 	
-	//북마크 호출
-//	public List<Bmark> selectBoardList(int a, int b, String c) throws Exception; //selectBoardList(int, int, String): List<Bmark>
-//	public int selectTotalCnt(int a, int b, String c) throws Exception; //selectTotalCnt(int, int, String): int
+	
 }

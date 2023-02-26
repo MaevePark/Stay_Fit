@@ -45,8 +45,9 @@
 	
 	
 	<!-- 장바구니 리스트업 -->
-	<select id="selectCart" parameterType="int" resultType="map">
-		SELECT C.PID, C.PCOUNT, C.CUPDATE, P.CID, P.PNAME, P.PIMAGE, P.PPRICE, P.PSALE, P.PLINK 
+	<select id="selectCart" parameterType="int" resultType="hashmap">
+		SELECT C.PID PID, C.PCOUNT PCOUNT, C.CCREATE CCREATE, P.CID CID, P.PNAME PNAME
+				, P.PIMAGE PIMAGE, P.PPRICE PPRICE, P.PSALE PSALE, P.PLINK PLINK 
 			FROM CART C JOIN PRODUCT P 
 				ON C.PID=P.PID AND C.MID=${mid}
 	</select>
@@ -56,25 +57,27 @@
 				ON P.PID=C.PID AND C.MID=${mid}
 	</select>
 	<!-- 장바구니 삭제 -->
-	<delete id="deleteCart" parameterType="MypageCart">
-		DELETE FROM CART WHERE PID=${} AND MID=${mid}
-	</delete>
+<!-- 	<delete id="deleteCart" parameterType="MypageCart"> -->
+<!-- 		DELETE FROM CART WHERE PID=${} AND MID=${mid} -->
+<!-- 	</delete> -->
 	<!-- 장바구니 수량 수정 -->
-	<update id="updateCartProductCount" parameterType="MypageCart">
-		UPDATE CART SET PCOUNT=${} WHERE PID=${} AND MID=${}
-	</update>
+<!-- 	<update id="updateCartProductCount" parameterType="MypageCart"> -->
+<!-- 		UPDATE CART SET PCOUNT=${} WHERE PID=${} AND MID=${} -->
+<!-- 	</update> -->
 	
 	
 	
 	<!-- 구매기록 리스트업 -->
-	<select id="selectOrder" parameterType="int" resultType="MypageOrder">
-		SELECT O.OID, O.PID, O.ODATE, O.OCOUNT
-			FROM ORDER O JOIN PRODUCT P 
+	<select id="selectOrder" parameterType="int" resultType="map">
+		SELECT O.OID OID, O.PID PID, O.ODATE ODATE, O.OCOUNT OCOUNT, P.PNAME PNAME
+		, P.PIMAGE PIMAGE, P.PPRICE PPRICE, P.PSALE PSALE, P.PLINK PLINK
+			FROM "ORDER" O JOIN PRODUCT P 
 				ON O.PID=P.PID AND O.MID=${mid}
+		ORDER BY O.OID DESC
 	</select>
 	<select id="selectMyOrderCount" parameterType="int" resultType="int">
 		SELECT COUNT(P.PID) 
-			FROM ORDER O JOIN PRODUCT P 
+			FROM "ORDER" O JOIN PRODUCT P 
 				ON P.PID=O.PID AND O.MID=${mid}
 	</select>
 	<!-- 장바구니 구매(장바구니 삭제) + 구매기록 등록 -->
@@ -85,126 +88,158 @@
 	
 	
 	
-	
-	
 	<!-- 작성한 글 select -->
-	<select id="selectMyBoard" parameterType="map" resultType="MypageBoard">
+	<select id="selectMyBoard" parameterType="map" resultType="map">
 		SELECT BID, MID, BTITLE, BPICK, BCREATE, BUPDATE, BVIEWCOUNT 
-			FROM BOARD WHERE MID=${} AND 
-			<where>
-				<if test="boardCategory != 1">
-					<choose>
-						<when test="2">
-							BCID=0 AND 
-						</when>
-						<when test="3">
-							BCID=1 AND 
-						</when>
-						<when test="4">
-							BCID=2 AND 
-						</when>
-					</choose>
-				</if>
-			</where>
-			<where>
-				<if test="searchword != null and !searchword.equals('')">
-					<choose>
-						<when test="searchRange == 1">
-							(BTITLE LIKE '%'||#{searchword}||'%' OR BCONTENT LIKE '%'||#{searchword}||'%') 
-						</when>
-						<when test="searchRange == 2">
-							BTITLE LIKE '%'||#{searchword}||'%' 
-						</when>
-						<when test="searchRange == 3">
-							BCONTENT LIKE '%'||#{searchword}||'%' 
-						</when>
-					</choose>
-				</if>
-			</where>
-			AND BSTATE='A' 
+			FROM BOARD WHERE MID=${mid } AND 
+			<if test="boardCategory != 1">
+				<choose>
+					<when test="boardCategory == 2">
+						BCID=0 AND 
+					</when>
+					<when test="boardCategory == 3">
+						BCID=1 AND 
+					</when>
+					<when test="boardCategory == 4">
+						BCID=2 AND 
+					</when>
+				</choose>
+			</if>
+			<if test="searchword != null or !searchword.equals('')">
+				<choose>
+					<when test="searchRange == 1">
+						(BTITLE LIKE '%'||#{searchword }||'%' 
+						OR BCONTENT LIKE '%'||#{searchword }||'%') AND 
+					</when>
+					<when test="searchRange == 2">
+						BTITLE LIKE '%'||#{searchword }||'%' AND 
+					</when>
+					<when test="searchRange == 3">
+						BCONTENT LIKE '%'||#{searchword }||'%' AND 
+					</when>
+				</choose>
+			</if>
+			BSTATE='A' 
 			ORDER BY BID DESC
 	</select>
 	<!-- 작성한 댓글 select -->
-	<select id="selectMyReply">
+	<select id="selectMyReply" parameterType="map" resultType="map">
 		SELECT R.RID, R.BID, B.BTITLE, R.RCONTENT
 			FROM BOARD B JOIN REPLY R  ON B.BID = R.RID
-			AND R.MID=${} 
+			AND R.MID=${mid } 
 			WHERE 
-			<where>
-				<if test="boardCategory != 1">
-					<choose>
-						<when test="2">
-							B.BCID=0 AND 
-						</when>
-						<when test="3">
-							B.BCID=1 AND 
-						</when>
-						<when test="4">
-							B.BCID=2 AND 
-						</when>
-					</choose>
-				</if>
-			</where>
-			<where>
-				<if test="searchword != null and !searchword.equals('')">
-					R.RCONTENT LIKE '%'||#{searchword}||'%' 
-				</if>
-			</where>
-			AND B.BSTATE='A' 
-			ORDER BY BID DESC
+			<if test="boardCategory != 1">
+				<choose>
+					<when test="2">
+						B.BCID=0 AND 
+					</when>
+					<when test="3">
+						B.BCID=1 AND 
+					</when>
+					<when test="4">
+						B.BCID=2 AND 
+					</when>
+				</choose>
+			</if>
+			<if test="searchword != null and !searchword.equals('')">
+				<choose>
+					<when test="searchRange == 1">
+						(B.BTITLE LIKE '%'||#{searchword }||'%' 
+						OR B.BCONTENT LIKE '%'||#{searchword }||'%' OR 
+						R.RCONTENT LIKE '%'||#{searchword }||'%') AND 
+					</when>
+					<when test="searchRange == 2">
+						R.RCONTENT LIKE '%'||#{searchword }||'%' AND 
+					</when>
+					<when test="searchRange == 3">
+						B.BTITLE LIKE '%'||#{searchword }||'%' AND 
+					</when>
+					<when test="searchRange == 4">
+						B.BCONTENT LIKE '%'||#{searchword }||'%' AND 
+					</when>
+				</choose>
+			</if>
+			B.BSTATE='A' 
+			ORDER BY R.RID DESC
 	</select>
 	<!-- 북마크한 글 select -->
-	<select id="selectBMark">
-		SELECT B.BID, B.BTITLE, B.BPICK, B.BREATE, B.BUPDATE, B.BVIEWCOUNT 
+	<select id="selectBMark" parameterType="map" resultType="map">
+		SELECT B.BID, B.BTITLE, B.BPICK, B.BCREATE, B.BUPDATE, B.BVIEWCOUNT 
 			FROM BOARD B JOIN BOOKMARK BM ON BM.BID = B.BID 
-			AND BM.MID=${} 
-			WHERE 			
-			<where>
-				<if test="boardCategory != 1">
-					<choose>
-						<when test="2">
-							B.BCID=0 AND 
-						</when>
-						<when test="3">
-							B.BCID=1 AND 
-						</when>
-						<when test="4">
-							B.BCID=2 AND 
-						</when>
-					</choose>
-				</if>
-			</where>
-			<where>
-				<if test="searchword != null and !searchword.equals('')">
-					<choose>
-						<when test="searchRange == 1">
-							(B.BTITLE LIKE '%'||#{searchword}||'%' OR B.BCONTENT LIKE '%'||#{searchword}||'%') 
-						</when>
-						<when test="searchRange == 2">
-							B.BTITLE LIKE '%'||#{searchword}||'%' 
-						</when>
-						<when test="searchRange == 3">
-							B.BCONTENT LIKE '%'||#{searchword}||'%' 
-						</when>
-					</choose>
-				</if>
-			</where>
-			AND BSTATE='A'
-			ORDER BY B.BID DESC
-			
+			AND BM.MID=${mid } 
+			WHERE 
+			<if test="boardCategory != 1">
+				<choose>
+					<when test="2">
+						B.BCID=0 AND 
+					</when>
+					<when test="3">
+						B.BCID=1 AND 
+					</when>
+					<when test="4">
+						B.BCID=2 AND 
+					</when>
+				</choose>
+			</if>
+			<if test="searchword != null and !searchword.equals('')">
+				<choose>
+					<when test="searchRange == 1">
+						(B.BTITLE LIKE '%'||#{searchword }||'%' OR B.BCONTENT LIKE '%'||#{searchword }||'%') AND 
+					</when>
+					<when test="searchRange == 2">
+						B.BTITLE LIKE '%'||#{searchword }||'%' AND 
+					</when>
+					<when test="searchRange == 3">
+						B.BCONTENT LIKE '%'||#{searchword }||'%' AND 
+					</when>
+				</choose>
+			</if>
+			BSTATE='A'
+<!-- 			ORDER BY B.BID DESC -->
 	</select>
 	<!-- 북마크한 글 delete -->
-	<select id="deleteBMark">
-	
-	
-	
-	
-	
-	
-	</select>
-	<!-- 관심 댓글 select -->
-	<select id="selectLikeReply">
-	
+<!-- 	<select id="deleteBMark" parameterType="map" resultType="map"> -->
+<!-- 	</select> -->
+	<!-- 공감 댓글 select -->
+	<select id="selectLikeReply" parameterType="map" resultType="map">
+		SELECT R.RID, R.BID, B.BTITLE, R.RCONTENT
+			FROM REPLY_LIKE LR 
+				JOIN REPLY R ON LR.RID = R.RID AND LR.MID=${mid} 
+				JOIN BOARD B ON B.BID = R.BID 
+			WHERE 
+			<if test="boardCategory != 1">
+				<choose>
+					<when test="2">
+						B.BCID=0 AND 
+					</when>
+					<when test="3">
+						B.BCID=1 AND 
+					</when>
+					<when test="4">
+						B.BCID=2 AND 
+					</when>
+				</choose>
+			</if>
+			<if test="searchword != null and !searchword.equals('')">
+				<choose>
+					<when test="searchRange == 1">
+						(B.BTITLE LIKE '%'||#{searchword}||'%' 
+						OR B.BCONTENT LIKE '%'||#{searchword}||'%' OR 
+						R.RCONTENT LIKE '%'||#{searchword}||'%') AND 
+					</when>
+					<when test="searchRange == 2">
+						R.RCONTENT LIKE '%'||#{searchword}||'%' AND 
+					</when>
+					<when test="searchRange == 3">
+						B.BTITLE LIKE '%'||#{searchword}||'%' AND 
+					</when>
+					<when test="searchRange == 4">
+						B.BCONTENT LIKE '%'||#{searchword}||'%' AND 
+					</when>
+				</choose>
+			</if>
+			B.BSTATE='A' 
+			ORDER BY R.RID DESC
 	</select>
 
 

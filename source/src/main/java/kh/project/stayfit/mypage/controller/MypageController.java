@@ -30,7 +30,7 @@ public class MypageController {
 	@Autowired
 	private MyProductService productservice;
 	
-	@GetMapping({"/myprofile", "/", ""}) // 사용자 정보
+	@GetMapping({"/profile", "/", ""}) // 사용자 정보
 	public ModelAndView myProfile(ModelAndView mv) {
 		
 		mv.addObject("sectionName", "mypage/myprofile.jsp");
@@ -39,15 +39,14 @@ public class MypageController {
 		return mv;
 	}
 
-	@GetMapping("/mywish") // 찜목록
+	@GetMapping("/wish") // 찜목록
 	public ModelAndView myWish(
 			ModelAndView mv
 			,@RequestParam(name = "page", defaultValue = "1") int page
 			//,@RequestParam("mid") int mid
 			) throws Exception {
-		int mid=3;
-		
-		int limits = 1;
+		int mid=3; //TODO 얘는 지워야돼...
+		int limits = 6;
 		int pageLimit = 5;
 		
 		int totalCnt = productservice.selectWishTotalCnt(mid);
@@ -60,71 +59,69 @@ public class MypageController {
 		return mv;
 	}
 	
+
 	
-	
-	
-	
-//	@GetMapping("/mywishList")
-//	public List<ShopProduct> myWishList(
-//			//@RequestParam("mid") int mid,
-//			@RequestParam(name = "page", defaultValue = "1") String currentPageNumStr
-//			) throws Exception {
-//		int currentPageNum = Integer.parseInt(currentPageNumStr);
-//		int limits = 6;
-//		int mid=3;
-//		List<ShopProduct> list = productservice.selectProductList(mid, currentPageNum, limits);
-////		for(int i=0; i<list.size(); i++) {
-////			System.out.println("찜목록 "+i+"번째 상품 : "+list.get(i));
-////		}
-//		return list;
-//	}
-	
-	@GetMapping("/mycart") // 장바구니
+	@GetMapping("/cart") // 장바구니
 	public ModelAndView myCart(
 			ModelAndView mv
-			,@RequestParam(name = "page", defaultValue = "1") String currentPageNumStr
+			,@RequestParam(name = "page", defaultValue = "1") int page
 			//,@RequestParam("mid") int mid
 			) throws Exception {
-		int currentPageNum = Integer.parseInt(currentPageNumStr);
-		int limits = 6;
-		int mid=3;
+		int mid=3; //TODO 얘는 지워야돼...
+		int limits = 999;
+		int pageLimit = 5;
 		
-		int totalCnt = productservice.selectCartTotalCnt(mid);
-		int end = (int) (Math.ceil(Integer.parseInt(currentPageNumStr)/10.0))*10;
-		int start = end-5;
+		//int totalCnt = productservice.selectWishTotalCnt(mid);
+		//Map<String, Object> pagingMap = Paging.paging(page, totalCnt, limits, pageLimit);
 		
 		mv.addObject("sectionName", "mypage/mycart.jsp");
-		mv.addObject("cartList", productservice.selectCartProductList(mid, currentPageNum, limits));
+		mv.addObject("cartList", productservice.selectCartProductList(mid, page, limits));
+		//mv.addObject("pagingMap", pagingMap);
 		mv.setViewName("index");
 		
 		return mv;
 	}
 	
-	@GetMapping("/myorder") // 구매기록
+	@GetMapping("/order") // 구매기록
 	public ModelAndView myProduct(
 			ModelAndView mv
-			,@RequestParam(name = "page", defaultValue = "1") String currentPageNumStr
+			,@RequestParam(name = "page", defaultValue = "1") int page
 			//,@RequestParam("mid") int mid
 			) throws Exception {
-		int currentPageNum = Integer.parseInt(currentPageNumStr);
-		int limits = 6;
-		int mid=3;
+		int mid=3; //TODO 얘는 지워야돼...
+		int limits = 1;
+		int pageLimit = 5;
 		
-		int totalCnt = productservice.selectCartTotalCnt(mid);
-		int end = (int) (Math.ceil(Integer.parseInt(currentPageNumStr)/10.0))*10;
-		int start = end-5;
+		int totalCnt = productservice.selectWishTotalCnt(mid);
+		Map<String, Object> pagingMap = Paging.paging(page, totalCnt, limits, pageLimit);
 		
 		mv.addObject("sectionName", "mypage/myproduct.jsp");
-		mv.addObject("orderList", productservice.selectCartProductList(mid, currentPageNum, limits));
+		mv.addObject("orderList", productservice.selectOrderProductList(mid, page, limits));
+		mv.addObject("pagingMap", pagingMap);
 		mv.setViewName("index");
 		
 		return mv;
 	}
 	
-	@GetMapping("/myboard") // 북마크, 공감글, 작성한 글
-	public ModelAndView myBoard(ModelAndView mv) {
+	@GetMapping("/board") // 북마크, 작성한 글
+	public ModelAndView myBoard(
+			ModelAndView mv
+			,@RequestParam(name = "page", defaultValue = "1") int page
+			, @RequestParam(name="type") String type
+			, @RequestParam(name="boardCategory", defaultValue = "1") int boardCategory
+			, @RequestParam(name="searchRange", defaultValue = "1") int searchRange
+			, @RequestParam(name="searchword", defaultValue = "") String searchword
+			) throws Exception {
+		int mid=3; //TODO 얘는 지워야돼...
+		int limits = 10;
+		int pageLimit = 5;
 		
+//		int totalCnt = boardservice.selectBoardTotalCnt(mid, type, boardCategory, searchRange, searchword);
+//		Map<String, Object> pagingMap = Paging.paging(page, totalCnt, limits, pageLimit);
+
 		mv.addObject("sectionName", "mypage/myboard.jsp");
+		mv.addObject("boardList", boardservice.selectBoardList(mid, type, boardCategory, searchRange, searchword, page, limits));
+		//mv.addObject("pagingMap", pagingMap);
 		mv.setViewName("index");
 		
 		return mv;

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	
 
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/css/mypagemyboard.css"
@@ -27,13 +29,19 @@
 					} else if (type.equals("likereply")) {
 				%>
 				<h4 class="fw-bold py-3 mb-4">
-					<span class="text-muted fw-light">마이페이지 /</span> 공감한 글
+					<span class="text-muted fw-light">마이페이지 /</span> 공감한 댓글
 				</h4>
 				<%
 					} else if (type.equals("myboard")) {
 				%>
 				<h4 class="fw-bold py-3 mb-4">
 					<span class="text-muted fw-light">마이페이지 /</span> 작성한 글
+				</h4>
+				<%
+					} else if (type.equals("myreply")) {
+				%>
+				<h4 class="fw-bold py-3 mb-4">
+					<span class="text-muted fw-light">마이페이지 /</span> 작성한 댓글
 				</h4>
 				<%
 					}
@@ -51,9 +59,18 @@
 						</div>
 						<div class="hero__search__categories">
 							<select name="searchRange">
-								<option value="1" selected>전체</option>
-								<option value="2">제목</option>
-								<option value="3">내용</option>
+								<c:if test="${type.equals('likereply') || type.equals('myreply') }">
+									<option value="1" selected>전체</option>
+									<option value="2">댓글 내용</option>
+									<option value="3">게시글 제목</option>
+									<option value="4">게시글 내용</option>
+								</c:if>
+								<c:if test="${!type.equals('likereply') && !type.equals('myreply') }">
+									<option value="1" selected>전체</option>
+									<option value="2">제목</option>
+									<option value="3">내용</option>
+								</c:if>
+								
 							</select>
 						</div>
 						<input type="text" name="searchword" placeholder="검색어를 입력해주세요.">

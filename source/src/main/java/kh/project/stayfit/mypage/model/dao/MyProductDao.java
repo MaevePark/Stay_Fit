@@ -1,6 +1,7 @@
 package kh.project.stayfit.mypage.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
@@ -24,7 +25,7 @@ public class MyProductDao {
 	}
 	
 	//장바구니 호출
-	public List<ShopProduct> selectCartProductList(int mid, int currentPageNum, int limits) throws Exception {
+	public List<Map<String, Object>> selectCartProductList(int mid, int currentPageNum, int limits) throws Exception {
 		return sqlsession.selectList("mypage.selectCart", mid, new RowBounds((currentPageNum-1)*limits, limits));
 	}
 	public int selectCartTotalCnt(int mid) throws Exception {

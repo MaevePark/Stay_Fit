@@ -1,6 +1,7 @@
 package kh.project.stayfit.mypage.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,7 +27,7 @@ public class MyProductServiceImpl implements MyProductService {
 	
 	@Override
 	//장바구니 호출
-	public List<ShopProduct> selectCartProductList(int mid, int currentPageNum, int limits) throws Exception {
+	public List<Map<String, Object>> selectCartProductList(int mid, int currentPageNum, int limits) throws Exception {
 		return dao.selectCartProductList(mid, currentPageNum, limits);
 	}
 	@Override

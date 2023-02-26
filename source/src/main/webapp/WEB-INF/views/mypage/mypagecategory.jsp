@@ -8,18 +8,14 @@
 		<div class="blog__sidebar__item">
 			<h4>Categories</h4>
 			<ul>
-				<li><a href="<%=request.getContextPath()%>/mypage/mywish">찜목록</a></li>
-				<li><a href="<%=request.getContextPath()%>/mypage/mycart">장바구니</a></li>
-				<li><a href="<%=request.getContextPath()%>/mypage/myproduct">구매기록</a></li>
-				<li><a
-					href="<%=request.getContextPath()%>/mypage/myboard?type=bookmark">북마크</a></li>
-				<li><a
-					href="<%=request.getContextPath()%>/mypage/myboard?type=likereply">공감한
-						글</a></li>
-				<li><a
-					href="<%=request.getContextPath()%>/mypage/myboard?type=myboard">작성한
-						글</a></li>
-				<li><a href="<%=request.getContextPath()%>/mypage/myprofile">사용자
+				<li><a href="<%=request.getContextPath()%>/mypage/wish">찜목록</a></li>
+				<li><a href="<%=request.getContextPath()%>/mypage/cart">장바구니</a></li>
+				<li><a href="<%=request.getContextPath()%>/mypage/order">구매기록</a></li>
+				<li><a href="<%=request.getContextPath()%>/mypage/board?type=bookmark">북마크</a></li>
+				<li><a href="<%=request.getContextPath()%>/mypage/board?type=likereply">공감한 댓글</a></li>
+				<li><a href="<%=request.getContextPath()%>/mypage/board?type=myboard">작성한 글</a></li>
+				<li><a href="<%=request.getContextPath()%>/mypage/board?type=myreply">작성한 댓글</a></li>
+				<li><a href="<%=request.getContextPath()%>/mypage/profile">사용자
 						정보</a></li>
 			</ul>
 		</div>
