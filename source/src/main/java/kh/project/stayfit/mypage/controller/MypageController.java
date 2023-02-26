@@ -1,7 +1,5 @@
 package kh.project.stayfit.mypage.controller;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +14,6 @@ import kh.project.stayfit.mypage.model.service.MyBoardService;
 import kh.project.stayfit.mypage.model.service.MyProductService;
 import kh.project.stayfit.mypage.model.service.MyReplyService;
 import kh.project.stayfit.mypage.model.service.ProfileService;
-import kh.project.stayfit.shop.model.vo.ShopProduct;
 
 @Controller
 @RequestMapping("/mypage")
@@ -69,7 +66,7 @@ public class MypageController {
 			) throws Exception {
 		int mid=3; //TODO 얘는 지워야돼...
 		int limits = 999;
-		int pageLimit = 5;
+		//int pageLimit = 5;
 		
 		//int totalCnt = productservice.selectWishTotalCnt(mid);
 		//Map<String, Object> pagingMap = Paging.paging(page, totalCnt, limits, pageLimit);
@@ -116,12 +113,12 @@ public class MypageController {
 		int limits = 10;
 		int pageLimit = 5;
 		
-//		int totalCnt = boardservice.selectBoardTotalCnt(mid, type, boardCategory, searchRange, searchword);
-//		Map<String, Object> pagingMap = Paging.paging(page, totalCnt, limits, pageLimit);
+		int totalCnt = boardservice.selectBoardTotalCnt(mid, type, boardCategory, searchRange, searchword);
+		Map<String, Object> pagingMap = Paging.paging(page, totalCnt, limits, pageLimit);
 
 		mv.addObject("sectionName", "mypage/myboard.jsp");
 		mv.addObject("boardList", boardservice.selectBoardList(mid, type, boardCategory, searchRange, searchword, page, limits));
-		//mv.addObject("pagingMap", pagingMap);
+		mv.addObject("pagingMap", pagingMap);
 		mv.setViewName("index");
 		
 		return mv;

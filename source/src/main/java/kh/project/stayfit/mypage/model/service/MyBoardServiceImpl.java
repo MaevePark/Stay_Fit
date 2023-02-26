@@ -30,6 +30,6 @@ public class MyBoardServiceImpl implements MyBoardService {
 	public int selectBoardTotalCnt(int mid, String type, int boardCategory, int searchRange, String searchword)
 			throws Exception {
 		
-		return 0;
+		return dao.selectTotalCnt(mid, type, boardCategory, searchRange, searchword);
 	}
 }
