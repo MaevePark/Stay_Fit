@@ -201,7 +201,7 @@
 				</div>
 
 				<!-- 페에징 -->
-				<jsp:include page="/WEB-INF/views/mypage/paging.jsp" />
+				<jsp:include page="/WEB-INF/views/paging.jsp" />
 				
 			</div>
 		</div>
