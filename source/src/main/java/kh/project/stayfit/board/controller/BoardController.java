@@ -60,8 +60,18 @@ public class BoardController {
 		
 		return mv;
 	}
-	
-	//글삭제
+
+	// 글수정페이지
+	@GetMapping("/update")
+	public ModelAndView boardupdate(ModelAndView mv) {
+
+		mv.addObject("sectionName", "board/write.jsp");
+		mv.setViewName("index");
+
+		return mv;
+	}
+
+	// 글삭제
 	@PostMapping("/delete")
 	@ResponseBody
 	public int delete(@RequestParam("bid") int bid) throws Exception {
