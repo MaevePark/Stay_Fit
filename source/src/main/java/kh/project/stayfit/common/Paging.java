@@ -53,20 +53,19 @@ public class Paging {
 		// 3. 이 경우 다른 방법으로 1의 경우에서 0.9를 더해 판별하는 방법도 있다. 
 		int totalPageCnt = (totalCnt % limits == 0)? (totalCnt / limits) : (totalCnt / limits)+1;
 		
-		// 1. 한번에 표기할 페이지 수를 반으로 나누어 그보다 작을 경우
-		// 2. 시작 페이지는 1이고,
-		// 3. 그보다 클 경우
-		// 4. 현재 페이지에서 반을 뺀 페이지를 시작 페이지로 한다.
-		start = (page <= (pageLimit/2)+1) ? 1 :  page-2;
-		
 		// 1. 현재 페이지 범위가 마지막 페이지에 도달했는가 체크
 		// 2. 도달했다면 마지막 페이지 숫자를 end로 지정
 		// 3. 아니라면 다른 조건 탐색
 		// 4. 현재 페이지가 pageLimit 보다 작다면 (페이지가 극 초반, 즉 1, 2, 3페이지라면)
 		// 5. end에 pageLimit을 대입
 		// 6. 아니라면 현재 페이지에 2만큼 더한 값을 end에 대입
-		System.out.println("마지막 리스트1 : "+end);
 		end = (page+2 >= totalPageCnt)? totalPageCnt : ((page < (pageLimit/2)+1)? pageLimit :  page+2);
+		
+		// 1. 한번에 표기할 페이지 수를 반으로 나누어 그보다 작을 경우
+		// 2. 시작 페이지는 1이고,
+		// 3. 그보다 클 경우
+		// 4. 현재 페이지에서 반을 뺀 페이지를 시작 페이지로 한다.
+		start = (page <= (pageLimit/2)+1) ? 1 : (page == (pageLimit/2)+2)? page-3 : (page >= end)? page-4 : page-2;
 		
 		System.out.println("-----------------------------------------------------");
 		System.out.println("현재 페이지 : "+page);
