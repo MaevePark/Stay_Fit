@@ -44,7 +44,7 @@
 <!-- 		<security:intercept-url pattern="/member/login" access="hasRole('permitAll')" /> -->
 		<security:access-denied-handler error-page="/"/>
 		<security:csrf disabled="true"/>
-		<security:intercept-url pattern="/*" access="hasRole('permitAll')" />
+		<security:intercept-url pattern="/*" access="permitAll" />
 		
 	<!-- 엑세스 실패시 출력될 화면 -->
 <!-- 		<security:access-denied-handler error-page="/accessdenied.do" /> -->
