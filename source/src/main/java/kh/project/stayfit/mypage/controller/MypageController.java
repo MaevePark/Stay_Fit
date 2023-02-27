@@ -12,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 import kh.project.stayfit.common.Paging;
 import kh.project.stayfit.mypage.model.service.MyBoardService;
 import kh.project.stayfit.mypage.model.service.MyProductService;
-import kh.project.stayfit.mypage.model.service.MyReplyService;
 import kh.project.stayfit.mypage.model.service.ProfileService;
 
 @Controller
@@ -20,8 +19,6 @@ import kh.project.stayfit.mypage.model.service.ProfileService;
 public class MypageController {
 	@Autowired
 	private MyBoardService boardservice;
-	@Autowired
-	private MyReplyService replyservice;
 	@Autowired
 	private ProfileService profileservice;
 	@Autowired
@@ -31,6 +28,7 @@ public class MypageController {
 	public ModelAndView myProfile(ModelAndView mv) {
 		
 		mv.addObject("sectionName", "mypage/myprofile.jsp");
+		mv.addObject("urlpattern", "mypage/profile");
 		mv.setViewName("index");
 		
 		return mv;
@@ -50,6 +48,7 @@ public class MypageController {
 		Map<String, Object> pagingMap = Paging.paging(page, totalCnt, limits, pageLimit);
 		
 		mv.addObject("sectionName", "mypage/mywish.jsp");
+		mv.addObject("urlpattern", "mypage/wish");
 		mv.addObject("wishList", productservice.selectWishProductList(mid, page, limits));
 		mv.addObject("pagingMap", pagingMap);
 		mv.setViewName("index");
@@ -72,6 +71,7 @@ public class MypageController {
 		//Map<String, Object> pagingMap = Paging.paging(page, totalCnt, limits, pageLimit);
 		
 		mv.addObject("sectionName", "mypage/mycart.jsp");
+		mv.addObject("urlpattern", "mypage/cart");
 		mv.addObject("cartList", productservice.selectCartProductList(mid, page, limits));
 		//mv.addObject("pagingMap", pagingMap);
 		mv.setViewName("index");
@@ -93,6 +93,7 @@ public class MypageController {
 		Map<String, Object> pagingMap = Paging.paging(page, totalCnt, limits, pageLimit);
 		
 		mv.addObject("sectionName", "mypage/myproduct.jsp");
+		mv.addObject("urlpattern", "mypage/order");
 		mv.addObject("orderList", productservice.selectOrderProductList(mid, page, limits));
 		mv.addObject("pagingMap", pagingMap);
 		mv.setViewName("index");
@@ -108,6 +109,7 @@ public class MypageController {
 			, @RequestParam(name="boardCategory", defaultValue = "1") int boardCategory
 			, @RequestParam(name="searchRange", defaultValue = "1") int searchRange
 			, @RequestParam(name="searchword", defaultValue = "") String searchword
+			//,@RequestParam("mid") int mid
 			) throws Exception {
 		int mid=3; //TODO 얘는 지워야돼...
 		int limits = 10;
@@ -117,6 +119,7 @@ public class MypageController {
 		Map<String, Object> pagingMap = Paging.paging(page, totalCnt, limits, pageLimit);
 
 		mv.addObject("sectionName", "mypage/myboard.jsp");
+		mv.addObject("urlpattern", "mypage/board");
 		mv.addObject("boardList", boardservice.selectBoardList(mid, type, boardCategory, searchRange, searchword, page, limits));
 		mv.addObject("pagingMap", pagingMap);
 		mv.setViewName("index");
