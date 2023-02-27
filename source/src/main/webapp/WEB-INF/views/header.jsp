@@ -11,7 +11,7 @@
 						<div class="header__top__right">
 
                             <div class="header__top__right__auth">
-                                <a href="<%=request.getContextPath()%>/mypage/myprofile"><i class="fa fa-user"></i> 마이페이지</a>
+                                <a href="<%=request.getContextPath()%>/mypage"><i class="fa fa-user"></i> 마이페이지</a>
                             </div>
 						
 							<div class="header__top__right__auth">
@@ -19,11 +19,11 @@
 							</div>
 						
 							<div class="header__top__right__auth">
-                                <a href="<%=request.getContextPath()%>/mypage/mywish"><i class="fa fa-heart"></i></a>
+                                <a href="<%=request.getContextPath()%>/mypage/wish"><i class="fa fa-heart"></i></a>
                             </div>
                             
 							<div class="header__top__right__auth">
-                                <a href="<%=request.getContextPath()%>/mypage/mycart"><i class="fa fa-shopping-bag"></i></a>
+                                <a href="<%=request.getContextPath()%>/mypage/cart"><i class="fa fa-shopping-bag"></i></a>
                             </div>
 						
 						<!-- 비회원, 로그아웃
