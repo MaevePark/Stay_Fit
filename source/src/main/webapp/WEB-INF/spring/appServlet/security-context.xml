@@ -2,15 +2,49 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:security="http://www.springframework.org/schema/security"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd">
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
+
+<!--
+ 	* form-login의 속성 설명
+1) username-parameter : 로그인 페이지에서 입력한 USER(input)에 대한 parameter name. 생략 시 기본값은 "j_username"
+2) password-parameter : 로그인 페이지에서 입력한 PASSWORD(input)에 대한 parameter name. 생략 시 기본값은 "j_password"
+3) login-processing-url : 로그인 페이지의 form에서 설정한 전송 주소(form의 action속성). 생략 시 기본값은 "/j_spring_security_check"
+4) login-page : Controller로 보낼 로그인 페이지 주소
+5) authentication-failrue-url : 로그인 실패 시 이동할 페이지. 아래 소스 코드같은 경우에는 "/login.html" 뒤에 "?ng"를 붙여서 오류 페이지임을 나타낸다. 오류가 나면, login.jsp에서 이 ng를 받아서 해당 오류 메세지를 출력하게 되는 것이다.
+6) default-target-url : 로그인에 성공했을 때 보내줄 페이지. 생략 했을 시 사용자의 요청 경로로 이동한다.
+
+	* logout의 속성 설명
+1) logout-url : 로그아웃 요청 주소. 생략 시 기본값은 "/j_spring_security_logout"
+2) logout-success-url : 로그아웃 성공 시 이동할 페이지
+3) invalidate-session : 세션 삭제 여부
+4) delete-cookies : 쿠키 삭제 여부
+ -->
 	<security:http auto-config='true'>
+<!-- 		<security:form-login  -->
+<!-- 			username-parameter="user_id"  -->
+<!-- 			password-parameter="user_pw"  -->
+<!-- 			login-processing-url="/login_check"  -->
+<!-- 			login-page="/login.html"  -->
+<!-- 			authentication-failure-url="/login.html?ng" -->
+<!-- 		/> -->
+<!-- 		<security:logout  -->
+<!-- 			logout-url="/security_logout" -->
+<!-- 			logout-success-url="/" -->
+<!-- 			invalidate-session="true" -->
+<!-- 			delete-cookies="true" -->
+<!-- 		/> -->
+
 	<!-- 권한별 명칭 permitAll, ROLE_USER, ROLE_ADMIN -->
-<!-- 		<security:intercept-url pattern="/board/**" access="ROLE_ADMIN" /> -->
-<!-- 		<security:intercept-url pattern="/member/login" access="permitAll" /> -->
+<!-- 		<security:intercept-url pattern="/board/*" access="hasRole('ROLE_ADMIN')" /> -->
+<!-- 		<security:intercept-url pattern="/mypage/*" access="hasRole('permitAll')" /> -->
+<!-- 		<security:intercept-url pattern="/member/login" access="hasRole('permitAll')" /> -->
+		<security:access-denied-handler error-page="/"/>
 		<security:csrf disabled="true"/>
-		<security:intercept-url pattern="/**" access="permitAll" />
+		<security:intercept-url pattern="/*" access="hasRole('permitAll')" />
 		
 	<!-- 엑세스 실패시 출력될 화면 -->
 <!-- 		<security:access-denied-handler error-page="/accessdenied.do" /> -->
