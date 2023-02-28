@@ -25,9 +25,9 @@
 							<tbody>
 								<tr>
 									<th>성별</th>
-									<td><input type="radio" class="radio" id="female" name="sex"
+									<td><input type="radio" class="radio" id="female" name="gender"
 										value="F" ><label class="pre" for="female">
-											여자 </label> <input type="radio" class="radio" id="male" name="sex"
+											여자 </label> <input type="radio" class="radio" id="male" name="gender"
 										value="M" checked="checked"><label class="pre" for="male"> 남자</label></td>
 								</tr>
 								<tr>
@@ -64,6 +64,7 @@
 									<th>연령</th>
 									<td>
 										<div class="date-wrap clfix">
+											<!-- 생년월일 - 년도 시작 -->
 											<input type="text" class="ipt2" style="width: 95px"
 												id="byear" name="byear"
 												value="2000"
@@ -71,7 +72,9 @@
 												onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"
 												onblur="this.value=this.value.replace(/[^0-9]/g,'')"
 												maxlength="4"><span class="dash"> 년 </span>
-
+											<!-- 생년월일 - 년도 끝 -->	
+											
+											<!-- 생년월일 - 월 시작 -->
 											<div class="hero__search__categories">
 												<select class="select4" id="bmonth" name="bmonth">
 													<option value="1" selected>1</option>
@@ -89,7 +92,9 @@
 												</select>
 											</div>
 											<span class="dash"> 월</span>
-
+											<!-- 생년월일 - 월 끝 -->
+											
+											<!-- 생년월일 - 일 시작 -->
 											<div class="hero__search__categories">
 												<select class="select4" id="bday" name="bday">
 													<option value="1"  selected>1</option>
@@ -126,7 +131,7 @@
 												</select>
 											</div>
 										</div> <span class="dash"> 일</span>
-										</div>
+										<!-- 생년월일 - 일 끝 -->
 									</td>
 								</tr>
 								<tr>
@@ -180,8 +185,7 @@
 						<input type="hidden" name="bmr">
 						<input type="hidden" name="activityMetabolicRate">
 						<input type="hidden" name="digestionEnergy">
-							<button type="button" class="site-btn" onclick="calCalorie();">칼로리 처방 받기</button>
-							<!-- <a href="javascript:;" class="site-btn" onclick="calorie_view();">칼로리 처방 받기</a> -->				
+						<button type="button" class="site-btn" onclick="calCalorie();">칼로리 처방 받기</button>			
 						</div>
 						<!-- 칼로리 처방 받기 버튼 끝 -->
 					</form>		
@@ -212,18 +216,26 @@ function calCalorie() {
     var maleageConst = 5.677;
     var femaleageConst = 4.330;
 
-    var sex= $("[name=sex]:checked").val();
+    var gender= $("[name=gender]:checked").val();
     var height= $("#stature").val();	
     var weight= $("#weight").val();
     var goal_weight= $("#goal_weight").val();
     var byear= $("#byear").val();
     var bmonth= $("#bmonth").val();
     var bday= $("#bday").val();
+
+    // 만나이 계산
     const getAge = () => {
+    	
+    	// 현재 날짜
         const today = new Date();
         console.log(byear+"-"+bmonth+"-"+bday);
+        
+        // 생년월일
         const birthday = new Date(byear+"-"+bmonth+"-"+bday);
         console.log(birthday);
+        
+        // 나이 계산
         let result = 0;
         result = today.getFullYear() - birthday.getFullYear();
         birthday.setFullYear(today.getFullYear());
@@ -236,11 +248,11 @@ function calCalorie() {
     var age = getAge();
     console.log("height:"+height);
     console.log("weight:"+weight);
-    console.log("sex:"+sex);
+    console.log("gender:"+gender);
 
     // 기초대사량 계산
     var bmr;
-    if (sex == 'M') {
+    if (gender == 'M') {
         bmr = 88.362 + (13.397 * Number(weight)) + (4.799 * Number(height)) - (5.677 * age); // 남자
     } else {
         bmr = 447.593 + (9.247 * Number(weight)) + (3.098 * Number(height)) - (4.330 * age); // 여자

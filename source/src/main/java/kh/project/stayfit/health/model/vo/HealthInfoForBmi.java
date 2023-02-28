@@ -10,13 +10,10 @@ import lombok.ToString;
 @Getter
 @Setter
 @Component
-public class HealthInfoForCalorie {
-	private String bmr; // 기초대사량
-	private String activityMetabolicRate; // 활동대사량
-	private String digestionEnergy; // 소화를 위한 에너지
+public class HealthInfoForBmi {
+	private String gender; // 성별 
 	private String age; // 연령
-	private String gender; // 성별
 	private String stature; // 키
 	private String weight; // 몸무게
-	private String goal_weight; // 목표 체중
+	private String bmi_index; // 당신의 BMI 지수
 }

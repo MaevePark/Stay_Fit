@@ -18,6 +18,8 @@ public class HealthCenterServiceImpl implements HealthCenterService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 	
 	
 }

@@ -62,6 +62,8 @@
 										</tr>
 									</thead>
 									<tbody class="table-border-bottom-0">
+									<!-- 보건소 list 시작 -->
+
 										<tr>
 											<td><i class="fab fa-angular fa-lg text-danger me-3"></i>
 												<strong>강남구 보건소</strong></td>
@@ -114,6 +116,8 @@
 												<!-- 위치 링크 끝 -->
 											</td>
 										</tr>
+									
+									<!-- 보건소 list 끝 -->
 									</tbody>
 								</table>
 							</div>

@@ -105,7 +105,7 @@
 
 				<!-- 칼로리 처방 다시하기 버튼 시작 -->
 				<div class="col-lg-12 text-center">
-					<button type="submit" class="site-btn">다시하기</button>
+					<a href="<%=request.getContextPath()%>/health/caloriewrite" class="site-btn">다시하기</a>
 				</div>
 				<!-- 칼로리 처방 다시하기 버튼 끝 -->
 			</div>
