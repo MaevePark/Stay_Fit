@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-[[${healthInfoVo }]]
-
 <!-- Blog Section Begin -->
 <section class="blog spad">
 	<div class="container">
@@ -30,11 +28,11 @@
 								</tr>
 								<tr>
 									<th>현재체중</th>
-									<td class="lh30"><span id="WEIGHT"></span></td>
+									<td class="lh30"><span id="WEIGHT"></span>${healthInfoVo.weight }</td>
 								</tr>
 								<tr>
 									<th>목표체중</th>
-									<td class="lh30"><span id="GOAL_WEIGHT"></span></td>
+									<td class="lh30"><span id="GOAL_WEIGHT"></span>${healthInfoVo.goal_weight }</td>
 								</tr>
 							</tbody>
 						</table>
@@ -58,16 +56,18 @@
 							</colgroup>
 							<tbody>
 								<tr>
-									<td><span id="BASIC_MET" class="green"
-										style="width: 557px;"> <img alt=""
-											src="<%=request.getContextPath()%>/resources/img/health/bg_calorie_green.gif"></span>
-										<span id="ACTIVE_MET" class="yellow" style="width: 55px;">
-											<img alt=""
-											src="<%=request.getContextPath()%>/resources/img/health/bg_calorie_yellow.gif"></span>
-										<span id="DIGEST_MET" class="orange" style="width: 68px;">
-											<img alt=""
-											src="<%=request.getContextPath()%>/resources/img/health/bg_calorie_orange.gif"></span>
+									<td><span id="BASIC_MET" class="green" style="width: 557px;"> 
+											<img alt=""	src="<%=request.getContextPath()%>/resources/img/health/bg_calorie_green.gif">
+											${healthInfoVo.bmr }</span>
 											
+										<span id="ACTIVE_MET" class="yellow" style="width: 55px;">
+											<img alt=""	src="<%=request.getContextPath()%>/resources/img/health/bg_calorie_yellow.gif">
+											${healthInfoVo.activityMetabolicRate }</span>
+											
+											
+										<span id="DIGEST_MET" class="orange" style="width: 68px;">
+											<img alt=""	src="<%=request.getContextPath()%>/resources/img/health/bg_calorie_orange.gif">
+											${healthInfoVo.digestionEnergy }</span>									
 											<em class="frame"></em>
 									</td>
 								</tr>
