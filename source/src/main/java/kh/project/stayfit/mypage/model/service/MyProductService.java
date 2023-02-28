@@ -17,7 +17,7 @@ public interface MyProductService {
 	public int selectCartTotalCnt(int mid) throws Exception;
 	
 	//구매기록 호출
-	public List<MypageOrder> selectOrderProductList(int mid, int currentPageNum, int limits) throws Exception;
+	public List<Map<String, Object>> selectOrderProductList(int mid, int currentPageNum, int limits) throws Exception;
 	public int selectOrderTotalCnt(int mid) throws Exception;
 	
 }

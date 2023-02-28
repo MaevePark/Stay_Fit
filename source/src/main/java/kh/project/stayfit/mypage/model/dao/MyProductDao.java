@@ -33,7 +33,7 @@ public class MyProductDao {
 	}
 	
 	//구매기록 호출
-	public List<MypageOrder> selectOrderProductList(int mid, int currentPageNum, int limits) throws Exception {
+	public List<Map<String, Object>> selectOrderProductList(int mid, int currentPageNum, int limits) throws Exception {
 		return sqlsession.selectList("mypage.selectOrder", mid, new RowBounds((currentPageNum-1)*limits, limits));
 	} 
 	public int selectOrderTotalCnt(int mid) throws Exception {
