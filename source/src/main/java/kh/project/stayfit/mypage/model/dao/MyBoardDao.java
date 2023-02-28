@@ -14,7 +14,6 @@ public class MyBoardDao {
 	@Autowired
 	private SqlSession sqlsession;
 	
-	//작성글 호출
 	public List<Map<String, Object>> selectBoardList(
 			int mid
 			, String type
