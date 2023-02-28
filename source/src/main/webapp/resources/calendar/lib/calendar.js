@@ -14,37 +14,19 @@
     	  return date.date.year +"년 "+(date.date.month +1) +"월";
       },
       selectable: true,
-//      events: 
+      
+      eventClick:function(){
+		  var model = $("#calendar-modal");
+		  modal.modal();
+	  },
+	  
+	  dateClick:function(){
+		  alert("date clicked");
+		  $("#calendar-modal").modal("show");
+	  }
     });
 
     calendar.render();
   });
   
-  function modalOn(){
-	  modal.style.display = "flex"
-  }
   
-  function modalOff(){
-	  modal.style.display = "none"  
-  }
-  
-  const modal = document.getElementById("modal")
-  const openModal = document.getElementById("fc-daygrid-day-frame")
-  openModal.addEventListener("click", e => {
-	  modalOn()
-  })
-  const closeModal = document.getElementById("btn-cancel")
-  openModal.addEventListener("click", e => {
-	  modalOff()
-  })
-  modal.addEventListener("click", e => {
-      const evTarget = e.target
-      if(evTarget.classList.contains("modal-overlay")) {
-    	  modalOff()
-      }
-  })
-  window.addEventListener("keyup", e => {
-      if(modal.style.display === "flex" && e.key === "Escape") {
-    	  modalOff()
-      }
-  })

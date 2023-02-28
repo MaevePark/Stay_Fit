@@ -7,7 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
-@RequestMapping("/diary")
+@RequestMapping
 public class DiaryController {
 	@GetMapping("/diary")
 	public ModelAndView diary(ModelAndView mv) {

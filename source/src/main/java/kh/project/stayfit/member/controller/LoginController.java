@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/login")
+@RequestMapping("/member")
 public class LoginController {
 	
 	@GetMapping("/login")

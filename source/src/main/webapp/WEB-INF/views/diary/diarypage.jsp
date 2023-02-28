@@ -172,11 +172,7 @@
 																<div class="fc-daygrid-day-events">
 																	<div class="fc-daygrid-event-harness"
 																		style="margin-top: 0px;">
-																		<a
-																			class="fc-daygrid-event fc-daygrid-dot-event fc-event fc-event-draggable fc-event-resizable fc-event-start fc-event-end fc-event-past"><div
-																				class="fc-daygrid-event-dot"></div>
-																			<div class="fc-event-time">8p</div>
-																			<div class="fc-event-title">Party</div></a>
+																		<a class="fc-daygrid-event fc-daygrid-dot-event fc-event fc-event-draggable fc-event-resizable fc-event-start fc-event-end fc-event-past"></a>
 																	</div>
 																	<div class="fc-daygrid-day-bottom"
 																		style="margin-top: 0px;"></div>
@@ -850,67 +846,69 @@
 			</div>
 		</div>
 	</div>
-	<div id="modal" class="modal-overlay">
-	<div class="modal-window">
-		<div class="title">
-			<h2>다이어리 작성하기</h2>
-		</div>
-		<div class="content">
-			<div>
-				<span>몸무게 : </span> <input type="text" id="weight">
-				<span>kg</span>
-			</div>
-			<div>
-				<button id="breakfast">kcal</button>
-				<button id="lunch">kcal</button>
-				<button id="dinner">kcal</button>
-			</div>
-			<div>
-				<span>아침</span> <span>점심</span> <span>저녁</span>
-			</div>
-			<div>
-				<button id="snack1">kcal</button>
-				<button id="snack2">kcal</button>
-				<button id="snack3">kcal</button>
-			</div>
-			<div>
-				<span>오전간식</span> <span>오후간식</span> <span>야식</span>
-			</div>
-			<div>
-				<input type="text" placeholder="식단메뉴 검색">
-			</div>
-			<div>
-				<table class="">
-					<tr>
-						<td> </td>
-						<td><button class="minus-box">-</button></td>
-					</tr>
-				</table>
-			</div>
-			<div>
-				<input type="text" placeholder="운동 검색">
-			</div>
-			<div>
-				<table class="">
-					<tr>
-						<td> </td>
-						<td><button class="minus-box">-</button></td>
-					</tr>
-				</table>
-			</div>
-			<div>
-				<button id="btn-cancel">취소</button>
-				<button id="btn-insert">등록</button>
+	<div id="calendar-modal" class="modal fade">
+		<!-- Add Modal -->
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h4 class="modal-title">다이어리 작성하기</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<!-- Modal Body -->
+				<div class="modal-body">
+					<span>몸무게 : </span> <input type="text" id="weight"><span>kg</span>
+					<div>
+						<button id="breakfast">kcal</button>
+						<button id="lunch">kcal</button>
+						<button id="dinner">kcal</button>
+					</div>
+					<div>
+						<span>아침</span> <span>점심</span> <span>저녁</span>
+					</div>
+					<div>
+						<button id="snack1">kcal</button>
+						<button id="snack2">kcal</button>
+						<button id="snack3">kcal</button>
+					</div>
+					<div>
+						<span>오전간식</span> <span>오후간식</span> <span>야식</span>
+					</div>
+					<div>
+						<input type="text" placeholder="식단메뉴 검색">
+					</div>
+					<div>
+						<table class="">
+							<tr>
+								<td></td>
+								<td><button class="minus-box">-</button></td>
+							</tr>
+						</table>
+					</div>
+					<div>
+						<input type="text" placeholder="운동 검색">
+					</div>
+					<div>
+						<table class="">
+							<tr>
+								<td></td>
+								<td><button class="minus-box">-</button></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger">취소</button>
+					<button type="button" class="btn btn-success">등록</button>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
-	
 </section>
 
 <script
-	src="<%=request.getContextPath() %>/resources/calendar/lib/main.js"></script>
+	src="<%=request.getContextPath()%>/resources/calendar/lib/main.js"></script>
 <script
-	src="<%=request.getContextPath() %>/resources/calendar/lib/calendar.js"></script>
+	src="<%=request.getContextPath()%>/resources/calendar/lib/calendar.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/chart.js@4.2.0/dist/chart.umd.min.js"></script>
