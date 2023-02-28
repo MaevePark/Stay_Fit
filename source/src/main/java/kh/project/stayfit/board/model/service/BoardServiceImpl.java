@@ -13,32 +13,37 @@ public class BoardServiceImpl implements BoardService{
 	@Autowired
 	private BoardDao dao;
 	
-	//게시판 list페이지 글목록 출력
+	// 게시글 페이지, 글검색
 	@Override
-	public List<Board> boardlist(int bcid) throws Exception{
-		List<Board> blist = null;
-		blist = dao.boardlist(bcid);
-		return blist;
+	public List<Board> boardlist(int bcid, String search, String keyword
+			,int page, int limits) throws Exception {
+		return dao.boardlist(bcid, search, keyword, page, limits);
 	}
-	
-	//게시글 read 상세페이지
+	//게시글 총 갯수
 	@Override
-	public Board read(int bid) throws Exception{
-		Board bone = null;
-		bone = dao.read(bid);
-		return bone;		
+	public int totalCnt(int bcid, String search, String keyword) {
+		return dao.totalCnt(bcid, keyword, keyword);
 	}
-	//게시글 조회수 증가
+
+	// 게시글 read 상세페이지
 	@Override
-	public int bvcupdate(int bid) throws Exception{
+	public Board read(int bid) throws Exception {
+		return dao.read(bid);
+	}
+
+	// 게시글 조회수 증가
+	@Override
+	public int bvcupdate(int bid) throws Exception {
 		int bvcount = dao.bvcupdate(bid);
 		return bvcount;
 	}
-	//게시글 삭제
-	public int bdelete(int bid)throws Exception{
+
+	// 게시글 삭제
+	@Override
+	public int bdelete(int bid) throws Exception {
 		return dao.bdelete(bid);
 	}
-	
+
 //	//커뮤니티 글목록 페이지,페이징
 //	@Override
 //	public List<Board> selectList(int, int) throws Exception{

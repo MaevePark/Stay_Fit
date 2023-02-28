@@ -14,6 +14,14 @@ public interface BoardService {
 	public int bvcupdate(int bid) throws Exception;
 	//게시글 삭제
 	public int bdelete(int bid) throws Exception;
+
+	// 게시글 페이지, 글검색, 글출력
+	public List<Board> boardlist(int bcid, String search, String keyword,
+			int page, int limits)throws Exception;
+	
+	//게시글 총 갯수
+	public int totalCnt(int bcid, String search, String keyword) throws Exception;
+	
 	
 //	//커뮤니티 글목록 페이지,페이징
 //	public List<Board> selectList(int, int) throws Exception;

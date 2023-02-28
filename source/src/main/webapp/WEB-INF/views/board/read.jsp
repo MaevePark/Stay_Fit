@@ -91,7 +91,7 @@
 					<!-- 버튼 -->
 					<div id="button_parent">
 						<!-- 수정, 삭제 버튼은 본인이 작성한 글일때만 출력. -->
-						<%-- <c:if test="${sessionScope.principal.mid == board.user }"> --%>
+						<%-- <c:if test="${sessionScope.principal.mid == read.mid }"> --%>
 						<form>
 						<input type="hidden" id="board-bcid" value="${read.bid }" >
 						<button type="button" class="site-btn" id="btn-upd" onclick="">수정</button>

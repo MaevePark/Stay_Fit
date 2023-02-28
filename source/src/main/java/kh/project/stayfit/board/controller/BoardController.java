@@ -23,14 +23,26 @@ public class BoardController {
 	@Autowired
 	private BoardService srv;
 	
-	//글목록 출력
-	@GetMapping("/list")
-	public ModelAndView list(ModelAndView mv, int bcid) throws Exception {
-		List<Board> blist = srv.boardlist(bcid);
-		mv.addObject("sectionName", "board/list.jsp");
-		mv.addObject("boardlist", blist);
-		mv.setViewName("index");
+	//글목록 출력 + 검색 + 페이징
+	@GetMapping(value = {"/list","/listsearch"})
+	@ResponseBody
+	public ModelAndView list(ModelAndView mv , @RequestParam(name = "page", defaultValue = "1") int page,
+			@RequestParam(name = "bcid", defaultValue = "0") int bcid,
+			@RequestParam(name = "search", required=false, defaultValue = "") String search,
+			@RequestParam(name = "keyword", required=false, defaultValue = "") String keyword) throws Exception {
 		
+		int limits = 10;
+		int pageLimit = 5;
+		int totalCnt = srv.totalCnt(bcid,search,keyword);
+		Map<String, Object> pagingMap = Paging.paging(page, totalCnt, limits, pageLimit);
+		
+		List<Board> searchlist = srv.boardlist(bcid, search, keyword, page, limits);
+		
+		mv.addObject("boardlist", searchlist);
+		mv.addObject("sectionName", "board/list.jsp");
+		mv.addObject("urlpattern", "board/list");
+		mv.addObject("pagingMap", pagingMap);
+		mv.setViewName("index");
 		return mv;
 	}
 	
