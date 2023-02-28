@@ -86,7 +86,7 @@ public class MypageController {
 			//,@RequestParam("mid") int mid
 			) throws Exception {
 		int mid=3; //TODO 얘는 지워야돼...
-		int limits = 1;
+		int limits = 15;
 		int pageLimit = 5;
 		
 		int totalCnt = productservice.selectWishTotalCnt(mid);
@@ -122,6 +122,7 @@ public class MypageController {
 		mv.addObject("urlpattern", "mypage/board");
 		mv.addObject("boardList", boardservice.selectBoardList(mid, type, boardCategory, searchRange, searchword, page, limits));
 		mv.addObject("pagingMap", pagingMap);
+		mv.addObject("type", type);
 		mv.setViewName("index");
 		
 		return mv;
