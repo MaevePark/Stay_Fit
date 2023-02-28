@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/css/calorielist.css"
-	type="text/css">
+[[${healthInfoVo }]]
 
 <!-- Blog Section Begin -->
 <section class="blog spad">
@@ -28,15 +26,15 @@
 							<tbody>
 								<tr>
 									<th>총 감량기간</th>
-									<td><span id="GOAL_TERM"><%=request.getParameter("goal_term")%></span></td>
+									<td><span id="GOAL_TERM"></span></td>
 								</tr>
 								<tr>
 									<th>현재체중</th>
-									<td class="lh30"><span id="WEIGHT"><%=request.getParameter("weight")%></span></td>
+									<td class="lh30"><span id="WEIGHT"></span></td>
 								</tr>
 								<tr>
 									<th>목표체중</th>
-									<td class="lh30"><span id="GOAL_WEIGHT"><%=request.getParameter("goal_weight")%></span></td>
+									<td class="lh30"><span id="GOAL_WEIGHT"></span></td>
 								</tr>
 							</tbody>
 						</table>
