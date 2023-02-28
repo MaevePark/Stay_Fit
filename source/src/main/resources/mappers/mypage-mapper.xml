@@ -90,37 +90,39 @@
 	
 	<!-- 작성한 글 select -->
 	<select id="selectMyBoard" parameterType="map" resultType="map">
-		SELECT BID, MID, BTITLE, BPICK, BCREATE, BUPDATE, BVIEWCOUNT 
-			FROM BOARD WHERE MID=${mid } AND 
+		SELECT B.BID BID, B.BCID BCID, M.MNAME MNAME, B.BTITLE BTITLE
+		, B.BPICK BPICK, B.BCREATE BCREATE, B.BUPDATE BUPDATE, B.BVIEWCOUNT BVIEWCOUNT 
+			FROM BOARD B JOIN MEMBER M ON B.MID = M.MID 
+				WHERE B.MID=${mid } AND 
 			<if test="boardCategory != 1">
 				<choose>
 					<when test="boardCategory == 2">
-						BCID=0 AND 
+						B.BCID=0 AND 
 					</when>
 					<when test="boardCategory == 3">
-						BCID=1 AND 
+						B.BCID=1 AND 
 					</when>
 					<when test="boardCategory == 4">
-						BCID=2 AND 
+						B.BCID=2 AND 
 					</when>
 				</choose>
 			</if>
-			<if test="searchword != null or !searchword.equals('')">
+			<if test="!searchword.equals('')">
 				<choose>
 					<when test="searchRange == 1">
-						(BTITLE LIKE '%'||#{searchword }||'%' 
-						OR BCONTENT LIKE '%'||#{searchword }||'%') AND 
+						(B.BTITLE LIKE '%'||#{searchword }||'%' 
+						OR B.BCONTENT LIKE '%'||#{searchword }||'%') AND 
 					</when>
 					<when test="searchRange == 2">
-						BTITLE LIKE '%'||#{searchword }||'%' AND 
+						B.BTITLE LIKE '%'||#{searchword }||'%' AND 
 					</when>
 					<when test="searchRange == 3">
-						BCONTENT LIKE '%'||#{searchword }||'%' AND 
+						B.BCONTENT LIKE '%'||#{searchword }||'%' AND 
 					</when>
 				</choose>
 			</if>
-			BSTATE='A' 
-			ORDER BY BID DESC
+			B.BSTATE='A' 
+			ORDER BY B.BID DESC
 	</select>
 	<select id="countMyBoard" parameterType="map" resultType="int">
 		SELECT COUNT(BID) 
@@ -138,7 +140,7 @@
 					</when>
 				</choose>
 			</if>
-			<if test="searchword != null or !searchword.equals('')">
+			<if test="!searchword.equals('')">
 				<choose>
 					<when test="searchRange == 1">
 						(BTITLE LIKE '%'||#{searchword }||'%' 
@@ -156,7 +158,7 @@
 	</select>
 	<!-- 작성한 댓글 select -->
 	<select id="selectMyReply" parameterType="map" resultType="map">
-		SELECT R.RID, R.BID, B.BTITLE, R.RCONTENT
+		SELECT R.RID RID, R.BID BID, B.BTITLE BTITLE, R.RCONTENT RCONTENT, R.RCREATE RCREATE 
 			FROM BOARD B JOIN REPLY R  ON B.BID = R.RID
 			AND R.MID=${mid } 
 			WHERE 
@@ -173,7 +175,7 @@
 					</when>
 				</choose>
 			</if>
-			<if test="searchword != null and !searchword.equals('')">
+			<if test="!searchword.equals('')">
 				<choose>
 					<when test="searchRange == 1">
 						(B.BTITLE LIKE '%'||#{searchword }||'%' 
@@ -212,7 +214,7 @@
 					</when>
 				</choose>
 			</if>
-			<if test="searchword != null and !searchword.equals('')">
+			<if test="!searchword.equals('')">
 				<choose>
 					<when test="searchRange == 1">
 						(B.BTITLE LIKE '%'||#{searchword }||'%' 
@@ -234,8 +236,9 @@
 	</select>
 	<!-- 북마크한 글 select -->
 	<select id="selectBMark" parameterType="map" resultType="map">
-		SELECT B.BID, B.BTITLE, B.BPICK, B.BCREATE, B.BUPDATE, B.BVIEWCOUNT 
+		SELECT M.MNAME MNAME, B.BID BID, B.BCID BCID, B.BTITLE BTITLE, B.BPICK BPICK, B.BCREATE BCREATE, B.BUPDATE BUPDATE, B.BVIEWCOUNT BVIEWCOUNT 
 			FROM BOARD B JOIN BOOKMARK BM ON BM.BID = B.BID 
+			JOIN MEMBER M ON B.MID = M.MID 
 			AND BM.MID=${mid } 
 			WHERE 
 			<if test="boardCategory != 1">
@@ -251,7 +254,7 @@
 					</when>
 				</choose>
 			</if>
-			<if test="searchword != null and !searchword.equals('')">
+			<if test="!searchword.equals('')">
 				<choose>
 					<when test="searchRange == 1">
 						(B.BTITLE LIKE '%'||#{searchword }||'%' OR B.BCONTENT LIKE '%'||#{searchword }||'%') AND 
@@ -285,7 +288,7 @@
 					</when>
 				</choose>
 			</if>
-			<if test="searchword != null and !searchword.equals('')">
+			<if test="!searchword.equals('')">
 				<choose>
 					<when test="searchRange == 1">
 						(B.BTITLE LIKE '%'||#{searchword }||'%' OR B.BCONTENT LIKE '%'||#{searchword }||'%') AND 
@@ -305,7 +308,7 @@
 <!-- 	</select> -->
 	<!-- 공감 댓글 select -->
 	<select id="selectLikeReply" parameterType="map" resultType="map">
-		SELECT R.RID, R.BID, B.BTITLE, R.RCONTENT
+		SELECT R.RID RID, R.BID BID, B.BTITLE BTITLE, R.RCONTENT RCONTENT , R.RCREATE RCREATE
 			FROM REPLY_LIKE LR 
 				JOIN REPLY R ON LR.RID = R.RID AND LR.MID=${mid} 
 				JOIN BOARD B ON B.BID = R.BID 
@@ -323,7 +326,7 @@
 					</when>
 				</choose>
 			</if>
-			<if test="searchword != null and !searchword.equals('')">
+			<if test="!searchword.equals('')">
 				<choose>
 					<when test="searchRange == 1">
 						(B.BTITLE LIKE '%'||#{searchword}||'%' 
@@ -363,7 +366,7 @@
 					</when>
 				</choose>
 			</if>
-			<if test="searchword != null and !searchword.equals('')">
+			<if test="!searchword.equals('')">
 				<choose>
 					<when test="searchRange == 1">
 						(B.BTITLE LIKE '%'||#{searchword}||'%' 
