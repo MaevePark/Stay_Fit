@@ -36,6 +36,21 @@
 		<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/mypagecategory.css" type="text/css">
 	</c:if>
     
+    <!-- health page css Begin -->
+	<c:if test="${sectionName eq 'health/caloriewrite.jsp' }">
+		<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/caloriewrite.css" type="text/css">
+	</c:if>
+	<c:if test="${sectionName eq 'health/calorielist.jsp' }">
+		<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/calorielist.css" type="text/css">
+	</c:if>
+	<c:if test="${sectionName eq 'health/bmiwrite.jsp' }">
+		<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/bmiwrite.css" type="text/css">
+	</c:if>	
+	<c:if test="${sectionName eq 'health/bmilist.jsp' }">
+		<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/bmilist.css" type="text/css">
+	</c:if>	
+	<!-- health page css End -->
+	
 </head>
 
 <body>
