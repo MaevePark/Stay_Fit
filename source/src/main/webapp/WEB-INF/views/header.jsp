@@ -5,9 +5,7 @@
 		<div class="header__top">
 			<div class="container">
 				<div class="row">
-					<div class="col-lg-6 col-md-6">
-					</div>
-					<div class="col-lg-6 col-md-6">
+					<div class="col-lg-12 col-md-12">
 						<div class="header__top__right">
 
                             <div class="header__top__right__auth">
@@ -15,7 +13,7 @@
                             </div>
 						
 							<div class="header__top__right__auth">
-								<a href="<%=request.getContextPath()%>/logout"><i class="fa fa-user"></i> Logout</a>
+								<a href="<%=request.getContextPath()%>/member/login"><i class="fa fa-user"></i>Login</a>
 							</div>
 						
 							<div class="header__top__right__auth">
@@ -28,7 +26,7 @@
 						
 						<!-- 비회원, 로그아웃
 							<div class="header__top__right__auth">
-								<a href="<%=request.getContextPath()%>/login"><i class="fa fa-user"></i> Login</a>
+								<a href="<%=request.getContextPath()%>/member/logout"><i class="fa fa-user"></i> Loggout</a>
 							</div>
 						 -->	
 							
@@ -44,7 +42,7 @@
 						<a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath()%>/resources/img/STAY_FIT_logo.png" alt=""></a>
 					</div>
 				</div>
-				<div class="col-lg-6">
+				<div class="col-lg-9">
 					<nav class="header__menu">
 						<ul>
 							<li class="active"><a href="<%=request.getContextPath()%>/shop">상품</a></li>
@@ -67,9 +65,6 @@
 							<li><a href="<%=request.getContextPath()%>/">보건소</a></li>
 						</ul>
 					</nav>
-				</div>
-				<div class="col-lg-3">
-					
 				</div>
 			</div>
 			<div class="humberger__open">
