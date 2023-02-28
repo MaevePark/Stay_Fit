@@ -1,8 +1,13 @@
 package kh.project.stayfit.shop.model.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import kh.project.stayfit.shop.model.vo.Nutrition;
 
 @Repository
 public class ShopDao {
@@ -39,5 +44,19 @@ public class ShopDao {
 //	public int addBasket(int, int, int) throws Exception{
 //		return sqlsession.;
 //	}	
+	
+	//영양데이터 insert
+	public int insertNutrition(List<Nutrition> nvoList) throws Exception{
+		int result = 0;
+//		List<Integer> insertResult = new ArrayList<Integer>();
+//		
+//		for(int i=0; i<nvoList.size(); i++) {
+//			
+//		}
+		result = sqlsession.insert("shop.insertNutrition", nvoList);
+
+		
+		return result;
+	}
 
 }

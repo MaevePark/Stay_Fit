@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+/* table 정렬 시작*/
+.table-health {
+    border: 1px solid #dedede;
+}
+
+.table-health th {
+	border-top: 1px solid #e5e5e5;
+    background: #f5f5f5;
+    padding: 22px 0 22px 14px;
+    text-align: left;
+    line-height: 1.4;
+}
+.table-health td {
+	border-top: 1px solid #e5e5e5;
+	padding: 20px 10px 14px;
+}
+.table-health td .dash {
+    line-height: 37px;
+    vertical-align: top;
+    display: inline-block;
+    white-space: pre;
+}
+.date-wrap input .select-wrap4 {
+    float: left;
+    position: relative;
+    width: 71px;
+}
+/* table 정렬 끝 */
+
+/* 기초대사량  그래프 시작 */
+p {
+	margin-top: 10px;
+	text-align: center;
+}
+
+/* 기초대사량  그래프 끝 */
+
+/* 다시 하기 버튼 시작 */
+.site-btn {
+    text-align: center;
+    margin-top: 30px;
+}
+/* 다시하기 버튼 끝 */

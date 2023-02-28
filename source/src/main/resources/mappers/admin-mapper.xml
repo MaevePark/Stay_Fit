@@ -55,8 +55,111 @@
 				</otherwise>
 			</choose>
 	</select>
+	
+  	<!-- 게시물 -->
+	<select id="selectBoard" parameterType="map" resultType="AdminBoard">
+		SELECT B.BID, BC.BCNAME, B.BTITLE, B.MID, B.BVIEWCOUNT, 
+		        TO_CHAR(B.BCREATE, 'YYYY.MM.DD') AS BCREATE, 
+		        DECODE(B.BSTATE, 'A', '정상', '삭제') AS BSTATE
+		    FROM BOARD B JOIN BCATEGORY BC ON B.BCID = BC.BCID
+		    
+			<where> <!-- WHERE을 구문 앞에 추가해줌. AND/OR로 시작한다면 없애줌 -->
+				<if test="searchword != null and !searchword.equals('')">
+					AND BTITLE LIKE '%'||#{searchword}||'%'
+				</if>
+				<choose>
+					<when test="category == 1"> <!-- 공지사항 -->
+						AND BC.BCID = 0
+					</when>
+					<when test="category == 2"> <!-- 식단 -->
+						AND BC.BCID = 1
+					</when>
+					<when test="category == 3"> <!-- 팁&노하우 -->
+						AND BC.BCID = 2
+					</when>
+					<when test="category == 4"> <!-- 고민&질문 -->
+						AND BC.BCID = 3
+					</when>
+				</choose>
+				<if test="state != null and !state.equals('')">
+					<choose>
+						<when test="state == 1"> <!-- 활성화 -->
+							AND BSTATE = 'A'
+						</when>
+						<when test="state == 2"> <!-- 비활성화 -->
+							AND BSTATE = 'D'
+						</when>
+					</choose>
+				</if>
+			</where>
+			
+		    ORDER BY B.BID DESC
+	</select>
   	
+  	<delete id="deleteBoard" parameterType="string">
+		DELETE FROM BOARD
+		    WHERE BID = #{bid}
+  	</delete>
   
+  	<!-- 신고댓글 -->
+  	<select id="selectReport" parameterType="map" resultType="AdminReport">
+		SELECT DECODE(RR.REPID, 0, '광고/상업성', 1, '비방/욕설', 2, '개인정보 유출', 3, '청소년 유해', 4, '명예훼손/저작권 침해', 5, '도배성', 6, '불명확/추측성') AS REASON,
+		        R.RID, R.RCONTENT, R.MID AS POSTER, TO_CHAR(RR.RCREATE, 'YYYY.MM.DD HH24:MI:SS') AS RCREATE,
+		        (SELECT COUNT(*) FROM RREPORT WHERE RID = R.RID) AS CNT, RR.MID AS REPORTER
+		    FROM REPLY R JOIN RREPORT RR ON R.RID = RR.RID
+		    <where> <!-- WHERE을 구문 앞에 추가해줌. AND/OR로 시작한다면 없애줌 -->
+				<choose>
+					<when test="reason == 1">
+						AND RR.REPID = 0
+					</when>
+					<when test="reason == 2">
+						AND RR.REPID = 1
+					</when>
+					<when test="reason == 3">
+						AND RR.REPID = 2
+					</when>
+					<when test="reason == 4">
+						AND RR.REPID = 3
+					</when>
+					<when test="reason == 5">
+						AND RR.REPID = 4
+					</when>
+					<when test="reason == 6">
+						AND RR.REPID = 5
+					</when>
+					<when test="reason == 6">
+						AND RR.REPID = 6
+					</when>
+				</choose>
+			</where>
+			<choose>
+				<when test="sort == 1">
+					ORDER BY CNT DESC, RCREATE DESC
+				</when>
+				<when test="sort == 2">
+					ORDER BY CNT ASC, RCREATE DESC
+				</when>
+				<when test="sort == 3">
+					ORDER BY RCREATE DESC
+				</when>
+				<when test="sort == 4">
+					ORDER BY RCREATE ASC
+				</when>
+				<otherwise>
+					ORDER BY RCREATE DESC
+				</otherwise>
+			</choose>
+  	</select>
+  
+    <delete id="deleteReply" parameterType="string">
+		DELETE FROM REPLY
+		    WHERE RID = #{rid}
+  	</delete>
+  
+    <delete id="deleteReport" parameterType="map">
+		DELETE FROM RREPORT
+		    WHERE RID = #{rid} AND MID = #{reporter} 
+  	</delete>
   
   
   

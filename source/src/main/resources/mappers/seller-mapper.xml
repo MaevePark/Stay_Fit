@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="seller">
+  
+  	<!-- 상품목록 -->
+  	<select id="selectProduct" parameterType="map" resultType="SellerProduct">
+		SELECT P.PID, C.CNAME, P.PNAME, P.PIMAGE, TO_CHAR(P.PPRICE, '999,999,999') AS PRICECHAR, P.PPRICE AS PRICENUM, P.PSALES, P.PSTOCK, P.PLINK
+    		FROM PRODUCT P JOIN CATEGORY C ON P.CID = C.CID
+   			<where>
+				<if test="searchword != null and !searchword.equals('')">
+					AND P.PNAME LIKE '%'||#{searchword}||'%'
+				</if>
+				<if test="category != 0">
+					AND P.CID = #{category}
+				</if>
+			</where>
+			<choose>
+				<when test="sort == 1">
+					ORDER BY PRICENUM DESC, P.PID DESC
+				</when>
+				<when test="sort == 2">
+					ORDER BY PRICENUM ASC, P.PID DESC
+				</when>
+				<when test="sort == 3">
+					ORDER BY P.PSALES DESC, P.PID DESC
+				</when>
+				<when test="sort == 4">
+					ORDER BY P.PSALES ASC, P.PID DESC
+				</when>
+				<when test="sort == 5">
+					ORDER BY P.PSTOCK DESC, P.PID DESC
+				</when>
+				<when test="sort == 6">
+					ORDER BY P.PSTOCK ASC, P.PID DESC
+				</when>
+				<otherwise>
+					ORDER BY P.PID DESC
+				</otherwise>
+			</choose>
+  	</select>
+  	
+  	
+  	<!-- 상품수정 -->
+  	<update id="updateProduct" parameterType="SellerProduct">
+	  	UPDATE PRODUCT SET 
+	        PNAME = #{pname},
+	        PIMAGE = #{pimage},
+	        PPRICE = #{pricenum},
+	        PSTOCK = #{pstock},
+	        PLINK = #{plink}
+	    WHERE PID = #{pid}
+  	</update>
+  	
+  	
+  	<!-- 상품등록 -->
+  	<insert id="insertProduct" parameterType="SellerProduct">
+	  	INSERT INTO PRODUCT (PID, CID, PNAME, PIMAGE, PPRICE, PSTOCK, PLINK) 
+		    VALUES ((SELECT NVL(MAX(PID), 0)+1 FROM PRODUCT),
+		        #{cid}, #{pname}, #{pimage}, #{pricenum}, #{pstock}, #{plink})
+  	</insert>
+  
+</mapper>

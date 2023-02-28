@@ -11,7 +11,7 @@
 						<div class="header__top__right">
 
                             <div class="header__top__right__auth">
-                                <a href="<%=request.getContextPath()%>/mypage/myprofile"><i class="fa fa-user"></i> 마이페이지</a>
+                                <a href="<%=request.getContextPath()%>/mypage"><i class="fa fa-user"></i> 마이페이지</a>
                             </div>
 						
 							<div class="header__top__right__auth">
@@ -19,11 +19,11 @@
 							</div>
 						
 							<div class="header__top__right__auth">
-                                <a href="<%=request.getContextPath()%>/mypage/mywish"><i class="fa fa-heart"></i></a>
+                                <a href="<%=request.getContextPath()%>/mypage/wish"><i class="fa fa-heart"></i></a>
                             </div>
                             
 							<div class="header__top__right__auth">
-                                <a href="<%=request.getContextPath()%>/mypage/mycart"><i class="fa fa-shopping-bag"></i></a>
+                                <a href="<%=request.getContextPath()%>/mypage/cart"><i class="fa fa-shopping-bag"></i></a>
                             </div>
 						
 						<!-- 비회원, 로그아웃
@@ -48,7 +48,7 @@
 					<nav class="header__menu">
 						<ul>
 							<li class="active"><a href="<%=request.getContextPath()%>/shop">상품</a></li>
-							<li><a href="#">게시판</a>
+							<li><a href="<%=request.getContextPath()%>/board/list?bcid=0">게시판</a>
 								<ul class="header__menu__dropdown">
 									<li><a href="<%=request.getContextPath()%>/board/list?bcid=0">공지사항</a></li>
 									<li><a href="<%=request.getContextPath()%>/board/list?bcid=1">식단</a></li>
@@ -56,7 +56,7 @@
 									<li><a href="<%=request.getContextPath()%>/board/list?bcid=3">고민&질문</a></li>
 								</ul>
 							</li>
-							<li><a href="#">건강관리</a>
+							<li><a a href="<%=request.getContextPath()%>/health/caloriewrite">건강관리</a>
 								<ul class="header__menu__dropdown">
 									<li><a href="<%=request.getContextPath()%>/health/caloriewrite">칼로리 처방 받기</a></li>
 									<li><a href="<%=request.getContextPath()%>/health/bmiwrite">BMI 지수 조회</a></li>

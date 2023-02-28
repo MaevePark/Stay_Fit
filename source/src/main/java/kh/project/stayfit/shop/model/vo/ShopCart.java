@@ -9,7 +9,7 @@ import lombok.ToString;
 @ToString
 @Getter
 @Setter
-public class ShopBasket {
+public class ShopCart {
 	//장바구니에 추가
 //	"PID"	NUMBER		NOT NULL,
 //	"MID"	NUMBER		NOT NULL,
@@ -19,5 +19,5 @@ public class ShopBasket {
 	private int pid;
 	private int mid;
 	private int pcount;
-	private Timestamp cupdate; //담당자 import확인
+	private Timestamp ccreate; //담당자 import확인
 }

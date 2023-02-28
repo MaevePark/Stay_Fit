@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class FileSave {
 	public static String FILE_BOARD_PATH = "\\resources\\board\\";
 	public static String FILE_PROFILE_PATH = "\\resources\\profile\\";
+	public static String FILE_PRODUCT_PATH = "\\resources\\product\\";
 	
 	// MultipartFile 형태에서 file용 fileServer에 저장하고 저장한 file의 이름을 return하도록 설계  
 	public static String saveFile(MultipartFile multipartFile

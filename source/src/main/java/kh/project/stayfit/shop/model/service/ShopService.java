@@ -1,5 +1,9 @@
 package kh.project.stayfit.shop.model.service;
 
+import java.util.List;
+
+import kh.project.stayfit.shop.model.vo.Nutrition;
+
 public interface ShopService {
 	
 //	//쇼핑몰 페이지
@@ -18,6 +22,8 @@ public interface ShopService {
 
 //	//장바구니에 추가
 //	public int addBasket(int, int, int) throws Exception;
+	
+	public int insertNutrition(List<Nutrition> nvoList) throws Exception;
 	
 	
 

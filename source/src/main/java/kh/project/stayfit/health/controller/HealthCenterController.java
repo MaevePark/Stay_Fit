@@ -12,8 +12,8 @@ import kh.project.stayfit.health.model.service.HealthCenterService;
 @RequestMapping("/health")
 public class HealthCenterController {
 	
-//	@Autowired
-//	private HealthCenterService service;
+	@Autowired
+	private HealthCenterService service;
 	
 	@GetMapping("/centerlist")
 	public ModelAndView healthCenter(ModelAndView mv) {

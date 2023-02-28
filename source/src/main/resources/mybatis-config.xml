@@ -11,13 +11,37 @@
 		<typeAlias type="kh.project.stayfit.admin.model.vo.AdminDashboard2" alias="AdminDashboard2"/>
 		<typeAlias type="kh.project.stayfit.admin.model.vo.AdminDashboard3" alias="AdminDashboard3"/>
 		<typeAlias type="kh.project.stayfit.admin.model.vo.AdminMember" alias="AdminMember"/>
+		<typeAlias type="kh.project.stayfit.admin.model.vo.AdminBoard" alias="AdminBoard"/>
+		<typeAlias type="kh.project.stayfit.admin.model.vo.AdminReport" alias="AdminReport"/>
+		<typeAlias type="kh.project.stayfit.seller.model.vo.SellerProduct" alias="SellerProduct"/>
 		<typeAlias type="kh.project.stayfit.board.model.vo.Board" alias="Board"/>
+		
+		<typeAlias type="kh.project.stayfit.mypage.model.vo.MypageBMark" alias="MypageBMark"/>
+		<typeAlias type="kh.project.stayfit.mypage.model.vo.MypageBoard" alias="MypageBoard"/>
+		<typeAlias type="kh.project.stayfit.mypage.model.vo.MypageCart" alias="MypageCart"/>
+		<typeAlias type="kh.project.stayfit.mypage.model.vo.MypageLikeReply" alias="MypageLikeReply"/>
+		<typeAlias type="kh.project.stayfit.mypage.model.vo.MypageMember" alias="MypageMember"/>
+		<typeAlias type="kh.project.stayfit.mypage.model.vo.MypageOrder" alias="MypageOrder"/>
+		<typeAlias type="kh.project.stayfit.mypage.model.vo.MypageReply" alias="MypageReply"/>
+		<typeAlias type="kh.project.stayfit.mypage.model.vo.MypageWish" alias="MypageWish"/>
+		
+		<typeAlias type="kh.project.stayfit.shop.model.vo.Category" alias="Category"/>
+		<typeAlias type="kh.project.stayfit.shop.model.vo.ShopCart" alias="ShopCart"/>
+		<typeAlias type="kh.project.stayfit.shop.model.vo.ShopProduct" alias="ShopProduct"/>
+		<typeAlias type="kh.project.stayfit.shop.model.vo.ShopWish" alias="ShopWish"/>
+		
+		<typeAlias type="kh.project.stayfit.health.model.vo.HealthCenter" alias="HealthCenter"/>
 	</typeAliases>
+
 	
 	<mappers>
 		<mapper resource="mappers/member-mapper.xml"/>
 		<mapper resource="mappers/admin-mapper.xml"/>
+		<mapper resource="mappers/seller-mapper.xml"/>
 		<mapper resource="mappers/board-mapper.xml"/>
+		<mapper resource="mappers/shop-mapper.xml"/>
+		<mapper resource="mappers/mypage-mapper.xml"/>
+		<mapper resource="mappers/health-mapper.xml"/>
 	</mappers>
 
 

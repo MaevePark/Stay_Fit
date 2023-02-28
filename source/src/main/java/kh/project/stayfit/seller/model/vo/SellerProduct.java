@@ -7,8 +7,7 @@ import lombok.ToString;
 @ToString
 @Getter
 @Setter
-public class SellerProduct { //사용여부 담당자기 결정 
-	//판매자페이지 - 상품목록페이지 //상품db??
+public class SellerProduct {
 //	"PID"	NUMBER		NOT NULL,
 //	"CID"	NUMBER		NOT NULL,
 //	"PNAME"	VARCHAR2(500)		NOT NULL,
@@ -17,13 +16,16 @@ public class SellerProduct { //사용여부 담당자기 결정
 //	"PSALES"	NUMBER	DEFAULT 0	NULL,
 //	"PSTOCK"	NUMBER	DEFAULT 0	NULL,
 //	"PSALE"	NUMBER(2)	DEFAULT 0	NOT NULL
+	
 	private int pid;
 	private int cid;
+	private String cname;
 	private String pname;
 	private String pimage;
-	private int pprice;
-	private int psales;
-	private int pstock;
-	private int psale;
-
+	private String pricechar;
+	private Integer pricenum;
+	private Integer psales; // int -> Integer로 바꾸면 insert등 할 때 입력값이 없어도 오류안남
+	private Integer pstock;
+	private String plink;
+	
 }

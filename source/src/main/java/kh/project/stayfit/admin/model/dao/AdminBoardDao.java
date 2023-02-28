@@ -1,39 +1,63 @@
 package kh.project.stayfit.admin.model.dao;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kh.project.stayfit.admin.model.vo.AdminBoard;
+import kh.project.stayfit.admin.model.vo.AdminMember;
+import kh.project.stayfit.admin.model.vo.AdminReport;
+
 @Repository
 public class AdminBoardDao {
+
 	@Autowired
 	private SqlSession sqlsession;
-	
-//	//상품 목록 페이지
-//	public int selectTotalCnt(String , int) throws Exception{
-//		return sqlsession.;
-//	}	
-//	public List<Board> List(int, int, String, int) throws Exception{
-//		return sqlsession.;
-//	}
 
-//	//게시물삭제
-//	public int delete(int) throws Exception{
-//		return sqlsession.;
-//	}
-	
-//	//신고 댓글 목록페이지
-//	public int selectTotalRCnt() throws Exception{
-//		return sqlsession.;
-//	}	
-//	public List<Report> selectRList(int, int) throws Exception;{
-//		return sqlsession
-//	}
-	
-//	//신고 댓글 삭제 lo
-//	public int reportDelete(int) thorws Exception{
-//		return sqlsession.;
-//	}
-	
+	// 게시물 목록 출력
+	public List<AdminBoard> selectBoard(String searchword, String category, String state) throws Exception {
 
+		// 매개변수 여러개를 넘겨줘야 하는 경우 -> Map으로 하나로 만듦
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("searchword", searchword);
+		map.put("category", category);
+		map.put("state", state);
+
+		return sqlsession.selectList("admin.selectBoard", map);
+	}
+
+	// 게시물 삭제
+	public int deleteBoard(String bid) throws Exception {
+		return sqlsession.delete("admin.deleteBoard", bid);
+	}
+
+	// 신고댓글 목록 출력
+	public List<AdminReport> selectReport(String reason, String sort) throws Exception {
+
+		// 매개변수 여러개를 넘겨줘야 하는 경우 -> Map으로 하나로 만듦
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("reason", reason);
+		map.put("sort", sort);
+
+		return sqlsession.selectList("admin.selectReport", map);
+	}
+	
+	// 신고댓글 삭제
+	public int deleteReply(String rid) throws Exception {
+		return sqlsession.delete("admin.deleteReply", rid);
+	}
+	
+	// 신고 삭제
+	public int deleteReport(String rid, String reporter) throws Exception {
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("rid", rid);
+		map.put("reporter", reporter);
+		
+		return sqlsession.delete("admin.deleteReport", map);
+	}
 }

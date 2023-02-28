@@ -1,8 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<script>
+// window.onload = function() {
+// 	$.ajax({
+// 		url:
+// 		,type:
+// 		,async:
+// 		,data:{}
+// 		,dataType:
+// 		,success:
+// 		,error:
+// 	});
+// }
+</script>
 
 <!-- Blog Section Begin -->
+<input type="hidden" name="mid" value="3">
 <section class="blog spad">
 	<div class="container">
 		<div class="row">
@@ -16,111 +31,29 @@
 				</h4>
 
 				<div class="row">
-					<div class="col-lg-4 col-md-6 col-sm-6">
-						<div class="product__item">
-							<div class="product__item__pic set-bg"
-								data-setbg="<%=request.getContextPath()%>/resources/img/product/product-1.jpg">
-								<ul class="product__item__pic__hover">
-									<li><a href="#">X</a></li>
-								</ul>
-							</div>
-							<div class="product__item__text">
-								<h6>
-									<a href="#">Crab Pool Security</a>
-								</h6>
-								<h5>$30.00</h5>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-6 col-sm-6">
-						<div class="product__item">
-							<div class="product__item__pic set-bg"
-								data-setbg="<%=request.getContextPath()%>/resources/img/product/product-2.jpg">
-								<ul class="product__item__pic__hover">
-									<li><a href="#">X</a></li>
-								</ul>
-							</div>
-							<div class="product__item__text">
-								<h6>
-									<a href="#">Crab Pool Security</a>
-								</h6>
-								<h5>$30.00</h5>
+				
+					<c:forEach items="${wishList }" var="list">
+						<div class="col-lg-4 col-md-6 col-sm-6">
+							<div class="product__item">
+								<div class="product__item__pic set-bg"
+									data-setbg="${list.pimage }">
+									<ul class="product__item__pic__hover">
+										<li><a href="#">X</a></li>
+									</ul>
+								</div>
+								<div class="product__item__text">
+									<h6>
+										<a href="#">${list.pname }</a>
+									</h6>
+									<h5>${list.pprice }원</h5>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="col-lg-4 col-md-6 col-sm-6">
-						<div class="product__item">
-							<div class="product__item__pic set-bg"
-								data-setbg="<%=request.getContextPath()%>/resources/img/product/product-3.jpg">
-								<ul class="product__item__pic__hover">
-									<li><a href="#">X</a></li>
-								</ul>
-							</div>
-							<div class="product__item__text">
-								<h6>
-									<a href="#">Crab Pool Security</a>
-								</h6>
-								<h5>$30.00</h5>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-6 col-sm-6">
-						<div class="product__item">
-							<div class="product__item__pic set-bg"
-								data-setbg="<%=request.getContextPath()%>/resources/img/product/product-4.jpg">
-								<ul class="product__item__pic__hover">
-									<li><a href="#">X</a></li>
-								</ul>
-							</div>
-							<div class="product__item__text">
-								<h6>
-									<a href="#">Crab Pool Security</a>
-								</h6>
-								<h5>$30.00</h5>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-6 col-sm-6">
-						<div class="product__item">
-							<div class="product__item__pic set-bg"
-								data-setbg="<%=request.getContextPath()%>/resources/img/product/product-5.jpg">
-								<ul class="product__item__pic__hover">
-									<li><a href="#">X</a></li>
-								</ul>
-							</div>
-							<div class="product__item__text">
-								<h6>
-									<a href="#">Crab Pool Security</a>
-								</h6>
-								<h5>$30.00</h5>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-6 col-sm-6">
-						<div class="product__item">
-							<div class="product__item__pic set-bg"
-								data-setbg="<%=request.getContextPath()%>/resources/img/product/product-6.jpg">
-								<ul class="product__item__pic__hover">
-									<li><a href="#">X</a></li>
-								</ul>
-							</div>
-							<div class="product__item__text">
-								<h6>
-									<a href="#">Crab Pool Security</a>
-								</h6>
-								<h5>$30.00</h5>
-							</div>
-						</div>
-					</div>
-
-
-
-					<div class="col-lg-12">
-						<div class="product__pagination blog__pagination">
-							<a href="#">1</a> <a href="#">2</a> <a href="#">3</a> <a href="#"><i
-								class="fa fa-long-arrow-right"></i></a>
-						</div>
-					</div>
+					</c:forEach>
+					
+					<!-- 페에징 -->
+					<jsp:include page="/WEB-INF/views/paging.jsp" />
+					
 				</div>
 			</div>
 		</div>

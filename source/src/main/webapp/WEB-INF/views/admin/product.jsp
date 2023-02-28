@@ -85,9 +85,9 @@
 			      <div class="card-body">
 			        <form>
 			          <div class="row mb-3">
-			            <label class="col-sm-2 col-form-label" for="basic-default-name">상품명</label>
+			            <label class="col-sm-2 col-form-label" for="searchword">상품명</label>
 			            <div class="col-sm-10">
-			              <input type="text" class="form-control" id="basic-default-name" placeholder="상품명을 입력하세요">
+			              <input type="text" class="form-control" id="searchword" placeholder="상품명을 입력하세요">
 			            </div>
 			          </div>
 			          <div class="row mb-3">

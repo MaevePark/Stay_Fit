@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	
 
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/css/mypagemyboard.css"
@@ -27,7 +29,7 @@
 					} else if (type.equals("likereply")) {
 				%>
 				<h4 class="fw-bold py-3 mb-4">
-					<span class="text-muted fw-light">마이페이지 /</span> 공감한 글
+					<span class="text-muted fw-light">마이페이지 /</span> 공감한 댓글
 				</h4>
 				<%
 					} else if (type.equals("myboard")) {
@@ -36,13 +38,19 @@
 					<span class="text-muted fw-light">마이페이지 /</span> 작성한 글
 				</h4>
 				<%
+					} else if (type.equals("myreply")) {
+				%>
+				<h4 class="fw-bold py-3 mb-4">
+					<span class="text-muted fw-light">마이페이지 /</span> 작성한 댓글
+				</h4>
+				<%
 					}
 				%>
 
 				<div class="hero__search__form">
 					<form action="#">
 						<div class="hero__search__categories">
-							<select name="">
+							<select name="boardCategory">
 								<option value="1" selected>카테고리 전체</option>
 								<option value="2">식단</option>
 								<option value="3">팁&노하우</option>
@@ -50,13 +58,22 @@
 							</select>
 						</div>
 						<div class="hero__search__categories">
-							<select name="">
-								<option value="1" selected>전체</option>
-								<option value="2">작성자</option>
-								<option value="3">제목</option>
+							<select name="searchRange">
+								<c:if test="${type.equals('likereply') || type.equals('myreply') }">
+									<option value="1" selected>전체</option>
+									<option value="2">댓글 내용</option>
+									<option value="3">게시글 제목</option>
+									<option value="4">게시글 내용</option>
+								</c:if>
+								<c:if test="${!type.equals('likereply') && !type.equals('myreply') }">
+									<option value="1" selected>전체</option>
+									<option value="2">제목</option>
+									<option value="3">내용</option>
+								</c:if>
+								
 							</select>
 						</div>
-						<input type="text" placeholder="검색어를 입력해주세요.">
+						<input type="text" name="searchword" placeholder="검색어를 입력해주세요.">
 						<button type="submit" class="site-btn">SEARCH</button>
 					</form>
 				</div>
@@ -248,12 +265,8 @@
 					<!--/ Basic Bootstrap Table -->
 				</div>
 
-				<div class="col-lg-12">
-					<div class="product__pagination blog__pagination">
-						<a href="#">1</a> <a href="#">2</a> <a href="#">3</a> <a href="#"><i
-							class="fa fa-long-arrow-right"></i></a>
-					</div>
-				</div>
+				<!-- 페에징 -->
+				<jsp:include page="/WEB-INF/views/paging.jsp" />
 			</div>
 		</div>
 	</div>
