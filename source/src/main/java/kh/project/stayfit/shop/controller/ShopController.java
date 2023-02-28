@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -25,6 +26,7 @@ import kh.project.stayfit.common.Crawling;
 import kh.project.stayfit.shop.model.service.ShopService;
 import kh.project.stayfit.shop.model.service.ShopServiceImpl;
 import kh.project.stayfit.shop.model.vo.Nutrition;
+import kh.project.stayfit.shop.model.vo.ShopProduct;
 
 
 @Controller
@@ -40,12 +42,27 @@ public class ShopController {
 		return mv;
 	}
 	
-	@GetMapping({"/go"})
+	
+	
+	
+	@GetMapping("/go")
 	public ModelAndView crawl(ModelAndView mv) {
-		crawl();
+		List<String> urlList = new ArrayList<String>();
+		urlList.add("https://dshop.dietshin.com/goods/goods_list.asp?pc_idx=52"); // ok
+		urlList.add("https://dshop.dietshin.com/goods/goods_list.asp?pc_idx=117"); // ok
+		urlList.add("https://dshop.dietshin.com/goods/goods_list.asp?pc_idx=129"); // ok
+		urlList.add("https://dshop.dietshin.com/goods/goods_list.asp?pc_idx=101"); // ok
+		urlList.add("https://dshop.dietshin.com/goods/goods_list.asp?pc_idx=130");
+		urlList.add("https://dshop.dietshin.com/goods/goods_list.asp?pc_idx=131");
+		urlList.add("https://dshop.dietshin.com/goods/goods_list.asp?pc_idx=51");
+		urlList.add("https://dshop.dietshin.com/goods/goods_list.asp?pc_idx=53");
+		for(int i=0; i<urlList.size(); i++) {
+			//crawl2(urlList.get(i), i+1);
+		}
+		
+		
 		return mv;
 	}
-	
 	
 	private void crawl() {
 		WebDriver driver = null;
@@ -229,4 +246,158 @@ public class ShopController {
 			driver.quit();
 		}
 	}
+	
+	private void crawl2(String url, int pcid) {
+		WebDriver driver = null;
+		WebDriverWait wait = null;
+		try {
+			DecimalFormat df = new DecimalFormat("#.##"); 
+			// drvier 설정 - 저는 d드라이브 work 폴더에 있습니다.
+			System.setProperty("webdriver.chrome.driver", "D:\\chrome_driver\\chromedriver.exe");
+			ChromeOptions options = new ChromeOptions();
+			options.addArguments("headless");
+
+			driver = new ChromeDriver(options);
+			wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+			// WebElement firstResult = new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(By.xpath("//a/h3")));
+			// 스크립트를 사용하기 위한 캐스팅
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+
+			// URL 접속
+			driver.get(url);
+			WebElement element = null;
+			
+			Map<String, List> allParams = new HashMap<String, List>();
+			List<Integer> cidList = new ArrayList<Integer>();
+			List<String> pnameList = new ArrayList<String>();
+			List<String> pimageList = new ArrayList<String>();
+			List<Integer> ppriceList = new ArrayList<Integer>();
+			List<Integer> pstockList = new ArrayList<Integer>(); Random random = new Random();
+			List<Integer> psaleList = new ArrayList<Integer>();
+			List<String> plinkList = new ArrayList<String>();
+			
+			Boolean loop = true;
+			while(loop) {
+				Thread.sleep(3000);
+				List<WebElement> elements = driver.findElements(By.cssSelector(".tb_mw_wrap"));
+				// 마지막 페이지를 제외한 나머지 페이지는 10개
+				int n = elements.size();
+				System.out.println("------------------------------------------------------------------------");
+				System.out.println("이 페이지에서 추출할 상품 개수 : "+n+"개");
+				for (int i=1; i<n+1; i++) {
+					System.out.println("******************************************************************");
+					System.out.println("i번째 : " +i);
+					Thread.sleep(2000);
+					//카테고리명
+					cidList.add(pcid);   
+					//상품명
+					element = driver.findElement(By.cssSelector("#container > div > div.main_tit_wrap > div.newp_list_wrap > ul > li:nth-child("+i+") > a > div > div > span"));
+					pnameList.add(element.getText());
+					Thread.sleep(1000);
+					//상품 이미지
+					String src = "";
+					elements = driver.findElements(By.cssSelector("#container > div > div.main_tit_wrap > div.newp_list_wrap > ul > li:nth-child("+i+") > a > div > p > img"));
+					if(elements.size() > 0) {
+						element = driver.findElement(By.cssSelector("#container > div > div.main_tit_wrap > div.newp_list_wrap > ul > li:nth-child("+i+") > a > div > p > img"));
+						src = element.getAttribute("src");
+					} else {
+						element = driver.findElement(By.cssSelector("#container > div > div.main_tit_wrap > div.newp_list_wrap > ul > li:nth-child("+i+") > a > div > div.c_thum_soldoutimg_w > p > img"));
+						src = element.getAttribute("src");
+					}
+					pimageList.add(src);
+					Thread.sleep(1000);
+					
+					elements = driver.findElements(By.cssSelector("#container > div > div.main_tit_wrap > div.newp_list_wrap > ul > li:nth-child("+i+") > a > div > div > p.best_n_price_w > span"));
+					System.out.println("------------------------------------------------------------------------");
+					System.out.println(elements.size());
+					//*[@id="container"]/div/div[1]/div[2]/ul/li[1]/a/div/div[2]/p[1]/span[2]
+					//*[@id="container"]/div/div[1]/div[2]/ul/li[2]/a/div/div[2]/p[1]/span[2]
+					if(elements.size() < 3) {
+						//원가
+						element = elements.get(0);
+						String price = element.getText();
+						price = price.replace("원", "");
+						price = price.replace(",", "");
+						ppriceList.add(Integer.parseInt(price));
+						Thread.sleep(1000);
+						//할인율
+						psaleList.add(0);
+						Thread.sleep(1000);
+					} else {
+						//원가
+						element = elements.get(1);
+						String price = element.getText();
+						price = price.replace("원", "");
+						price = price.replace(",", "");
+						ppriceList.add(Integer.parseInt(price));
+						Thread.sleep(1000);
+						//할인율
+						element = elements.get(2);
+						String sale = element.getText();
+						sale = sale.replace("%", "");
+						psaleList.add(Integer.parseInt(sale));
+						Thread.sleep(1000);
+					}
+					
+					//링크
+					element = driver.findElement(By.cssSelector("#container > div > div.main_tit_wrap > div.newp_list_wrap > ul > li:nth-child("+i+") > a"));
+					plinkList.add(element.getAttribute("href"));
+					//재고량
+					int randomStock = random.nextInt(45) + 5;
+					pstockList.add(randomStock);
+				}
+				
+				System.out.println("---8");
+				Thread.sleep(1000);
+				elements = driver.findElements(By.cssSelector("#container > div > div.module_n_page > ul > li.btn_n_next > a"));
+				if(elements.size() < 1) {
+					loop = false;
+				} else {
+					elements.get(0).sendKeys(Keys.ENTER);
+				}
+			}
+			System.out.println("---9");
+			allParams.put("cid", cidList);
+			allParams.put("pname", pnameList);
+			allParams.put("pimage", pimageList);
+			allParams.put("pprice", ppriceList);
+			allParams.put("pstock", pstockList);
+			allParams.put("psale", psaleList);
+			allParams.put("plink", plinkList);
+			
+			System.out.println("---10");
+			List<ShopProduct> spvoList = new ArrayList<ShopProduct>();
+			for(int j = 0; j<pnameList.size(); j++) {
+				System.out.println("---10_"+j);
+				System.out.println(allParams.get("cid").get(j));
+				System.out.println(allParams.get("pname").get(j));
+				System.out.println(allParams.get("pimage").get(j));
+				System.out.println(allParams.get("pprice").get(j));
+				System.out.println(allParams.get("pstock").get(j));
+				System.out.println(allParams.get("psale").get(j));
+				System.out.println(allParams.get("plink").get(j));
+				
+				ShopProduct spvo = new ShopProduct();
+				spvo.setCid(cidList.get(j));
+				spvo.setPname(pnameList.get(j));
+				spvo.setPimage(pimageList.get(j));
+				spvo.setPprice(ppriceList.get(j));
+				spvo.setPstock(pstockList.get(j));
+				spvo.setPsale(psaleList.get(j));
+				spvo.setPlink(plinkList.get(j));
+				
+				spvoList.add(spvo);
+			}
+			System.out.println("---11");
+			System.out.println(service.insertProduct(spvoList));
+			
+		} catch (Throwable e) {
+			e.printStackTrace();
+		} finally {
+			driver.close();
+			driver.quit();
+		}
+	}
+	
 }

@@ -13,6 +13,26 @@
 	SELECT NVL(MAX(ID), 0)+1 MAXID FROM NUTRITION
   	</insert>
   	
+  	<!-- 상품 등록 -->
+  	<insert id="insertProduct" parameterType="list">
+  	INSERT all 
+  	<foreach collection="list" item="vo" index="idx">
+	  	INTO PRODUCT (
+	  		PID, CID, PNAME, PIMAGE, PPRICE, PSALES, PSTOCK, PSALE, PLINK) 
+		    VALUES (MAXID+${idx}
+		    	, #{vo.cid}
+		    	, #{vo.pname}
+		    	, #{vo.pimage}
+		    	, #{vo.pprice}
+		    	, 0
+		    	, #{vo.pstock}
+		    	, #{vo.psale}
+		    	, #{vo.plink}
+		    	)
+  	</foreach>
+	SELECT NVL(MAX(PID), 0)+1 MAXID FROM PRODUCT
+  	</insert>
+  	
   	
 
 

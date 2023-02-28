@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kh.project.stayfit.shop.model.dao.ShopDao;
 import kh.project.stayfit.shop.model.vo.Nutrition;
+import kh.project.stayfit.shop.model.vo.ShopProduct;
 
 @Service
 public class ShopServiceImpl implements ShopService{
@@ -57,9 +58,14 @@ public class ShopServiceImpl implements ShopService{
 	@Override
 	public int insertNutrition(List<Nutrition> nvoList) throws Exception{
 		int result = 0;
-		
 		result = dao.insertNutrition(nvoList);
-		
+		return result;
+	}
+	
+	@Override
+	public int insertProduct(List<ShopProduct> spvoList) throws Exception{
+		int result = 0;
+		result = dao.insertProduct(spvoList);
 		return result;
 	}
 

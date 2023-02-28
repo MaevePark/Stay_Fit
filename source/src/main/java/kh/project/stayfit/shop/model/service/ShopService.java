@@ -3,6 +3,7 @@ package kh.project.stayfit.shop.model.service;
 import java.util.List;
 
 import kh.project.stayfit.shop.model.vo.Nutrition;
+import kh.project.stayfit.shop.model.vo.ShopProduct;
 
 public interface ShopService {
 	
@@ -25,6 +26,6 @@ public interface ShopService {
 	
 	public int insertNutrition(List<Nutrition> nvoList) throws Exception;
 	
-	
+	public int insertProduct(List<ShopProduct> spvoList) throws Exception;
 
 }

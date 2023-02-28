@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kh.project.stayfit.shop.model.vo.Nutrition;
+import kh.project.stayfit.shop.model.vo.ShopProduct;
 
 @Repository
 public class ShopDao {
@@ -48,14 +49,13 @@ public class ShopDao {
 	//영양데이터 insert
 	public int insertNutrition(List<Nutrition> nvoList) throws Exception{
 		int result = 0;
-//		List<Integer> insertResult = new ArrayList<Integer>();
-//		
-//		for(int i=0; i<nvoList.size(); i++) {
-//			
-//		}
 		result = sqlsession.insert("shop.insertNutrition", nvoList);
-
-		
+		return result;
+	}
+	
+	public int insertProduct(List<ShopProduct> nvoList) throws Exception{
+		int result = 0;
+		result = sqlsession.insert("shop.insertProduct", nvoList);
 		return result;
 	}
 
