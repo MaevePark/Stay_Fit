@@ -111,6 +111,7 @@
 									<th>키</th>
 									<td><input type="text" class="ipt2" style="width: 95px"
 										id="stature" name="stature" maxlength="3"
+										value="175"
 										onkeydown="this.value=this.value.replace(/[^0-9]/g,'')"
 										onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"
 										onblur="this.value=this.value.replace(/[^0-9]/g,'')"><span
@@ -120,6 +121,7 @@
 									<th>몸무게</th>
 									<td><input type="text" class="ipt2" style="width: 95px"
 										id="weight" name="weight" maxlength="3"
+										value="75"
 										onkeydown="this.value=this.value.replace(/[^0-9]/g,'')"
 										onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"
 										onblur="this.value=this.value.replace(/[^0-9]/g,'')"><span
