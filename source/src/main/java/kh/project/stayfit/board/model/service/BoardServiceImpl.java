@@ -9,9 +9,17 @@ import kh.project.stayfit.board.model.dao.BoardDao;
 import kh.project.stayfit.board.model.vo.Board;
 
 @Service
-public class BoardServiceImpl implements BoardService{
+public class BoardServiceImpl implements BoardService {
 	@Autowired
 	private BoardDao dao;
+
+	// 게시판 list페이지 글목록 출력
+//	@Override
+//	public List<Board> boardlist(int bcid) throws Exception {
+//		List<Board> blist = null;
+//		blist = dao.boardlist(bcid);
+//		return blist;
+//	}
 	
 	// 게시글 페이지, 글검색
 	@Override
@@ -53,13 +61,13 @@ public class BoardServiceImpl implements BoardService{
 //	public int selectTotalCnt() throws Exception{
 //		return ;
 //	}
-		
+
 //	//게시판 글 등록
 //	@Override
 //	public int write(Board) throws Exception{
 //		return ;
 //	}
-	
+
 //	//게시판 글 검색, 페이징
 //	@Override
 //	public List<Board> selectList(int ,int , String ) throws Exception{
@@ -69,19 +77,19 @@ public class BoardServiceImpl implements BoardService{
 //	public int selectTotalCnt(String) throws Exception{
 //		return ;
 //	}
-	
+
 //	//게시글 수정
 //	@Override
 //	public int update(Board ) throws Exception{
 //		return ;
 //	}
-	
+
 //	//게시글 삭제
 //	@Override
 //	public int delete(int) throws Exception{
 //		return ;
 //	}
-	
+
 //	//게시글 상세페이지
 //	@Override
 //	public List<Board> read(int ) throws Exception{
@@ -91,7 +99,7 @@ public class BoardServiceImpl implements BoardService{
 //	public List<Reply> seletList(int) throws Exception{
 //		return ;
 //	}
-	
+
 //	//게시글 북마크
 //	@Override
 //	public int bmark(int ,String , ???) throws Exception{

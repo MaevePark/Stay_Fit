@@ -1,7 +1,10 @@
 package kh.project.stayfit.board.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -44,12 +47,14 @@ public class BoardDao {
 		Board bone = sqlsession.selectOne("board.selectone", bid);
 		return bone;
 	}
-	//게시글 조회수 증가
+
+	// 게시글 조회수 증가
 	public int bvcupdate(int bid) {
 		int bvcount = sqlsession.update("board.bvcupdate", bid);
 		return bvcount;
-	} 
-	//게시글 삭제
+	}
+
+	// 게시글 삭제
 	public int bdelete(int bid) {
 		return sqlsession.delete("board.bdelete", bid);
 	}
@@ -61,12 +66,12 @@ public class BoardDao {
 //	public int selectTotalCnt() throws Exception{
 //		return sqlsession.;
 //	}
-	
+
 //	//게시판 글 등록
 //	public int write(Board) throws Exception{
 //		return sqlsession.;
 //	}
-	
+
 //	//게시판 글 검색, 페이징
 //	public List<Board> selectList(int ,int , String ) throws Exception{
 //		return sqlsession.;
@@ -74,7 +79,7 @@ public class BoardDao {
 //	public int selectTotalCnt(String) throws Exception{
 //		return sqlsession.;
 //	}
-	
+
 //	//게시글 수정
 //	public int update(Board ) throws Exception{
 //		return sqlsession.;
