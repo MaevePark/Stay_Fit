@@ -194,7 +194,7 @@ function bmiIndex() {
     var weight = $("#weight").val(); // 몸무게
     console.log("몸무게:" + weight );
     
-	var heightInMeters = height / 100; // cm->m 단위 변환
+	var heightInMeters = height / 100; // 단위 변환
     
 	var result = weight / (heightInMeters * heightInMeters); // bmi 계산
     console.log("bmi 계산 값 : " + result);
