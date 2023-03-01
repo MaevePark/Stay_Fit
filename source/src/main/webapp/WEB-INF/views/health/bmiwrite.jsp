@@ -145,34 +145,38 @@
 </section>
 <!-- Blog Section End -->
 <script>
-
 //<--------------------------------------------------------------------
 // 1. 연령 계산식  시작
 function bmiIndex() {
+	// 만 나이 계산 공식
+	// 만나이 = (현재 연도 - 출생 연도) - 1 + ((현재 월, 일) >= (출생 월, 일))
 	
+	var byear= $("#byear").val(); // 출생 년도
+	console.log("출생 년도:" + byear ); 
 	
-/*     var byear= $("#byear").val();
-    var bmonth= $("#bmonth").val();
-    var bday= $("#bday").val(); */
+    var bmonth= $("#bmonth").val(); // 출생 월
+    console.log("출생 월:" + bmonth ); 
     
-    var height= $("#stature").val();	
-    var weight= $("#weight").val();
-	
-/*     const getAge = () => {
-    	
-        const birthday = new Date(byear + "-" + bmonth + "-" + bday);
-        console.log(byear+"-"+bmonth+"-"+bday);
-    	const today = new Date();
-    	console.log(birthday);
-    	let result = 0;
-        result = today.getFullYear() - birthday.getFullYear();
-        birthday.setFullYear(today.getFullYear());
-        if (today.getTime() < birthday.getTime()) {
-            result--;
-        }
-        console.log("age:"+ result);
-        return result;
-    }; */
+    var bday= $("#bday").val(); // 출생 일
+    console.log("출생 일:" + bday ); 
+    
+    var today = new Date(); // 현재 날짜
+    console.log("현재 날짜:" + today ); 
+    
+    var birthday = new Date(byear + "-" + bmonth + "-" + bday); // 생년 월일
+    console.log("생년 월일:" + birthday ); 
+    
+    var age = today.getFullYear() - birthday.getFullYear(); // 나이 계산
+    console.log("나이 계산:" + age ); 
+    
+ 	// 생일이 아직 오지 않은 경우 나이에서 1을 빼줌
+    if (today.getMonth() < birthday.getMonth() || 
+    	(today.getMonth() == birthday.getMonth() && today.getDate() < birthday.getDate())) {
+    	  age--;
+    	} 
+ 	
+    $("[name=age]").val(age); // age 에 담기    
+    console.log("만나이 계산 값:" + age);
 
 // 1. 연령 계산식 끝
 //-------------------------------------------------------------------->
@@ -180,60 +184,69 @@ function bmiIndex() {
 //<--------------------------------------------------------------------
 // 2. 당신의 bmi 지수 계산식 시작
 	
-	// bmi 지수 공식
-	// bmi = 체중(kg) / (키(m) * 키(m))   
-    //var bmi_index = weight / (height * height);
-    //bmi_index.toFixed(2); // 소수점 둘째자리까지 표시
- 
-
-    $("#frmBmi").submit();	
-}
+	// bmi 지수 계산 공식
+	// bmi = 체중(kg) / (키(m) * 키(m))
+	// TODO 남, 여 구분 알아봐야 함 
+	
+	var height = $("#stature").val(); // 키
+    console.log("키:" + height ); 
+    
+    var weight = $("#weight").val(); // 몸무게
+    console.log("몸무게:" + weight );
+    
+	var heightInMeters = height / 100; // cm->m 단위 변환
+    
+	var result = weight / (heightInMeters * heightInMeters); // bmi 계산
+    console.log("bmi 계산 값 : " + result);
+    
+    var bmi_index = result.toFixed(2); // 소수점 둘째자리까지 표시
+    console.log("bmi 계산 값 : " + bmi_index);
+    
+    $("[name=bmi_index]").val(bmi_index); // bmi_index 에 담기
 
 // 2. 당신의 bmi 지수 계산식 끝
 //-------------------------------------------------------------------->
 
 //<--------------------------------------------------------------------
 // 3. bmi 페이지 입력값 없을 시 alert 창 띄우기  시작 
-/* function bmilist() {
+
 	if ($("#byear").val().replace(/(^\s*)|(\s*$)/g, "") == '') {
 		alert("태어난 년도를 입력해주세요.");
 		$("#byear").val("");
 		$("#byear").focus();
 		return;
 	}
-
+	
 	if ($("#bmonth").val().replace(/(^\s*)|(\s*$)/g, "") == '') {
 		alert("태어난 월을 입력해주세요.");
 		$("#bmonth").val("");
 		$("#bmonth").focus();
 		return;
 	}
-
+	
 	if ($("#bday").val().replace(/(^\s*)|(\s*$)/g, "") == '') {
 		alert("태어난 일을 입력해주세요.");
 		$("#bday").val("");
 		$("#bday").focus();
 		return;
 	}
-
+	
 	if ($("#stature").val().replace(/(^\s*)|(\s*$)/g, "") == '') {
 		alert("키를 입력해주세요.");
 		$("#stature").val("");
 		$("#stature").focus();
 		return;
 	}
-
+	
 	if ($("#weight").val().replace(/(^\s*)|(\s*$)/g, "") == '') {
 		alert("몸무게를 입력해주세요.");
 		$("#weight").val("");
 		$("#weight").focus();
 		return;
 	}
-
-	var frm = document.frm;
-	frm.action = "/health/bmilist.jsp"
-	frm.submit();
-} */
+	
+	$("#frmBmi").submit(); // submit으로 1,2,3 최종 제출
+}
 // 3. bmi 페이지 입력값 없을 시 alert 창 띄우기  끝
 //-------------------------------------------------------------------->
 </script>
