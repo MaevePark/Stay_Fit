@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-[[${healthInfoVo }]]
 
 <!-- Blog Section Begin -->
 <section class="blog spad">
@@ -39,15 +38,15 @@
 							</tr>
 							<tr>
 								<th>연령</th>
-								<td>${healthInfoVo.age }</td>
+								<td>만 ${healthInfoVo.age } 세</td>
 							</tr>
 							<tr>
 								<th>키</th>
-								<td>${healthInfoVo.stature }</td>
+								<td>${healthInfoVo.stature } cm</td>
 							</tr>
 							<tr>
 								<th>몸무게</th>
-								<td>${healthInfoVo.weight }</td>
+								<td>${healthInfoVo.weight } kg</td>
 							</tr>
 						</tbody>
 					</table>
