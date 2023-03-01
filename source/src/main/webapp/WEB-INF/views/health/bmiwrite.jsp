@@ -186,7 +186,7 @@ function bmiIndex() {
 	
 	// bmi 지수 계산 공식
 	// bmi = 체중(kg) / (키(m) * 키(m))
-	// TODO 남, 여 구분 알아봐야 함 
+	// TODO 남, 여 구분
 	
 	var height = $("#stature").val(); // 키
     console.log("키:" + height ); 
@@ -194,9 +194,12 @@ function bmiIndex() {
     var weight = $("#weight").val(); // 몸무게
     console.log("몸무게:" + weight );
     
-	var heightInMeters = height / 100; // 단위 변환
-    
-	var result = weight / (heightInMeters * heightInMeters); // bmi 계산
+ 	// 단위 변환
+	var heightInMeters = height / 100; 
+	console.log("단위 변환:" + heightInMeters );
+	
+	// bmi 계산
+	var result = weight / (heightInMeters * heightInMeters); 
     console.log("bmi 계산 값 : " + result);
     
     var bmi_index = result.toFixed(2); // 소수점 둘째자리까지 표시
