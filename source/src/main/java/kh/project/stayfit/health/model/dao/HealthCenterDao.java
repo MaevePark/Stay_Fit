@@ -15,7 +15,7 @@ public class HealthCenterDao {
 	private SqlSession sqlSession;
 
 	// 게시글 목록 조회
-	public List<HealthCenter> selectCenter() throws Exception {
+	public List<HealthCenter> selectCenter(int lid) throws Exception {
 		return sqlSession.selectList("healthcenter.selectCenter");
 	}
 }

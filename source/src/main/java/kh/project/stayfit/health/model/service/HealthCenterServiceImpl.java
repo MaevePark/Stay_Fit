@@ -17,7 +17,7 @@ public class HealthCenterServiceImpl implements HealthCenterService {
 	
 	// 게시글 목록 조회
 	@Override
-	public List<HealthCenter> selectCenter() throws Exception {
-		return dao.selectCenter();
+	public List<HealthCenter> selectCenter(int lid) throws Exception {
+		return dao.selectCenter(lid);
 	}
 }
