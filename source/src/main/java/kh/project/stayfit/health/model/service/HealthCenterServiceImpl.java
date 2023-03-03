@@ -5,21 +5,19 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kh.project.stayfit.health.model.dao.HealthCenterDao;
 import kh.project.stayfit.health.model.vo.HealthCenter;
 
 
 @Service
 public class HealthCenterServiceImpl implements HealthCenterService {
+	
 	@Autowired
-	private HealthCenterService dao;
-
+	private HealthCenterDao dao;
+	
+	// 게시글 목록 조회
 	@Override
-	public List<HealthCenter> selectList() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public List<HealthCenter> selectCenter() throws Exception {
+		return dao.selectCenter();
 	}
-
-
-	
-	
 }

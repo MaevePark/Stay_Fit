@@ -6,6 +6,6 @@ import kh.project.stayfit.health.model.vo.HealthCenter;
 
 public interface HealthCenterService {
 	
-	//보건소 list 목록 출력
-	public List<HealthCenter> selectList() throws Exception;
+	// 게시글 목록 조회
+	public List<HealthCenter> selectCenter() throws Exception;
 }

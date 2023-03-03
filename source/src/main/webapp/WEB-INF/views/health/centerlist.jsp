@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-    <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/mypagemyboard.css" type="text/css">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/mypagemyboard.css" type="text/css">
+[[${centerList }]]
 <!-- Blog Section Begin -->
 <section class="blog spad">
 	<div class="container">
@@ -12,9 +14,7 @@
 
 			<div class="col-lg-10 col-md-10">
 				<div class="row">
-
-
-
+				
 					<div class="hero__search__form">
 						<form action="#">
 							<div class="hero__search__categories">
@@ -35,13 +35,7 @@
 									<option value="14">제주도</option>
 								</select>
 							</div>
-							<!--                                 <div class="hero__search__categories">
-                                	<select name="">
-                                    	<option value="1" selected>전체</option>
-                                    	<option value="2">작성자</option>
-                                    	<option value="3">제목</option>
-                                    </select>
-                                </div> -->
+
 							<input type="text" placeholder="검색어를 입력해주세요.">
 							<button type="submit" class="site-btn">SEARCH</button>
 						</form>
@@ -67,13 +61,12 @@
 										<tr>
 											<td><i class="fab fa-angular fa-lg text-danger me-3"></i>
 												<strong>강남구 보건소</strong></td>
-											<td colspan="3">주소주소주소주소주소주소주소주소주소주소주소주소주소주소주소주소주소주소주소주소</td>
+											<td colspan="3"></td>
 											<td><span class="badge bg-label-primary me-1">02-000-0000</span></td>
 											<td>
-												<!-- 위치 링크 시작 -->
-												<div class="">
-													<a class="" href=""></a>
-												</div> 
+												<!-- 위치 링크 시작 -->						
+												<a id="map" style="cursor:pointer" onclick="setHealthMap('강남구 보건소', '37.51630311339761', '127.04227756939835');">
+													<img src="<%=request.getContextPath()%>/resources/img/health/btn_spot.gif" alt="위치"></a>
 												<!-- 위치 링크 끝 -->
 											</td>
 										</tr>
@@ -137,3 +130,13 @@
 	</div>
 </section>
 <!-- Blog Section End -->
+<script>
+//<--------------------------------------------------------------------
+// 1. kakao map 이동 시작
+function setHealthMap(location_name, latitude, longitude) {
+	window.open ("https://map.kakao.com/link/map/" + 
+			location_name+"," + latitude+"," + longitude); // link/map/장소이름,위도,경도 새로운 창으로 열기
+}
+// 1. kakao map 이동 끝
+//-------------------------------------------------------------------->
+</script>
