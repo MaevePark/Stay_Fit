@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/mypagemyboard.css" type="text/css">
-[[${centerList }]]
+<%-- [[${centerList }]] --%>
 <!-- Blog Section Begin -->
 <section class="blog spad">
 	<div class="container">
@@ -18,21 +18,21 @@
 					<div class="hero__search__form">
 						<form action="#">
 							<div class="hero__search__categories">
-								<select name="">
-									<option value="1" selected>전체</option>
-									<option value="2">서울특별시</option>
-									<option value="3">부산광역시</option>
-									<option value="4">인천광역시</option>
-									<option value="5">대전광역시</option>
-									<option value="6">대구광역시</option>
-									<option value="7">광주광역시</option>
-									<option value="8">울산광역시</option>
-									<option value="9">경기도</option>
-									<option value="10">전라도</option>
-									<option value="11">경상도</option>
-									<option value="12">강원도</option>
-									<option value="13">충청도</option>
-									<option value="14">제주도</option>
+								<select name="lid" id="lid">
+									<option value="0">전체</option>
+									<option value="1">서울특별시</option>
+									<option value="2">부산광역시</option>
+									<option value="3">인천광역시</option>
+									<option value="4">대전광역시</option>
+									<option value="5">대구광역시</option>
+									<option value="6">광주광역시</option>
+									<option value="7">울산광역시</option>
+									<option value="8">경기도</option>
+									<option value="9">전라도</option>
+									<option value="10">경상도</option>
+									<option value="11">강원도</option>
+									<option value="12">충청도</option>
+									<option value="13">제주도</option>
 								</select>
 							</div>
 
@@ -56,60 +56,22 @@
 										</tr>
 									</thead>
 									<tbody class="table-border-bottom-0">
+	
 									<!-- 보건소 list 시작 -->
-
+									<c:forEach var="centerList" items="${centerList }">
 										<tr>
-											<td><i class="fab fa-angular fa-lg text-danger me-3"></i>
-												<strong>강남구 보건소</strong></td>
-											<td colspan="3"></td>
-											<td><span class="badge bg-label-primary me-1">02-000-0000</span></td>
-											<td>
-												<!-- 위치 링크 시작 -->						
+											<td>${centerList.hplace }</td> <!-- 측정 장소  -->
+											<td colspan="3">${centerList.haddr }</td> <!-- 주소 -->
+											<td>${centerList.hpnum }</td> <!-- 전화번호 -->
+						
+											<!-- 위치 링크 시작 -->			
+											<td>													
 												<a id="map" style="cursor:pointer" onclick="setHealthMap('강남구 보건소', '37.51630311339761', '127.04227756939835');">
 													<img src="<%=request.getContextPath()%>/resources/img/health/btn_spot.gif" alt="위치"></a>
-												<!-- 위치 링크 끝 -->
 											</td>
-										</tr>
-										<tr>
-											<td><i class="fab fa-react fa-lg text-info me-3"></i> <strong>강남구
-													보건소</strong></td>
-											<td colspan="3">주소주소주소주소주소주소주소주소주소주소주소주소주소주소주소주소주소주소주소주소</td>
-											<td><span class="badge bg-label-success me-1">02-000-0000</span></td>
-											<td>
-												<!-- 위치 링크 시작 -->
-												<div class="">
-													<a class="" href=""></a>
-												</div> 
-												<!-- 위치 링크 끝 -->
-											</td>
-										</tr>
-										<tr>
-											<td><i class="fab fa-vuejs fa-lg text-success me-3"></i>
-												<strong>강남구 보건소</strong></td>
-											<td colspan="3">주소주소주소주소주소주소주소주소주소주소주소주소주소주소주소주소주소주소주소주소</td>
-											<td><span class="badge bg-label-info me-1">02-000-0000</span></td>
-											<td>
-												<!-- 위치 링크 시작 -->											
-												<div class="">
-													<a class="" href=""></a>
-												</div> 
-												<!-- 위치 링크 끝 -->
-											</td>
-										</tr>
-										<tr>
-											<td><i class="fab fa-bootstrap fa-lg text-primary me-3"></i>
-												<strong>강남구 보건소</strong></td>
-											<td colspan="3">주소주소주소주소주소주소주소주소주소주소주소주소주소주소주소주소주소주소주소주소</td>
-											<td><span class="badge bg-label-warning me-1">02-000-0000</span></td>
-											<td>
-												<!-- 위치 링크 시작 -->
-												<div class="">
-													<a class="" href=""></a>
-												</div> 
-												<!-- 위치 링크 끝 -->
-											</td>
-										</tr>
-									
+											<!-- 위치 링크 끝 -->
+										</tr>										
+									</c:forEach>					
 									<!-- 보건소 list 끝 -->
 									</tbody>
 								</table>
