@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!-- Blog Section Begin -->
 <section class="blog spad">
@@ -23,19 +25,28 @@
 						<tbody>
 							<tr>
 								<th>성별</th>
-								<td><%= request.getParameter("sex") %></td>
+								<td>
+									<c:choose>
+	  									<c:when test="${healthInfoVo.gender == 'F'}">
+	    									여자
+	  									</c:when>
+	  									<c:when test="${healthInfoVo.gender == 'M'}">
+	    									남자
+	  									</c:when>
+									</c:choose>
+								</td>
 							</tr>
 							<tr>
 								<th>연령</th>
-								<td></td>
+								<td>만 ${healthInfoVo.age } 세</td>
 							</tr>
 							<tr>
 								<th>키</th>
-								<td><%= request.getParameter("stature") %></td>
+								<td>${healthInfoVo.stature } cm</td>
 							</tr>
 							<tr>
 								<th>몸무게</th>
-								<td><%= request.getParameter("weight") %></td>
+								<td>${healthInfoVo.weight } kg</td>
 							</tr>
 						</tbody>
 					</table>
@@ -54,7 +65,7 @@
 						<tbody>
 							<tr>
 								<th>당신의 BMI 지수</th>
-								<td></td>
+								<td>${healthInfoVo.bmi_index }</td>
 							</tr>
 						</tbody>
 					</table>
