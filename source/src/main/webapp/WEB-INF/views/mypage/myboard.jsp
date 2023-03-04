@@ -48,7 +48,8 @@
 				%>
 
 				<div class="hero__search__form">
-					<form action="#">
+					<form action="<%=request.getContextPath() %>/mypage/board?searchword=${searchword}" method="get">
+						<input type="hidden" name="type" value="${type }">
 						<div class="hero__search__categories">
 							<select name="boardCategory">
 								<option value="1" selected>카테고리 전체</option>
@@ -73,7 +74,7 @@
 								
 							</select>
 						</div>
-						<input type="text" name="searchword" placeholder="검색어를 입력해주세요.">
+						<input type="text" name="searchword" placeholder="검색어를 입력해주세요." value="${searchword }">
 						<button type="submit" class="site-btn">SEARCH</button>
 					</form>
 				</div>
@@ -81,7 +82,6 @@
 				<div class="container-xl flex-grow-1 container-p-y">
 					<!-- Basic Bootstrap Table -->
 					<div class="card">
-						<h5 class="card-header">Table Basic</h5>
 						<div class="table-responsive text-nowrap">
 							<table class="table">
 								<thead>
@@ -111,7 +111,9 @@
 											<c:forEach items="${boardList }" var="list">
 												<tr>
 													<td><i class="fab fa-angular fa-lg text-danger me-3"></i>
-														<span>${list.BCID }</span>
+														<c:if test="${list.BCID  == 0}"><span>식단</span></c:if>
+														<c:if test="${list.BCID  == 1}"><span>팁&노하우</span></c:if>
+														<c:if test="${list.BCID  == 2}"><span>고민&질문</span></c:if>
 													</td>
 													<td>${list.BTITLE }</td>
 													<td>${list.MNAME }</td>
@@ -135,7 +137,9 @@
 											<c:forEach items="${boardList }" var="list">
 												<tr>
 													<td><i class="fab fa-angular fa-lg text-danger me-3"></i>
-														<span>${list.BCID }</span>
+														<c:if test="${list.BCID  == 0}"><span>식단</span></c:if>
+														<c:if test="${list.BCID  == 1}"><span>팁&노하우</span></c:if>
+														<c:if test="${list.BCID  == 2}"><span>고민&질문</span></c:if>
 													</td>
 													<td>${list.BTITLE }</td>
 													<td>${list.MNAME }</td>
