@@ -51,6 +51,9 @@
 	</c:if>	
 	<!-- health page css End -->
 	
+	
+	
+	
 </head>
 
 <body>
@@ -141,7 +144,7 @@
     <script src="<%=request.getContextPath() %>/resources/js/mixitup.min.js"></script>
     <script src="<%=request.getContextPath() %>/resources/js/owl.carousel.min.js"></script>
     <script src="<%=request.getContextPath() %>/resources/js/main.js"></script>
-
+	
 
 
 </body>
