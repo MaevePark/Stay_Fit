@@ -13,7 +13,7 @@ public class MypageMember {
 	private String memail;
 	private String mpw;
 	private String mname;
-	private String mreate;
+	private String mcreate;
 	private String mupdate;
 	private char mstate;
 	private String profimg;
