@@ -72,4 +72,62 @@ public class FileSave {
 		
 		return savedFileName;
 	}
+	
+	
+	public static String saveFile2(
+			MultipartFile multipartFile
+			, String filepath
+			, HttpServletRequest request
+			, int mid
+			) throws Exception {
+		String savedFileName = null;
+		String path = request.getSession().getServletContext().getRealPath("");
+		System.out.println("#####################################");
+		System.out.println("path : " +path);
+		System.out.println("filepath : " +filepath);
+		System.out.println("multipartFile.getOriginalFilename() : " +multipartFile.getOriginalFilename());
+		
+		path += filepath;
+		File folder = new File(path);
+		if(folder.exists() == false) {
+			folder.mkdirs();
+		}
+		
+		if(!multipartFile.getOriginalFilename().equals("")) {
+			System.out.println("#####################################");
+			System.out.println("파일 있음");
+			// 파일 개수가 많아지면 폴더를 따로 만들어준다.
+			//if(folder.listFiles().length > 20) {}
+			
+			// 날짜별 폴더 생성
+			//if()
+			
+			// 파일 rename - 파일명 중복 방지(time 활용)
+			/*
+			 * long renameByTime = System.currentTimeMillis(); savedFileName = renameByTime
+			 * + multipartFile.getOriginalFilename();
+			 * savedFileName = renameByTime+ "_" +multipartFile.getOriginalFilename();
+			 */
+			
+			//파일 rename - 닉네임_profileImg
+			savedFileName = mid+"_profImg";
+			// 파일 저장
+			try {
+				multipartFile.transferTo(new File(path + savedFileName));
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} else {
+			System.out.println("#####################################");
+			System.out.println("파일 없음");
+		}
+		
+		if(!folder.exists()) {
+			
+		}
+		
+		return savedFileName;
+	}
 }
