@@ -10,11 +10,12 @@ import kh.project.stayfit.health.model.vo.HealthCenter;
 
 @Repository
 public class HealthCenterDao {
+
 	@Autowired
 	private SqlSession sqlSession;
-	
-	public List<HealthCenter> selectList() {
-		return null;
-		
+
+	// 게시글 목록 조회
+	public List<HealthCenter> selectCenter(int lid) throws Exception {
+		return sqlSession.selectList("healthcenter.selectCenter");
 	}
 }
