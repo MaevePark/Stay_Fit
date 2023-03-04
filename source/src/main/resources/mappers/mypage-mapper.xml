@@ -3,23 +3,27 @@
 <mapper namespace="mypage">
 
 	<!-- 프로필 정보 -->
-<!-- 	<select id="selectProfile" parameterType="MypageMember" resultType="MypageMember"> -->
-<!-- 		SELECT MID, MROLE, MEMAIL, MNAME, MCREATE, MUPDATE, PROFIMG -->
-<!-- 			FROM MEMBER -->
-<!-- 				WHERE MSTATE='A' AND MID=${} -->
-<!-- 	</select> -->
-	<!-- 프로필사진 변경 -->
-<!-- 	<update id="updateProfileImg" parameterType="MypageMember"> -->
-<!-- 		UPDATE MEMBER SET PROFIMG=#{}, MUPDATE=SYSTIMESTAMP WHERE MID=#{} -->
-<!-- 	</update> -->
-	<!-- 닉네임 변경 -->
-<!-- 	<update id="updateNickname" parameterType="MypageMember"> -->
-<!-- 		UPDATE MEMBER SET MNAME=#{}, MUPDATE=SYSTIMESTAMP WHERE MID=#{} -->
-<!-- 	</update> -->
-	<!-- 비밀번호 변경 -->
-<!-- 	<update id="updatePassword" parameterType="MypageMember"> -->
-<!-- 		UPDATE MEMBER SET MPW=#{}, MUPDATE=SYSTIMESTAMP WHERE MID=#{} AND MPW=#{} -->
-<!-- 	</update> -->
+	<select id="selectProfile" parameterType="int" resultType="MypageMember">
+		SELECT MID, MROLE, MEMAIL, MNAME, MCREATE, MUPDATE, PROFIMG
+			FROM MEMBER
+				WHERE MSTATE='A' AND MID=${mid}
+	</select>
+	<!-- 프로필 변경 -->
+	<update id="updateProfile" parameterType="map">
+		UPDATE MEMBER 
+			SET 
+			<if test="mname != null">
+				MNAME = #{mname}, 
+			</if>
+			<if test="mpw != null">
+				MPW = #{mpw}, 
+			</if>
+			<if test="profimg != null">
+				PROFIMG = #{profimg}, 
+			</if>	
+			MUPDATE=SYSTIMESTAMP 
+				WHERE MID = ${mid}
+	</update>
 	
 	
 	
@@ -164,13 +168,13 @@
 			WHERE 
 			<if test="boardCategory != 1">
 				<choose>
-					<when test="2">
+					<when test="boardCategory == 2">
 						B.BCID=0 AND 
 					</when>
-					<when test="3">
+					<when test="boardCategory == 3">
 						B.BCID=1 AND 
 					</when>
-					<when test="4">
+					<when test="boardCategory == 4">
 						B.BCID=2 AND 
 					</when>
 				</choose>
@@ -203,13 +207,13 @@
 			WHERE 
 			<if test="boardCategory != 1">
 				<choose>
-					<when test="2">
+					<when test="boardCategory == 2">
 						B.BCID=0 AND 
 					</when>
-					<when test="3">
+					<when test="boardCategory == 3">
 						B.BCID=1 AND 
 					</when>
-					<when test="4">
+					<when test="boardCategory == 4">
 						B.BCID=2 AND 
 					</when>
 				</choose>
@@ -243,13 +247,13 @@
 			WHERE 
 			<if test="boardCategory != 1">
 				<choose>
-					<when test="2">
+					<when test="boardCategory == 2">
 						B.BCID=0 AND 
 					</when>
-					<when test="3">
+					<when test="boardCategory == 3">
 						B.BCID=1 AND 
 					</when>
-					<when test="4">
+					<when test="boardCategory == 4">
 						B.BCID=2 AND 
 					</when>
 				</choose>
@@ -277,13 +281,13 @@
 			WHERE 
 			<if test="boardCategory != 1">
 				<choose>
-					<when test="2">
+					<when test="boardCategory == 2">
 						B.BCID=0 AND 
 					</when>
-					<when test="3">
+					<when test="boardCategory == 3">
 						B.BCID=1 AND 
 					</when>
-					<when test="4">
+					<when test="boardCategory == 4">
 						B.BCID=2 AND 
 					</when>
 				</choose>
@@ -315,13 +319,13 @@
 			WHERE 
 			<if test="boardCategory != 1">
 				<choose>
-					<when test="2">
+					<when test="boardCategory == 2">
 						B.BCID=0 AND 
 					</when>
-					<when test="3">
+					<when test="boardCategory == 3">
 						B.BCID=1 AND 
 					</when>
-					<when test="4">
+					<when test="boardCategory == 4">
 						B.BCID=2 AND 
 					</when>
 				</choose>
@@ -355,18 +359,18 @@
 			WHERE 
 			<if test="boardCategory != 1">
 				<choose>
-					<when test="2">
+					<when test="boardCategory == 2">
 						B.BCID=0 AND 
 					</when>
-					<when test="3">
+					<when test="boardCategory == 3">
 						B.BCID=1 AND 
 					</when>
-					<when test="4">
+					<when test="boardCategory == 4">
 						B.BCID=2 AND 
 					</when>
 				</choose>
 			</if>
-			<if test="!searchword.equals('')">
+			<if test="!searchword.equals('') or searchword != null">
 				<choose>
 					<when test="searchRange == 1">
 						(B.BTITLE LIKE '%'||#{searchword}||'%' 
