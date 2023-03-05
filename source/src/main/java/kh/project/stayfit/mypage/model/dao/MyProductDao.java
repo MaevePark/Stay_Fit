@@ -8,7 +8,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kh.project.stayfit.mypage.model.vo.MypageCart;
 import kh.project.stayfit.mypage.model.vo.MypageOrder;
+import kh.project.stayfit.mypage.model.vo.MypageWish;
 import kh.project.stayfit.shop.model.vo.ShopProduct;
 
 @Repository
@@ -23,6 +25,14 @@ public class MyProductDao {
 	public int selectWishTotalCnt(int mid) throws Exception {
 		return sqlsession.selectOne("mypage.selectMyWishCount", mid);
 	}
+	//찜목록 삭제
+	public int deleteWish(MypageWish vo) {
+		return sqlsession.delete("mypage.deleteMyWish", vo);
+	}
+	//찜목록 등록
+//	public int insertWish(MypageWish vo) {
+//		return sqlsession.delete("mypage.deleteMyWish", vo);
+//	}
 	
 	//장바구니 호출
 	public List<Map<String, Object>> selectCartProductList(int mid, int currentPageNum, int limits) throws Exception {
@@ -30,6 +40,14 @@ public class MyProductDao {
 	}
 	public int selectCartTotalCnt(int mid) throws Exception {
 		return sqlsession.selectOne("mypage.selectMyCartCount", mid);
+	}
+	//장바구니 등록
+	public int insertCart(MypageWish vo) {
+		return sqlsession.insert("mypage.insertCart", vo);
+	}
+	//장바구니 수량 수정
+	public int updateCart(MypageCart vo) {
+		return sqlsession.update("mypage.updateProductCount", vo);
 	}
 	
 	//구매기록 호출

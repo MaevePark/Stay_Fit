@@ -1,23 +1,25 @@
 package kh.project.stayfit.mypage.controller;
 
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import com.google.gson.GsonBuilder;
 
 import io.github.cdimascio.dotenv.Dotenv;
 import kh.project.stayfit.common.FileSave;
@@ -26,6 +28,7 @@ import kh.project.stayfit.mypage.model.service.MyBoardService;
 import kh.project.stayfit.mypage.model.service.MyProductService;
 import kh.project.stayfit.mypage.model.service.ProfileService;
 import kh.project.stayfit.mypage.model.vo.MypageMember;
+import kh.project.stayfit.mypage.model.vo.MypageWish;
 
 @Controller
 @RequestMapping("/mypage")
@@ -78,9 +81,6 @@ public class MypageController {
 			updateMap.put("mid", mid);
 			if(multipartFile != null) {
 				if(updateMap.get("mname") != null) {
-					System.out.println("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
-					System.out.println(updateMap.get("mname"));
-					System.out.println((String) updateMap.get("mname"));
 					vo.setMname((String) updateMap.get("mname"));
 				}
 				result = updateProfImg(multipartFile, request, vo);
@@ -170,8 +170,7 @@ public class MypageController {
 		return upload_result;
 	}
 	
-
-	@GetMapping("/wish") // 찜목록
+	@GetMapping("/wish") // 찜목록 호출
 	public ModelAndView myWish(
 			ModelAndView mv
 			,@RequestParam(name = "page", defaultValue = "1") int page
@@ -181,18 +180,90 @@ public class MypageController {
 		int limits = 6;
 		int pageLimit = 5;
 		
-		int totalCnt = productservice.selectWishTotalCnt(mid);
-		Map<String, Object> pagingMap = Paging.paging(page, totalCnt, limits, pageLimit);
+		try {
+			int totalCnt = productservice.selectWishTotalCnt(mid);
+			Map<String, Object> pagingMap = Paging.paging(page, totalCnt, limits, pageLimit);
+			
+			mv.addObject("wishList", productservice.selectWishProductList(mid, page, limits));
+			mv.addObject("pagingMap", pagingMap);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
-		mv.addObject("sectionName", "mypage/mywish.jsp");
 		mv.addObject("urlpattern", "mypage/wish");
-		mv.addObject("wishList", productservice.selectWishProductList(mid, page, limits));
-		mv.addObject("pagingMap", pagingMap);
+		mv.addObject("sectionName", "mypage/mywish.jsp");
 		mv.setViewName("index");
 		return mv;
 	}
 	
-
+	//찜목록 재호출
+	@GetMapping("/loadwish")
+	@ResponseBody
+	public String loadWish(
+			@RequestParam(name = "page", defaultValue = "1") int page
+			//, @RequestParam("mid") String mid
+			) {
+		int mid=3; //TODO 얘는 지워야돼...
+		int limits = 6;
+		int pageLimit = 5;
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+		try {
+			int totalCnt = productservice.selectWishTotalCnt(mid);
+			Map<String, Object> pagingMap = Paging.paging(page, totalCnt, limits, pageLimit);
+			dataMap.put("wishList", productservice.selectWishProductList(mid, page, limits));
+			dataMap.put("pagingMap", pagingMap);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		String result = new GsonBuilder().create().toJson(dataMap);
+		//mv.addAllObjects(map);
+		return result;
+	}
+	
+	//찜목록 삭제
+	@GetMapping("/delwish")
+	public int delWish(
+			HttpServletResponse response
+			, @RequestParam("mid") int mid
+			, @RequestParam("pid") int pid
+			) {
+		int result = 0;
+		MypageWish vo = new MypageWish();
+		vo.setMid(mid);
+		vo.setPid(pid);
+		try {
+			result = productservice.deleteWish(vo);
+			PrintWriter out = response.getWriter();
+			out.append(new GsonBuilder().create().toJson(result));
+			out.flush();
+			out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	//찜목록 수량 수정
+	@GetMapping("/updatepcount")
+	public int updatePCount(
+			HttpServletResponse response
+			, @RequestParam("pcount") int pcount
+			, @RequestParam("pid") int pid
+			//, @RequestParam("mid") int mid
+			) {
+		int mid = 3;
+		int result = 0;
+		
+		
+		
+		
+		return 0;
+	}
+	
 	
 	@GetMapping("/cart") // 장바구니
 	public ModelAndView myCart(
@@ -215,6 +286,35 @@ public class MypageController {
 		
 		return mv;
 	}
+	
+	@GetMapping("/insertcart")
+	public int insertCart(
+			HttpServletResponse response
+			, @RequestParam("mid") int mid
+			, @RequestParam("pid") int pid
+			, @RequestParam("pcount") int pcount
+			) {
+		int result = 0;
+		int result1 = 0;
+		int result2 = 0;
+		MypageWish vo = new MypageWish();
+		vo.setMid(mid);
+		vo.setPid(pid);
+		try {
+			result1 = productservice.insertCart(vo);
+			result2 = productservice.deleteWish(vo);
+			
+			PrintWriter out = response.getWriter();
+			out.append(new GsonBuilder().create().toJson(result));
+			out.flush();
+			out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
 	
 	@GetMapping("/order") // 구매기록
 	public ModelAndView myProduct(

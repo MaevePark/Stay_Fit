@@ -32,7 +32,7 @@
 	
 	<!-- 찜목록 리스트업 -->
 	<select id="selectMyWish" parameterType="int" resultType="ShopProduct">
-		SELECT P.PID, P.CID, P.PNAME, P.PIMAGE, P.PPRICE, P.PSALE, P.PlINK 
+		SELECT W.PID, P.CID, P.PNAME, P.PIMAGE, P.PPRICE, P.PSALE, P.PlINK 
 			FROM PRODUCT P JOIN WISH W 
 				ON P.PID=W.PID AND W.MID=${mid}
 	</select>
@@ -42,8 +42,8 @@
 				ON P.PID=W.PID AND W.MID=${mid}
 	</select>
 	<!-- 찜목록 삭제 -->
-	<delete id="deleteMyWish" parameterType="int">
-		DELETE FROM WISH WHERE PID=${} AND MID=${mid}
+	<delete id="deleteMyWish" parameterType="MypageWish">
+		DELETE FROM WISH WHERE PID=${pid} AND MID=${mid}
 	</delete>
 	
 	
@@ -60,6 +60,14 @@
 			FROM PRODUCT P JOIN CART C 
 				ON P.PID=C.PID AND C.MID=${mid}
 	</select>
+	<!-- 장바구니 등록 -->
+	<insert id="insertCart" parameterType="MypageWish">
+		INSERT INTO CART VALUES(${pid}, ${mid}, 1, SYSDATE)
+	</insert>
+	<!-- 장바구니 상품 수량 증감 -->
+	<update id="updateProductCount" parameterType="MypageCart">
+		UPDATE CART SET PCOUNT=${pcount} WHERE PID=${pid} AND MID=${mid}
+	</update>
 	<!-- 장바구니 삭제 -->
 <!-- 	<delete id="deleteCart" parameterType="MypageCart"> -->
 <!-- 		DELETE FROM CART WHERE PID=${} AND MID=${mid} -->
