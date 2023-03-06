@@ -41,7 +41,7 @@
 										class="checkout__input"> cm</span></td>
 								</tr>
 								<tr>
-									<th>몸무게</th>
+									<th>체중</th>
 									<td><input type="text" class="ipt2" style="width: 95px"
 									value="80"
 										id="weight" name="weight" maxlength="3"
@@ -181,10 +181,10 @@
 						</table>
 						<!-- 칼로리 처방 받기 버튼 시작 -->
 						<div class="col-lg-12 text-center">
-						<input type="hidden" name="age">
-						<input type="hidden" name="bmr">
-						<input type="hidden" name="activityMetabolicRate">
-						<input type="hidden" name="digestionEnergy">
+						<input type="hidden" name="age"> <!-- 나이 -->
+						<input type="hidden" name="bmr"> <!-- 기초대사량 -->
+						<input type="hidden" name="amr"> <!-- 활동대사량 -->
+						<input type="hidden" name="digestionEnergy"> <!-- digestionEnergy -->
 						<button type="button" class="site-btn" onclick="calCalorie();">칼로리 처방 받기</button>			
 						</div>
 						<!-- 칼로리 처방 받기 버튼 끝 -->
@@ -200,86 +200,96 @@
 <script>
 //<--------------------------------------------------------------------
 // 1. 기초대사량 계산식 시작
-
-// 기초대사량 해리스-베네딕트 방정식
-// 여성의 BMR = 655 + (9.6 × 체중(kg)) + (1.8 × 신장(cm)) - (4.7 × 나이)
-// 남성의 BMR = 66 + (13.7 × 체중(kg)) + (5 × 신장(cm)) - (6.8 × 나이)
-
 function calCalorie() {	
-    // 입력값
-    var maleConst = 88.362;
-    var femaleConst = 447.593;
-    var maleheightConst = 4.799;
-    var femaleheightConst = 3.098;
-    var maleweightConst = 13.397;
-    var femaleweightConst = 9.247;
-    var maleageConst = 5.677;
-    var femaleageConst = 4.330;
+	
+	// 기초대사량 해리스-베네딕트 방정식 기준
+	// 여성의 BMR = 655 + (9.6 × 체중(kg)) + (1.8 × 신장(cm)) - (4.7 × 만 나이)
+	// 남성의 BMR = 66 + (13.7 × 체중(kg)) + (5 × 신장(cm)) - (6.8 × 만 나이)
+	
+	var gender = $('input[name=gender]:checked').val(); // 성별
+	
+	var weight= $("#weight").val(); // 체중
+	console.log("체중:" + weight);
+	
+    var height= $("#stature").val(); // 키(신장)
+    console.log("키:" + height);
+    
+    // 만 나이 계산 공식 시작
+    // 만나이 = (현재 연도 - 출생 연도) - 1 + ((현재 월, 일) >= (출생 월, 일))
+    
+    var byear = $("#byear").val(); // 출생 년도
+	console.log("출생 년도:" + byear); 
+	
+    var bmonth = $("#bmonth").val(); // 출생 월
+    console.log("출생 월:" + bmonth); 
+    
+    var bday = $("#bday").val(); // 출생 일
+    console.log("출생 일:" + bday); 
+    
+    var today = new Date(); // 현재 날짜
+    console.log("현재 날짜:" + today); 
+    
+    var birthday = new Date(byear + "-" + bmonth + "-" + bday); // 생년 월일
+    console.log("생년 월일:" + birthday); 
+    
+    var age = today.getFullYear() - birthday.getFullYear(); // 만 나이 계산
+    console.log("나이 계산:" + age); 
+    
+ 	// 생일이 아직 오지 않은 경우 나이에서 1을 빼줌
+    if (today.getMonth() < birthday.getMonth() || 
+    	(today.getMonth() == birthday.getMonth() && today.getDate() < birthday.getDate())) {
+    	  age--;
+    	} 
+ 	
+    $("[name=age]").val(age); // age 에 담기    
 
-    var gender= $("[name=gender]:checked").val();
-    var height= $("#stature").val();	
-    var weight= $("#weight").val();
-    var goal_weight= $("#goal_weight").val();
-    var byear= $("#byear").val();
-    var bmonth= $("#bmonth").val();
-    var bday= $("#bday").val();
+	// 만 나이 계산 공식 끝
+    
+	// 성별에 따른 기초대사량 계산 시작
+	var result;
+    
+	if (gender == 'F') { // 여성인 경우
+		result = 655 + (9.6 * weight) + (1.8 * height) - (4.7 * age);
+	} else if (gender == 'M') { // 남성인 경우
+		result = 66 + (13.7 * weight) + (5 * height) - (6.8 * age);
+	      
+	}
+	var bmr = result.toFixed(0); // 정수로 표시
+    console.log("bmi 계산 값: " + bmr);
+	
+    $("[name=bmr]").val(bmr); // bmr 에 담기
+	// 성별에 따른 기초대사량 계산 끝
 
-    // 만나이 계산
-    const getAge = () => {
-    	
-    	// 현재 날짜
-        const today = new Date();
-        console.log(byear+"-"+bmonth+"-"+bday);
-        
-        // 생년월일
-        const birthday = new Date(byear+"-"+bmonth+"-"+bday);
-        console.log(birthday);
-        
-        // 나이 계산
-        let result = 0;
-        result = today.getFullYear() - birthday.getFullYear();
-        birthday.setFullYear(today.getFullYear());
-        if (today.getTime() < birthday.getTime()) {
-            result--;
-        }
-        console.log("age:"+ result);
-        return result;
-    };
-    var age = getAge();
-    console.log("height:"+height);
-    console.log("weight:"+weight);
-    console.log("gender:"+gender);
-
-    // 기초대사량 계산
-    var bmr;
-    if (gender == 'M') {
-        bmr = 88.362 + (13.397 * Number(weight)) + (4.799 * Number(height)) - (5.677 * age); // 남자
-    } else {
-        bmr = 447.593 + (9.247 * Number(weight)) + (3.098 * Number(height)) - (4.330 * age); // 여자
-    }
-    console.log("bmr:"+bmr);		
 // 1. 기초대사량 계산식  끝
 //-------------------------------------------------------------------->
 
 //<--------------------------------------------------------------------
 // 2. 활동 대사량 계산식 시작
-	// 입력값
-	var activityLevel = 1.02; // 1.55; // 활동 계수 (1.2~1.9)
-	var activityLevel = 1.02; // TODO
-	var activityLevel = 1.02; // TODO
-	var activityLevel = 1.02; // TODO
-	var activityLevel = 1.02; // TODO
+
+	// 활동 계수 공식
+	// (1) 활동안함 :  기초대사량 x 1.2
+	// (2) 가벼운 활동 (평소 가벼운 운동이나 스포츠를 즐겨요) :  기초대사량 x 1.375
+	// (3) 보통 활동 (평소 적당한 운동이나 스포츠를 즐겨요.) :  기초대사량 x 1.55
+	// (4) 많은 활동 (평소 강렬한 운동이나 스포츠를 즐겨요.) :  기초대사량 x 1.725
+	// (5) 격심한 활동 (평소 매우 심한 운동을 하거나 육체를 쓰는 직업이예요.) :  기초대사량 x 1.9
+	
+	// 활동 계수
+	var activityLevel = 1.2; // 활동안함
+	var activityLevel = 1.375; // 가벼운 활동
+	var activityLevel = 1.55; // 보통 활동
+	var activityLevel = 1.725; // 많은 활동
+	var activityLevel = 1.9; // 격심한 활동
 	
 	// 활동 대사량 계산
-	var activityMetabolicRate = bmr * activityLevel;
-	console.log("활동 대사량: " + activityMetabolicRate.toFixed(2) + " kcal/day");
+	var amr = bmr * activityLevel;
+	console.log("활동 대사량: " + amr.toFixed(2) + " kcal/day");
 // 2. 활동 대사량 계산식 끝
 //-------------------------------------------------------------------->
 
 //<--------------------------------------------------------------------
 // 3. 소화를 위한 에너지 계산식 시작
 	// 입력값
-	var mealCalories = activityMetabolicRate; // 식사 열량 (kcal)
+	var mealCalories = amr; // 식사 열량 (kcal)
 	var digestionEfficiency = 0.1; // 소화 효율
 	
 	// 소화를 위한 에너지 계산
@@ -287,12 +297,9 @@ function calCalorie() {
 	console.log("소화를 위한 에너지: " + digestionEnergy.toFixed(2) + " kcal");
 	$("[name=age]").val(age);
 	$("[name=bmr]").val(bmr);
-	$("[name=activityMetabolicRate]").val(activityMetabolicRate);
+	$("[name=amr]").val(amr);
 	$("[name=digestionEnergy]").val(digestionEnergy);
-	
-	$("#frmCalories").submit();
-	
-}
+
 // 3. 소화를 위한 에너지 계산식 끝
 //-------------------------------------------------------------------->	
 
@@ -301,15 +308,19 @@ function calCalorie() {
 
 // TODO
 
+	$("#frmCalories").submit();
+	
+
+
 // 4. 하루 동안 섭취해야 할 음식 칼로리  계산식 끝
 //-------------------------------------------------------------------->	
 
 //<--------------------------------------------------------------------
-// 5. 하루 동안 운동으로 소모해야 할 칼로리  계산식 시작
+// 5. 하루 동안 운동으로 소모해야 할 운동 칼로리  계산식 시작
 
 // TODO
 
-// 5. 하루 동안 운동으로 소모해야 할 칼로리  계산식 끝
+// 5. 하루 동안 운동으로 소모해야 할 운동 칼로리  계산식 끝
 //-------------------------------------------------------------------->	
 
 //<--------------------------------------------------------------------
@@ -323,7 +334,7 @@ function calCalorie() {
 	}
 
 	if ($("#weight").val().replace(/(^\s*)|(\s*$)/g, "") == ''){
-		alert("몸무게를 입력해주세요.");
+		alert("체중를 입력해주세요.");
 		$("#weight").val("");
 		$("#weight").focus();
 		return;
@@ -367,7 +378,8 @@ function calCalorie() {
  	var frm = document.frm;
  	frm.action = "/health/calorielist.jsp"
  	frm.submit();
-} */
+ */
+}  // calCalorie() 끝
 
 //6. 칼로리 처방 페이지 입력값 없을 시 alert 창 띄우기  끝 
 //-------------------------------------------------------------------->
