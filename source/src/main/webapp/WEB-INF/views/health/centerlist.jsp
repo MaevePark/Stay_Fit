@@ -14,12 +14,15 @@
 
 			<div class="col-lg-10 col-md-10">
 				<div class="row">
+					<h4 class="fw-bold py-3 mb-4">
+						<span class="text-muted fw-light">건강관리 /</span> 보건소 조회
+					</h4>
 				
 					<div class="hero__search__form">
 						<form action="#">
 							<div class="hero__search__categories">
-								<select name="lid" id="lid">
-									<option value="0">전체</option>
+								<select>							
+									<option value="0" selected>전체</option>
 									<option value="1">서울특별시</option>
 									<option value="2">부산광역시</option>
 									<option value="3">인천광역시</option>
@@ -67,7 +70,7 @@
 											<!-- 위치 링크 시작 -->			
 											<td>													
 												<a id="map" style="cursor:pointer" onclick="setHealthMap('강남구 보건소', '37.51630311339761', '127.04227756939835');">
-													<img src="<%=request.getContextPath()%>/resources/img/health/btn_spot.gif" alt="위치"></a>
+													<img src="<%=request.getContextPath()%>/resources/img/health/btn_spot.gif" alt="위치"></a>													
 											</td>
 											<!-- 위치 링크 끝 -->
 										</tr>										
