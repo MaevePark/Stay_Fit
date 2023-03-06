@@ -101,8 +101,8 @@
 					        <ul class="dropdown-menu">
 					          <li><a data-value="1" class="dropdown-item">공지사항</a></li>
 					          <li><a data-value="2" class="dropdown-item">식단</a></li>
-					          <li><a data-value="3" class="dropdown-item">팁&노하우</a></li>
-					          <li><a data-value="4" class="dropdown-item">고민&질문</a></li>
+					          <li><a data-value="3" class="dropdown-item">팁&amp;노하우</a></li>
+					          <li><a data-value="4" class="dropdown-item">고민&amp;질문</a></li>
 					        </ul>
 					        
 					      </div>

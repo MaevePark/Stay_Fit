@@ -97,15 +97,14 @@
 			              <div class="btn-group">
 					        <button type="button" id="dropdownbtn1" value="0" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">카테고리를 선택하세요  </button>
 					        <ul class="dropdown-menu">
-					          <li><a data-value="1" class="dropdown-item category">샐러드&도시락&볶음밥</a></li>
+					          <li><a data-value="1" class="dropdown-item category">샐러드&amp;도시락&amp;볶음밥</a></li>
 					          <li><a data-value="2" class="dropdown-item category">닭가슴살</a></li>
-					          <li><a data-value="3" class="dropdown-item category">밥&면</a></li>
-					          <li><a data-value="4" class="dropdown-item category">간편요리&반찬</a></li>
-					          <li><a data-value="5" class="dropdown-item category">베이커리&떡</a></li>
-					          <li><a data-value="6" class="dropdown-item category">분식&만두&치킨</a></li>
-					          <li><a data-value="7" class="dropdown-item category">건강간식&음료</a></li>
-					          <li><a data-value="8" class="dropdown-item category">단백질&시리얼&간식</a></li>
-					          <li><a data-value="9" class="dropdown-item category">건강&다이어트</a></li>
+					          <li><a data-value="3" class="dropdown-item category">밥&amp;면</a></li>
+					          <li><a data-value="4" class="dropdown-item category">간편요리&amp;반찬</a></li>
+					          <li><a data-value="5" class="dropdown-item category">베이커리&amp;떡</a></li>
+					          <li><a data-value="6" class="dropdown-item category">분식&amp;만두&amp;치킨</a></li>
+					          <li><a data-value="7" class="dropdown-item category">건강식&amp;음료</a></li>
+					          <li><a data-value="8" class="dropdown-item category">단백질&amp;시리얼&amp;간식</a></li>
 					        </ul>
 					      </div>
 			            </div>
@@ -540,6 +539,7 @@ function modalShowHandler() {
 	let pid = $(this).parent().siblings().eq(0).text();
 	let pname = $(this).parent().siblings().eq(2).text();
 	let pimage = $(this).siblings("input[name=pimage]").val();
+	console.log(pimage);
 	let pricenum = $(this).siblings("input[name=pricenum]").val();
 	let pstock = $(this).parent().siblings().eq(6).text();
 	let plink = $(this).parent().siblings().eq(7).children("input[type=hidden]").val();
