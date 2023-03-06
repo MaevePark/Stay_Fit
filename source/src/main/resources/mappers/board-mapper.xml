@@ -43,11 +43,11 @@
 	</select> 
 	
 	<!--게시물 작성  -->
-	 <insert id="write" parameterType="Board">
-	
+	 <insert id="write"  parameterType="Board" >
+		INSERT INTO board(bid,bcid,mid,btitle,bcontent)VALUES((SELECT NVL(MAX(BID),0)+1 FROM BOARD),#{bcid},#{mid},#{btitle},#{bcontent})
 	</insert>
 	
-	<!--게시물 수정  -->
+	<!--게시물 조회수  -->
 	<update id="bvcupdate" parameterType="int">
 		update board set bviewcount = bviewcount + 1 where bid=#{bid}
 	</update>

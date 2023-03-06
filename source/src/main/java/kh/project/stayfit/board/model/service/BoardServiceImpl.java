@@ -33,20 +33,25 @@ public class BoardServiceImpl implements BoardService {
 		return dao.totalCnt(bcid, keyword, keyword);
 	}
 
-	// 게시글 read 상세페이지
+	//게시글 read 상세페이지
 	@Override
 	public Board read(int bid) throws Exception {
 		return dao.read(bid);
 	}
 
-	// 게시글 조회수 증가
+	//게시글 조회수 증가
 	@Override
 	public int bvcupdate(int bid) throws Exception {
 		int bvcount = dao.bvcupdate(bid);
 		return bvcount;
 	}
-
-	// 게시글 삭제
+	
+	//게시글 등록
+	@Override
+	public int write(Board vo) throws Exception{
+		return dao.write(vo);
+	}
+	//게시글 삭제
 	@Override
 	public int bdelete(int bid) throws Exception {
 		return dao.bdelete(bid);
@@ -62,11 +67,6 @@ public class BoardServiceImpl implements BoardService {
 //		return ;
 //	}
 
-//	//게시판 글 등록
-//	@Override
-//	public int write(Board) throws Exception{
-//		return ;
-//	}
 
 //	//게시판 글 검색, 페이징
 //	@Override
@@ -78,17 +78,7 @@ public class BoardServiceImpl implements BoardService {
 //		return ;
 //	}
 
-//	//게시글 수정
-//	@Override
-//	public int update(Board ) throws Exception{
-//		return ;
-//	}
 
-//	//게시글 삭제
-//	@Override
-//	public int delete(int) throws Exception{
-//		return ;
-//	}
 
 //	//게시글 상세페이지
 //	@Override
