@@ -386,20 +386,24 @@ function displayData(currentPage, dataPerPage) {
 				"<td>" + dataList[i].pricechar + "</td>" +
 				"<td>" + dataList[i].psales + "</td>" +
 				"<td>" + dataList[i].pstock + "</td>" +
-				"<td>" + 
+				"<td style='padding-left:0; padding-right:0;'>" + 
 					"<button type='button' class='btn btn-secondary btn-sm link'>상품보기</button>" + 
 					"<input type='hidden' name='plink' value='" + dataList[i].plink + "'>" +
 				"</td>" +
-				"<td>" + 
+				"<td style='padding-right:0;'>" + 
 					"<button type='button' class='btn btn-secondary btn-sm update' data-bs-toggle='modal' data-bs-target='#updateModal'>상품수정</button>" + 
 					"<input type='hidden' name='pimage' value='" + dataList[i].pimage + "'>" +
 					"<input type='hidden' name='pricenum' value='" + dataList[i].pricenum + "'>" +
+				"</td>" +
+				"<td>" + 
+					"<button type='button' class='btn btn-secondary btn-sm delete'>상품삭제</button>" + 
 				"</td>" +
 			"</tr>";
 	}
 	$("#dataTableBody").html(chartHtml);
 	$("button.link").on("click", linkClickHandler);
 	$("button.update").on("click", modalShowHandler);
+	$("button.delete").on("click", productDeleteHandler);
 }
 
 // 3. 페이징  함수 
@@ -609,7 +613,33 @@ function productUpdate(e) {
 	});  
 }
 
+//------------------------------------------------------------------------------
+//<상품 삭제>
 
+function productDeleteHandler() {
+	
+	// 일단 정말 삭제할건지 다시 체크
+	if (confirm("정말 삭제하시겠습니까?") == true) { // 확인 클릭시
+		let pid = $(this).parent().siblings().eq(0).text();
+		console.log(pid);
+	    
+	    $.ajax({
+	  		url : "productdelete",
+	  		type : "post",
+	  		data: { 'pid' : pid },
+	  		success: function(data){
+		  		if(data == 1) {
+					alert("상품 삭제 성공");
+				} else {
+					alert("상품 삭제 실패");
+				}
+	  			getData();
+		    }
+	    });  
+	} else { // 취소 클릭시
+	    return false;
+	}
+}
 </script>
 
 </html>

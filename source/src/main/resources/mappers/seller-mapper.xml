@@ -39,7 +39,6 @@
 			</choose>
   	</select>
   	
-  	
   	<!-- 상품수정 -->
   	<update id="updateProduct" parameterType="SellerProduct">
 	  	UPDATE PRODUCT SET 
@@ -51,6 +50,11 @@
 	    WHERE PID = #{pid}
   	</update>
   	
+  	<!-- 상품삭제 -->
+  	<delete id="deleteProduct" parameterType="string">
+		DELETE FROM PRODUCT
+		    WHERE PID = #{pid}
+  	</delete>
   	
   	<!-- 상품등록 -->
   	<insert id="insertProduct" parameterType="SellerProduct">

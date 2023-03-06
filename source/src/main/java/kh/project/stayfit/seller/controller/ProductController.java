@@ -136,6 +136,15 @@ public class ProductController {
 		return result;
 	}
 	
+	// 상품 삭제
+	@PostMapping("/productdelete")
+	@ResponseBody
+	public int deleteProduct(@RequestParam("pid") String pid) throws Exception {
+		
+		int result = service.deleteProduct(pid);
+
+		return result;
+	}
 	
 	// 상품등록
 	@PostMapping("/productinsert")

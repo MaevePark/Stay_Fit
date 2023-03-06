@@ -295,7 +295,7 @@ function displayData(currentPage, dataPerPage) {
 				"<td>" + dataList[i].poster + "</td>" +
 				"<td>" + dataList[i].rcreate + "</td>" +
 				"<td>" + dataList[i].cnt + "</td>" +
-				"<td>" + 
+				"<td style='padding-left:0; padding-right:0;'>" + 
 					"<button type='button' class='btn btn-secondary btn-sm replydelete'>댓글삭제</button>" + 
 					"<input type='hidden' name='rid' value='" + dataList[i].rid + "'>" +
 				"</td>" +
@@ -454,24 +454,29 @@ function replyDeleteHandler() {
 // <삭제 방법 1> : html태그를 다 로딩한 후의 위치에 $("button.reportdelete").on("click", reportDeleteHandler); 작성
 function reportDeleteHandler() {
 	
-	let rid = $(this).siblings("input[name=rid]").val();
-	let reporter = $(this).siblings("input[name=reporter]").val();
-	console.log(rid);
-	console.log(reporter);
-	    
-    $.ajax({
-   		url : "reportdelete",
-   		type : "post",
-   		data: { 'rid' : rid, 'reporter' : reporter },
-   		success: function(data){
-   			if(data == 1) {
-				alert("신고 취소 성공");
-			} else {
-				alert("신고 취소 실패");
-			}
-   			getData();
-		 }
-   	});  
+	// 일단 정말 삭제할건지 다시 체크
+	if (confirm("정말 삭제하시겠습니까?") == true) { // 확인 클릭시
+		let rid = $(this).siblings("input[name=rid]").val();
+		let reporter = $(this).siblings("input[name=reporter]").val();
+		console.log(rid);
+		console.log(reporter);
+		    
+	    $.ajax({
+	   		url : "reportdelete",
+	   		type : "post",
+	   		data: { 'rid' : rid, 'reporter' : reporter },
+	   		success: function(data){
+	   			if(data == 1) {
+					alert("신고 취소 성공");
+				} else {
+					alert("신고 취소 실패");
+				}
+	   			getData();
+			 }
+	   	});  
+	} else { // 취소 클릭시
+	    return false;
+	}
 }
 
 
