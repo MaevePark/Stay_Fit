@@ -80,21 +80,28 @@ public class BoardController {
 		return "redirect:/board/list?bcid="+ vo.getBcid();
 	}
 
-	// 글수정페이지
+	//게시글 수정페이지
 	@GetMapping("/update")
-	public ModelAndView boardupdate(ModelAndView mv) {
-
-		mv.addObject("sectionName", "board/write.jsp");
+	public ModelAndView updateview(ModelAndView mv, @RequestParam("bid") int bid) throws Exception {
+		
+		mv.addObject("board", srv.read(bid));
+		mv.addObject("sectionName", "board/update.jsp");
 		mv.setViewName("index");
 
 		return mv;
 	}
+	//게시글 수정
+//	@PostMapping("/update")
+//	public String boardupdate(Board vo) throws Exception {
+//		srv.update(vo);
+//		return "redirect: /board/read?bid="+ vo.getBid();
+//	}
 
-	// 글삭제
+	//게시글 삭제
 	@PostMapping("/delete")
 	@ResponseBody
 	public int delete(@RequestParam("bid") int bid) throws Exception {
 		int result = srv.bdelete(bid);
-		return result;	
+		return result;
 	}
 }

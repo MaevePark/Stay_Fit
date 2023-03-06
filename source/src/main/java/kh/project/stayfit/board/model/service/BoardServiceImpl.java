@@ -51,6 +51,13 @@ public class BoardServiceImpl implements BoardService {
 	public int write(Board vo) throws Exception{
 		return dao.write(vo);
 	}
+	
+	//게시글 수정
+	@Override
+	public int update(Board vo) throws Exception{
+		return dao.update(vo) ;
+	}
+
 	//게시글 삭제
 	@Override
 	public int bdelete(int bid) throws Exception {

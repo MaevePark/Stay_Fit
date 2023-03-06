@@ -23,6 +23,10 @@ public interface BoardService {
 
 	//게시글 등록
 	public int write(Board vo) throws Exception;
+	
+	//게시글 수정
+	public int update(Board vo) throws Exception;
+
 	//게시글 삭제
 	public int bdelete(int bid) throws Exception;
 

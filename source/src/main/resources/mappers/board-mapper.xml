@@ -52,6 +52,11 @@
 		update board set bviewcount = bviewcount + 1 where bid=#{bid}
 	</update>
 	
+	<!--게시글 수정  -->
+	<update id="update" parameterType="Board"> 
+		UPDATE BOARD SET btitle = #{btitle}, bcontent = #{bcontent} WHERE bid = #{bid}
+	</update>
+	
 	<!--게시물 삭제  -->
 	<delete id="bdelete" parameterType="int">
 		delete from board where bid=#{bid}

@@ -58,6 +58,11 @@ public class BoardDao {
 	public int write(Board vo) throws Exception{
 		return sqlsession.insert("board.write", vo);
 	}
+	
+	//게시글 수정
+	public int update(Board vo ) throws Exception{
+		return sqlsession.update("board.update", vo);
+	}
 
 	//게시글 삭제
 	public int bdelete(int bid) {
