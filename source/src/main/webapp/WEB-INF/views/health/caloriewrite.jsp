@@ -294,7 +294,6 @@ function calCalorie() {
 		result = 655 + (9.6 * weight) + (1.8 * height) - (4.7 * age);
 	} else if (gender == 'M') { // 남성인 경우
 		result = 66 + (13.7 * weight) + (5 * height) - (6.8 * age);
-	      
 	}
 	var bmr = result.toFixed(0);
     console.log("bmr 계산 값: " + bmr);
