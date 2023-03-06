@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!-- Blog Section Begin -->
 <section class="blog spad">
@@ -24,15 +26,26 @@
 							<tbody>
 								<tr>
 									<th>총 감량기간</th>
-									<td><span id="GOAL_TERM"></span></td>
+									<td>
+										<c:choose>
+											<c:when test="${healthInfoVo.goal_term_type == 'M'}">
+												${healthInfoVo.goal_term} 개월
+											</c:when>
+											<c:when test="${healthInfoVo.goal_term_type == 'D'}">
+	    										${healthInfoVo.goal_term} 일
+	  										</c:when>
+										</c:choose>
+				
+										<%-- <span id="GOAL_TERM">${healthInfoVo.goal_term }</span> --%>
+									</td>
 								</tr>
 								<tr>
 									<th>현재체중</th>
-									<td class="lh30"><span id="WEIGHT"></span>${healthInfoVo.weight }</td>
+									<td class="lh30"><span id="WEIGHT">${healthInfoVo.weight } kg</span></td>
 								</tr>
 								<tr>
 									<th>목표체중</th>
-									<td class="lh30"><span id="GOAL_WEIGHT"></span>${healthInfoVo.goal_weight }</td>
+									<td class="lh30"><span id="GOAL_WEIGHT">${healthInfoVo.goal_weight } kg</span></td>
 								</tr>
 							</tbody>
 						</table>
@@ -62,7 +75,7 @@
 											
 										<span id="ACTIVE_MET" class="yellow" style="width: 55px;">
 											<img alt=""	src="<%=request.getContextPath()%>/resources/img/health/bg_calorie_yellow.gif">
-											${healthInfoVo.activityMetabolicRate }</span>
+											${healthInfoVo.amr }</span>
 											
 											
 										<span id="DIGEST_MET" class="orange" style="width: 68px;">
@@ -94,7 +107,7 @@
 								<td><span id="DAY_EAT_CAL"></span></td>
 							</tr>
 							<tr>
-								<th>하루 동안 운동으로 소모해야 할 칼로리</th>
+								<th>하루 동안 운동으로 소모해야 할 운동 칼로리</th>
 								<td><span id="DAY_EXERCISE_CAL"></span></td>
 							</tr>
 						</tbody>

@@ -45,7 +45,7 @@
 								<td>${healthInfoVo.stature } cm</td>
 							</tr>
 							<tr>
-								<th>몸무게</th>
+								<th>체중</th>
 								<td>${healthInfoVo.weight } kg</td>
 							</tr>
 						</tbody>
