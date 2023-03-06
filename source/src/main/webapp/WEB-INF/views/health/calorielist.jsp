@@ -41,22 +41,23 @@
 								</tr>
 								<tr>
 									<th>현재체중</th>
-									<td class="lh30"><span id="WEIGHT">${healthInfoVo.weight } kg</span></td>
+									<td class="lh30"><span id="WEIGHT">${healthInfoVo.weight} kg</span></td>
 								</tr>
 								<tr>
 									<th>목표체중</th>
-									<td class="lh30"><span id="GOAL_WEIGHT">${healthInfoVo.goal_weight } kg</span></td>
+									<td class="lh30"><span id="GOAL_WEIGHT">${healthInfoVo.goal_weight} kg</span></td>
+								</tr>
+								<tr>
+									<th>표준체중</th>
+									<td class="p-bk"><span id="AV_WEIGHT">${healthInfoVo.st_weight_float} kg</span></td>
+								</tr>
+								<tr>
+									<th>미용체중</th>
+									<td class="p-bk"><span id="AV_WEIGHT">${healthInfoVo.be_Weight_float} kg</span></td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
-					<!-- 표준체중, 미용 추천 체중 시작-->
-					<p class="bul-tip bdb-dotted" id="AV_WEIGHT">
-						<span class="p-bk"></span> <span class="p-bk"></span>
-						입니다.
-					</p>
-					<!-- 표준체중, 미용 추천 체중 끝-->
-
 					<!-- 하루 소비 칼로리 시작 -->
 					<h5>
 						하루 소비 칼로리 <span class="p-org" id="ALL_MET"></span>
