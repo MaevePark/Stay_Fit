@@ -68,14 +68,14 @@
 	<update id="updateProductCount" parameterType="MypageCart">
 		UPDATE CART SET PCOUNT=${pcount} WHERE PID=${pid} AND MID=${mid}
 	</update>
-	<!-- 장바구니 삭제 -->
-<!-- 	<delete id="deleteCart" parameterType="MypageCart"> -->
-<!-- 		DELETE FROM CART WHERE PID=${} AND MID=${mid} -->
-<!-- 	</delete> -->
 	<!-- 장바구니 수량 수정 -->
-<!-- 	<update id="updateCartProductCount" parameterType="MypageCart"> -->
-<!-- 		UPDATE CART SET PCOUNT=${} WHERE PID=${} AND MID=${} -->
-<!-- 	</update> -->
+	<update id="updateCartProductCount" parameterType="MypageCart">
+		UPDATE CART SET PCOUNT=${pcount} WHERE PID=${pid} AND MID=${mid}
+	</update>
+	<!-- 장바구니 삭제 -->
+	<delete id="deleteCart" parameterType="MypageCart">
+		DELETE FROM CART WHERE PID=${pid} AND MID=${mid}
+	</delete>
 	
 	
 	
@@ -92,10 +92,12 @@
 			FROM "ORDER" O JOIN PRODUCT P 
 				ON P.PID=O.PID AND O.MID=${mid}
 	</select>
-	<!-- 장바구니 구매(장바구니 삭제) + 구매기록 등록 -->
-	<insert id="">
-		<!-- 구매기록 테이블에 데이터 삽입 -->
-		<!-- 트리거를 통해 삽입되면 해당 상품을 장바구니에서 삭제 -->
+	<!-- 구매기록 등록 -->
+	<insert id="insertOrder" parameterType="MypageOrder">
+		INSERT 
+			INTO "ORDER" 
+				VALUES((SELECT NVL(MAX(OID), 0)+1 FROM "ORDER"), 
+				${pid}, ${mid}, null, SYSDATE, ${ocount})
 	</insert>
 	
 	
@@ -118,6 +120,9 @@
 						B.BCID=2 AND 
 					</when>
 				</choose>
+			</if>
+			<if test="boardCategory == 1">
+				(B.BCID=0 OR B.BCID=1 OR B.BCID=2) AND 
 			</if>
 			<if test="!searchword.equals('')">
 				<choose>
@@ -151,6 +156,9 @@
 						BCID=2 AND 
 					</when>
 				</choose>
+			</if>
+			<if test="boardCategory == 1">
+				(BCID=0 OR BCID=1 OR BCID=2) AND 
 			</if>
 			<if test="!searchword.equals('')">
 				<choose>
