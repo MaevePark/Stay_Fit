@@ -1,6 +1,13 @@
 package kh.project.stayfit.board.model.service;
 
+import java.util.List;
+
+import kh.project.stayfit.board.model.vo.Reply;
+
 public interface ReplyService {
+	
+	//댓글 조회
+	public List<Reply> replylist(int bid) throws Exception;
 	
 //	//댓글 작성
 //	public int write(Reply) throws Exception;

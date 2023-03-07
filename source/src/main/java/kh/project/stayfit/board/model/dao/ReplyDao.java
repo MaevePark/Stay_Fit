@@ -1,15 +1,25 @@
 package kh.project.stayfit.board.model.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import kh.project.stayfit.board.model.vo.Board;
+import kh.project.stayfit.board.model.vo.Reply;
 
 @Repository
 public class ReplyDao {
 	@Autowired
 	private SqlSession sqlsession;
-
-//	//댓글 작성
+	
+	//댓글list
+	public List<Reply> replylist(int bid) {
+		List<Reply> rlist = sqlsession.selectList("board.boardreply", bid);
+		return rlist;
+	}
+	//댓글 작성
 //	public int write(Reply) throws Exception{
 //		return sqlsession.;
 //	}

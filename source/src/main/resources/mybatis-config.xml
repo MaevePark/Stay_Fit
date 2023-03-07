@@ -15,6 +15,7 @@
 		<typeAlias type="kh.project.stayfit.admin.model.vo.AdminReport" alias="AdminReport"/>
 		<typeAlias type="kh.project.stayfit.seller.model.vo.SellerProduct" alias="SellerProduct"/>
 		<typeAlias type="kh.project.stayfit.board.model.vo.Board" alias="Board"/>
+		<typeAlias type="kh.project.stayfit.board.model.vo.Reply" alias="Reply"/>
 		
 		<typeAlias type="kh.project.stayfit.mypage.model.vo.MypageBMark" alias="MypageBMark"/>
 		<typeAlias type="kh.project.stayfit.mypage.model.vo.MypageBoard" alias="MypageBoard"/>
