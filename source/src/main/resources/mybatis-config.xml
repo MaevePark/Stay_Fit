@@ -31,6 +31,8 @@
 		<typeAlias type="kh.project.stayfit.shop.model.vo.ShopWish" alias="ShopWish"/>
 		
 		<typeAlias type="kh.project.stayfit.health.model.vo.HealthCenter" alias="HealthCenter"/>
+		
+		<typeAlias type="kh.project.stayfit.member.model.vo.Member" alias="Member"/>
 	</typeAliases>
 
 	

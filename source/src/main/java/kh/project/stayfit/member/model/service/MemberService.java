@@ -1,8 +1,14 @@
 package kh.project.stayfit.member.model.service;
 
+import javax.servlet.http.HttpSession;
+
+import kh.project.stayfit.member.model.vo.Member;
 
 public interface MemberService {
-	public int login(String a, String b); // login(String, String): int
-	public int insert(String a ,String b , String c); // insert(String, String, String): int
+	public boolean loginCheck(Member member, HttpSession session);
+	public Member viewMember(Member member);
+	public void logout(HttpSession session);
+//	public int login(Member m, HttpSession session);
+	public int join(Member member); // insert(String, String, String): int
 	public int mailChk(String a); // mailChk(String): int
 }
