@@ -21,24 +21,57 @@ function loadCart(el) {
 			if(cartList.length > 0) {
 				for(let i=0; i<cartList.length; i++) {
 					var list = cartList[i];
-					html += '<tr>'+
-								'<td class="shoping__cart__item"><img src="'+list.PIMAGE+'" alt="product_img">'+
-									'<h5>'+list.PNAME+'</h5></td>'+
-								'<td class="shoping__cart__price">'+list.PPRICE+'원</td>'+
-								'<td class="shoping__cart__quantity">'+
-									'<div class="quantity">'+
-										'<div class="pro-qty">'+
-											'<input type="text" class="pcount" value="'+list.PCOUNT+'" data-pid="'+list.PID+'">'+
+					if(list.PSALE != 0) {
+						var sale = (100 - list.PSALE);
+						html += '<tr>'+
+									'<td class="shoping__cart__item"><img src="'+list.PIMAGE+'" alt="product_img">'+
+										'<h5>'+list.PNAME+'</h5></td>'+
+									'<td class="shoping__cart__price">'+
+										'<div>'+
+											'<span>'+list.PPRICE+'원</span>'+
 										'</div>'+
-									'</div>'+
-								'</td>'+
-								'<td class="shoping__cart__total">'+list.PNAME*list.PCOUNT+'</td>'+
-								'<td class="shoping__cart__go_to_buy">'+
-									'<button type="button" onclick="insertRecord('+list.PID+')">구매하러 가기</button>'+
-								'</td>'+
-								'<td class="shoping__cart__item__close" data-pid='+list.PID+' onclick="delCart(this)"><span '+
-									'class="icon_close"></span></td>'+
-							'</tr>';
+										'<div>'+
+											'<span>'+list.PSALE+'%</span>'+
+										'</div>'+
+										'<span class="price">'+Math.floor((list.PPRICE * sale)/100/10)*10+'</span><span>원</span>'+
+									'</td>'+
+									'<td class="shoping__cart__quantity">'+
+										'<div class="quantity">'+
+											'<div class="pro-qty">'+
+												'<input type="text" class="pcount" value="'+list.PCOUNT+'" data-pid="'+list.PID+'">'+
+											'</div>'+
+										'</div>'+
+										'<div><span>재고수량 : '+list.PSTOCK+'</span></div>'+
+									'</td>'+
+									'<td class="shoping__cart__total"><span>'+(list.PPRICE * sale)/100*list.PCOUNT/10*10+'</span>원</td>'+
+									'<td class="shoping__cart__go_to_buy">'+
+										'<button type="button" onclick="insertRecord('+list.PID+')">구매하러 가기</button>'+
+									'</td>'+
+									'<td class="shoping__cart__item__close" data-pid='+list.PID+' onclick="delCart(this)"><span '+
+										'class="icon_close"></span></td>'+
+								'</tr>';
+					} else {
+						html += '<tr>'+
+									'<td class="shoping__cart__item"><img src="'+list.PIMAGE+'" alt="product_img">'+
+										'<h5>'+list.PNAME+'</h5></td>'+
+									'<td class="shoping__cart__price">'
+										'<span class="price">'+Math.floor(list.PPRICE/10)*10+'</span><span>원</span>'+
+									'<td class="shoping__cart__quantity">'+
+										'<div class="quantity">'+
+											'<div class="pro-qty">'+
+												'<input type="text" class="pcount" value="'+list.PCOUNT+'" data-pid="'+list.PID+'">'+
+											'</div>'+
+										'</div>'+
+										'<div><span>재고수량 : '+list.PSTOCK+'</span></div>'+
+									'</td>'+
+									'<td class="shoping__cart__total"><span>'+list.PPRICE*list.PCOUNT/10*10+'</span>원</td>'+
+									'<td class="shoping__cart__go_to_buy">'+
+										'<button type="button" onclick="insertRecord('+list.PID+')">구매하러 가기</button>'+
+									'</td>'+
+									'<td class="shoping__cart__item__close" data-pid='+list.PID+' onclick="delCart(this)"><span '+
+										'class="icon_close"></span></td>'+
+								'</tr>';
+					}
 				}
 			} else {
 				html +='<tr>'+
@@ -46,6 +79,17 @@ function loadCart(el) {
 						'</tr>';
 			}
 			parent.innerHTML = html;
+			
+			var totalClass = document.getElementsByClassName('shoping__cart__total');
+			var totalCost = 0;
+			for(var i=0; i<totalClass.length; i++) {
+				console.log(i+"번째 값 : "+totalClass[i].querySelector('span').innerText);
+				totalCost += parseInt(totalClass[i].querySelector('span').innerText);
+			}
+			document.getElementById("fullCost").innerText = totalCost +"원";
+			
+			
+			
 			
 			var proQty = $('.pro-qty');
 		    proQty.prepend('<span class="dec qtybtn">-</span>');
@@ -133,6 +177,19 @@ function updateCart(el) {
 		, dataType: "json"
 		, success: function(result) {
 			console.log(result);
+			
+			var totalPrice = parent.parentNode.parentNode.parentNode.querySelector('.shoping__cart__total').querySelector('span');
+			var finalPrice = parent.parentNode.parentNode.parentNode.querySelector('.shoping__cart__price').querySelector('.price');
+			totalPrice.innerText = finalPrice.innerText * pcount;
+			
+			var totalClass = document.getElementsByClassName('shoping__cart__total');
+			var totalCost = 0;
+			for(var i=0; i<totalClass.length; i++) {
+				console.log(i+"번째 값 : "+totalClass[i].querySelector('span').innerText);
+				totalCost += parseInt(totalClass[i].querySelector('span').innerText);
+			}
+			document.getElementById("fullCost").innerText = totalCost +"원";
+			
 		}
 		, error: function(request, status, errordata) {
 			alert("error code: "+request.status +"\n"
