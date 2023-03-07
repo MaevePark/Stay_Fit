@@ -73,7 +73,7 @@ public class FileSave {
 		return savedFileName;
 	}
 	
-	
+	//프로필사진 변경
 	public static String saveFile2(
 			MultipartFile multipartFile
 			, String filepath
@@ -110,7 +110,7 @@ public class FileSave {
 			 */
 			
 			//파일 rename - 닉네임_profileImg
-			savedFileName = mid+"_profImg";
+			savedFileName = UUID.randomUUID()+"_profImg_"+mid;
 			// 파일 저장
 			try {
 				multipartFile.transferTo(new File(path + savedFileName));
