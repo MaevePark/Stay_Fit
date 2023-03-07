@@ -2,11 +2,13 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/css/mycart.css"
-	type="text/css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/mycart.css" type="text/css">
+<script src="<%=request.getContextPath() %>/resources/js/jquery-3.6.1.js"></script>
+<script src='<%=request.getContextPath() %>/resources/js/mypage/cart.js'></script>
+
 
 <!-- Shoping Cart Section Begin -->
+<input type="hidden" name="mid" id="mid" value="3">
 <section class="shoping-cart spad">
 	<div class="container">
 		<div class="row">
@@ -35,23 +37,22 @@
 							<c:if test="${cartList.size() != 0 }">
 								<c:forEach items="${cartList }" var="list">
 									<tr>
-										<td class="shoping__cart__item"><img
-											src="${list.PIMAGE }"
-											alt="">
+										<td class="shoping__cart__item"><img src="${list.PIMAGE }" alt="product_img">
 											<h5>${list.PNAME }</h5></td>
 										<td class="shoping__cart__price">${list.PPRICE }원</td>
 										<td class="shoping__cart__quantity">
 											<div class="quantity">
 												<div class="pro-qty">
-													<input type="text" value="${list.PCOUNT }">
+													<input type="text" class="pcount" value="${list.PCOUNT }" data-pid="${list.PID }">
 												</div>
 											</div>
 										</td>
 										<td class="shoping__cart__total">${list.PPRICE * list.PCOUNT }</td>
 										<td class="shoping__cart__go_to_buy">
-											<button type="button" onclick="location.href='${list.PLINK }'">구매하러 가기</button>
+											<c:set var="plink" value="${list.PLINK }"></c:set>
+											<button type="button" onclick="insertRecord(${list.PID }, '${plink }')">구매하러 가기</button>
 										</td>
-										<td class="shoping__cart__item__close"><span
+										<td class="shoping__cart__item__close" data-pid="${list.PID }" onclick="delCart(this)"><span
 											class="icon_close"></span></td>
 									</tr>
 								</c:forEach>

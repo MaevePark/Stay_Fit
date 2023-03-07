@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 	
 
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/css/mypagemyboard.css"
+	href="<%=request.getContextPath()%>/resources/css/mypage.css"
 	type="text/css">
 
 <!-- Blog Section Begin -->
@@ -106,92 +107,113 @@
 									
 								</thead>
 								<tbody class="table-border-bottom-0">
-									<c:choose>
-										<c:when test="${type.equals('bookmark') }">
-											<c:forEach items="${boardList }" var="list">
-												<tr>
-													<td><i class="fab fa-angular fa-lg text-danger me-3"></i>
-														<c:if test="${list.BCID  == 0}"><span>식단</span></c:if>
-														<c:if test="${list.BCID  == 1}"><span>팁&노하우</span></c:if>
-														<c:if test="${list.BCID  == 2}"><span>고민&질문</span></c:if>
-													</td>
-													<td>${list.BTITLE }</td>
-													<td>${list.MNAME }</td>
-													<td><span>${list.BVIEWCOUNT }</span></td>
-													<td><span>${list.BCREATE }</span></td>
-												</tr>
-											</c:forEach>
-										</c:when>
-										<c:when test="${type.equals('likereply') }">
-											<c:forEach items="${boardList }" var="list">
-												<tr>
-													<td><i class="fab fa-angular fa-lg text-danger me-3"></i>
-														<span>${list.RCONTENT }</span>
-													</td>
-													<td><span>${list.RCREATE }</span></td>
-													<td><span>${list.BTITLE }</span></td>
-												</tr>
-											</c:forEach>
-										</c:when>
-										<c:when test="${type.equals('myboard') }">
-											<c:forEach items="${boardList }" var="list">
-												<tr>
-													<td><i class="fab fa-angular fa-lg text-danger me-3"></i>
-														<c:if test="${list.BCID  == 0}"><span>식단</span></c:if>
-														<c:if test="${list.BCID  == 1}"><span>팁&노하우</span></c:if>
-														<c:if test="${list.BCID  == 2}"><span>고민&질문</span></c:if>
-													</td>
-													<td>${list.BTITLE }</td>
-													<td>${list.MNAME }</td>
-													<td><span>${list.BVIEWCOUNT }</span></td>
-													<td><span>${list.BCREATE }</span></td>
-												</tr>
-											</c:forEach>
-										</c:when>
-										<c:when test="${type.equals('myreply') }">
-											<c:forEach items="${boardList }" var="list">
-												<tr>
-													<td><i class="fab fa-angular fa-lg text-danger me-3"></i>
-														<span>${list.RCONTENT }</span>
-													</td>
-													<td><span>${list.RCREATE }</span></td>
-													<td><span>${list.BTITLE }</span></td>
-												</tr>
-											</c:forEach>
-										</c:when>
-									</c:choose>
-									
+									<c:if test="${fn:length(boardList) > 0 }">
+										<c:choose>
+											<c:when test="${type.equals('bookmark') }">
+												<c:forEach items="${boardList }" var="list">
+													<tr>
+														<td><i class="fab fa-angular fa-lg text-danger me-3"></i>
+															<c:if test="${list.BCID  == 0}"><span>식단</span></c:if>
+															<c:if test="${list.BCID  == 1}"><span>팁&노하우</span></c:if>
+															<c:if test="${list.BCID  == 2}"><span>고민&질문</span></c:if>
+														</td>
+														<td>${list.BTITLE }</td>
+														<td>${list.MNAME }</td>
+														<td><span>${list.BVIEWCOUNT }</span></td>
+														<td><span>${list.BCREATE }</span></td>
+													</tr>
+												</c:forEach>
+											</c:when>
+											<c:when test="${type.equals('likereply') }">
+												<c:forEach items="${boardList }" var="list">
+													<tr>
+														<td><i class="fab fa-angular fa-lg text-danger me-3"></i>
+															<span>${list.RCONTENT }</span>
+														</td>
+														<td><span>${list.RCREATE }</span></td>
+														<td><span>${list.BTITLE }</span></td>
+													</tr>
+												</c:forEach>
+											</c:when>
+											<c:when test="${type.equals('myboard') }">
+												<c:forEach items="${boardList }" var="list">
+													<tr>
+														<td><i class="fab fa-angular fa-lg text-danger me-3"></i>
+															<c:if test="${list.BCID  == 0}"><span>식단</span></c:if>
+															<c:if test="${list.BCID  == 1}"><span>팁&노하우</span></c:if>
+															<c:if test="${list.BCID  == 2}"><span>고민&질문</span></c:if>
+														</td>
+														<td>${list.BTITLE }</td>
+														<td>${list.MNAME }</td>
+														<td><span>${list.BVIEWCOUNT }</span></td>
+														<td><span>${list.BCREATE }</span></td>
+													</tr>
+												</c:forEach>
+											</c:when>
+											<c:when test="${type.equals('myreply') }">
+												<c:forEach items="${boardList }" var="list">
+													<tr>
+														<td><i class="fab fa-angular fa-lg text-danger me-3"></i>
+															<span>${list.RCONTENT }</span>
+														</td>
+														<td><span>${list.RCREATE }</span></td>
+														<td><span>${list.BTITLE }</span></td>
+													</tr>
+												</c:forEach>
+											</c:when>
+										</c:choose>
+									</c:if>
+									<c:if test="${fn:length(boardList) <= 0 }">
+										<tr>
+											<c:choose>
+												<c:when test="${type.equals('bookmark')}">
+													<td colspan="5">등록된 북마크가 없습니다.</td>
+												</c:when>
+												<c:when test="${type.equals('likereply')}">
+													<td colspan="3">공감한 댓글이 없습니다.</td>
+												</c:when>
+												<c:when test="${type.equals('myboard')}">
+													<td colspan="5">작성한 글이 없습니다.</td>
+												</c:when>
+												<c:when test="${type.equals('myreply')}">
+													<td colspan="3">작성한 댓글이 없습니다.</td>
+												</c:when>
+											</c:choose>
+										</tr>
+									</c:if>
 								</tbody>
 							</table>
 						</div>
 					</div>
 					<!--/ Basic Bootstrap Table -->
 				</div>
-
 				<!-- 페에징 -->
-				<div class="col-lg-12">
-					<div class="product__pagination blog__pagination">
-						<c:if test="${pagingMap.start != 1}">
-							<a href="<%=request.getContextPath()%>/${urlpattern }?type=${type }&page=1"> << </a>
-						</c:if>
-						<c:if test="${pagingMap.currentPage != 1}">
-							<a href="<%=request.getContextPath()%>/${urlpattern }?type=${type }&page=${pagingMap.currentPage -1}"> < </a>
-						</c:if>
-						
-						
-						<c:forEach begin="${pagingMap.start }" end="${pagingMap.end }" var="num">                                
-							<a href="<%=request.getContextPath()%>/${urlpattern }?type=${type }&page=${num}">${num}</a>
-						</c:forEach>
-						
-						
-						<c:if test="${pagingMap.currentPage != pagingMap.totalPageCnt}">
-							<a href="<%=request.getContextPath()%>/${urlpattern }?type=${type }&page=${pagingMap.currentPage +1}"> > </a>
-						</c:if>
-						<c:if test="${pagingMap.end != pagingMap.totalPageCnt}">
-							<a href="<%=request.getContextPath()%>/${urlpattern }?type=${type }&page=${pagingMap.totalPageCnt }"> >> </a>
-						</c:if>
+				<c:if test="${fn:length(boardList) > 0 }">
+					<div class="col-lg-12">
+						<div class="product__pagination blog__pagination">
+							<c:if test="${pagingMap.start != 1}">
+								<a href="<%=request.getContextPath()%>/${urlpattern }?type=${type }&page=1"> << </a>
+							</c:if>
+							<c:if test="${pagingMap.currentPage != 1}">
+								<a href="<%=request.getContextPath()%>/${urlpattern }?type=${type }&page=${pagingMap.currentPage -1}"> < </a>
+							</c:if>
+							
+							
+							<c:forEach begin="${pagingMap.start }" end="${pagingMap.end }" var="num">                                
+								<a href="<%=request.getContextPath()%>/${urlpattern }?type=${type }&page=${num}">${num}</a>
+							</c:forEach>
+							
+							
+							<c:if test="${pagingMap.currentPage != pagingMap.totalPageCnt}">
+								<a href="<%=request.getContextPath()%>/${urlpattern }?type=${type }&page=${pagingMap.currentPage +1}"> > </a>
+							</c:if>
+							<c:if test="${pagingMap.end != pagingMap.totalPageCnt}">
+								<a href="<%=request.getContextPath()%>/${urlpattern }?type=${type }&page=${pagingMap.totalPageCnt }"> >> </a>
+							</c:if>
+						</div>
 					</div>
-				</div>
+				</c:if>
+				
 			</div>
 		</div>
 	</div>
