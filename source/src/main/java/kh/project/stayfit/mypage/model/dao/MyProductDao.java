@@ -63,7 +63,11 @@ public class MyProductDao {
 	} 
 	//구매기록 추가
 	public int insertOrder(MypageOrder vo) throws Exception {
-		return sqlsession.insert("mypage.insertOrder", vo);
+		int result = 0;
+		sqlsession.insert("mypage.insertOrder", vo);
+		System.out.println(vo.getResult());
+		result = vo.getResult();
+		return result;
 	}
 	
 }
