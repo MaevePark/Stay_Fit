@@ -1,6 +1,8 @@
 package kh.project.stayfit.mypage.controller;
 
+import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -134,7 +137,9 @@ public class MypageController {
 			try {
 // https://res.cloudinary.com/doxmm0ofz/image/upload/v1677233838/fd689c23-b84a-4d19-8292-87cfdc656201_w_20220207180134_5798062860.jpg
 				String originalImage = vo.getProfimg(); // 기존 이미지 url
-
+				System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+				System.out.println("originalImage : "+originalImage);
+				System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 // <url에서 마지막 / 와 . 사이에 글자만 잘라내기>
 // 1. 마지막 /와 .의 인덱스를 찾기
 				int lastSlashIndex = originalImage.lastIndexOf('/');
@@ -152,14 +157,14 @@ public class MypageController {
 				System.out.println("★★★ newUrl : " + newUrl);
 
 // 기존 이미지가 있었다면 그 이미지 삭제
-				if ((originalImage != null && !originalImage.equals("")) && !originalImage.equals("https://res.cloudinary.com/doxmm0ofz/image/upload/v1675945711/profile/defaultprofile_rmpnyj.jpg")) {
-					try {
-						cloudinary.uploader().destroy(publicId, ObjectUtils.emptyMap());
-						System.out.println("File deleted successfully.");
-					} catch (Exception e) {
-						System.out.println("Error occurred while deleting file: " + e.getMessage());
-					}
-				}
+//				if ((originalImage != null && !originalImage.equals("")) && !originalImage.equals("https://res.cloudinary.com/doxmm0ofz/image/upload/v1675945711/profile/defaultprofile_rmpnyj.jpg")) {
+//					try {
+//						cloudinary.uploader().destroy(publicId, ObjectUtils.emptyMap());
+//						System.out.println("File deleted successfully.");
+//					} catch (Exception e) {
+//						System.out.println("Error occurred while deleting file: " + e.getMessage());
+//					}
+//				}
 				
 				upload_result.put("savedFileName", savedFileName);
 				upload_result.put("newUrl", newUrl);
@@ -317,6 +322,18 @@ public class MypageController {
 			out.append(new GsonBuilder().create().toJson(result));
 			out.flush();
 			out.close();
+		} catch (DuplicateKeyException e) {
+		    result = 2;
+		    PrintWriter out;
+			try {
+				out = response.getWriter();
+				out.append(new GsonBuilder().create().toJson(result));
+				out.flush();
+				out.close();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -416,11 +433,22 @@ public class MypageController {
 		
 		try {
 			result1 = productservice.insertOrder(ovo);
-			if(result1 > 0) {
+			
+			if(result1 == 1) {
 				result2 = productservice.deleteCart(cvo);
 				if(result2 > 0) result = 1;
 			}
-			
+		} catch (SQLException e) {
+			if (e.getErrorCode() == 20001) {
+				result = 2;
+			  } else {
+				  result = 3;
+			  }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		try {
 			PrintWriter out = response.getWriter();
 			out.append(new GsonBuilder().create().toJson(result));
 			out.flush();
