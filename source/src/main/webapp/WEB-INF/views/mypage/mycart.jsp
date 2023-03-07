@@ -3,7 +3,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/mycart.css" type="text/css">
-<script src="<%=request.getContextPath() %>/resources/js/jquery-3.6.1.js"></script>
 <script src='<%=request.getContextPath() %>/resources/js/mypage/cart.js'></script>
 
 
