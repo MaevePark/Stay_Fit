@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/css/member.css"
-	type="text/css">
-
 <section class="contact-form spad">
 	<div class="container">
 		<div class="row">
@@ -86,6 +82,8 @@
 			$("#mpw").focus();
 			return;
 			}
+			document.loginform.action="<%=request.getContextPath()%>/member/loginCheck";
+			document.loginform.method="post";
 			document.loginform.submit();
 		})
 	})

@@ -67,6 +67,23 @@
 	<!-- health page css End -->
 	
 	
+	<!--board 시작  -->
+	 <c:if test="${sectionName eq 'board/list.jsp' || sectionName eq 'board/read.jsp'}">
+		<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/boardlist.css" type="text/css">
+		<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/boardread.css" type="text/css">
+	</c:if>
+	<c:if test="${sectionName eq 'board/write.jsp' }">
+		<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/boardread.css" type="text/css">
+		<!-- jquery/bootstrap -->
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+		<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+		<!--  summernote css/js -->
+		<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+		<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script> 
+	</c:if>
+	<!--board 끝  -->
+	
 	
 	
 </head>

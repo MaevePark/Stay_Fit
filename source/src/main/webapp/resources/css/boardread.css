@@ -145,5 +145,10 @@ label[for="4"] > input:checked{
 	padding: 0.75rem;
 	
 }
+#profimg {
+	border-radius : 50%;
+	width : 40px;
+	height : 40px;
+}
 
 /*댓글영역 끝*/

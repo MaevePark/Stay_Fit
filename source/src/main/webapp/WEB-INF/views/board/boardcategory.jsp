@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-    <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/boardlist.css" type="text/css">
+     <%-- <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/boardlist.css" type="text/css">  index이동 삭제예정--%>
     
-				<div class="col-lg-2 col-md-5" >  <!--style직접 확정 후 삭제  -->
+				<div class="col-lg-2 col-md-5" > 
                     <div class="blog__sidebar">
                         <div class="blog__sidebar__item">
                             <h4>Categories</h4>

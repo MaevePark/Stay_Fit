@@ -2,21 +2,21 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<!--index로 이동함 삭제예정  -->
+<%-- <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/boardread.css" type="text/css">  --%>
+<!-- <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script> -->
+<!-- 여기까지 삭제  -->
 
-
-<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/boardread.css" type="text/css">
-<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-
-<!-- Blog Section Begin -->
+<!-- 게시판 상세페이지 -->
 <section class="blog spad">
 	<div class="container">
 		<div class="row">
-			<!-- 게시판 카테고리 -->
+			<!-- 게시판 카테고리 첨부-->
 			<jsp:include page="/WEB-INF/views/board/boardcategory.jsp"></jsp:include>
-
+			<!-- 게시판 카테고리 첨부 끝 -->
 			<div class="col-lg-10 col-md-10">
 				<div class="row">
-
+				<!-- 글검색인데 삭제예정  -->
 					<div class="hero__search__form">
 						<form action="#">
 							<div class="hero__search__categories">
@@ -38,19 +38,16 @@
 							<button type="submit" class="site-btn">SEARCH</button>
 						</form>
 					</div>
-
+					<!-- 글검색인데 삭제예정  여기까지-->
+					<!-- 게시글  -->
 					<table id="readContent">
-						<!-- 타이틀1  -->
 						<tr>
 							<td>${read.btitle}</td>
 							<td>${read.bviewcount}</td>
-
 						</tr>
-						<!-- 타이틀1  -->
 						<tr>
 							<td>${read.mname}</td>
-							<td><fmt:formatDate pattern="YY/MM/DD"
-									value="${read.bcreate}" /></td>
+							<td><fmt:formatDate pattern="YY/MM/dd" value="${read.bcreate}" /></td>
 						</tr>
 
 						<!-- 컨텐츠  -->
@@ -59,9 +56,8 @@
 								<p>${read.bcontent}</p>
 							</td>
 						</tr>
-
 					</table>
-
+					<!-- 게시글 끝  -->
 					<!-- 게시글 이모티콘 -->
 					<div class="container" id="emotion">
 						<form>
@@ -85,23 +81,21 @@
 							</div>
 						</form>
 					</div>
-					<!-- 게시글 이모티콘 여기까지 -->
+					<!-- 게시글 이모티콘 끝-->
 
-
-					<!-- 버튼 -->
+					<!-- 수정, 삭제, 목록 버튼 -->
 					<div id="button_parent">
 						<!-- 수정, 삭제 버튼은 본인이 작성한 글일때만 출력. -->
 						<%-- <c:if test="${sessionScope.principal.mid == read.mid }"> --%>
 						<form>
-						<input type="hidden" id="board-bcid" value="${read.bid }" >
-						<button type="button" class="site-btn" id="btn-upd" onclick="location.href='update?bid=${read.bid}'" >수정</button>
-						<button type="button" class="site-btn" id="btn-del" onclick="del(${read.bid})">삭제</button>
+							<input type="hidden" id="board-bcid" value="${read.bid }">
+							<button type="button" class="site-btn" id="btn-upd" onclick="location.href='update?bid=${read.bid}'">수정</button>
+							<button type="button" class="site-btn" id="btn-del" onclick="del(${read.bid})">삭제</button>
 						</form>
 						<%-- </c:if> --%>
-						<button type="button" class="site-btn"
-							onclick="location.href='list?bcid=${read.bcid}'">목록</button>
+						<button type="button" class="site-btn" onclick="location.href='list?bcid=${read.bcid}'">목록</button>
 					</div>
-					<!--버튼 여기까지  -->
+					<!-- 수정, 삭제, 목록 버튼 여기까지  -->
 
 
 					<!-- 북마크 보류-->
@@ -111,22 +105,8 @@
 					</label> -->
 					<!-- 북마크 여기까지  -->
 
-
-					<!--게시글 이모티콘 삭제예정  -->
-					<!-- <div class="container">
-						<form>
-							<div id="emote" class="">
-								<label for="0"> <input type="radio" id="0"
-									name="emotion" value="0">
-									<p>도움됐어요</p>
-								</label>
-							</div>
-						</form>
-					</div> -->
-					<!--게시글 이모티콘 삭제예정 여기까지 -->
-
+					<!-- 댓글 -->
 					<div id="replyArea">
-						<!-- 댓글 -->
 						<!-- 댓글 작성  -->
 						<!-- <div id="hero__search__form" class="comment-write">
                         		<form id="comment-data">	
@@ -140,55 +120,42 @@
 								<button type="submit" class="site-btn">댓글 등록</button>
 							</form>
 						</div>
+						<!-- 댓글 작성  끝 -->
 
 						<!--댓글 리스트  -->
 						<table id="readReply">
-							<tr>
-								<td>
-									<div class="blog__sidebar__recent__item__pic">
+							<c:choose>
+								<c:when test="${empty reply }">
+									<tr>
+										<td colspan="5" align="center">작성된 댓글이 없습니다</td>
+									</tr>
+								</c:when>
+								<c:when test="${!empty reply}">
+									<c:forEach var="r" items="${reply}">
+										<tr>
+											<td>
+												<div class="blog__sidebar__recent__item__pic">
+													<img id="profimg" src="${r.profimg }" />
+												</div>
+												<div class="blog__sidebar__recent__item__text">
+													<span>${r.mname }</span>
+													<div>${r.rcontent }</div>
+												</div>
+											</td>
+											<td><fmt:formatDate pattern="YY/MM/dd HH:MM"
+													value="${r.rcreate}" /></td>
+										</tr>
+									</c:forEach>
+								</c:when>
+							</c:choose>
+
+							<%-- 									<div class="blog__sidebar__recent__item__pic">
 										<img
 											src="<%=request.getContextPath()%>/resources/img/user/user-mini.png"
 											alt="">
-									</div>
-									<div class="blog__sidebar__recent__item__text">
-										<span>USER</span>
-										<div>Lorem ipsum dolor sit amet, consectetur adipiscing
-											elit.</div>
-									</div>
-								</td>
-								<td>YYYY.MM.DD</td>
-							</tr>
-							<tr>
-								<td>
-									<div class="blog__sidebar__recent__item__pic">
-										<img
-											src="<%=request.getContextPath()%>/resources/img/user/user-mini.png"
-											alt="">
-									</div>
-									<div class="blog__sidebar__recent__item__text">
-										<span>USER</span>
-										<div>Lorem ipsum dolor sit amet, consectetur adipiscing
-											elit.</div>
-									</div>
-								</td>
-								<td>YYYY.MM.DD</td>
-							</tr>
-							<tr>
-								<td>
-									<div class="blog__sidebar__recent__item__pic">
-										<img
-											src="<%=request.getContextPath()%>/resources/img/user/user-mini.png"
-											alt="">
-									</div>
-									<div class="blog__sidebar__recent__item__text">
-										<span>USER</span>
-										<div>Lorem ipsum dolor sit amet, consectetur adipiscing
-											elit.</div>
-									</div>
-								</td>
-								<td>YYYY.MM.DD</td>
-							</tr>
+									</div> --%>
 						</table>
+						<!-- 댓글 리스트  끝 -->
 					</div>
 				</div>
 			</div>
@@ -217,6 +184,4 @@ function del(bid){
 		alert("취소하였습니다.");
 	}	
 }
-
 </script>
-<!-- Blog Section End -->

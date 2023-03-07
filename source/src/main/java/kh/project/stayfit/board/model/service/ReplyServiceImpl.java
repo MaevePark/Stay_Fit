@@ -1,14 +1,24 @@
 package kh.project.stayfit.board.model.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kh.project.stayfit.board.model.dao.ReplyDao;
+import kh.project.stayfit.board.model.vo.Reply;
 
 @Service
 public class ReplyServiceImpl implements ReplyService{
 	@Autowired
 	private ReplyDao dao;
+	
+	//댓글 조회
+	@Override
+	public List<Reply> replylist(int bid) throws Exception {
+		List<Reply> rlist = dao.replylist(bid);
+		return rlist;
+	}
 	
 //	//댓글 작성
 //	@Override

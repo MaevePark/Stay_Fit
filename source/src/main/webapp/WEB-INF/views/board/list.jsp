@@ -1,16 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script> -->
 
-<!-- Blog Section Begin -->
 <section class="blog spad">
 	<div class="container">
 		<div class="row">
-			<!-- 게시판 카테고리 -->
+			<!-- 게시판 카테고리  -->
 			<jsp:include page="/WEB-INF/views/board/boardcategory.jsp"></jsp:include>
-
+			<!-- 게시판 카테고리 끝 -->
+			
 			<div class="col-lg-10 col-md-10">
 				<div class="row">
 
@@ -37,7 +36,6 @@
 					<h4 class="fw-bold py-3 mb-4">
 						<span class="text-muted fw-light">게시판 /</span>
 						<%=boardTitle%>
-
 					</h4>
 
 
@@ -97,22 +95,27 @@
 
 								<tbody class="table-border-bottom-0" id="tbody_list">
 									<!--여기부터 게시글 list   -->
-									  <c:choose>
-												<c:when test="${empty boardlist }" >
-													<tr><td colspan="5" align="center">데이터가 없습니다.</td></tr>
-												</c:when> 
-												<c:when test="${!empty boardlist}">
-													<c:forEach var="list" items="${boardlist}">
-														<tr>
-															<td>${list.bcname}</td>
-															<td><a href="<%=request.getContextPath()%>/board/read.do?bid=${list.bid}" style="color: #626262;">${list.btitle}</a></td>
-															<td>${list.mname}</td>
-															<td>${list.bviewcount}</td>
-															<td><fmt:formatDate pattern="YY/MM/DD HH:MM" value="${list.bcreate}"/></td>		
-														</tr>
-													</c:forEach>
-												</c:when>
-											</c:choose>  
+									<c:choose>
+										<c:when test="${empty boardlist }">
+											<tr>
+												<td colspan="5" align="center">데이터가 없습니다.</td>
+											</tr>
+										</c:when>
+										<c:when test="${!empty boardlist}">
+											<c:forEach var="list" items="${boardlist}">
+												<tr>
+													<td>${list.bcname}</td>
+													<td><a
+														href="<%=request.getContextPath()%>/board/read.do?bid=${list.bid}"
+														style="color: #626262;">${list.btitle}</a></td>
+													<td>${list.mname}</td>
+													<td>${list.bviewcount}</td>
+													<td><fmt:formatDate pattern="YY/MM/dd HH:MM"
+															value="${list.bcreate}" /></td>
+												</tr>
+											</c:forEach>
+										</c:when>
+									</c:choose>
 									<!--여기까지  게시글 list -->
 								</tbody>
 							</table>
@@ -120,10 +123,11 @@
 					</div>
 
 					<!--게시판 글등록  -->
+					 
 					<div id="button_parent">
-						<button type="button" class="site-btn"
-							onclick="location.href='write'">글등록</button>
+						<button type="button" class="site-btn" onclick="location.href='write'">글등록</button>
 					</div>
+					 
 					<!-- 게시판 글등록  -->
 
 					<!-- <div class="col-lg-12">
@@ -134,40 +138,47 @@
 					</div> -->
 				</div>
 				<div class="col-lg-12">
-	<div class="product__pagination blog__pagination">
-		<c:if test="${pagingMap.start != 1}">
-			<a href="<%=request.getContextPath()%>/${urlpattern }?page=1" > << </a>
-		</c:if>
-		<c:if test="${pagingMap.currentPage != 1}">
-			<a href="<%=request.getContextPath()%>/${urlpattern }?page=${pagingMap.currentPage -1}"> < </a>
-		</c:if>
-		
-		
-		<c:forEach begin="${pagingMap.start }" end="${pagingMap.end }" var="num">                                
-			<a href="<%=request.getContextPath()%>/${urlpattern }?page=${num}">${num}</a>
-		</c:forEach>
-		
-		
-		<c:if test="${pagingMap.currentPage != pagingMap.totalPageCnt}">
-			<a href="<%=request.getContextPath()%>/${urlpattern }?page=${pagingMap.currentPage +1}"> > </a>
-		</c:if>
-		<c:if test="${pagingMap.end != pagingMap.totalPageCnt}">
-			<a href="<%=request.getContextPath()%>/${urlpattern }?page=${pagingMap.totalPageCnt }"> >> </a>
-		</c:if>
-	</div>
-</div>
+					<div class="product__pagination blog__pagination">
+						<c:if test="${pagingMap.start != 1}">
+							<a href="<%=request.getContextPath()%>/${urlpattern }?page=1">
+								<< </a>
+						</c:if>
+						<c:if test="${pagingMap.currentPage != 1}">
+							<a
+								href="<%=request.getContextPath()%>/${urlpattern }?page=${pagingMap.currentPage -1}">
+								< </a>
+						</c:if>
+
+
+						<c:forEach begin="${pagingMap.start }" end="${pagingMap.end }"
+							var="num">
+							<a
+								href="<%=request.getContextPath()%>/${urlpattern }?page=${num}">${num}</a>
+						</c:forEach>
+
+
+						<c:if test="${pagingMap.currentPage != pagingMap.totalPageCnt}">
+							<a
+								href="<%=request.getContextPath()%>/${urlpattern }?page=${pagingMap.currentPage +1}">
+								> </a>
+						</c:if>
+						<c:if test="${pagingMap.end != pagingMap.totalPageCnt}">
+							<a
+								href="<%=request.getContextPath()%>/${urlpattern }?page=${pagingMap.totalPageCnt }">
+								>> </a>
+						</c:if>
+					</div>
+				</div>
 			</div>
 		</div>
 		<!--   </div> -->
 </section>
 <script>
 
-      document.getElementByID("#btn_search").onclick = function(){
-    	let search = document.getElementByName("search")[0].value;
-    	let keyword = document.getElementByName("keyword")[0].value;
-    	location.href = "/board/listsearch"+"&search="+search+"keyword="+keyword;
-    }  
-
-    
-    </script>
-<!-- Blog Section End -->
+	document.getElementByID("#btn_search").onclick = function() {
+		let search = document.getElementByName("search")[0].value;
+		let keyword = document.getElementByName("keyword")[0].value;
+		location.href = "/board/listsearch" + "&search=" + search + "keyword="
+				+ keyword;
+	}
+</script>
