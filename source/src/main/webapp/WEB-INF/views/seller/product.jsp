@@ -97,15 +97,14 @@
 			              <div class="btn-group">
 					        <button type="button" id="dropdownbtn1" value="0" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">카테고리를 선택하세요  </button>
 					        <ul class="dropdown-menu">
-					          <li><a data-value="1" class="dropdown-item category">샐러드&도시락&볶음밥</a></li>
+					          <li><a data-value="1" class="dropdown-item category">샐러드&amp;도시락&amp;볶음밥</a></li>
 					          <li><a data-value="2" class="dropdown-item category">닭가슴살</a></li>
-					          <li><a data-value="3" class="dropdown-item category">밥&면</a></li>
-					          <li><a data-value="4" class="dropdown-item category">간편요리&반찬</a></li>
-					          <li><a data-value="5" class="dropdown-item category">베이커리&떡</a></li>
-					          <li><a data-value="6" class="dropdown-item category">분식&만두&치킨</a></li>
-					          <li><a data-value="7" class="dropdown-item category">건강간식&음료</a></li>
-					          <li><a data-value="8" class="dropdown-item category">단백질&시리얼&간식</a></li>
-					          <li><a data-value="9" class="dropdown-item category">건강&다이어트</a></li>
+					          <li><a data-value="3" class="dropdown-item category">밥&amp;면</a></li>
+					          <li><a data-value="4" class="dropdown-item category">간편요리&amp;반찬</a></li>
+					          <li><a data-value="5" class="dropdown-item category">베이커리&amp;떡</a></li>
+					          <li><a data-value="6" class="dropdown-item category">분식&amp;만두&amp;치킨</a></li>
+					          <li><a data-value="7" class="dropdown-item category">건강식&amp;음료</a></li>
+					          <li><a data-value="8" class="dropdown-item category">단백질&amp;시리얼&amp;간식</a></li>
 					        </ul>
 					      </div>
 			            </div>
@@ -387,20 +386,24 @@ function displayData(currentPage, dataPerPage) {
 				"<td>" + dataList[i].pricechar + "</td>" +
 				"<td>" + dataList[i].psales + "</td>" +
 				"<td>" + dataList[i].pstock + "</td>" +
-				"<td>" + 
+				"<td style='padding-left:0; padding-right:0;'>" + 
 					"<button type='button' class='btn btn-secondary btn-sm link'>상품보기</button>" + 
 					"<input type='hidden' name='plink' value='" + dataList[i].plink + "'>" +
 				"</td>" +
-				"<td>" + 
+				"<td style='padding-right:0;'>" + 
 					"<button type='button' class='btn btn-secondary btn-sm update' data-bs-toggle='modal' data-bs-target='#updateModal'>상품수정</button>" + 
 					"<input type='hidden' name='pimage' value='" + dataList[i].pimage + "'>" +
 					"<input type='hidden' name='pricenum' value='" + dataList[i].pricenum + "'>" +
+				"</td>" +
+				"<td>" + 
+					"<button type='button' class='btn btn-secondary btn-sm delete'>상품삭제</button>" + 
 				"</td>" +
 			"</tr>";
 	}
 	$("#dataTableBody").html(chartHtml);
 	$("button.link").on("click", linkClickHandler);
 	$("button.update").on("click", modalShowHandler);
+	$("button.delete").on("click", productDeleteHandler);
 }
 
 // 3. 페이징  함수 
@@ -540,6 +543,7 @@ function modalShowHandler() {
 	let pid = $(this).parent().siblings().eq(0).text();
 	let pname = $(this).parent().siblings().eq(2).text();
 	let pimage = $(this).siblings("input[name=pimage]").val();
+	console.log(pimage);
 	let pricenum = $(this).siblings("input[name=pricenum]").val();
 	let pstock = $(this).parent().siblings().eq(6).text();
 	let plink = $(this).parent().siblings().eq(7).children("input[type=hidden]").val();
@@ -609,7 +613,33 @@ function productUpdate(e) {
 	});  
 }
 
+//------------------------------------------------------------------------------
+//<상품 삭제>
 
+function productDeleteHandler() {
+	
+	// 일단 정말 삭제할건지 다시 체크
+	if (confirm("정말 삭제하시겠습니까?") == true) { // 확인 클릭시
+		let pid = $(this).parent().siblings().eq(0).text();
+		console.log(pid);
+	    
+	    $.ajax({
+	  		url : "productdelete",
+	  		type : "post",
+	  		data: { 'pid' : pid },
+	  		success: function(data){
+		  		if(data == 1) {
+					alert("상품 삭제 성공");
+				} else {
+					alert("상품 삭제 실패");
+				}
+	  			getData();
+		    }
+	    });  
+	} else { // 취소 클릭시
+	    return false;
+	}
+}
 </script>
 
 </html>

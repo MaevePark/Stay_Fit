@@ -26,12 +26,19 @@ public class ProductServiceImpl implements ProductService{
 	public int updateProduct(SellerProduct vo) throws Exception {
 		return dao.updateProduct(vo);
 	}
+	
+	// 상품삭제
+	@Override
+	public int deleteProduct(String pid) throws Exception {
+		return dao.deleteProduct(pid);
+	}
 
 	// 상품등록
 	@Override
 	public int insertProduct(SellerProduct vo) throws Exception {
 		return dao.insertProduct(vo);
 	}
+
 	
 
 

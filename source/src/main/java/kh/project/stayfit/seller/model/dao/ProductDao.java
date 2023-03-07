@@ -32,6 +32,11 @@ public class ProductDao {
 	public int updateProduct(SellerProduct vo) throws Exception {
 		return sqlsession.update("seller.updateProduct", vo);
 	}
+	
+	// 상품삭제
+	public int deleteProduct(String pid) throws Exception {
+		return sqlsession.delete("seller.deleteProduct", pid);
+	}
 
 	// 상품등록
 	public int insertProduct(SellerProduct vo) throws Exception {

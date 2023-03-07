@@ -42,19 +42,29 @@ public class BoardDao {
 		return sqlsession.selectOne("board.totalCnt", map);
 	}
 
-	// 게시글 read 상세페이지
+	//게시글 read 상세페이지
 	public Board read(int bid) {
 		Board bone = sqlsession.selectOne("board.selectone", bid);
 		return bone;
 	}
 
-	// 게시글 조회수 증가
+	//게시글 조회수 증가
 	public int bvcupdate(int bid) {
 		int bvcount = sqlsession.update("board.bvcupdate", bid);
 		return bvcount;
 	}
+	
+	//게시글 등록
+	public int write(Board vo) throws Exception{
+		return sqlsession.insert("board.write", vo);
+	}
+	
+	//게시글 수정
+	public int update(Board vo ) throws Exception{
+		return sqlsession.update("board.update", vo);
+	}
 
-	// 게시글 삭제
+	//게시글 삭제
 	public int bdelete(int bid) {
 		return sqlsession.delete("board.bdelete", bid);
 	}
@@ -67,10 +77,6 @@ public class BoardDao {
 //		return sqlsession.;
 //	}
 
-//	//게시판 글 등록
-//	public int write(Board) throws Exception{
-//		return sqlsession.;
-//	}
 
 //	//게시판 글 검색, 페이징
 //	public List<Board> selectList(int ,int , String ) throws Exception{
@@ -80,16 +86,8 @@ public class BoardDao {
 //		return sqlsession.;
 //	}
 
-//	//게시글 수정
-//	public int update(Board ) throws Exception{
-//		return sqlsession.;
-//	}
-	
-//	//게시글 삭제
-//	public int delete(int) throws Exception{
-//		return sqlsession.;
-//	}
-	
+
+
 //	//게시글 상세페이지
 //	public List<Board> read(int ) throws Exception{
 //		return sqlsession.;
@@ -97,12 +95,12 @@ public class BoardDao {
 //	public List<Reply> seletList(int) throws Exception{
 //		return sqlsession.;
 //	}
-	
+
 //	//게시글 북마크
 //	public int bmark(int ,String , ???) throws Exception{
 //		return sqlsession.;
 //	}
-	
+
 //	//게시글 반응
 //	public int emotion(int ,int ,int ) throws Exception{
 //		return sqlsession.;

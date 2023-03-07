@@ -13,9 +13,10 @@ public class HealthCenter {
 //	"HADDR"	VARCHAR2(100)		NOT NULL
 //	"LID"	NUMBER		NOT NULL
 
-	private String hpnum;
-	private String hplace;
-	private String haddr;
-	private int lid;
+	private String hpnum; // 전화번호
+	private String hplace; // 측정장소
+	private String haddr; // 주소
+	private int lid; // 지역 ID
+	private String lname; // LOCATIONCODE 테이블의 LNAME
 	
 }

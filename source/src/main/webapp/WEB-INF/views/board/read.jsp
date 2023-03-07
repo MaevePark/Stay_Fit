@@ -28,7 +28,7 @@
 								</select>
 							</div>
 							<div class="hero__search__categories">
-								<select name="">
+								<select name="search">
 									<option value="1" selected>전체</option>
 									<option value="2">작성자</option>
 									<option value="3">제목</option>
@@ -94,7 +94,7 @@
 						<%-- <c:if test="${sessionScope.principal.mid == read.mid }"> --%>
 						<form>
 						<input type="hidden" id="board-bcid" value="${read.bid }" >
-						<button type="button" class="site-btn" id="btn-upd" onclick="">수정</button>
+						<button type="button" class="site-btn" id="btn-upd" onclick="location.href='update?bid=${read.bid}'" >수정</button>
 						<button type="button" class="site-btn" id="btn-del" onclick="del(${read.bid})">삭제</button>
 						</form>
 						<%-- </c:if> --%>
@@ -188,14 +188,8 @@
 								</td>
 								<td>YYYY.MM.DD</td>
 							</tr>
-
 						</table>
-
 					</div>
-
-
-
-
 				</div>
 			</div>
 		</div>

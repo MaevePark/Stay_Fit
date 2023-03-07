@@ -101,8 +101,8 @@
 					        <ul class="dropdown-menu">
 					          <li><a data-value="1" class="dropdown-item">공지사항</a></li>
 					          <li><a data-value="2" class="dropdown-item">식단</a></li>
-					          <li><a data-value="3" class="dropdown-item">팁&노하우</a></li>
-					          <li><a data-value="4" class="dropdown-item">고민&질문</a></li>
+					          <li><a data-value="3" class="dropdown-item">팁&amp;노하우</a></li>
+					          <li><a data-value="4" class="dropdown-item">고민&amp;질문</a></li>
 					        </ul>
 					        
 					      </div>
@@ -317,7 +317,7 @@ function displayData(currentPage, dataPerPage) {
 				"<td>" + dataList[i].bviewcount + "</td>" +
 				"<td>" + dataList[i].bcreate + "</td>" +
 				"<td>" + dataList[i].bstate + "</td>" +
-				"<td>" + 
+				"<td style='padding-left:0; padding-right:0;'>" + 
 					"<button type='button' class='btn btn-secondary btn-sm link'>글보기</button>" + 
 					"<input type='hidden' name='bid' value='" + dataList[i].bid + "'>" +
 				"</td>" +
@@ -469,22 +469,27 @@ function linkClickHandler() {
 // 따라서 html태그들이 다 생성된 후의 위치에 click이벤트를 걸어줘야함!
 function boardDeleteHandler() {
 	
-	var bid = $(this).siblings("input[type=hidden]").val();
-	console.log(bid);
+	// 일단 정말 삭제할건지 다시 체크
+	if (confirm("정말 삭제하시겠습니까?") == true) { // 확인 클릭시
+		var bid = $(this).siblings("input[type=hidden]").val();
+		console.log(bid);
 	    
-    $.ajax({
-   		url : "boarddelete",
-   		type : "post",
-   		data: { 'bid' : bid },
-   		success: function(data){
-   			if(data == 1) {
-				alert("게시물 삭제 성공");
-			} else {
-				alert("게시물 삭제 실패");
-			}
-   			getData();
-		 }
-   	});  
+	    $.ajax({
+	  		url : "boarddelete",
+	  		type : "post",
+	  		data: { 'bid' : bid },
+	  		success: function(data){
+		  		if(data == 1) {
+					alert("게시물 삭제 성공");
+				} else {
+					alert("게시물 삭제 실패");
+				}
+	  			getData();
+		    }
+	    });  
+	} else { // 취소 클릭시
+	    return false;
+	}
 }
 // <삭제 방법 2> : 태그에 직접 onclick='boardDelete(this)' 속성 부여
 function boardDelete(thisEle){

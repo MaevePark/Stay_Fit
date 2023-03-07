@@ -11,7 +11,7 @@ public class LocationCode {
 //	LID   NOT NULL NUMBER(2)    
 //	LNAME NOT NULL VARCHAR2(60) 
 	
-	private int lid;
-	private String lname;
+	private int lid; // 지역 ID
+	private String lname; // 지역명
 
 }

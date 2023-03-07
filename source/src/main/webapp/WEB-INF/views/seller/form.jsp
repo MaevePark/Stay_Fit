@@ -88,15 +88,14 @@
 			              <div class="btn-group">
 					        <button type="button" id="dropdownbtn" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">카테고리를 선택하세요  </button>
 					        <ul class="dropdown-menu">
-					          <li><a data-value="1" class="dropdown-item">샐러드&도시락&볶음밥</a></li>
+					          <li><a data-value="1" class="dropdown-item">샐러드&amp;도시락&amp;볶음밥</a></li>
 					          <li><a data-value="2" class="dropdown-item">닭가슴살</a></li>
-					          <li><a data-value="3" class="dropdown-item">밥&면</a></li>
-					          <li><a data-value="4" class="dropdown-item">간편요리&반찬</a></li>
-					          <li><a data-value="5" class="dropdown-item">베이커리&떡</a></li>
-					          <li><a data-value="6" class="dropdown-item">분식&만두&치킨</a></li>
-					          <li><a data-value="7" class="dropdown-item">건강간식&음료</a></li>
-					          <li><a data-value="8" class="dropdown-item">단백질&시리얼&간식</a></li>
-					          <li><a data-value="9" class="dropdown-item">건강&다이어트</a></li>
+					          <li><a data-value="3" class="dropdown-item">밥&amp;면</a></li>
+					          <li><a data-value="4" class="dropdown-item">간편요리&amp;반찬</a></li>
+					          <li><a data-value="5" class="dropdown-item">베이커리&amp;떡</a></li>
+					          <li><a data-value="6" class="dropdown-item">분식&amp;만두&amp;치킨</a></li>
+					          <li><a data-value="7" class="dropdown-item">건강식&amp;음료</a></li>
+					          <li><a data-value="8" class="dropdown-item">단백질&amp;시리얼&amp;간식</a></li>
 					        </ul>
 
 					      </div>
@@ -113,9 +112,20 @@
 			          
 			          <div class="row mb-3">
 			            <label class="col-sm-2 col-form-label">대표이미지 <span style="font-size: 0.75rem; color: #696cff;"> (필수)</span></label>
-			            <div class="col-sm-10">
-			              <input type="file" class="form-control" name="uploadFile" id="formFile" required>
-			            </div><!-- file타입은 name을 vo의 필드명과 동일하게 작성하면 vo에 들어가려다가 고꾸라짐. 다르게 작성해야함 -->
+			            <div class="col-sm-10 d-flex align-items-start align-items-sm-center gap-4">
+					          
+				          <img src="" id="thumbnail" alt="" class="d-block rounded" height="100" width="100" style="border: 1px solid #d9dee3;">
+				            <div class="button-wrapper">
+				              <label for="uploadFile" class="btn btn-primary me-2" tabindex="0">
+				                <span class="d-none d-sm-block">이미지 업로드</span>
+				                <i class="bx bx-upload d-block d-sm-none"></i>
+				                
+				                <input type="file" name="uploadFile" id="uploadFile" class="file-input" onchange="setThumbnail(event);" hidden="" accept="image/png, image/jpeg" required>
+				              	<!-- file타입은 name을 vo의 필드명과 동일하게 작성하면 vo에 들어가려다가 고꾸라짐. 다르게 작성해야함 -->
+				              </label>
+				            </div>
+				         </div>
+
 			          </div>
 			          
 			          <div class="row mb-3">
@@ -208,6 +218,25 @@ $(".dropdown-item").click(function() {
 }); 
 
 //------------------------------------------------------------------------------
+// <대표이미지 썸네일>
+let thumbnail = document.getElementById('thumbnail');
+
+$(function(){
+	// 기본이미지
+	thumbnail.src = "https://res.cloudinary.com/doxmm0ofz/image/upload/v1678087337/upload_wyuiu1.jpg";
+	thumbnail.style.padding = "30px";
+});
+function setThumbnail(event) {
+	
+	let fileInput = document.querySelector('.file-input');
+	
+  	if (fileInput.files[0]) {
+  		// 사용자가 업로드한 이미지
+  		thumbnail.src = window.URL.createObjectURL(fileInput.files[0]);
+  		thumbnail.style.padding = "0";
+  	}
+}	
+
 </script>
 
 </html>

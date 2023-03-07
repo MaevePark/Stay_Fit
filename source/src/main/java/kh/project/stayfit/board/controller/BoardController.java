@@ -45,49 +45,63 @@ public class BoardController {
 		mv.setViewName("index");
 		return mv;
 	}
-	
+
+
 	//게시글 read 상세페이지
 	@GetMapping("/read.do")
 	public ModelAndView read(ModelAndView mv, int bid) throws Exception {
-		//게시글상세보기
+		// 게시글 상세보기
 		Board bone = srv.read(bid);
-		
-		//조회수 증가
-		int bvcount= srv.bvcupdate(bid);
-	
+
+		// 조회수 증가
+		int bvcount = srv.bvcupdate(bid);
+
 		mv.addObject("sectionName", "board/read.jsp");
 		mv.addObject("read", bone);
 		mv.setViewName("index");
-		
+
 		return mv;
 	}
 
-	
-	//글등록페이지
+	//게시글 등록화면
 	@GetMapping("/write")
-	public ModelAndView boardwrite(ModelAndView mv) {
-		
+	@ResponseBody
+	public ModelAndView writeview(ModelAndView mv) throws Exception{
+
 		mv.addObject("sectionName", "board/write.jsp");
 		mv.setViewName("index");
-		
+
 		return mv;
 	}
+	//게시글 등록
+	@PostMapping("/write")
+	public String write(Board vo) throws Exception {
+		srv.write(vo);
+		return "redirect:/board/list?bcid="+ vo.getBcid();
+	}
 
-	// 글수정페이지
+	//게시글 수정페이지
 	@GetMapping("/update")
-	public ModelAndView boardupdate(ModelAndView mv) {
-
-		mv.addObject("sectionName", "board/write.jsp");
+	public ModelAndView updateview(ModelAndView mv, @RequestParam("bid") int bid) throws Exception {
+		
+		mv.addObject("board", srv.read(bid));
+		mv.addObject("sectionName", "board/update.jsp");
 		mv.setViewName("index");
 
 		return mv;
 	}
+	//게시글 수정
+//	@PostMapping("/update")
+//	public String boardupdate(Board vo) throws Exception {
+//		srv.update(vo);
+//		return "redirect: /board/read?bid="+ vo.getBid();
+//	}
 
-	// 글삭제
+	//게시글 삭제
 	@PostMapping("/delete")
 	@ResponseBody
 	public int delete(@RequestParam("bid") int bid) throws Exception {
 		int result = srv.bdelete(bid);
-		return result;	
+		return result;
 	}
 }
