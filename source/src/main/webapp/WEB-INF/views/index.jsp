@@ -36,10 +36,11 @@
     <script src="<%=request.getContextPath() %>/resources/js/jquery.slicknav.js"></script>
     <script src="<%=request.getContextPath() %>/resources/js/mixitup.min.js"></script>
     <script src="<%=request.getContextPath() %>/resources/js/owl.carousel.min.js"></script>
-    <script src="<%=request.getContextPath() %>/resources/js/main.js"></script>
+    
     
    	<%--  <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/board.css"/> 없음--%>
     
+    <!-- mypage 시작 -->
     <c:if test="${sectionName eq 'mypage/*' }">
 		<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/mypagecategory.css" type="text/css">
 	</c:if>
@@ -54,6 +55,9 @@
 	<c:if test="${sectionName eq 'mypage/myboard.jsp' }">
 		<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/mypage.css" type="text/css">
 	</c:if>
+	<!-- mypage 끝 -->
+	
+	
     
     <!-- health page css Begin -->
 	<c:if test="${sectionName eq 'health/caloriewrite.jsp' }">
@@ -155,8 +159,8 @@
     <!-- Footer Section End -->
 
 
-	
-
+	<!-- Js Plugins -->
+	<script src="<%=request.getContextPath() %>/resources/js/main.js"></script>
 
 </body>
 
