@@ -30,12 +30,7 @@
    
     <!-- Js Plugins -->
    	<script src="<%=request.getContextPath() %>/resources/js/jquery-3.3.1.min.js"></script>
-    <script src="<%=request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
-    <script src="<%=request.getContextPath() %>/resources/js/jquery.nice-select.min.js"></script>
-    <script src="<%=request.getContextPath() %>/resources/js/jquery-ui.min.js"></script>
-    <script src="<%=request.getContextPath() %>/resources/js/jquery.slicknav.js"></script>
-    <script src="<%=request.getContextPath() %>/resources/js/mixitup.min.js"></script>
-    <script src="<%=request.getContextPath() %>/resources/js/owl.carousel.min.js"></script>
+
     
     
    	<%--  <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/board.css"/> 없음--%>
@@ -44,13 +39,9 @@
     <c:if test="${sectionName eq 'mypage/*' }">
 		<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/mypagecategory.css" type="text/css">
 	</c:if>
-    
-    <c:if test="${sectionName eq 'mypage/mywish.jsp' }">
-		<script src="<%=request.getContextPath() %>/resources/js/mypage/wish.js"></script>
-	</c:if>
+    <c:if test="${sectionName eq 'mypage/mywish.jsp' }"></c:if>
 	<c:if test="${sectionName eq 'mypage/mycart.jsp' }">
 		<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/mycart.css" type="text/css">
-		<script src="<%=request.getContextPath() %>/resources/js/mypage/cart.js"></script>
 	</c:if>
 	<c:if test="${sectionName eq 'mypage/myboard.jsp' }">
 		<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/mypage.css" type="text/css">
@@ -160,6 +151,12 @@
 
 
 	<!-- Js Plugins -->
+	<script src="<%=request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
+    <script src="<%=request.getContextPath() %>/resources/js/jquery.nice-select.min.js"></script>
+    <script src="<%=request.getContextPath() %>/resources/js/jquery-ui.min.js"></script>
+    <script src="<%=request.getContextPath() %>/resources/js/jquery.slicknav.js"></script>
+    <script src="<%=request.getContextPath() %>/resources/js/mixitup.min.js"></script>
+    <script src="<%=request.getContextPath() %>/resources/js/owl.carousel.min.js"></script>
 	<script src="<%=request.getContextPath() %>/resources/js/main.js"></script>
 
 </body>
