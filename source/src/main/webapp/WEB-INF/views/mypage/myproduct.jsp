@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/mypage.css">
 
@@ -34,21 +35,24 @@
 								</thead>
 								<tbody class="table-border-bottom-0">
 									<c:if test="${orderList.size() > 0 }">
-										<c:forEach items="${orderList }" var="list">
+										<c:forEach items="${orderList}" var="list">
 											<tr>
-												<td><i class="fab fa-angular fa-lg text-danger me-3"></i>
-													<span>${list.PNAME }</span>
+												<td><i class="fab fa-angular fa-lg text-danger me-3"></i><span>${list.PNAME}</span></td>
+												<td><span>${list.PSALE}</span></td>
+												<td><span>${((list.PPRICE * (100 - list.PSALE))/100)/10*10}원</span></td>
+												<td><span>${list.OCOUNT}</span></td>
+												<td><span>${list.PPRICE * list.OCOUNT}원</span></td>
+												<td>
+													<button onclick="location.href='${list.PLINK}'">
+														<span>상품 페이지로 이동</span>
+													</button>
 												</td>
-												<td><span>${list.PPRICE }원</span></td>
-												<td><span>${list.OCOUNT }</span></td>
-												<td><span>${list.OCOUNT * list.PPRICE }</span></td>
-												<td><button onclick="location.href='${list.PLINK }'"><span>상품 페이지로 이동</span></button></td>
 											</tr>
 										</c:forEach>
-									
-										
+
+
 									</c:if>
-									
+
 									<c:if test="${orderList.size() <= 0 }">
 										<tr>
 											<td colspan="5"><h5>구매기록이 없습니다.</h5></td>
