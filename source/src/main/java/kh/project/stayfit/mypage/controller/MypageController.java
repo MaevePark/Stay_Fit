@@ -27,7 +27,9 @@ import kh.project.stayfit.common.Paging;
 import kh.project.stayfit.mypage.model.service.MyBoardService;
 import kh.project.stayfit.mypage.model.service.MyProductService;
 import kh.project.stayfit.mypage.model.service.ProfileService;
+import kh.project.stayfit.mypage.model.vo.MypageCart;
 import kh.project.stayfit.mypage.model.vo.MypageMember;
+import kh.project.stayfit.mypage.model.vo.MypageOrder;
 import kh.project.stayfit.mypage.model.vo.MypageWish;
 
 @Controller
@@ -61,6 +63,7 @@ public class MypageController {
 		return mv;
 	}
 	
+	//프로필 수정
 	@PostMapping("/updateProfile")
 	public String updateProfile(
 			@RequestParam(name="profimg", required = false) MultipartFile multipartFile
@@ -196,7 +199,6 @@ public class MypageController {
 		mv.setViewName("index");
 		return mv;
 	}
-	
 	//찜목록 재호출
 	@GetMapping("/loadwish")
 	@ResponseBody
@@ -222,10 +224,9 @@ public class MypageController {
 		//mv.addAllObjects(map);
 		return result;
 	}
-	
 	//찜목록 삭제
 	@GetMapping("/delwish")
-	public int delWish(
+	public void delWish(
 			HttpServletResponse response
 			, @RequestParam("mid") int mid
 			, @RequestParam("pid") int pid
@@ -243,29 +244,17 @@ public class MypageController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		return result;
-	}
-	
-	//찜목록 수량 수정
-	@GetMapping("/updatepcount")
-	public int updatePCount(
-			HttpServletResponse response
-			, @RequestParam("pcount") int pcount
-			, @RequestParam("pid") int pid
-			//, @RequestParam("mid") int mid
-			) {
-		int mid = 3;
-		int result = 0;
-		
-		
-		
-		
-		return 0;
 	}
 	
 	
-	@GetMapping("/cart") // 장바구니
+	
+	
+	
+	
+	
+	
+	// 장바구니
+	@GetMapping("/cart")
 	public ModelAndView myCart(
 			ModelAndView mv
 			,@RequestParam(name = "page", defaultValue = "1") int page
@@ -273,22 +262,39 @@ public class MypageController {
 			) throws Exception {
 		int mid=3; //TODO 얘는 지워야돼...
 		int limits = 999;
-		//int pageLimit = 5;
-		
-		//int totalCnt = productservice.selectWishTotalCnt(mid);
-		//Map<String, Object> pagingMap = Paging.paging(page, totalCnt, limits, pageLimit);
 		
 		mv.addObject("sectionName", "mypage/mycart.jsp");
 		mv.addObject("urlpattern", "mypage/cart");
 		mv.addObject("cartList", productservice.selectCartProductList(mid, page, limits));
-		//mv.addObject("pagingMap", pagingMap);
+
 		mv.setViewName("index");
 		
 		return mv;
 	}
 	
+	//장바구니 재호출
+	@GetMapping("/loadcart")
+	@ResponseBody
+	public String loadCart(
+			@RequestParam(name = "page", defaultValue = "1") int page
+			//, @RequestParam("mid") String mid
+			) {
+		int mid=3; //TODO 얘는 지워야돼...
+		int limits = 999;
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+		try {
+			dataMap.put("cartList", productservice.selectCartProductList(mid, page, limits));
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		String result = new GsonBuilder().create().toJson(dataMap);
+		return result;
+	}
+	//장바구니 추가
 	@GetMapping("/insertcart")
-	public int insertCart(
+	public void insertCart(
 			HttpServletResponse response
 			, @RequestParam("mid") int mid
 			, @RequestParam("pid") int pid
@@ -302,7 +308,10 @@ public class MypageController {
 		vo.setPid(pid);
 		try {
 			result1 = productservice.insertCart(vo);
-			result2 = productservice.deleteWish(vo);
+			if(result1 > 0) {
+				result2 = productservice.deleteWish(vo);
+				if(result2 > 0) result = 1;
+			}
 			
 			PrintWriter out = response.getWriter();
 			out.append(new GsonBuilder().create().toJson(result));
@@ -311,9 +320,56 @@ public class MypageController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		return result;
 	}
+	//장바구니 삭제
+	@GetMapping("/delcart")
+	public void delCart(
+			HttpServletResponse response
+			, @RequestParam("mid") int mid
+			, @RequestParam("pid") int pid
+			) {
+		int result = 0;
+		MypageCart vo = new MypageCart();
+		vo.setMid(mid);
+		vo.setPid(pid);
+		try {
+			result = productservice.deleteCart(vo);
+			PrintWriter out = response.getWriter();
+			out.append(new GsonBuilder().create().toJson(result));
+			out.flush();
+			out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	//장바구니 수량 수정
+	@GetMapping("/updatepcount")
+	public void updatePCount(
+			HttpServletResponse response
+			, @RequestParam("pcount") int pcount
+			, @RequestParam("pid") int pid
+			//, @RequestParam("mid") int mid
+			) {
+		int mid = 3;
+		int result = 0;
+		
+		MypageCart vo = new MypageCart();
+		vo.setMid(mid);
+		vo.setPid(pid);
+		vo.setPcount(pcount);
+		
+		try {
+			result = productservice.updateCart(vo);
+			PrintWriter out = response.getWriter();
+			out.append(new GsonBuilder().create().toJson(result));
+			out.flush();
+			out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 	
 	
 	@GetMapping("/order") // 구매기록
@@ -337,6 +393,44 @@ public class MypageController {
 		
 		return mv;
 	}
+	//구매기록 등록
+	@GetMapping("/insertOrder")
+	public void insertOrder(
+			HttpServletResponse response
+			, @RequestParam("mid") int mid
+			, @RequestParam("pid") int pid
+			, @RequestParam("pcount") int pcount
+			) {
+		int result = 0;
+		int result1 = 0;
+		int result2 = 0;
+		
+		MypageOrder ovo = new MypageOrder();
+		ovo.setMid(mid);
+		ovo.setPid(pid);
+		ovo.setOcount(pcount);
+		
+		MypageCart cvo = new MypageCart();
+		cvo.setMid(mid);
+		cvo.setPid(pid);
+		
+		try {
+			result1 = productservice.insertOrder(ovo);
+			if(result1 > 0) {
+				result2 = productservice.deleteCart(cvo);
+				if(result2 > 0) result = 1;
+			}
+			
+			PrintWriter out = response.getWriter();
+			out.append(new GsonBuilder().create().toJson(result));
+			out.flush();
+			out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 	
 	@GetMapping("/board") // 북마크, 작성한 글
 	public ModelAndView myBoard(
