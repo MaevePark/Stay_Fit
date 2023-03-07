@@ -49,6 +49,10 @@ public class MyProductDao {
 	public int updateCart(MypageCart vo) {
 		return sqlsession.update("mypage.updateProductCount", vo);
 	}
+	//장바구니 삭제
+	public int deleteCart(MypageCart vo) {
+		return sqlsession.update("mypage.deleteCart", vo);
+	}
 	
 	//구매기록 호출
 	public List<Map<String, Object>> selectOrderProductList(int mid, int currentPageNum, int limits) throws Exception {
@@ -57,5 +61,9 @@ public class MyProductDao {
 	public int selectOrderTotalCnt(int mid) throws Exception {
 		return sqlsession.selectOne("mypage.selectMyOrderCount", mid);
 	} 
+	//구매기록 추가
+	public int insertOrder(MypageOrder vo) throws Exception {
+		return sqlsession.insert("mypage.insertOrder", vo);
+	}
 	
 }

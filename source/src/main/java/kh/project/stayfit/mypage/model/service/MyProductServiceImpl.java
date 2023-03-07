@@ -47,17 +47,25 @@ public class MyProductServiceImpl implements MyProductService {
 	}
 	//장바구니 수량 수정
 	@Override
-	public int updateCart(MypageCart vo) throws Exception{
+	public int updateCart(MypageCart vo) throws Exception {
 		return dao.updateCart(vo);
 	}
+	//장바구니 삭제
+	@Override
+	public int deleteCart(MypageCart vo) throws Exception {
+		return dao.deleteCart(vo);
+	}
 	
-	
+	//구매기록 호출
 	public List<Map<String, Object>> selectOrderProductList(int mid, int currentPageNum, int limits) throws Exception {
 		return dao.selectOrderProductList(mid, currentPageNum, limits);
 	}
 	public int selectOrderTotalCnt(int mid) throws Exception {
 		return dao.selectOrderTotalCnt(mid);
 	}
-	
+	//구매기록 추가
+	public int insertOrder(MypageOrder vo) throws Exception {
+		return dao.insertOrder(vo);
+	}
 
 }
