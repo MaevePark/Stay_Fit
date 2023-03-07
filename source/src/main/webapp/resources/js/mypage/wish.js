@@ -53,7 +53,13 @@ function sendCart(el) {
 		, dataType: "json"
 		, success: function(result) {
 			console.log(result);
+			if(result == 1) {
+				alert("장바구니에 추가되었습니다.");
+			}else if(result == 2) {
+				alert("이미 장바구니에 등록된 상품입니다.");
+			}
 			loadWish(mid);
+			
 		}
 		, error: function(request, status, errordata) {
 			alert("error code: "+request.status +"\n"

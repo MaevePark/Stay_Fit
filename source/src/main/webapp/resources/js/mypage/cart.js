@@ -159,8 +159,13 @@ function insertRecord(pid, url) {
 		, dataType: "json"
 		, success: function(result) {
 			console.log(result);
-			loadCart(mid);
-			window.open(url);
+			if(result == 1) {
+				loadCart(mid);
+				window.open(url);
+			} else if(result == 2) {
+				alert("재고가 충분하지 않습니다. 죄송합니다.");
+			}
+			
 		}
 		, error: function(request, status, errordata) {
 			alert("error code: "+request.status +"\n"
