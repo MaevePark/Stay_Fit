@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<script src='<%=request.getContextPath() %>/resources/js/jquery-3.6.1.js'></script>
 <script src='<%=request.getContextPath() %>/resources/js/mypage/wish.js'></script>
 
 
@@ -27,8 +26,8 @@
 									<div class="product__item__pic set-bg"
 										data-setbg="${list.pimage }">
 										<ul class="product__item__pic__hover">
-											<li><a class="delWish" data-pid="${list.pid }">X</a></li>
-											<li><a class="fa fa-shopping-cart" data-pid="${list.pid }"></a></li>
+											<li><a class="delWish" data-pid="${list.pid }" onclick="delWish(this)">X</a></li>
+											<li><a class="fa fa-shopping-cart" data-pid="${list.pid }" onclick="sendCart(this)"></a></li>
 										</ul>
 									</div>
 									<div class="product__item__text">
