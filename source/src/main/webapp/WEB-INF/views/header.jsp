@@ -21,7 +21,7 @@
 								</c:when>
 								<c:otherwise>
 									<div class="header__top__right__auth">
-										<a href="<%=request.getContextPath()%>/query/logout"><i class="fa fa-user"></i> Logout</a>
+										<a href="<%=request.getContextPath()%>/logout"><i class="fa fa-user"></i> Logout</a>
 									</div>
 								</c:otherwise>
 							</c:choose>

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import kh.project.stayfit.member.model.service.MemberService;
@@ -14,14 +15,14 @@ import kh.project.stayfit.member.model.vo.Member;
 
 
 @Controller
-@RequestMapping("/member/*")
+@RequestMapping("/member")
 public class LoginController {
 	
 	@Autowired
 	MemberService memberService;
 	
 	//로그인 화면
-	@RequestMapping("login")
+	@RequestMapping(value="/login", method = RequestMethod.GET)
 	public ModelAndView login(ModelAndView mv) {
 		
 		mv.addObject("sectionName", "member/login.jsp");
@@ -30,7 +31,7 @@ public class LoginController {
 		return mv;
 	}
 	
-	@RequestMapping("loginCheck")
+	@RequestMapping(value="/loginCheck", method = RequestMethod.POST)
 	public ModelAndView loginCheck(@ModelAttribute Member member, HttpSession session) {
 		boolean result = memberService.loginCheck(member, session);
 		ModelAndView mv = new ModelAndView();

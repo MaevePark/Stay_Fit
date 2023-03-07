@@ -14,12 +14,11 @@
 		<result property="profimg" column="PROFIMG"/>
 	</resultMap>
   	
-	<select id="loginCheck" 
-	resultType="Member" resultMap="resultMember">
+	<select id="loginCheck" resultType="string">
 	SELECT MNAME FROM MEMBER WHERE MEMAIL = #{memail} AND MPW = #{mpw}
  	</select>
  	
- 	<select id="viewMember" resultType="Member">
+ 	<select id="viewMember" resultMap="resultMember">
  		SELECT * FROM MEMBER WHERE MEMAIL = #{memail} AND MPW = #{mpw}
  	</select>
  	
