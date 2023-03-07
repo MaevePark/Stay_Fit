@@ -51,7 +51,7 @@
 	<!-- 장바구니 리스트업 -->
 	<select id="selectCart" parameterType="int" resultType="hashmap">
 		SELECT C.PID PID, C.PCOUNT PCOUNT, C.CCREATE CCREATE, P.CID CID, P.PNAME PNAME
-				, P.PIMAGE PIMAGE, P.PPRICE PPRICE, P.PSALE PSALE, P.PLINK PLINK 
+				, P.PIMAGE PIMAGE, P.PPRICE PPRICE, P.PSALE PSALE, P.PLINK PLINK, P.PSTOCK PSTOCK 
 			FROM CART C JOIN PRODUCT P 
 				ON C.PID=P.PID AND C.MID=${mid}
 	</select>
@@ -91,13 +91,15 @@
 		SELECT COUNT(P.PID) 
 			FROM "ORDER" O JOIN PRODUCT P 
 				ON P.PID=O.PID AND O.MID=${mid}
-	</select>
-	<!-- 구매기록 등록 -->
-	<insert id="insertOrder" parameterType="MypageOrder">
-		INSERT 
-			INTO "ORDER" 
-				VALUES((SELECT NVL(MAX(OID), 0)+1 FROM "ORDER"), 
-				${pid}, ${mid}, null, SYSDATE, ${ocount})
+	</select>	
+	<!-- 구매기록 insert procedure 호출 -->
+	<insert id="insertOrder" parameterType="MypageOrder" statementType="CALLABLE">
+	    {call insert_order(
+	        #{pid, jdbcType=INTEGER},
+	        #{mid, jdbcType=INTEGER},
+	        #{ocount, jdbcType=INTEGER},
+	        #{result, mode=OUT, jdbcType=INTEGER}
+	    )}
 	</insert>
 	
 	
