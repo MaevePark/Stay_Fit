@@ -2,6 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/mypage.css">
+
+
 <!-- Blog Section Begin -->
 <section class="blog spad">
 	<div class="container">
@@ -18,9 +21,8 @@
 				<div class="container-xl flex-grow-1 container-p-y">
 					<!-- Basic Bootstrap Table -->
 					<div class="card">
-						<h5 class="card-header">Table Basic</h5>
 						<div class="table-responsive text-nowrap">
-							<table class="table">
+							<table class="table" id="orderTable">
 								<thead>
 									<tr>
 										<th>상품명</th>
@@ -31,28 +33,38 @@
 									</tr>
 								</thead>
 								<tbody class="table-border-bottom-0">
-									<c:forEach items="${orderList }" var="list">
+									<c:if test="${orderList.size() > 0 }">
+										<c:forEach items="${orderList }" var="list">
+											<tr>
+												<td><i class="fab fa-angular fa-lg text-danger me-3"></i>
+													<span>${list.PNAME }</span>
+												</td>
+												<td><span>${list.PPRICE }원</span></td>
+												<td><span>${list.OCOUNT }</span></td>
+												<td><span>${list.OCOUNT * list.PPRICE }</span></td>
+												<td><button onclick="location.href='${list.PLINK }'"><span>상품 페이지로 이동</span></button></td>
+											</tr>
+										</c:forEach>
+									
+										
+									</c:if>
+									
+									<c:if test="${orderList.size() <= 0 }">
 										<tr>
-											<td><i class="fab fa-angular fa-lg text-danger me-3"></i>
-												<span>${list.PNAME }</span>
-											</td>
-											<td><span>${list.PPRICE }원</span></td>
-											<td><span>${list.OCOUNT }</span></td>
-											<td><span>${list.OCOUNT * list.PPRICE }</span></td>
-											<td><button onclick="location.href='${list.PLINK }'"><span>상품 페이지로 이동</span></button></td>
+											<td colspan="5"><h5>구매기록이 없습니다.</h5></td>
 										</tr>
-									</c:forEach>
-									
-									
+									</c:if>
 								</tbody>
 							</table>
 						</div>
 					</div>
 					<!--/ Basic Bootstrap Table -->
 				</div>
-
-				<!-- 페에징 -->
-				<jsp:include page="/WEB-INF/views/paging.jsp" />
+				<c:if test="${orderList.size() > 0 }">
+					<!-- 페에징 -->
+					<jsp:include page="/WEB-INF/views/paging.jsp" />
+				</c:if>
+				
 				
 			</div>
 		</div>
