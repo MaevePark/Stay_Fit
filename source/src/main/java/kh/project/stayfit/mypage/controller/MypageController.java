@@ -399,7 +399,7 @@ public class MypageController {
 		int limits = 15;
 		int pageLimit = 5;
 		
-		int totalCnt = productservice.selectWishTotalCnt(mid);
+		int totalCnt = productservice.selectOrderTotalCnt(mid);
 		Map<String, Object> pagingMap = Paging.paging(page, totalCnt, limits, pageLimit);
 		
 		mv.addObject("sectionName", "mypage/myproduct.jsp");
@@ -437,13 +437,9 @@ public class MypageController {
 			if(result1 == 1) {
 				result2 = productservice.deleteCart(cvo);
 				if(result2 > 0) result = 1;
-			}
-		} catch (SQLException e) {
-			if (e.getErrorCode() == 20001) {
+			} else if(result1 == 2) {
 				result = 2;
-			  } else {
-				  result = 3;
-			  }
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
