@@ -1,15 +1,25 @@
 package kh.project.stayfit.member.controller;
 
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-@Controller
-@RequestMapping
-public class JoinController {
+import kh.project.stayfit.member.model.service.MemberService;
+import kh.project.stayfit.member.model.vo.Member;
 
-	@GetMapping("/join")
+@Controller
+@RequestMapping("/member/*")
+public class JoinController {
+	
+	@Autowired
+	MemberService memberService;
+	
+	@RequestMapping(value="join", method = RequestMethod.GET)
 	public ModelAndView join(ModelAndView mv) {
 		
 		mv.addObject("sectionName", "member/join.jsp");
@@ -17,6 +27,7 @@ public class JoinController {
 		
 		return mv;
 	}
+	
 	@GetMapping("/pwfind")
 	public ModelAndView pwfind(ModelAndView mv) {
 		

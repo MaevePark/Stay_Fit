@@ -1,22 +1,12 @@
 package kh.project.stayfit.member.model.dao;
 
-import org.apache.ibatis.session.SqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import javax.servlet.http.HttpSession;
 
-@Repository
-public class MemberDao {
-	@Autowired
-	private SqlSession sqlsession;
-	
-	public int login(String a, String b) { // login(String, String): int
-		return 0; 
-	}
-	public int insert(String a ,String b , String c) { // insert(String, String, String): int
-		return 0; 
-	}
-	public int mailChk(String a) { // mailChk(String): int
-		return 0;
-	} 
-	
+import kh.project.stayfit.member.model.vo.Member;
+
+public interface MemberDao {
+	public boolean loginCheck(Member member);
+	public Member viewMember(Member member);
+	public void logout(HttpSession session);
+	public int join(Member member);
 }

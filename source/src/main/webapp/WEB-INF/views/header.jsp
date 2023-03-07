@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- Header Section Begin -->
 	<header class="header">
 		<div class="header__top">
@@ -11,25 +12,27 @@
                             <div class="header__top__right__auth">
                                 <a href="<%=request.getContextPath()%>/mypage"><i class="fa fa-user"></i> 마이페이지</a>
                             </div>
-						
-							<div class="header__top__right__auth">
-								<a href="<%=request.getContextPath()%>/member/login"><i class="fa fa-user"></i>Login</a>
-							</div>
-						
+							
+							<c:choose>
+								<c:when test="${sessionScope.memail == null}">
+									<div class="header__top__right__auth">
+										<a href="<%=request.getContextPath()%>/member/login"><i class="fa fa-user"></i>Login</a>
+									</div>
+								</c:when>
+								<c:otherwise>
+									<div class="header__top__right__auth">
+										<a href="<%=request.getContextPath()%>/query/logout"><i class="fa fa-user"></i> Logout</a>
+									</div>
+								</c:otherwise>
+							</c:choose>
 							<div class="header__top__right__auth">
                                 <a href="<%=request.getContextPath()%>/mypage/wish"><i class="fa fa-heart"></i></a>
                             </div>
                             
 							<div class="header__top__right__auth">
                                 <a href="<%=request.getContextPath()%>/mypage/cart"><i class="fa fa-shopping-bag"></i></a>
-                            </div>
-						
-						<!-- 비회원, 로그아웃
-							<div class="header__top__right__auth">
-								<a href="<%=request.getContextPath()%>/member/logout"><i class="fa fa-user"></i> Loggout</a>
-							</div>
-						 -->	
-							
+                            </div>	
+                            
 						</div>
 					</div>
 				</div>

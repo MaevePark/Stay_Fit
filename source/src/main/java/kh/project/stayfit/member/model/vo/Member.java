@@ -9,7 +9,7 @@ import lombok.ToString;
 @ToString
 @Getter
 @Setter
-public class LoginMember {
+public class Member {
 //	클래스맵핑 파일에 로그인, 회원가입 등 각각의 vo로 만들어져 있어서 합치지않고 member table 를 중복으로 일단 넣음, 담당자가 추후 변경  -mjpark	
 	
 //	"MID"	NUMBER		NOT NULL,
