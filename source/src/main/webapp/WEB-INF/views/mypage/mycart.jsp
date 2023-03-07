@@ -46,6 +46,7 @@
 													<input type="text" class="pcount" value="${list.PCOUNT }" data-pid="${list.PID }">
 												</div>
 											</div>
+											<div><span>재고수량 : ${list.PSTOCK }</span></div>
 										</td>
 										<td class="shoping__cart__total">${list.PPRICE * list.PCOUNT }</td>
 										<td class="shoping__cart__go_to_buy">
