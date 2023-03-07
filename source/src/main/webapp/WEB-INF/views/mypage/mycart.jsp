@@ -38,7 +38,24 @@
 									<tr>
 										<td class="shoping__cart__item"><img src="${list.PIMAGE }" alt="product_img">
 											<h5>${list.PNAME }</h5></td>
-										<td class="shoping__cart__price">${list.PPRICE }원</td>
+										<td class="shoping__cart__price">
+											<c:if test="${list.PSALE != 0 }">
+												<c:set var="sale" value="${(100 - list.PSALE) }"></c:set>
+												<div>
+													<span>${list.PPRICE }원</span>
+												</div>
+												<div>
+													<span>${list.PSALE }%</span>
+												</div>
+												<span class="price">${(list.PPRICE * sale)/100/10*10}</span><span>원</span>
+												<c:set var="cost" value="${(list.PPRICE * sale)/100}"></c:set>
+											</c:if>
+											
+											<c:if test="${list.PSALE == 0 }">
+												<span class="price">${list.PPRICE/10*10 }</span><span>원</span>
+												<c:set var="cost" value="${list.PPRICE }"></c:set>
+											</c:if>
+										</td>
 										<td class="shoping__cart__quantity">
 											<div class="quantity">
 												<div class="pro-qty">
@@ -47,7 +64,7 @@
 											</div>
 											<div><span>재고수량 : ${list.PSTOCK }</span></div>
 										</td>
-										<td class="shoping__cart__total">${list.PPRICE * list.PCOUNT }</td>
+										<td class="shoping__cart__total"><span>${cost * list.PCOUNT /10*10 }</span>원</td>
 										<td class="shoping__cart__go_to_buy">
 											<c:set var="plink" value="${list.PLINK }"></c:set>
 											<button type="button" onclick="insertRecord(${list.PID }, '${plink }')">구매하러 가기</button>
@@ -73,11 +90,19 @@
 					<h5>Cart Total</h5>
 					<ul>
 						<c:if test="${cartList.size() != 0 }">
-							<li>Subtotal <span>각 태그 인덱스별로 자바스크립트에서 합산 ㄱㄱ</span></li>
-							<li>Total <span>위와 동일!</span></li>
+							<li>Total <span id="fullCost"> 
+							<c:set var="totalPrice" value="0" />
+							<c:forEach items="${cartList }" var="item">
+								<c:set var="price" value="${item.PPRICE}" />
+								<c:set var="quantity" value="${item.PCOUNT}" />
+								<c:set var="sale" value="${100 - item.PSALE}" />
+								<c:set var="itemTotal" value="${(price * sale)/100/10*10 * quantity}" />
+								<c:set var="totalPrice" value="${totalPrice + itemTotal}" />
+							</c:forEach>
+							${totalPrice}원
+							</span></li>
 						</c:if>
 						<c:if test="${cartList.size() == 0 }">
-							<li>Subtotal <span>-</span></li>
 							<li>Total <span>-</span></li>
 						</c:if>
 					</ul>
