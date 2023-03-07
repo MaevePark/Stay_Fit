@@ -14,4 +14,5 @@ public class MypageOrder {
 	private int lmid;
 	private String odate;
 	private int ocount;
+	private int result;
 }
