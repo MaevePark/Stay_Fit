@@ -152,30 +152,26 @@ function bmiIndex() {
 	// 만나이 = (현재 연도 - 출생 연도) - 1 + ((현재 월, 일) >= (출생 월, 일))
 	
 	var byear = $("#byear").val(); // 출생 년도
-	console.log("출생 년도:" + byear); 
-	
-    var bmonth = $("#bmonth").val(); // 출생 월
-    console.log("출생 월:" + bmonth); 
-    
-    var bday = $("#bday").val(); // 출생 일
-    console.log("출생 일:" + bday); 
-    
-    var today = new Date(); // 현재 날짜
-    console.log("현재 날짜:" + today); 
-    
-    var birthday = new Date(byear + "-" + bmonth + "-" + bday); // 생년 월일
-    console.log("생년 월일:" + birthday); 
-    
-    var age = today.getFullYear() - birthday.getFullYear(); // 만 나이 계산
-    console.log("나이 계산:" + age); 
-    
+	var bmonth = $("#bmonth").val(); // 출생 월
+	var bday = $("#bday").val(); // 출생 일
+	var today = new Date(); // 현재 날짜
+	var birthday = new Date(byear + "-" + bmonth + "-" + bday); // 생년 월일
+	var age = today.getFullYear() - birthday.getFullYear(); // 만 나이 계산 
+		
+	console.log("출생 년도: " + byear); 	   
+    console.log("출생 월: " + bmonth);   
+    console.log("출생 일: " + bday); 
+    console.log("현재 날짜: " + today); 
+    console.log("생년 월일: " + birthday); 
+    console.log("나이 계산: " + age); 
+
  	// 생일이 아직 오지 않은 경우 나이에서 1을 빼줌
     if (today.getMonth() < birthday.getMonth() || 
     	(today.getMonth() == birthday.getMonth() && today.getDate() < birthday.getDate())) {
     	  age--;
-    	} 
- 	
-    $("[name=age]").val(age); // age 에 담기    
+    } 
+
+    $("[name=age]").val(age); // age 에 담기
 
 // 1. 연령 계산식 끝
 //-------------------------------------------------------------------->
@@ -188,21 +184,19 @@ function bmiIndex() {
 	// bmi 지수 계산은 남, 여 공통으로 적용 됨
 	
 	var height = $("#stature").val(); // 키
-    console.log("키:" + height); 
-    
-    var weight = $("#weight").val(); // 체중
-    console.log("체중:" + weight);
-    
- 	// 단위 변환
-	var heightInMeters = height / 100; 
-	console.log("단위 변환:" + heightInMeters);
+	var weight = $("#weight").val(); // 체중
+	// 단위 변환
+	var heightInMeters = (height / 100);
+	var result = weight / (heightInMeters * heightInMeters); // bmi계산값
+	var bmi_index; // bmi계산 값
 	
-	// bmi 계산 시작
-	var result = weight / (heightInMeters * heightInMeters); 
-    console.log("bmi 계산 값: " + result);
+	console.log("키: " + height); 
+    console.log("체중: " + weight);
+	console.log("단위 변환: " + heightInMeters);
+    console.log("bmi 계산 값: " + result);   
+    console.log("bmi 계산 값(소수2째자리): " + bmi_index);
     
-    var bmi_index = result.toFixed(2); // 소수점 둘째자리까지 표시
-    console.log("bmi 계산 값: " + bmi_index);
+    bmi_index = result.toFixed(2); // 소수점 둘째자리까지 표시
     
     $("[name=bmi_index]").val(bmi_index); // bmi_index 에 담기
 	// bmi 계산 끝
@@ -250,7 +244,6 @@ function bmiIndex() {
 	
 	$("#frmBmi").submit(); // submit으로 1,2,3 최종 제출
 } // calCalorie() 끝
-
 // 3. bmi 페이지 입력값 없을 시 alert 창 띄우기  끝
 //-------------------------------------------------------------------->
 </script>
