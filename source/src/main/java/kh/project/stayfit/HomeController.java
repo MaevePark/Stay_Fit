@@ -43,4 +43,12 @@ public class HomeController {
 		mv.setViewName("index");
 		return mv;
 	}
+	
+	@GetMapping("/accessdenied")
+	public ModelAndView accessDenied(ModelAndView mv) {
+		mv.setViewName("AccessDenied");
+		return mv;
+	}
+	
+	
 }
