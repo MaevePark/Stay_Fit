@@ -63,6 +63,9 @@
 	</c:if>	
 	<c:if test="${sectionName eq 'health/bmilist.jsp' }">
 		<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/bmilist.css" type="text/css">
+	</c:if>
+	<c:if test="${sectionName eq 'health/centerlist.jsp' }">
+		<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/centerlist.css" type="text/css">
 	</c:if>	
 	<!-- health page css 끝 -->
 	
