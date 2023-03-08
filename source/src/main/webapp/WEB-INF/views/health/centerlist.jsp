@@ -1,10 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/mypagemyboard.css" type="text/css">
-<%-- [[${centerList }]] --%>
 <!-- Blog Section Begin -->
 <section class="blog spad">
 	<div class="container">
@@ -17,11 +15,11 @@
 					<h4 class="fw-bold py-3 mb-4">
 						<span class="text-muted fw-light">건강관리 /</span> 보건소 조회
 					</h4>
-				
+
 					<div class="hero__search__form">
 						<form action="#">
 							<div class="hero__search__categories">
-								<select>							
+								<select>
 									<option value="0" selected>전체</option>
 									<option value="1">서울특별시</option>
 									<option value="2">부산광역시</option>
@@ -46,8 +44,7 @@
 
 					<div class="container-xl flex-grow-1 container-p-y">
 						<!-- Basic Bootstrap Table -->
-						<div class="card">
-							<h5 class="card-header">인바디 측정 보건소 </h5>
+						<div class="card">					
 							<div class="table-responsive text-nowrap">
 								<table class="table">
 									<thead>
@@ -59,23 +56,39 @@
 										</tr>
 									</thead>
 									<tbody class="table-border-bottom-0">
-	
-									<!-- 보건소 list 시작 -->
-									<c:forEach var="centerList" items="${centerList }">
-										<tr>
-											<td>${centerList.hplace }</td> <!-- 측정 장소  -->
-											<td colspan="3">${centerList.haddr }</td> <!-- 주소 -->
-											<td>${centerList.hpnum }</td> <!-- 전화번호 -->
-						
-											<!-- 위치 링크 시작 -->			
-											<td>													
-												<a id="map" style="cursor:pointer" onclick="setHealthMap('강남구 보건소', '37.51630311339761', '127.04227756939835');">
-													<img src="<%=request.getContextPath()%>/resources/img/health/btn_spot.gif" alt="위치"></a>													
-											</td>
-											<!-- 위치 링크 끝 -->
-										</tr>										
-									</c:forEach>					
-									<!-- 보건소 list 끝 -->
+
+										<!-- 보건소 list 시작 -->
+										<c:forEach var="centerList" items="${centerList }">
+											<tr>
+												<td>${centerList.hplace }</td>
+												<!-- 측정 장소  -->
+												<td colspan="3">${centerList.haddr }</td>
+												<!-- 주소 -->
+												<td>${centerList.hpnum }</td>
+												<!-- 전화번호 -->
+												<!-- 위치 링크 시작 -->
+												<td><a id="map" style="cursor: pointer"
+													onclick="setHealthMap(
+													    <c:if test="${centerList.lid eq 1 }">'강남구 보건소', '37.51630311339761', '127.04227756939835'</c:if>
+													    <c:if test="${centerList.lid eq 2 }">'강서구 보건소', '35.180235150684716', '128.9572976673653'</c:if>
+													    <c:if test="${centerList.lid eq 3 }">'강화군 보건소', '37.73728494653745', '126.48474092791898'</c:if>
+													    <c:if test="${centerList.lid eq 4 }">'대덕구 보건소', '36.44482868764453', '127.426551314056'</c:if>
+													    <c:if test="${centerList.lid eq 5 }">'남구 보건소', '35.85390139676481', '128.59152247146537'</c:if>
+													    <c:if test="${centerList.lid eq 6 }">'광산구 보건소', '35.139648146235686', '126.79363757877468'</c:if>
+													    <c:if test="${centerList.lid eq 7 }">'남구 보건소', '35.54535773288751', '129.33632823698335'</c:if>
+													    <c:if test="${centerList.lid eq 8 }">'가평군 보건소', '37.83350180940176', '127.51060217146764'</c:if>
+													    <c:if test="${centerList.lid eq 9 }">'강진군 보건소', '34.63833473188551', '126.77573097122912'</c:if>
+													    <c:if test="${centerList.lid eq 10 }">'거제시 보건소', '34.89168827150237', '128.6365616019532'</c:if>
+													    <c:if test="${centerList.lid eq 11 }">'강릉시 보건소', '37.74281029073316', '128.88275019847094'</c:if>
+													    <c:if test="${centerList.lid eq 12 }">'계룡시 보건소', '36.27307427576665', '127.2500603578764'</c:if>
+													    <c:if test="${centerList.lid eq 13 }">'서귀포시 동부 보건소', '33.27562881836351', '126.70342326443737'</c:if>													    
+													  );"><img
+														src="<%=request.getContextPath()%>/resources/img/health/btn_spot.gif"
+														alt="위치"> </a></td>
+												<!-- 위치 링크 끝 -->											
+											</tr>
+										</c:forEach>
+										<!-- 보건소 list 끝 -->
 									</tbody>
 								</table>
 							</div>
@@ -99,8 +112,8 @@
 //<--------------------------------------------------------------------
 // 1. kakao map 이동 시작
 function setHealthMap(location_name, latitude, longitude) {
-	window.open ("https://map.kakao.com/link/map/" + 
-			location_name+"," + latitude+"," + longitude); // link/map/장소이름,위도,경도 새로운 창으로 열기
+	window.open("https://map.kakao.com/link/map/" +
+			location_name + ","	+ latitude + "," + longitude); // link/map/장소이름,위도,경도 새로운 창으로 열기
 }
 // 1. kakao map 이동 끝
 //-------------------------------------------------------------------->
