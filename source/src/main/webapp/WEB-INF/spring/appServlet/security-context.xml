@@ -31,12 +31,13 @@
 <!-- 			login-page="/login.html"  -->
 <!-- 			authentication-failure-url="/login.html?ng" -->
 <!-- 		/> -->
-<!-- 		<security:logout  -->
-<!-- 			logout-url="/security_logout" -->
-<!-- 			logout-success-url="/" -->
-<!-- 			invalidate-session="true" -->
-<!-- 			delete-cookies="true" -->
-<!-- 		/> -->
+
+		<security:logout
+			logout-url="/logout"
+			logout-success-url="/"
+			invalidate-session="true"
+			delete-cookies="true"
+	 	/> 
 
 	<!-- 권한별 명칭 permitAll, ROLE_USER, ROLE_ADMIN -->
 <!-- 		<security:intercept-url pattern="/board/*" access="hasRole('ROLE_ADMIN')" /> -->

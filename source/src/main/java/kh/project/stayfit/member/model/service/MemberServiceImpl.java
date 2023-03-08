@@ -21,6 +21,7 @@ public class MemberServiceImpl implements MemberService {
 			session.setAttribute("memail", m.getMemail());
 			session.setAttribute("mname", m.getMname());
 			session.setAttribute("mid", m.getMid());
+			session.setAttribute("mrole", m.getMrole());
 		}
 		return result; 
 	}
@@ -28,12 +29,6 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public Member viewMember(Member member) {
 		return memberDao.viewMember(member);
-	}
-	
-	@Override
-	public void logout(HttpSession session) {
-		//세션 정보 초기화
-		session.invalidate();
 	}
 	
 //	@Autowired

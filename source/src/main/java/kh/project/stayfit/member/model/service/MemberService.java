@@ -7,7 +7,6 @@ import kh.project.stayfit.member.model.vo.Member;
 public interface MemberService {
 	public boolean loginCheck(Member member, HttpSession session);
 	public Member viewMember(Member member);
-	public void logout(HttpSession session);
 //	public int login(Member m, HttpSession session);
 	public int join(Member member); // insert(String, String, String): int
 	public int mailChk(String a); // mailChk(String): int
