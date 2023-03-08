@@ -68,12 +68,10 @@
 
 <script type="text/javascript">
 		$("#btnLogin").click(function(){
+			var msg = "${msg}"
 			var memail = $("#memail").val();
 			var mpw = $("#mpw").val();
-			var msg = "${msg}"
-				if(msg!=""){
-					alert(msg)
-				}
+			
 			if(!memail){
 				alert("이메일을 입력해주세요.");
 				$("#memail").focus();
@@ -84,15 +82,14 @@
 			$("#mpw").focus();
 			return;
 			}
+			if(msg!=""){
+				alert(msg);
+			}
 			document.loginform.action="<%=request.getContextPath()%>/member/login";
 			document.loginform.method="post";
 			document.loginform.submit();
-		})
-	})
+		});
 	
-	
-</script>
-<script>
 	
 </script>
 
