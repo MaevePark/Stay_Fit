@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>  
+
 <!-- Header Section Begin -->
 	<header class="header">
 		<div class="header__top">
@@ -8,27 +10,40 @@
 				<div class="row">
 					<div class="col-lg-12 col-md-12">
 						<div class="header__top__right">
-
-                            <div class="header__top__right__auth">
-                                <a href="<%=request.getContextPath()%>/mypage"><i class="fa fa-user"></i> 마이페이지</a>
-                            </div>
-							
+						
 							<c:choose>
 								<c:when test="${sessionScope.memail == null}">
 									<div class="header__top__right__auth">
-										<a href="<%=request.getContextPath()%>/member/login"><i class="fa fa-user"></i>Login</a>
+										<a href="<%=request.getContextPath()%>/member/login"><i class="fa fa-user"></i> 로그인</a>
 									</div>
 								</c:when>
 								<c:otherwise>
+									<c:choose>
+										<c:when test="${fn:contains(sessionScope.mrole, 'M')}">
+				                            <div class="header__top__right__auth">
+				                                <a href="<%=request.getContextPath()%>/mypage"><i class="fa fa-user"></i> 마이페이지</a>
+				                            </div>
+		                            	</c:when>
+										<c:when test="${fn:contains(sessionScope.mrole, 'A')}">
+				                            <div class="header__top__right__auth">
+				                                <a href="<%=request.getContextPath()%>/admin/dashboard" target="_blank"><i class="fa fa-user"></i> 관리자페이지</a>
+				                            </div>
+		                            	</c:when>
+		                            	<c:otherwise>
+		                            		<div class="header__top__right__auth">
+				                                <a href="<%=request.getContextPath()%>/seller/product" target="_blank"><i class="fa fa-user"></i> 판매자페이지</a>
+				                            </div>
+		                            	</c:otherwise>
+		                            </c:choose>	
 									<div class="header__top__right__auth">
-										<a href="./logout"><i class="fa fa-user"></i> Logout</a>
+										<a href="<%=request.getContextPath()%>/logout"><i class="fa fa-user"></i> 로그아웃</a>
 									</div>
 								</c:otherwise>
 							</c:choose>
+							
 							<div class="header__top__right__auth">
                                 <a href="<%=request.getContextPath()%>/mypage/wish"><i class="fa fa-heart"></i></a>
                             </div>
-                            
 							<div class="header__top__right__auth">
                                 <a href="<%=request.getContextPath()%>/mypage/cart"><i class="fa fa-shopping-bag"></i></a>
                             </div>	
