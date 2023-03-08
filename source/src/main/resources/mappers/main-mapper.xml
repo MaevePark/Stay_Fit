@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="main">
+	
+	<!-- 메인 게시판 공지사항  -->
+	<select id="notice" resultType="Board">
+		SELECT bid, btitle, bcreate FROM board b JOIN member m ON b.mid=m.mid
+		WHERE b.bcid = 0
+		ORDER BY b.bid desc
+	</select>
+	 
+	<!-- 최신글  -->
+	<select id="recent" resultType="Board">
+		SELECT bid, profimg, bcname, btitle, mname FROM board b JOIN bcategory bc USING(bcid) JOIN member m ON b.mid=m.mid
+    	WHERE bcid !=0
+    	ORDER BY bid DESC
+	</select> 
+	
+	<!-- 인기글  -->
+	<select id="popular" resultType="Board">
+	SELECT bid, profimg, bcname, btitle, mname FROM board b JOIN bcategory bc USING(bcid) JOIN member m ON b.mid=m.mid
+    WHERE bcid !=0
+    ORDER BY bviewcount DESC, bid DESC
+	</select>
+</mapper>
