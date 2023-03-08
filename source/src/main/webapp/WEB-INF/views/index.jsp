@@ -51,7 +51,7 @@
 	
 	
     
-    <!-- health page css Begin -->
+    <!-- health page css 시작 -->
 	<c:if test="${sectionName eq 'health/caloriewrite.jsp' }">
 		<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/caloriewrite.css" type="text/css">
 	</c:if>
@@ -64,7 +64,7 @@
 	<c:if test="${sectionName eq 'health/bmilist.jsp' }">
 		<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/bmilist.css" type="text/css">
 	</c:if>	
-	<!-- health page css End -->
+	<!-- health page css 끝 -->
 	
 	
 	<!--board 시작  -->

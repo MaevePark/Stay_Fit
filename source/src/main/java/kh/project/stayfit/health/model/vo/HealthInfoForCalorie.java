@@ -23,6 +23,6 @@ public class HealthInfoForCalorie {
 	private String bmr; // 기초대사량
 	private String amr; // 활동대사량
 	private String digestionEnergy; // 소화를 위한 에너지
-	private String day_eat_cal; // 음식 칼로리
-	private String day_exercise_cal; // 운동 칼로리
+	private String day_eat_cal; // 일일 음식 칼로리
+	private String day_exercise_cal; // 일일 운동 칼로리
 }
