@@ -34,6 +34,7 @@ public class Board {
 	private int bviewcount;
 	private String bcname;
 	private String mname;
+	private String profimg;
 
 
 }
