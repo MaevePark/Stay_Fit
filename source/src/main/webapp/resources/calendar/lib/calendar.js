@@ -21,7 +21,6 @@
 	  },
 	  
 	  dateClick:function(){
-		  alert("date clicked");
 		  $("#calendar-modal").modal("show");
 	  }
     });

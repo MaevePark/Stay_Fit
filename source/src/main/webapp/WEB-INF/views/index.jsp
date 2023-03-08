@@ -84,6 +84,15 @@
 	</c:if>
 	<!--board 끝  -->
 	
+	<c:if test="${sectionName eq 'member/login.jsp' }">
+		<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/member.css" type="text/css">
+	</c:if>
+	<c:if test="${sectionName eq 'member/join.jsp' }">
+		<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/member.css" type="text/css">
+	</c:if>
+	<c:if test="${sectionName eq 'member/pwfind.jsp' }">
+		<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/member.css" type="text/css">
+	</c:if>
 	
 	
 </head>

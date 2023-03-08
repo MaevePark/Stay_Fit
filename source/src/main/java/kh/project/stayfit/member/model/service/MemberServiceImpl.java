@@ -20,6 +20,7 @@ public class MemberServiceImpl implements MemberService {
 			//세션 변수 등록
 			session.setAttribute("memail", m.getMemail());
 			session.setAttribute("mname", m.getMname());
+			session.setAttribute("mid", m.getMid());
 		}
 		return result; 
 	}

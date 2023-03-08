@@ -17,7 +17,7 @@
 		<div class="member-form">
 			<div class="member-wrap">
 				<div class="login-input-box">
-					<input type="text" class="underline login-txt" id="memail" name="memail" autofocus
+					<input type="text" class="underline login-txt" id="memail" name="memail"
 						placeholder="이메일 입력">
 				</div>
 				<div class="login-input-box">
@@ -67,11 +67,13 @@
 </section>
 
 <script type="text/javascript">
-	$(document).ready(function(){
 		$("#btnLogin").click(function(){
 			var memail = $("#memail").val();
 			var mpw = $("#mpw").val();
-			
+			var msg = "${msg}"
+				if(msg!=""){
+					alert(msg)
+				}
 			if(!memail){
 				alert("이메일을 입력해주세요.");
 				$("#memail").focus();
@@ -82,12 +84,15 @@
 			$("#mpw").focus();
 			return;
 			}
-			document.loginform.action="<%=request.getContextPath()%>/member/loginCheck";
+			document.loginform.action="<%=request.getContextPath()%>/member/login";
 			document.loginform.method="post";
 			document.loginform.submit();
 		})
 	})
 	
+	
+</script>
+<<script>
 	
 </script>
 

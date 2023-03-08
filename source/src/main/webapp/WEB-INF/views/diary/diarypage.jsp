@@ -839,16 +839,17 @@
 											</table>
 										</div>
 									</div>
-								</div></td>
+								</div>
+							</td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
 		</div>
 	</div>
-	<div id="calendar-modal" class="modal fade">
+	<div id="calendar-modal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 		<!-- Add Modal -->
-		<div class="modal-dialog">
+		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
 			<div class="modal-content">
 				<!-- Modal Header -->
 				<div class="modal-header">
@@ -856,12 +857,12 @@
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
 				<!-- Modal Body -->
-				<div class="modal-body">
-					<span>몸무게 : </span> <input type="text" id="weight"><span>kg</span>
-					<div>
-						<button id="breakfast">kcal</button>
-						<button id="lunch">kcal</button>
-						<button id="dinner">kcal</button>
+				<div class="modal-body modal-arrange">
+					<span class="modal-txt">몸무게 : </span> <input type="text" id="weight"><span>kg</span>
+					<div class="btn">
+						<button class="btn-kcal" id="breakfast">kcal</button>
+						<button class="btn-kcal" id="lunch">kcal</button>
+						<button class="btn-kcal" id="dinner">kcal</button>
 					</div>
 					<div>
 						<span>아침</span> <span>점심</span> <span>저녁</span>
@@ -880,7 +881,8 @@
 					<div>
 						<table class="">
 							<tr>
-								<td></td>
+								<td>식단 메뉴</td>
+								<td>섭취 칼로리</td>
 								<td><button class="minus-box">-</button></td>
 							</tr>
 						</table>
@@ -891,19 +893,58 @@
 					<div>
 						<table class="">
 							<tr>
-								<td></td>
+								<td>운동 종류</td>
+								<td>소모 칼로리</td>
 								<td><button class="minus-box">-</button></td>
 							</tr>
 						</table>
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-danger">취소</button>
-					<button type="button" class="btn btn-success">등록</button>
+					<button type="button" class="btn-cancel btn btn-danger">취소</button>
+					<button type="submit" class="btn-add btn-success">등록</button>
 				</div>
 			</div>
 		</div>
 	</div>
+	<!-- 식단메뉴 검색 모달 -->
+	<div id="search-meal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<!-- Add Modal -->
+		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+			<div class="modal-content">
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h4 class="modal-title">식단메뉴 검색</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<!-- Modal Body -->
+				<div class="modal-body">
+					<input type="text">
+				</div>	
+			</div>
+		</div>
+	</div>
+	
+	<!-- 운동 검색 모달 -->
+	<div id="search-training" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<!-- Add Modal -->
+		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+			<div class="modal-content">
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h4 class="modal-title">운동 검색</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<!-- Modal Body -->
+				<div class="modal-body">
+					<input type="text">
+				</div>	
+			</div>
+		</div>
+	</div>
+	
+	<!--업데이트 모달-->
+	
 </section>
 
 <script

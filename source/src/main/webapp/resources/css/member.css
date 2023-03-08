@@ -87,7 +87,7 @@ a:hover{
 	color:white;
 }
 .btn_naver img{
-	margin: 0px 0px 0px -222px;
+	margin: 0px 0px 0px -256px;
 }
 .btn_naver:hover{
 	border:1px solid #00C73C;
@@ -98,7 +98,7 @@ a:hover{
 	border: 1px solid #4285F4;
 }
 .btn_google img{
-	margin: 0px 0px 0px -75px;
+	margin: 0px 0px 0px -80px;
 }
 .btn_google:hover{
 	background:#4285F4;
