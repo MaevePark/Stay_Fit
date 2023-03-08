@@ -36,7 +36,7 @@
 		        NVL((SELECT SUM(P.PPRICE * O.OCOUNT) FROM PRODUCT P JOIN "ORDER" O ON P.PID = O.PID WHERE O.MID = M.MID), 0) AS PAYMENT, 
 		        TO_CHAR(M.MCREATE, 'YYYY.MM.DD') AS MCREATE
 		    FROM MEMBER M 
-		    WHERE M.MROLE = 'M' AND M.MSTATE = 'A'
+		    WHERE M.MROLE = 'M' AND M.ENABLED = 1
 		    <if test="searchword != null and !searchword.equals('')">
 				AND MNAME LIKE '%'||#{searchword}||'%'
 			</if>

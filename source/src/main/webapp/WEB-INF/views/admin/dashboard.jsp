@@ -145,12 +145,12 @@
                 </div>
                 <!--/ 카테고리별 판매 비율(Order Statics Chart) -->
 
-                <!-- 주문 수 (Sales Volume Chart) -->
+                <!-- 판매량 (Sales Volume Chart) -->
                 <div class="col-6 col-md-6 col-lg-6 order-3 mb-4">
                   <div class="card h-100">
                     <div class="card-header">
 						<div class="card-title mb-0">
-                        <h5 class="m-0 me-2">주문 수 현황</h5>
+                        <h5 class="m-0 me-2">판매량 현황</h5>
                       </div>
                     </div>
                     <div class="card-body px-0">
@@ -164,7 +164,7 @@
                     </div>
                   </div>
                 </div>
-                <!--/ 주문 수 (Sales Volume Chart) -->
+                <!--/ 판매량 (Sales Volume Chart) -->
                 
               </div>
               
