@@ -105,11 +105,11 @@
 						<tbody>
 							<tr>
 								<th>하루 동안 섭취해야 할 음식 칼로리</th>
-								<td><span id="DAY_EAT_CAL"></span></td>
+								<td><span id="DAY_EAT_CAL">${healthInfoVo.day_eat_cal } kcal</span></td>
 							</tr>
 							<tr>
 								<th>하루 동안 운동으로 소모해야 할 운동 칼로리</th>
-								<td><span id="DAY_EXERCISE_CAL"></span></td>
+								<td><span id="DAY_EXERCISE_CAL">${healthInfoVo.day_exercise_cal } kcal</span></td>
 							</tr>
 						</tbody>
 					</table>
