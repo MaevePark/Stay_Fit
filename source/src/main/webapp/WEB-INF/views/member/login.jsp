@@ -92,7 +92,7 @@
 	
 	
 </script>
-<<script>
+<script>
 	
 </script>
 
