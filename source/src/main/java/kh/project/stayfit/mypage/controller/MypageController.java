@@ -45,22 +45,59 @@ public class MypageController {
 	@Autowired
 	private MyProductService productservice;
 	
+//	@GetMapping({"*"})
+//	public ModelAndView profileAccess(
+//			HttpServletRequest request,
+//			ModelAndView mv
+//			, @RequestParam(name="mid", defaultValue = "-1") int mid
+//			) {
+//		System.out.println("mid = "+mid);
+//		if(request.getSession().getAttribute("mid") != null) {
+//			mid = (int) request.getSession().getAttribute("mid");
+//			System.out.println("mid = "+mid);
+//		}
+//		
+//		if(mid == -1) {
+//			System.out.println("mid = "+mid);
+//			mv.addObject("sectionName", "member/login.jsp");
+//			mv.addObject("urlpattern", "member/login");
+//		} else {
+//			
+//		}
+//		
+//		
+//		return mv;
+//	}
+	
 	@GetMapping({"/profile", "/", ""}) // 사용자 정보
 	public ModelAndView myProfile(
+			HttpServletRequest request,
 			ModelAndView mv
-			//, @RequestParam(name="mid") int mid
 			) {
-		int mid = 3;
 		MypageMember vo = new MypageMember();
-		try {
-			vo = profileservice.selectMember(mid);
-		} catch (Exception e) {
-			e.printStackTrace();
+		int mid = -1;
+		if(request.getSession().getAttribute("mid") != null) {
+			mid = (int) request.getSession().getAttribute("mid");
+			System.out.println("mid = "+mid);
 		}
 		
-		mv.addObject("sectionName", "mypage/myprofile.jsp");
-		mv.addObject("urlpattern", "mypage/profile");
-		mv.addObject("mypageMember", vo);
+		if(mid == -1) {
+			System.out.println("mid = "+mid);
+			mv.addObject("sectionName", "member/login.jsp");
+			mv.addObject("urlpattern", "member/login");
+		} else {
+			try {
+				vo = profileservice.selectMember(mid);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			mv.addObject("sectionName", "mypage/myprofile.jsp");
+			mv.addObject("urlpattern", "mypage/profile");
+			mv.addObject("mypageMember", vo);
+		}
+		
+		
 		mv.setViewName("index");
 		
 		return mv;
@@ -73,40 +110,46 @@ public class MypageController {
 			, @RequestParam(name="mname", required = false) String mname
 			, @RequestParam(name="pwd", required = false) String pwd
 			, HttpServletRequest request
-			//, @RequestParam(name="mid") int mid
 			) {
-		int mid = 3;
 		Map<String, Object> result = new HashMap<String, Object>();
 		Map<String, Object> updateMap = new HashMap<String, Object>();
-		try {
-			MypageMember vo = profileservice.selectMember(mid);
-			
-			updateMap.put("mname", mname);
-			updateMap.put("pwd", pwd);
-			updateMap.put("profimg", null);
-			updateMap.put("mid", mid);
-			if(multipartFile != null) {
-				if(updateMap.get("mname") != null) {
-					vo.setMname((String) updateMap.get("mname"));
+		int mid = -1;
+		if(request.getSession().getAttribute("mid") != null) {
+			mid = (int) request.getSession().getAttribute("mid");
+			System.out.println("mid = "+mid);
+		}
+		
+		if(mid != -1) {
+			try {
+				MypageMember vo = profileservice.selectMember(mid);
+				
+				updateMap.put("mname", mname);
+				updateMap.put("pwd", pwd);
+				updateMap.put("profimg", null);
+				updateMap.put("mid", mid);
+				if(multipartFile != null) {
+					if(updateMap.get("mname") != null) {
+						vo.setMname((String) updateMap.get("mname"));
+					}
+					result = updateProfImg(multipartFile, request, vo);
+					System.out.println("새로운 프사 : "+result.get("newUrl"));
+					updateMap.replace("profimg", result.get("newUrl"));
 				}
-				result = updateProfImg(multipartFile, request, vo);
-				System.out.println("새로운 프사 : "+result.get("newUrl"));
-				updateMap.replace("profimg", result.get("newUrl"));
-			}
-			if((multipartFile != null && result.size() > 0) || multipartFile == null) {
+				if((multipartFile != null && result.size() > 0) || multipartFile == null) {
+					
+					System.out.println("----------------------------------------------------------");
+					System.out.println("controller 영역");
+					System.out.println(updateMap.get("mname"));
+					System.out.println(updateMap.get("pwd"));
+					System.out.println(updateMap.get("profimg"));
+					System.out.println(updateMap.get("mid"));
+					
+					profileservice.editProfile(updateMap);
+				}
 				
-				System.out.println("----------------------------------------------------------");
-				System.out.println("controller 영역");
-				System.out.println(updateMap.get("mname"));
-				System.out.println(updateMap.get("pwd"));
-				System.out.println(updateMap.get("profimg"));
-				System.out.println(updateMap.get("mid"));
-				
-				profileservice.editProfile(updateMap);
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-			
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 		
 		return "redirect:/mypage/profile";
@@ -180,74 +223,100 @@ public class MypageController {
 	
 	@GetMapping("/wish") // 찜목록 호출
 	public ModelAndView myWish(
+			HttpServletRequest request,
 			ModelAndView mv
 			,@RequestParam(name = "page", defaultValue = "1") int page
-			//,@RequestParam(name="mid") int mid
 			) throws Exception {
-		int mid=3; //TODO 얘는 지워야돼...
 		int limits = 6;
 		int pageLimit = 5;
 		
-		try {
-			int totalCnt = productservice.selectWishTotalCnt(mid);
-			Map<String, Object> pagingMap = Paging.paging(page, totalCnt, limits, pageLimit);
-			
-			mv.addObject("wishList", productservice.selectWishProductList(mid, page, limits));
-			mv.addObject("pagingMap", pagingMap);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
+		int mid = -1;
+		if(request.getSession().getAttribute("mid") != null) {
+			mid = (int) request.getSession().getAttribute("mid");
+			System.out.println("mid = "+mid);
 		}
 		
-		mv.addObject("urlpattern", "mypage/wish");
-		mv.addObject("sectionName", "mypage/mywish.jsp");
-		mv.setViewName("index");
+		if(mid == -1) {
+			System.out.println("mid = "+mid);
+			mv.addObject("sectionName", "member/login.jsp");
+			mv.addObject("urlpattern", "member/login");
+		} else {
+			try {
+				int totalCnt = productservice.selectWishTotalCnt(mid);
+				Map<String, Object> pagingMap = Paging.paging(page, totalCnt, limits, pageLimit);
+				
+				mv.addObject("wishList", productservice.selectWishProductList(mid, page, limits));
+				mv.addObject("pagingMap", pagingMap);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			mv.addObject("urlpattern", "mypage/wish");
+			mv.addObject("sectionName", "mypage/mywish.jsp");
+			mv.setViewName("index");
+		}
 		return mv;
 	}
 	//찜목록 재호출
 	@GetMapping("/loadwish")
 	@ResponseBody
 	public String loadWish(
+			HttpServletRequest request,
 			@RequestParam(name = "page", defaultValue = "1") int page
-			//, @RequestParam("mid") String mid
 			) {
-		int mid=3; //TODO 얘는 지워야돼...
 		int limits = 6;
 		int pageLimit = 5;
 		Map<String, Object> dataMap = new HashMap<String, Object>();
-		try {
-			int totalCnt = productservice.selectWishTotalCnt(mid);
-			Map<String, Object> pagingMap = Paging.paging(page, totalCnt, limits, pageLimit);
-			dataMap.put("wishList", productservice.selectWishProductList(mid, page, limits));
-			dataMap.put("pagingMap", pagingMap);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
+		
+		int mid = -1;
+		if(request.getSession().getAttribute("mid") != null) {
+			mid = (int) request.getSession().getAttribute("mid");
+			System.out.println("mid = "+mid);
 		}
 		
+		if(mid != -1) {
+			try {
+				int totalCnt = productservice.selectWishTotalCnt(mid);
+				Map<String, Object> pagingMap = Paging.paging(page, totalCnt, limits, pageLimit);
+				dataMap.put("wishList", productservice.selectWishProductList(mid, page, limits));
+				dataMap.put("pagingMap", pagingMap);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			//mv.addAllObjects(map);
+		}
 		String result = new GsonBuilder().create().toJson(dataMap);
-		//mv.addAllObjects(map);
 		return result;
 	}
 	//찜목록 삭제
 	@GetMapping("/delwish")
 	public void delWish(
-			HttpServletResponse response
-			, @RequestParam("mid") int mid
+			HttpServletRequest request
+			, HttpServletResponse response
 			, @RequestParam("pid") int pid
 			) {
 		int result = 0;
 		MypageWish vo = new MypageWish();
-		vo.setMid(mid);
-		vo.setPid(pid);
-		try {
-			result = productservice.deleteWish(vo);
-			PrintWriter out = response.getWriter();
-			out.append(new GsonBuilder().create().toJson(result));
-			out.flush();
-			out.close();
-		} catch (Exception e) {
-			e.printStackTrace();
+		int mid = -1;
+		if(request.getSession().getAttribute("mid") != null) {
+			mid = (int) request.getSession().getAttribute("mid");
+			System.out.println("mid = "+mid);
+		}
+		
+		if(mid != -1) {
+			vo.setMid(mid);
+			vo.setPid(pid);
+			try {
+				result = productservice.deleteWish(vo);
+				PrintWriter out = response.getWriter();
+				out.append(new GsonBuilder().create().toJson(result));
+				out.flush();
+				out.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
@@ -261,17 +330,26 @@ public class MypageController {
 	// 장바구니
 	@GetMapping("/cart")
 	public ModelAndView myCart(
+			HttpServletRequest request,
 			ModelAndView mv
 			,@RequestParam(name = "page", defaultValue = "1") int page
-			//,@RequestParam(name="mid") int mid
 			) throws Exception {
-		int mid=3; //TODO 얘는 지워야돼...
 		int limits = 999;
+		int mid = -1;
+		if(request.getSession().getAttribute("mid") != null) {
+			mid = (int) request.getSession().getAttribute("mid");
+			System.out.println("mid = "+mid);
+		}
 		
-		mv.addObject("sectionName", "mypage/mycart.jsp");
-		mv.addObject("urlpattern", "mypage/cart");
-		mv.addObject("cartList", productservice.selectCartProductList(mid, page, limits));
-
+		if(mid == -1) {
+			System.out.println("mid = "+mid);
+			mv.addObject("sectionName", "member/login.jsp");
+			mv.addObject("urlpattern", "member/login");
+		} else {
+			mv.addObject("sectionName", "mypage/mycart.jsp");
+			mv.addObject("urlpattern", "mypage/cart");
+			mv.addObject("cartList", productservice.selectCartProductList(mid, page, limits));
+		}
 		mv.setViewName("index");
 		
 		return mv;
@@ -281,17 +359,25 @@ public class MypageController {
 	@GetMapping("/loadcart")
 	@ResponseBody
 	public String loadCart(
-			@RequestParam(name = "page", defaultValue = "1") int page
-			//, @RequestParam("mid") String mid
+			HttpServletRequest request
+			, @RequestParam(name = "page", defaultValue = "1") int page
 			) {
-		int mid=3; //TODO 얘는 지워야돼...
 		int limits = 999;
 		Map<String, Object> dataMap = new HashMap<String, Object>();
-		try {
-			dataMap.put("cartList", productservice.selectCartProductList(mid, page, limits));
-			
-		} catch (Exception e) {
-			e.printStackTrace();
+		int mid = -1;
+		if(request.getSession().getAttribute("mid") != null) {
+			mid = (int) request.getSession().getAttribute("mid");
+			System.out.println("mid = "+mid);
+		}
+		
+		if(mid != -1) {
+		
+			try {
+				dataMap.put("cartList", productservice.selectCartProductList(mid, page, limits));
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		String result = new GsonBuilder().create().toJson(dataMap);
@@ -341,48 +427,65 @@ public class MypageController {
 	//장바구니 삭제
 	@GetMapping("/delcart")
 	public void delCart(
-			HttpServletResponse response
-			, @RequestParam("mid") int mid
+			HttpServletRequest request
+			, HttpServletResponse response
 			, @RequestParam("pid") int pid
 			) {
 		int result = 0;
 		MypageCart vo = new MypageCart();
-		vo.setMid(mid);
-		vo.setPid(pid);
-		try {
-			result = productservice.deleteCart(vo);
-			PrintWriter out = response.getWriter();
-			out.append(new GsonBuilder().create().toJson(result));
-			out.flush();
-			out.close();
-		} catch (Exception e) {
-			e.printStackTrace();
+		
+		int mid = -1;
+		if(request.getSession().getAttribute("mid") != null) {
+			mid = (int) request.getSession().getAttribute("mid");
+			System.out.println("mid = "+mid);
+		}
+		
+		if(mid != -1) {
+			vo.setMid(mid);
+			vo.setPid(pid);
+			try {
+				result = productservice.deleteCart(vo);
+				PrintWriter out = response.getWriter();
+				out.append(new GsonBuilder().create().toJson(result));
+				out.flush();
+				out.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	//장바구니 수량 수정
 	@GetMapping("/updatepcount")
 	public void updatePCount(
-			HttpServletResponse response
+			HttpServletRequest request
+			, HttpServletResponse response
 			, @RequestParam("pcount") int pcount
 			, @RequestParam("pid") int pid
-			//, @RequestParam("mid") int mid
 			) {
-		int mid = 3;
 		int result = 0;
 		
 		MypageCart vo = new MypageCart();
-		vo.setMid(mid);
-		vo.setPid(pid);
-		vo.setPcount(pcount);
 		
-		try {
-			result = productservice.updateCart(vo);
-			PrintWriter out = response.getWriter();
-			out.append(new GsonBuilder().create().toJson(result));
-			out.flush();
-			out.close();
-		} catch (Exception e) {
-			e.printStackTrace();
+		int mid = -1;
+		if(request.getSession().getAttribute("mid") != null) {
+			mid = (int) request.getSession().getAttribute("mid");
+			System.out.println("mid = "+mid);
+		}
+		
+		if(mid != -1) {
+			vo.setMid(mid);
+			vo.setPid(pid);
+			vo.setPcount(pcount);
+			
+			try {
+				result = productservice.updateCart(vo);
+				PrintWriter out = response.getWriter();
+				out.append(new GsonBuilder().create().toJson(result));
+				out.flush();
+				out.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
@@ -391,21 +494,32 @@ public class MypageController {
 	
 	@GetMapping("/order") // 구매기록
 	public ModelAndView myProduct(
+			HttpServletRequest request,
 			ModelAndView mv
 			,@RequestParam(name = "page", defaultValue = "1") int page
-			//,@RequestParam(name="mid") int mid
 			) throws Exception {
-		int mid=3; //TODO 얘는 지워야돼...
 		int limits = 15;
 		int pageLimit = 5;
 		
-		int totalCnt = productservice.selectOrderTotalCnt(mid);
-		Map<String, Object> pagingMap = Paging.paging(page, totalCnt, limits, pageLimit);
+		int mid = -1;
+		if(request.getSession().getAttribute("mid") != null) {
+			mid = (int) request.getSession().getAttribute("mid");
+			System.out.println("mid = "+mid);
+		}
 		
-		mv.addObject("sectionName", "mypage/myproduct.jsp");
-		mv.addObject("urlpattern", "mypage/order");
-		mv.addObject("orderList", productservice.selectOrderProductList(mid, page, limits));
-		mv.addObject("pagingMap", pagingMap);
+		if(mid == -1) {
+			System.out.println("mid = "+mid);
+			mv.addObject("sectionName", "member/login.jsp");
+			mv.addObject("urlpattern", "member/login");
+		} else {
+			int totalCnt = productservice.selectOrderTotalCnt(mid);
+			Map<String, Object> pagingMap = Paging.paging(page, totalCnt, limits, pageLimit);
+			
+			mv.addObject("sectionName", "mypage/myproduct.jsp");
+			mv.addObject("urlpattern", "mypage/order");
+			mv.addObject("orderList", productservice.selectOrderProductList(mid, page, limits));
+			mv.addObject("pagingMap", pagingMap);
+		}
 		mv.setViewName("index");
 		
 		return mv;
@@ -413,8 +527,8 @@ public class MypageController {
 	//구매기록 등록
 	@GetMapping("/insertOrder")
 	public void insertOrder(
-			HttpServletResponse response
-			, @RequestParam("mid") int mid
+			HttpServletRequest request
+			, HttpServletResponse response
 			, @RequestParam("pid") int pid
 			, @RequestParam("pcount") int pcount
 			) {
@@ -422,35 +536,43 @@ public class MypageController {
 		int result1 = 0;
 		int result2 = 0;
 		
-		MypageOrder ovo = new MypageOrder();
-		ovo.setMid(mid);
-		ovo.setPid(pid);
-		ovo.setOcount(pcount);
-		
-		MypageCart cvo = new MypageCart();
-		cvo.setMid(mid);
-		cvo.setPid(pid);
-		
-		try {
-			result1 = productservice.insertOrder(ovo);
-			
-			if(result1 == 1) {
-				result2 = productservice.deleteCart(cvo);
-				if(result2 > 0) result = 1;
-			} else if(result1 == 2) {
-				result = 2;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		int mid = -1;
+		if(request.getSession().getAttribute("mid") != null) {
+			mid = (int) request.getSession().getAttribute("mid");
+			System.out.println("mid = "+mid);
 		}
 		
-		try {
-			PrintWriter out = response.getWriter();
-			out.append(new GsonBuilder().create().toJson(result));
-			out.flush();
-			out.close();
-		} catch (Exception e) {
-			e.printStackTrace();
+		if(mid != -1) {
+			MypageOrder ovo = new MypageOrder();
+			ovo.setMid(mid);
+			ovo.setPid(pid);
+			ovo.setOcount(pcount);
+			
+			MypageCart cvo = new MypageCart();
+			cvo.setMid(mid);
+			cvo.setPid(pid);
+			
+			try {
+				result1 = productservice.insertOrder(ovo);
+				
+				if(result1 == 1) {
+					result2 = productservice.deleteCart(cvo);
+					if(result2 > 0) result = 1;
+				} else if(result1 == 2) {
+					result = 2;
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			try {
+				PrintWriter out = response.getWriter();
+				out.append(new GsonBuilder().create().toJson(result));
+				out.flush();
+				out.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
@@ -458,27 +580,38 @@ public class MypageController {
 	
 	@GetMapping("/board") // 북마크, 작성한 글
 	public ModelAndView myBoard(
+			HttpServletRequest request,
 			ModelAndView mv
 			,@RequestParam(name = "page", defaultValue = "1") int page
 			, @RequestParam(name="type") String type
 			, @RequestParam(name="boardCategory", defaultValue = "1") int boardCategory
 			, @RequestParam(name="searchRange", defaultValue = "1") int searchRange
 			, @RequestParam(name="searchword", defaultValue = "") String searchword
-			//,@RequestParam(name="mid") int mid
 			) throws Exception {
-		int mid=3; //TODO 얘는 지워야돼...
 		int limits = 10;
 		int pageLimit = 5;
 		
-		int totalCnt = boardservice.selectBoardTotalCnt(mid, type, boardCategory, searchRange, searchword);
-		Map<String, Object> pagingMap = Paging.paging(page, totalCnt, limits, pageLimit);
-
-		mv.addObject("sectionName", "mypage/myboard.jsp");
-		mv.addObject("urlpattern", "mypage/board");
-		mv.addObject("boardList", boardservice.selectBoardList(mid, type, boardCategory, searchRange, searchword, page, limits));
-		mv.addObject("pagingMap", pagingMap);
-		mv.addObject("type", type);
-		mv.addObject("searchword", searchword);
+		int mid = -1;
+		if(request.getSession().getAttribute("mid") != null) {
+			mid = (int) request.getSession().getAttribute("mid");
+			System.out.println("mid = "+mid);
+		}
+		
+		if(mid == -1) {
+			System.out.println("mid = "+mid);
+			mv.addObject("sectionName", "member/login.jsp");
+			mv.addObject("urlpattern", "member/login");
+		} else {
+			int totalCnt = boardservice.selectBoardTotalCnt(mid, type, boardCategory, searchRange, searchword);
+			Map<String, Object> pagingMap = Paging.paging(page, totalCnt, limits, pageLimit);
+	
+			mv.addObject("sectionName", "mypage/myboard.jsp");
+			mv.addObject("urlpattern", "mypage/board");
+			mv.addObject("boardList", boardservice.selectBoardList(mid, type, boardCategory, searchRange, searchword, page, limits));
+			mv.addObject("pagingMap", pagingMap);
+			mv.addObject("type", type);
+			mv.addObject("searchword", searchword);
+		}
 		mv.setViewName("index");
 		
 		return mv;
