@@ -55,6 +55,16 @@
   </head>
 
   <body>
+
+<!-- 로그인을 하지 않은 경우나 seller가 아닌 사용자가 url로 접근하는 것 막는 코드 -->  
+<% if(request.getSession().getAttribute("mrole") == null || !('S' == (char)request.getSession().getAttribute("mrole"))){ %>
+<script>
+window.onload = function() {
+    location.href = "<%=request.getContextPath()%>/member/login";
+}
+</script>
+<%}%>
+
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
       <div class="layout-container">
