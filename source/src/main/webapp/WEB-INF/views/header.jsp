@@ -80,7 +80,7 @@
 								</ul>
 							</li>
 							<li><a href="<%=request.getContextPath()%>/diary">다이어리</a></li>
-							<li><a href="<%=request.getContextPath()%>/">보건소</a></li>
+							<li><a href="<%=request.getContextPath()%>/health/centerlist">보건소</a></li>
 						</ul>
 					</nav>
 				</div>
