@@ -57,7 +57,8 @@
 								</tr>
 							</tbody>
 						</table>
-					</div>
+						<br>
+					</div>				
 					<!-- 하루 소비 칼로리 시작 -->
 					<h5>
 						하루 소비 칼로리 <span class="p-org" id="ALL_MET"></span>
@@ -68,7 +69,7 @@
 								<col style="width: 144px">
 								<col style="width: 650px">
 							</colgroup>
-							<tbody>
+							<tbody id="graph_tbody">
 								<tr>
 									<td>
 										<!-- 기초대사량 -->
@@ -77,7 +78,7 @@
 											${healthInfoVo.bmr }</span> 
 										
 										<!-- 활동대사량 -->	
-										<span id="ACTIVE_MET" class="yellow" style="width: 55px;">
+										<span id="ACTIVE_MET" class="yellow" style="width: 120px;">
 											<img alt=""	src="<%=request.getContextPath()%>/resources/img/health/bg_calorie_yellow.gif">
 											${healthInfoVo.amr }</span>
 											

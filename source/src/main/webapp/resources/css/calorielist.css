@@ -27,6 +27,19 @@
     position: relative;
     width: 71px;
 }
+/* 그래프 설정 시작 */
+#graph_tbody > tr > td {
+    width: 100%;
+}
+#graph_tbody > tr > td span {
+    display: inline-block;
+}
+#graph_tbody > tr > td span img {
+    height: 30px;
+    width: 100%;
+}
+/* 그래프 설정 끝 */
+
 /* table 정렬 끝 */
 
 /* 기초대사량  그래프 시작 */
