@@ -214,20 +214,6 @@ function bmiIndex() {
 		return;
 	}
 	
-	if ($("#bmonth").val().replace(/(^\s*)|(\s*$)/g, "") == '') {
-		alert("태어난 월을 입력해주세요.");
-		$("#bmonth").val("");
-		$("#bmonth").focus();
-		return;
-	}
-	
-	if ($("#bday").val().replace(/(^\s*)|(\s*$)/g, "") == '') {
-		alert("태어난 일을 입력해주세요.");
-		$("#bday").val("");
-		$("#bday").focus();
-		return;
-	}
-	
 	if ($("#stature").val().replace(/(^\s*)|(\s*$)/g, "") == '') {
 		alert("키를 입력해주세요.");
 		$("#stature").val("");
@@ -236,7 +222,7 @@ function bmiIndex() {
 	}
 	
 	if ($("#weight").val().replace(/(^\s*)|(\s*$)/g, "") == '') {
-		alert("체중를 입력해주세요.");
+		alert("체중을 입력해주세요.");
 		$("#weight").val("");
 		$("#weight").focus();
 		return;
