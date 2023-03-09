@@ -37,7 +37,7 @@
 <!-- 			authentication-failure-url="/member/login?ng" -->
 <!-- 		/> -->
 		<security:logout 
-			logout-url="/member/logout"
+			logout-url="/logout"
 			logout-success-url="/"
 			invalidate-session="true"
 			delete-cookies="true"
@@ -76,8 +76,8 @@
 	</security:authentication-manager>
 
 
-	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-	    <property name="basePackage" value="kh.project.stayfit.security" />
-	</bean>
- 	<bean id="loginService" class="kh.project.stayfit.security.model.service.LoginService" />
+<!-- 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"> -->
+<!-- 	    <property name="basePackage" value="kh.project.stayfit.security" /> -->
+<!-- 	</bean> -->
+<!--  	<bean id="loginService" class="kh.project.stayfit.security.model.service.LoginService" /> -->
 </beans>
