@@ -107,21 +107,6 @@
 
 					<!-- 댓글 -->
 					<div id="replyArea">
-						<!-- 댓글 작성  -->
-						<!-- <div id="hero__search__form" class="comment-write">
-                        		<form id="comment-data">	
-                        			<texttarea id="comment" class="textarea" placeholder="댓글등록" >
-                        			</texttarea>
-                        		</form>
-                        	</div> -->
-						<div class="hero__search__form">
-							<form action="#">
-								<input type="text" placeholder="댓글을 작성해주세요">
-								<button type="submit" class="site-btn">댓글 등록</button>
-							</form>
-						</div>
-						<!-- 댓글 작성  끝 -->
-
 						<!--댓글 리스트  -->
 						<table id="readReply">
 							<c:choose>
@@ -148,20 +133,30 @@
 									</c:forEach>
 								</c:when>
 							</c:choose>
-
-							<%-- 									<div class="blog__sidebar__recent__item__pic">
-										<img
-											src="<%=request.getContextPath()%>/resources/img/user/user-mini.png"
-											alt="">
-									</div> --%>
+							<td></td>
+							<td></td>
+							<td></td>
 						</table>
 						<!-- 댓글 리스트  끝 -->
+
+						<!-- 댓글 작성  -->
+						<div class="hero__search__form">
+							<form>
+								<input type="hidden" id="mid" name="mid" value="${user }">
+								<input type="hidden" id="bid" name="bid" value="${read.bid }">
+								<input type="text" name="rcontent" id="rcontent" placeholder="댓글을 작성해주세요">
+								<button type="submit" id="rep_write" onclick="rep_btn()" class="site-btn">댓글 등록</button>
+							</form>
+						</div>
+						<!-- 댓글 작성 끝  -->
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
+
+
 <script>
 //게시글 삭제
 function del(bid){
@@ -184,4 +179,32 @@ function del(bid){
 		alert("취소하였습니다.");
 	}	
 }
+
+//댓글 작성
+ function rep_btn(){
+	var rcontent = $("#rcontent").val();
+	var bid = ${read.bid};
+	var mid = ${user}; 
+	
+	var reply = {
+			"rcontent" : rcontent,
+			"bid" : bid,
+			"mid" : mid
+	};
+	
+	$.ajax({
+		type : "POST",
+		url : "replywrite",
+		data : JSON.stringify(reply),
+		contentType : "application/json",
+		dataType : "Json",
+	}).done(function(re){
+		alert("댓글이 작성되었습니다");
+		location.reload();
+	}).fail(function(err){
+		alert("댓글을 작성할 수 없습니다. 다시 시도해주세요.");
+		console.log(error);
+	});
+	
+} 
 </script>

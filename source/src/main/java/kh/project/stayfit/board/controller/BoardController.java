@@ -65,6 +65,9 @@ public class BoardController {
 		// 조회수 증가
 		int bvcount = srv.bvcupdate(bid);
 		
+		int mid = 1; // 임시 user
+		mv.addObject("user", mid);
+		
 		mv.addObject("reply", rlist);
 		mv.addObject("sectionName", "board/read.jsp");
 		mv.addObject("read", bone);
@@ -75,7 +78,6 @@ public class BoardController {
 
 	//게시글 등록화면
 	@GetMapping("/write")
-	@ResponseBody
 	public ModelAndView writeview(ModelAndView mv) throws Exception{
 		
 		int mid = 3; //user값 임시 mid=3(일반유저) mid=4(관리자)

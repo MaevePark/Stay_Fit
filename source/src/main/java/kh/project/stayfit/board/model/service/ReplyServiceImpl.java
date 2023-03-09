@@ -21,10 +21,10 @@ public class ReplyServiceImpl implements ReplyService{
 	}
 	
 //	//댓글 작성
-//	@Override
-//	public int write(Reply) throws Exception{
-//		return ;
-//	}
+	@Override
+	public int write(Reply vo) throws Exception{
+		return dao.write(vo);
+	}
 
 //	//대댓글 작성
 //	@Override

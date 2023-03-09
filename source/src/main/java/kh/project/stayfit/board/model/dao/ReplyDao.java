@@ -20,9 +20,9 @@ public class ReplyDao {
 		return rlist;
 	}
 	//댓글 작성
-//	public int write(Reply) throws Exception{
-//		return sqlsession.;
-//	}
+	public int write(Reply vo) throws Exception{
+		return sqlsession.insert("board.writereply", vo);
+	}
 	
 //	//대댓글 작성
 //	public int answer(Reply) throws Exception{

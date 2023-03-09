@@ -9,8 +9,9 @@ public interface ReplyService {
 	//댓글 조회
 	public List<Reply> replylist(int bid) throws Exception;
 	
-//	//댓글 작성
-//	public int write(Reply) throws Exception;
+	//댓글 작성
+	public int write(Reply vo) throws Exception;
+	
 
 //	//대댓글 작성
 //	public int answer(Reply) throws Exception;
