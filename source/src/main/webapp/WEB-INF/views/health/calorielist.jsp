@@ -70,15 +70,18 @@
 							</colgroup>
 							<tbody>
 								<tr>
-									<td><span id="BASIC_MET" class="green" style="width: 557px;"> 
+									<td>
+										<!-- 기초대사량 -->
+										<span id="BASIC_MET" class="green" style="width: 557px;"> 
 											<img alt=""	src="<%=request.getContextPath()%>/resources/img/health/bg_calorie_green.gif">
-											${healthInfoVo.bmr }</span>
-											
+											${healthInfoVo.bmr }</span> 
+										
+										<!-- 활동대사량 -->	
 										<span id="ACTIVE_MET" class="yellow" style="width: 55px;">
 											<img alt=""	src="<%=request.getContextPath()%>/resources/img/health/bg_calorie_yellow.gif">
 											${healthInfoVo.amr }</span>
 											
-											
+										<!-- 소화를 위한 에너지 -->
 										<span id="DIGEST_MET" class="orange" style="width: 68px;">
 											<img alt=""	src="<%=request.getContextPath()%>/resources/img/health/bg_calorie_orange.gif">
 											${healthInfoVo.digestionEnergy }</span>									
