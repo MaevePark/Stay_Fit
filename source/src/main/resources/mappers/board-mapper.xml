@@ -62,9 +62,9 @@
 		delete from board where bid=#{bid}
 	</delete>
 	
-	<!--댓글 조회  -->
+	<!-- 댓글 조회  -->
 	<select id="boardreply" resultType="Reply" parameterType="int">
-		SELECT profimg, mname, rcontent, rcreate, rstate FROM reply JOIN member USING(mid) WHERE BID=#{bid} ORDER BY RID,RCASE
+		SELECT mid, rid, profimg, mname, rcontent, rcreate, rstate FROM reply JOIN member USING(mid) WHERE bid = #{bid} ORDER BY rseq ASC, rcase
 	</select>
 	
 	<!-- 댓글 작성  -->
