@@ -37,7 +37,7 @@
 <!-- 			authentication-failure-url="/member/login?ng" -->
 <!-- 		/> -->
 		<security:logout 
-			logout-url="/member/logout"
+			logout-url="/logout"
 			logout-success-url="/"
 			invalidate-session="true"
 			delete-cookies="true"
