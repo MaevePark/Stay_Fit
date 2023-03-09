@@ -29,10 +29,6 @@ public class MyProductDao {
 	public int deleteWish(MypageWish vo) {
 		return sqlsession.delete("mypage.deleteMyWish", vo);
 	}
-	//찜목록 등록
-//	public int insertWish(MypageWish vo) {
-//		return sqlsession.delete("mypage.deleteMyWish", vo);
-//	}
 	
 	//장바구니 호출
 	public List<Map<String, Object>> selectCartProductList(int mid, int currentPageNum, int limits) throws Exception {
