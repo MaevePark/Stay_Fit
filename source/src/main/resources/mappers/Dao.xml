@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="Dao">
+	<resultMap type="UserDetailsDto" id="resultDto">
+		<id column="MID" property="mid"/>
+		<result column="MEMAIL" property="ID"/>
+		<result column="MPW" property="PASSWORD"/>
+		<result column="ENABLED" property="ENABLED"/>
+	</resultMap>
+	
+	<select id="selectUser" resultMap="resultDto">
+		SELECT MID, MEMAIL, MPW, ENABLED FROM MEMBER WHERE MEMAIL=#{username}
+	</select>
+	
+	<select id="getAuthList" resultType="string">
+		SELECT AUTHORITY 
+			FROM USERAUTH U JOIN MEMBER M ON U.MID = M.MID
+				WHERE M.MEMAIL=#{username}
+	</select>
+
+</mapper>
