@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>  
+
 <!-- <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script> -->
 
 <section class="blog spad">
@@ -124,9 +126,16 @@
 
 					<!--게시판 글등록  -->
 					 
-					<div id="button_parent">
-						<button type="button" class="site-btn" onclick="location.href='write'">글등록</button>
-					</div>
+					<c:if test="${bcid != '0'}">
+						<div id="button_parent">
+							<button type="button" class="site-btn" onclick="location.href='write'">글등록</button>
+						</div>
+					</c:if>
+					<c:if test="${bcid == '0' && fn:contains(sessionScope.mrole, 'A')}">
+						<div id="button_parent">
+							<button type="button" class="site-btn" onclick="location.href='write'">글등록</button>
+						</div>
+					</c:if>
 					 
 					<!-- 게시판 글등록  -->
 

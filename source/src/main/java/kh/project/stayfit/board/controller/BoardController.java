@@ -50,6 +50,7 @@ public class BoardController {
 		HttpSession session = request.getSession();
 		session.removeAttribute("s");
 		
+		mv.addObject("bcid", bcid);
 		mv.addObject("boardlist", searchlist);
 		mv.addObject("sectionName", "board/list.jsp");
 		mv.addObject("urlpattern", "board/list");
