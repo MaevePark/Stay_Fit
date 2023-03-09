@@ -22,11 +22,17 @@ public class ReplyController {
 	@Autowired
 	private ReplyService srv;
 
-	//´ñ±Û ÀÛ¼º
+	//ëŒ“ê¸€ ìž‘ì„±
 	@PostMapping("/replywrite")
 	@ResponseBody
 	public String write(@RequestBody Reply vo) throws Exception {
 		srv.write(vo);
 		return new Gson().toJson(vo);
+	}
+	//ëŒ“ê¸€ ì‚­ì œ
+	@PostMapping("/replydelete")
+	@ResponseBody
+	public int delete(@RequestParam("rid") int rid) throws Exception {
+		return srv.rdelete(rid);
 	}
 }

@@ -71,4 +71,10 @@
 	<insert id="writereply" parameterType="Reply">
 		INSERT INTO reply(rid,bid,mid,rcontent,rseq) VALUES ((SELECT NVL(MAX(rid),0)+1 FROM reply), #{bid}, #{mid}, #{rcontent}, (SELECT NVL(MAX(rseq),0)+1 FROM reply WHERE BID=#{bid}))
 	</insert>
+	
+	<!-- 댓글 삭제  -->
+	<delete id="rdelete" parameterType="int">
+		DELETE FROM reply WHERE rid=#{rid}
+	</delete>
+	
 </mapper>

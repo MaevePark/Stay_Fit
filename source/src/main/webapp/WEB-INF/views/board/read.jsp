@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!--index로 이동함 삭제예정  -->
 <%-- <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/boardread.css" type="text/css">  --%>
-<!-- <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script> -->
+<!--  <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>  -->
 <!-- 여기까지 삭제  -->
 
 <!-- 게시판 상세페이지 -->
@@ -16,7 +16,7 @@
 			<!-- 게시판 카테고리 첨부 끝 -->
 			<div class="col-lg-10 col-md-10">
 				<div class="row">
-				<!-- 글검색인데 삭제예정  -->
+					<!-- 글검색인데 삭제예정  -->
 					<div class="hero__search__form">
 						<form action="#">
 							<div class="hero__search__categories">
@@ -47,7 +47,8 @@
 						</tr>
 						<tr>
 							<td>${read.mname}</td>
-							<td><fmt:formatDate pattern="YY/MM/dd" value="${read.bcreate}" /></td>
+							<td><fmt:formatDate pattern="YY/MM/dd"
+									value="${read.bcreate}" /></td>
 						</tr>
 
 						<!-- 컨텐츠  -->
@@ -89,11 +90,14 @@
 						<%-- <c:if test="${sessionScope.principal.mid == read.mid }"> --%>
 						<form>
 							<input type="hidden" id="board-bcid" value="${read.bid }">
-							<button type="button" class="site-btn" id="btn-upd" onclick="location.href='update?bid=${read.bid}'">수정</button>
-							<button type="button" class="site-btn" id="btn-del" onclick="del(${read.bid})">삭제</button>
+							<button type="button" class="site-btn" id="btn-upd"
+								onclick="location.href='update?bid=${read.bid}'">수정</button>
+							<button type="button" class="site-btn" id="btn-del"
+								onclick="del(${read.bid})">삭제</button>
 						</form>
 						<%-- </c:if> --%>
-						<button type="button" class="site-btn" onclick="location.href='list?bcid=${read.bcid}'">목록</button>
+						<button type="button" class="site-btn"
+							onclick="location.href='list?bcid=${read.bcid}'">목록</button>
 					</div>
 					<!-- 수정, 삭제, 목록 버튼 여기까지  -->
 
@@ -129,6 +133,20 @@
 											</td>
 											<td><fmt:formatDate pattern="YY/MM/dd HH:MM"
 													value="${r.rcreate}" /></td>
+											<td>
+												<c:if test="${r.mid == user }">
+													<div class="container">
+														<button type="button" id="modify" onclick ="rmodi(${r.rid})"class="btn btn-sm btn-modify">수정</button>
+														<button type="button"  onclick ="rdel(${r.rid})"class="btn btn-sm btn-del">삭제</button>
+													</div>
+												</c:if> 
+												<c:if test="${r.mid != user }">
+													<div class="container">
+														<button type="button" class="btn btn-primary btn-sm btn-light">공감</button>
+														<button type="button" class="btn btn-primary btn-sm btn-light">신고</button>
+													</div>
+												</c:if>
+											</td>
 										</tr>
 									</c:forEach>
 								</c:when>
@@ -207,4 +225,32 @@ function del(bid){
 	});
 	
 } 
+//댓글 수정
+function rmodi(rid){
+	$("#modify").on("click",function(){
+		alert('aaa');
+	})
+}
+//댓글 삭제
+function rdel(rid){
+	var check = confirm("댓글을 삭제하겠습니까?");
+	
+	if(check==true){
+		$.ajax({
+			type : "POST",
+			url : "replydelete",
+			data : {"rid" : rid},
+			dataType : "Json",
+		}).done(function(){
+			alert("댓글을 삭제하였습니다.");
+			location.reload();
+		}).fail(function(error){
+			alert("댓글을 삭제할 수 없습니다. 다시 시도해주세요.");
+			console.log(error);
+		});
+	}else{
+		alert("취소하였습니다.");
+	}	
+}
+
 </script>
