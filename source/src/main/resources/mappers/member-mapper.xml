@@ -2,29 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="member">
   
-	<resultMap type="Member" id="resultMember">
-		<id property="mid" column="MID"/>
-		<result property="mrole" column="MROLE"/>
-		<result property="memail" column="MEMAIL"/>
-		<result property="mpw" column="MPW"/>
-		<result property="mname" column="MNAME"/>
-		<result property="mcreate" column="MCREATE"/>
-		<result property="mupdate" column="MUPDATE"/>
-		<result property="mstate" column="MSTATE"/>
-		<result property="profimg" column="PROFIMG"/>
-	</resultMap>
-  	
 	<select id="loginCheck" resultType="string">
 	SELECT MNAME FROM MEMBER WHERE MEMAIL = #{memail} AND MPW = #{mpw}
  	</select>
  	
- 	<select id="viewMember" resultMap="resultMember">
+ 	<select id="viewMember" resultType="Member">
  		SELECT * FROM MEMBER WHERE MEMAIL = #{memail} AND MPW = #{mpw}
  	</select>
  	
-	<insert id="join">
- 	INSERT INTO MEMBER (MID, MROLE, MEMAIL, MPW, MNAME, MCREATE, MUPDATE, MSTATE, PROFIMG) 
- 	VALUES(#{mid}, DEFAULT, #{memail}, #{mpw}, DEFAULT, DEFAULT, DEFAULT, DEFAULT)
+	<insert id="join" parameterType="Member">
+ 	INSERT INTO MEMBER (MID, MEMAIL, MPW, MNAME) 
+ 	VALUES (#{mid}, #{memail}, #{mpw}, #{mname})
+ 	INSERT INTO USERAUTH (MID)
+ 	VALUES (#{mid})
  	</insert>
   
 </mapper>
