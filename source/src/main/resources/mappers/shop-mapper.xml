@@ -33,6 +33,53 @@
 	SELECT NVL(MAX(PID), 0)+1 MAXID FROM PRODUCT
   	</insert>
   	
+  	<!-- 상품 카테고리 리스트업 -->
+  	<select id="selectCategory" resultType="Category">
+  		SELECT * FROM CATEGORY
+  	</select>
+  	
+  	
+  	<!-- 상품 리스트업 -->
+  	<select id="selectProduct" parameterType="hashmap" resultType="ShopProduct">
+		SELECT * FROM PRODUCT 
+			WHERE 
+			<if test="productCategory != 0">
+				CID = ${productCategory} AND 
+			</if>
+			<if test="!searchProduct.equals('')">
+				PNAME LIKE '%'||#{searchProduct }||'%' AND 
+			</if>
+			PPRICE > 0 
+		ORDER BY DBMS_RANDOM.VALUE
+  	</select>
+  	<select id="countProduct" parameterType="map" resultType="int">
+		SELECT COUNT(PID) FROM PRODUCT 
+			WHERE 
+			<if test="productCategory != 0">
+				CID = ${productCategory} AND 
+			</if>
+			<if test="!searchProduct.equals('')">
+				PNAME LIKE '%'||#{searchProduct }||'%' AND 
+			</if>
+			PPRICE > 0 
+  	</select>
+  	
+  	
+	<!-- 찜목록 등록 -->
+  	<select id="insertWish" parameterType="ShopCart" resultType="int">
+		INSERT INTO WISH VALUES(${pid}, ${mid})
+	</select>
+  	
+  	<!-- 장바구니 등록 -->
+	<insert id="insertCart" parameterType="ShopCart">
+		INSERT INTO CART VALUES(${pid}, ${mid}, 1, SYSDATE)
+	</insert>
+  	
+  	
+  	
+  	
+  	
+  	
   	
 
 
