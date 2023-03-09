@@ -6,7 +6,7 @@
 	<select id="selectProfile" parameterType="int" resultType="MypageMember">
 		SELECT MID, MROLE, MEMAIL, MNAME, MCREATE, MUPDATE, PROFIMG
 			FROM MEMBER
-				WHERE MSTATE='A' AND MID=${mid}
+				WHERE ENABLED='A' AND MID=${mid}
 	</select>
 	<!-- 프로필 변경 -->
 	<update id="updateProfile" parameterType="map">
