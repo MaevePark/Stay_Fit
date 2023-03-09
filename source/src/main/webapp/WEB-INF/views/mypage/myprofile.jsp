@@ -3,7 +3,21 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script src='<%=request.getContextPath() %>/resources/js/mypage/mypage.js'></script>
 
+<%System.out.println(request.getSession().getAttribute("mid")); %>
+
+
 <!-- Blog Section Begin -->
+
+<%if(request.getSession().getAttribute("mid") != null) {
+	
+	int mid = (int) request.getSession().getAttribute("mid");
+	%>
+<input type="hidden" id="mid" name="mid" value="<%=mid%>">
+<%}%>
+
+
+
+
 <section class="blog spad">
 	<div class="container">
 		<div class="row">
@@ -11,7 +25,6 @@
 			<jsp:include page="/WEB-INF/views/mypage/mypagecategory.jsp"></jsp:include>
 
 			<div class="col-lg-10 col-md-7">
-
 				<h4 class="fw-bold py-3 mb-4">
 					<span class="text-muted fw-light">마이페이지 /</span> 사용자 정보
 				</h4>
