@@ -12,6 +12,7 @@
 
 			<div class="col-lg-10 col-md-10">
 				<div class="row">
+					
 					<h4 class="fw-bold py-3 mb-4">
 						<span class="text-muted fw-light">건강관리 /</span> 보건소 조회
 					</h4>
@@ -44,7 +45,7 @@
 
 					<div class="container-xl flex-grow-1 container-p-y">
 						<!-- Basic Bootstrap Table -->
-						<div class="card">					
+						<div class="card">
 							<div class="table-responsive text-nowrap">
 								<table class="table">
 									<thead>
@@ -65,10 +66,10 @@
 												<!-- 주소 -->
 												<td colspan="3">${centerList.haddr }</td>
 												<!-- 전화번호 -->
-												<td>${centerList.hpnum }</td>												
+												<td>${centerList.hpnum }</td>
 												<!-- 위치 링크 시작 -->
 												<td id="map"><a id="maplink" style="cursor: pointer"
-													onclick="healthCenterMap(
+													onclick="healthCenterMap (
 													    <c:if test="${centerList.lid eq 1 }">'강남구 보건소', '37.51630311339761', '127.04227756939835'</c:if>
 													    <c:if test="${centerList.lid eq 2 }">'강서구 보건소', '35.180235150684716', '128.9572976673653'</c:if>
 													    <c:if test="${centerList.lid eq 3 }">'강화군 보건소', '37.73728494653745', '126.48474092791898'</c:if>
@@ -85,7 +86,7 @@
 													  );"><img
 														src="<%=request.getContextPath()%>/resources/img/health/btn_spot.gif"
 														alt="위치"> </a></td>
-												<!-- 위치 링크 끝 -->											
+												<!-- 위치 링크 끝 -->
 											</tr>
 										</c:forEach>
 										<!-- 보건소 list 끝 -->
@@ -95,13 +96,14 @@
 						</div>
 						<!--/ Basic Bootstrap Table -->
 					</div>
-
+					<!-- 페이징 시작 -->
 					<div class="col-lg-12">
 						<div class="product__pagination ">
 							<a href="#">1</a> <a href="#">2</a> <a href="#">3</a> <a href="#"><i
 								class="fa fa-long-arrow-right"></i></a>
 						</div>
 					</div>
+					<!-- 페이징 끝 -->
 				</div>
 			</div>
 		</div>

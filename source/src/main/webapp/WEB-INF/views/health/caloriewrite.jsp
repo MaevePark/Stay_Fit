@@ -140,7 +140,9 @@
 										value="2"
 										onkeydown="this.value=this.value.replace(/[^0-9]/g,'')"
 										onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"
-										onblur="this.value=this.value.replace(/[^0-9]/g,'')">
+										onblur="this.value=this.value.replace(/[^0-9]/g,'')"
+										maxlength="4">
+										
 										<input type="radio" class="radio" id="month"
 										name="goal_term_type" value="M" checked="checked"><label
 										class="pre" for="month"> 개월 </label> <input type="radio"
@@ -425,7 +427,7 @@ function calCalorie() {
 	}
 
 	if ($("#weight").val().replace(/(^\s*)|(\s*$)/g, "") == ''){
-		alert("체중를 입력해주세요.");
+		alert("체중을 입력해주세요.");
 		$("#weight").val("");
 		$("#weight").focus();
 		return;
@@ -439,23 +441,9 @@ function calCalorie() {
 	}
 
 	if ($("#byear").val().replace(/(^\s*)|(\s*$)/g, "") == ''){
-		alert("다이어트시작 년도를 입력해주세요.");
+		alert("태어난 년도를 입력해주세요.");
 		$("#byear").val("");
 		$("#byear").focus();
-		return;
-	}
-
-	if ($("#bmonth").val().replace(/(^\s*)|(\s*$)/g, "") == ''){
-		alert("다이어트시작 월을 입력해주세요.");
-		$("#bmonth").val("");
-		$("#bmonth").focus();
-		return;
-	}
-
-	if ($("#bday").val().replace(/(^\s*)|(\s*$)/g, "") == ''){
-		alert("다이어트시작 일을 입력해주세요.");
-		$("#bday").val("");
-		$("#bday").focus();
 		return;
 	}
 
