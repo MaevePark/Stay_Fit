@@ -83,7 +83,7 @@ public class ProductController {
 							HttpServletRequest request
 							) throws Exception {
 		
-		// multipartFile 이 있을 때 : '새로운 사진 업로드'시
+		// multipartFile 이 있을 때 : '새로운 이미지 업로드'시
 		if(multipartFile != null) {
 			
 			String savedFileName = FileSave.saveFile(multipartFile, FileSave.FILE_PRODUCT_PATH, request);
@@ -129,7 +129,7 @@ public class ProductController {
 			}
 		} 
 		
-		// multipartFile 이 없을 때 : '이전 사진으로' 클릭시, 또는 파일선택창에서 '취소' 클릭시  -> input type="hidden"으로 받아 온 기존 pimage 그대로 DB에 유지
+		// multipartFile 이 없을 때 : '이전 이미지로' 클릭시, 또는 파일선택창에서 '취소' 클릭시  -> input type="hidden"으로 받아 온 기존 pimage 그대로 DB에 유지
 		
 		int result = service.updateProduct(vo);
 
