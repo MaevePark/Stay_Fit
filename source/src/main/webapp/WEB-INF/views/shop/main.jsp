@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script src='<%=request.getContextPath() %>/resources/js/shop/shop.js'></script>
 
 
 <!-- Product Section Begin -->
@@ -12,29 +14,34 @@
 			
 			<div class="col-lg-10 col-md-7">
 				<!-- Hero Section Begin -->
-				<section class="hero hero-normal">
-					<div class="container">
-						<div class="row">
-							<div class="col-lg-12">
-								<div class="hero__search">
-									<div class="hero__search__form">
-										<form action="#">
-											<select name="">
-												<option value="0" <%if(request.getParameter("searchProduct").equals("0")) {%>selected<%} %>>카테고리 전체</option>
-												<option value="1" <%if(request.getParameter("searchProduct").equals("1")) {%>selected<%} %>>Fresh Meat</option>
-												<option value="2" <%if(request.getParameter("searchProduct").equals("2")) {%>selected<%} %>>Vegetables</option>
-												<option value="3" <%if(request.getParameter("searchProduct").equals("3")) {%>selected<%} %>>Fruit & Nut Gifts</option>
-											</select>
-											
-											<input type="text" name="searchProduct" id="searchProduct" placeholder="검색어를 입력해주세요.">
-											<button type="submit" class="site-btn">SEARCH</button>
-										</form>
-									</div>
-								</div>
-							</div>
+				<div class="hero__search__form">
+					<form action="<%=request.getContextPath() %>/shop" method="get">
+						<c:set var="productCategory" value="${searchMap.productCategory}"></c:set>
+						<div class="hero__search__categories">
+							<select name="productCategory">
+<%-- 								<c:if test="${categoryList.cid } == 0"> --%>
+<!-- 									<option value="0" selected>카테고리 전체</option> -->
+<%-- 								</c:if> --%>
+								<c:forEach items="${categoryList }" var="cList">
+									<option value="${cList.cid }">${cList.cname }</option>
+										<c:choose>
+											<c:when test="${cList.cid == productCategory }">
+												<option value="${cList.cid }" selected>${cList.cname }</option>
+											</c:when>
+											<c:when test="${cList.cid != productCategory }">
+												<option value="${cList.cid }">${cList.cname }</option>
+											</c:when>
+										</c:choose>
+									
+								</c:forEach>
+							</select>
 						</div>
-					</div>
-				</section>
+						
+						
+						<input type="text" name="searchProduct" id="searchProduct" placeholder="상품명을 검색해 주세요.">
+						<button type="submit" class="site-btn">SEARCH</button>
+					</form>
+				</div>
 				<!-- Hero Section End -->
 
 
