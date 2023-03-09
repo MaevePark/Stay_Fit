@@ -35,6 +35,12 @@
     
     
    	<%--  <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/board.css"/> 없음--%>
+   	
+   	<!-- shop 시작 -->
+    <c:if test="${sectionName eq 'shop/*' or sectionName eq 'shop/main.jsp'}">
+		<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/shop.css" type="text/css">
+	</c:if>
+	<!-- shop 끝 -->
     
     <!-- mypage 시작 -->
     <c:if test="${sectionName eq 'mypage/*' }">
