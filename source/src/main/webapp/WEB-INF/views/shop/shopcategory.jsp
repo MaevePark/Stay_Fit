@@ -1,17 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script src='<%=request.getContextPath() %>/resources/js/shop/shopCategory.js'></script>
 
 
 <div class="col-lg-2 col-md-5">
 	<div class="sidebar">
 
-		<button type="button" onclick="location.href='<%=request.getContextPath()%>/shop/go'">크롤링 실행!</button>
 		<div class="sidebar__item">
 			<h4>Department</h4>
 			<ul>
-				<li><a href="<%=request.getContextPath()%>/shop/main?searchProduct=1">Fresh Meat</a></li>
-				<li><a href="<%=request.getContextPath()%>/shop/main?searchProduct=2">Vegetables</a></li>
-				<li><a href="<%=request.getContextPath()%>/shop/main?searchProduct=3">Fruit & Nut Gifts</a></li>
+				<c:forEach items="" var="list">
+					<li><a href="<%=request.getContextPath()%>/shop/main?productCategory=1">Fresh Meat</a></li>
+				</c:forEach>
 			</ul>
 		</div>
 		<div class="sidebar__item">

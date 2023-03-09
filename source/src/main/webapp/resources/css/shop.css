@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+/*검색창 시작*/
+.hero-normal > .container > .row {
+	overflow: auto;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.hero__search__form {
+	margin-bottom: 15px;
+}
+
+.container-fluid, .container-lg, .container-md, .container-sm, .container-xl {
+	padding: 0;
+}
+.hero__search__form form .hero__search__categories span {
+	position: relative;
+	right: 0;
+	top: 0;
+}
+.hero__search__form form .hero__search__categories {
+	width: 27%;
+	padding-top: 0;
+	position: relative;
+	top: 3px;
+}
+
+.nice-select {
+	width: 100%;
+}
+
+.hero__search__form form input {
+	width: 60%
+}
+/*검색창 끝*/
