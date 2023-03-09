@@ -172,7 +172,8 @@
 																<div class="fc-daygrid-day-events">
 																	<div class="fc-daygrid-event-harness"
 																		style="margin-top: 0px;">
-																		<a class="fc-daygrid-event fc-daygrid-dot-event fc-event fc-event-draggable fc-event-resizable fc-event-start fc-event-end fc-event-past"></a>
+																		<a
+																			class="fc-daygrid-event fc-daygrid-dot-event fc-event fc-event-draggable fc-event-resizable fc-event-start fc-event-end fc-event-past"></a>
 																	</div>
 																	<div class="fc-daygrid-day-bottom"
 																		style="margin-top: 0px;"></div>
@@ -847,9 +848,10 @@
 			</div>
 		</div>
 	</div>
-	<div id="calendar-modal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<div id="calendar-modal" class="modal fade" data-backdrop="static">
 		<!-- Add Modal -->
-		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+		<div
+			class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
 			<div class="modal-content">
 				<!-- Modal Header -->
 				<div class="modal-header">
@@ -857,60 +859,84 @@
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
 				<!-- Modal Body -->
-				<div class="modal-body modal-arrange">
-					<span class="modal-txt">몸무게 : </span> <input type="text" id="weight"><span>kg</span>
-					<div class="btn">
-						<button class="btn-kcal" id="breakfast">kcal</button>
-						<button class="btn-kcal" id="lunch">kcal</button>
-						<button class="btn-kcal" id="dinner">kcal</button>
+				<form id="diary-form">
+				<div class="modal-body modal-box">
+					<div class="weight-group">
+						<span class="modal-txt">몸무게 : </span> 
+						<input type="text" class="diary-modal-input"
+							id="weight-input"><span>&nbsp;&nbsp;kg</span>
 					</div>
-					<div>
-						<span>아침</span> <span>점심</span> <span>저녁</span>
+					<div class="btn-group-toggle radio-group" data-toggle="buttons">
+						<label class="rounded-circle btn btn-light btn-kcal"
+							for="breakfast"> <input type="radio" class="kcal-radio"
+							name="breakfast" id="breakfast" checked> kcal
+						</label> <label class="rounded-circle btn btn-light btn-kcal" for="lunch">
+							<input type="radio" class="kcal-radio" name="lunch" id="lunch">
+							kcal
+						</label> <label class="rounded-circle btn btn-light btn-kcal" for="dinner">
+							<input type="radio" class="kcal-radio" name="dinner" id="dinner">kcal
+						</label>
+						<div>
+							<span class="kcal-txt">아침</span> <span class="kcal-txt">점심</span>
+							<span class="kcal-txt">저녁</span>
+						</div>
+						<label class="rounded-circle btn btn-light btn-kcal" for="snack1">
+							<input type="radio" class="kcal-radio" name="snack1" id="snack1"
+							data-toggle="buttons"> kcal
+						</label> <label class="rounded-circle btn btn-light btn-kcal"> <input
+							type="radio" class="kcal-radio" name="snack2" id="snack2">
+							kcal
+						</label> <label class="rounded-circle btn btn-light btn-kcal"> <input
+							type="radio" class="kcal-radio" name="snack3" id="snack3">
+							kcal
+						</label>
+						<div>
+							<span class="kcal-txt2">오전간식</span> <span class="kcal-txt2">오후간식</span><span
+								class="kcal-txt">야식</span>
+						</div>
 					</div>
-					<div>
-						<button id="snack1">kcal</button>
-						<button id="snack2">kcal</button>
-						<button id="snack3">kcal</button>
+					<div class="search-group">
+						<input type="text" class="diary-modal-input" data-toggle="modal" data-target="#search-meal" placeholder="식단메뉴 검색">
+							<table class="result-table">
+								<thead>
+									<tr>
+										<td class="td-menu">식단 메뉴</td>
+										<td class="td-kcal">섭취 칼로리</td>
+										<td><button class="minus-box">-</button></td>
+									</tr>
+								</thead>
+								<tbody>
+								</tbody>
+							</table>
+						<input type="text" class="diary-modal-input" data-toggle="modal" data-target="#search-training" placeholder="운동 검색">
+							<table class="result-table">
+								<thead>
+									<tr>
+										<td class="td-menu">운동 종류</td>
+										<td class="td-kcal">소모 칼로리</td>
+										<td><button class="minus-box">-</button></td>
+									</tr>
+								</thead>
+								<tbody>
+								</tbody>
+							</table>
+						</div>
 					</div>
-					<div>
-						<span>오전간식</span> <span>오후간식</span> <span>야식</span>
-					</div>
-					<div>
-						<input type="text" placeholder="식단메뉴 검색">
-					</div>
-					<div>
-						<table class="">
-							<tr>
-								<td>식단 메뉴</td>
-								<td>섭취 칼로리</td>
-								<td><button class="minus-box">-</button></td>
-							</tr>
-						</table>
-					</div>
-					<div>
-						<input type="text" placeholder="운동 검색">
-					</div>
-					<div>
-						<table class="">
-							<tr>
-								<td>운동 종류</td>
-								<td>소모 칼로리</td>
-								<td><button class="minus-box">-</button></td>
-							</tr>
-						</table>
-					</div>
-				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn-cancel btn btn-danger">취소</button>
-					<button type="submit" class="btn-add btn-success">등록</button>
+					<button type="button" class="btn-cancel btn btn-danger" data-dismiss="modal">취소</button>
+					<button type="submit" class="btn-add btn btn-success">등록</button>
 				</div>
+				</form>
 			</div>
 		</div>
 	</div>
 	<!-- 식단메뉴 검색 모달 -->
-	<div id="search-meal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<div id="search-meal" class="modal fade" data-bs-backdrop="static"
+		data-bs-keyboard="false" tabindex="-1"
+		aria-labelledby="staticBackdropLabel" aria-hidden="true">
 		<!-- Add Modal -->
-		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+		<div
+			class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
 			<div class="modal-content">
 				<!-- Modal Header -->
 				<div class="modal-header">
@@ -919,16 +945,18 @@
 				</div>
 				<!-- Modal Body -->
 				<div class="modal-body">
-					<input type="text">
-				</div>	
+					<input type="text" class="form-control" id="searchMeal" placeholder="식단 메뉴 검색어를 입력하세요.">
+				</div>
 			</div>
 		</div>
 	</div>
-	
 	<!-- 운동 검색 모달 -->
-	<div id="search-training" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<div id="search-training" class="modal fade" data-bs-backdrop="static"
+		data-bs-keyboard="false" tabindex="-1"
+		aria-labelledby="staticBackdropLabel" aria-hidden="true">
 		<!-- Add Modal -->
-		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+		<div
+			class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
 			<div class="modal-content">
 				<!-- Modal Header -->
 				<div class="modal-header">
@@ -937,14 +965,13 @@
 				</div>
 				<!-- Modal Body -->
 				<div class="modal-body">
-					<input type="text">
-				</div>	
+					<input type="text"class="form-control" id="searchTraining" placeholder="운동 종류의 검색어를 입력하세요.">
+				</div>
 			</div>
 		</div>
 	</div>
-	
+
 	<!--업데이트 모달-->
-	
 </section>
 
 <script

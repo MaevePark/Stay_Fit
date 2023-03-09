@@ -60,15 +60,15 @@
 										<!-- 보건소 list 시작 -->
 										<c:forEach var="centerList" items="${centerList }">
 											<tr>
-												<td>${centerList.hplace }</td>
 												<!-- 측정 장소  -->
-												<td colspan="3">${centerList.haddr }</td>
+												<td>${centerList.hplace }</td>
 												<!-- 주소 -->
-												<td>${centerList.hpnum }</td>
+												<td colspan="3">${centerList.haddr }</td>
 												<!-- 전화번호 -->
+												<td>${centerList.hpnum }</td>												
 												<!-- 위치 링크 시작 -->
-												<td><a id="map" style="cursor: pointer"
-													onclick="setHealthMap(
+												<td id="map"><a id="maplink" style="cursor: pointer"
+													onclick="healthCenterMap(
 													    <c:if test="${centerList.lid eq 1 }">'강남구 보건소', '37.51630311339761', '127.04227756939835'</c:if>
 													    <c:if test="${centerList.lid eq 2 }">'강서구 보건소', '35.180235150684716', '128.9572976673653'</c:if>
 													    <c:if test="${centerList.lid eq 3 }">'강화군 보건소', '37.73728494653745', '126.48474092791898'</c:if>
@@ -97,7 +97,7 @@
 					</div>
 
 					<div class="col-lg-12">
-						<div class="product__pagination blog__pagination">
+						<div class="product__pagination ">
 							<a href="#">1</a> <a href="#">2</a> <a href="#">3</a> <a href="#"><i
 								class="fa fa-long-arrow-right"></i></a>
 						</div>
@@ -111,9 +111,11 @@
 <script>
 //<--------------------------------------------------------------------
 // 1. kakao map 이동 시작
-function setHealthMap(location_name, latitude, longitude) {
+function healthCenterMap(location_name, latitude, longitude) {
 	window.open("https://map.kakao.com/link/map/" +
-			location_name + ","	+ latitude + "," + longitude); // link/map/장소이름,위도,경도 새로운 창으로 열기
+			// link/map/장소이름,위도,경도 새로운 창으로 열기
+			location_name + ","	+ latitude + "," + longitude); 
+			
 }
 // 1. kakao map 이동 끝
 //-------------------------------------------------------------------->

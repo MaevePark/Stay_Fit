@@ -29,6 +29,6 @@ public class Member {
 	private String mname;
 	private Timestamp mcreate; //일단 timestamp 그대로
 	private Timestamp mupdate; //일단 timestamp 그대로
-	private char mstate;
+	private char enabled;
 	private String profimg;
 }

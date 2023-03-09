@@ -1,5 +1,7 @@
 package kh.project.stayfit.diary.model.vo;
 
+import java.sql.Date;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -7,40 +9,29 @@ import lombok.ToString;
 @ToString
 @Getter
 @Setter
-public class Diary {
-//	ERD 영양성분 테이블 기준으로 작성함 담당자가 추후 변경 -mjpark  
+public class Diary{
+//	ERD 다이어리 테이블 기준으로 작성함 담당자가 추후 변경 -mjpark	 
 
-//	"ID"	NUMBER(6)		NOT NULL,
-//	"PRODUCT"	VARCHAR2(200)		NOT NULL,
-//	"LOCBRAND"	VARCHAR2(50)		NULL,
-//	"BIGCATEG"	VARCHAR2(30)		NULL,
-//	"DETAILCATEG"	VARCHAR2(30)		NULL,
-//	"SERSIZE"	NUMBER(6, 2)	DEFAULT 0	NULL,
-//	"CAPUNIT"	VARCHAR2(5)		NOT NULL,
-//	"KCAL"	NUMBER(8, 2)	DEFAULT 0	NULL,
-//	"MOISTML"	NUMBER(8, 2)	DEFAULT 0	NULL,
-//	"PROTEING"	NUMBER(8, 2)	DEFAULT 0	NULL,
-//	"FATG"	NUMBER(8, 2)	DEFAULT 0	NULL,
-//	"CARBOG"	NUMBER(8, 2)	DEFAULT 0	NULL,
-//	"SUGARG"	NUMBER(8, 2)	DEFAULT 0 NULL,
-//	"CHOLESTEMG"	NUMBER(8, 2)	DEFAULT 0	NULL,
-//	"SATFATG"	NUMBER(8, 2)	DEFAULT 0	NULL
+//	"DDATE"	DATE		NOT NULL,
+//	"MID"	NUMBER		NOT NULL,
+//	"BREAKFAST"	NUMBER	DEFAULT 0	NULL,
+//	"SNACK1"	NUMBER	DEFAULT 0	NULL,
+//	"LUNCH"	NUMBER	DEFAULT 0	NULL,
+//	"SNACK2"	NUMBER	DEFAULT 0	NULL,
+//	"DINNER"	NUMBER	DEFAULT 0	NULL,
+//	"SNACK3"	NUMBER	DEFAULT 0	NULL,
+//	"EXERCISE"	NUMBER(4)	DEFAULT 0	NULL,
+//	"WEIGHT"	NUMBER(5, 2)	DEFAULT 0	NULL
 	
-	private int id;
-	private String product;
-	private String locbrand;
-	private String bigcateg;
-	private String detailcateg;
-	private int sersize;
-	private String capunit;
-	private int kcal;
-	private int moistml;
-	private int proteing;
-	private int fatg;
-	private int carbog;
-	private int sugarg;
-	private int cholestemg;
-	private int satfatg;
-	
+	private Date ddate;
+	private int mid;
+	private int breakfast;
+	private int snack1;
+	private int lunch;
+	private int snack2;
+	private int dinner;
+	private int snack3;
+	private int exercise;
+	private int weight;
 	
 }

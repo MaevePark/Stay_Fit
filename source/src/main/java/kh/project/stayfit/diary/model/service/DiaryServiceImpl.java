@@ -15,9 +15,8 @@ public class DiaryServiceImpl implements DiaryService {
 	
 	//캘린더 작성
 	@Override
-	public int insert() throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public int diarywirte(Diary diary) throws Exception {
+		return dao.diarywirte(diary);
 	}
 	//캘린더 출력
 	@Override

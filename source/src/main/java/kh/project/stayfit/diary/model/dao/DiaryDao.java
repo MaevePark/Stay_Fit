@@ -11,11 +11,12 @@ import kh.project.stayfit.diary.model.vo.Diary;
 @Repository
 public class DiaryDao {
 	@Autowired
-	private SqlSession sqlSession;
+	private SqlSession sqlsession;
 	
 	//캘린더 작성
-	public int insert() throws Exception {  // insert(??)
-		return 0;	
+	public int diarywirte(Diary diary) throws Exception {  // insert(??)
+		
+		return sqlsession.insert("diary.diarywirte", diary);	
 	}
 	//캘린더 출력
 	public List<Diary> selectList(String a, int b) throws Exception {

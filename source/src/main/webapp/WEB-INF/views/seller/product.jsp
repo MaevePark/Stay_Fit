@@ -192,11 +192,11 @@
 		                      <div class="d-flex align-items-start align-items-sm-center gap-4">
 					          
 					          <img src="" id="thumbnail" class="d-block rounded" height="100" width="100">
-		                      <input type="hidden" name="pimage"> <!-- '이전 사진으로'클릭 대비해서 기존 이미지 저장해놓기 -->
+		                      <input type="hidden" name="pimage"> <!-- '이전 이미지로'클릭 대비해서 기존 이미지 저장해놓기 -->
 					          
 					            <div class="button-wrapper">
 					              <label for="upload" class="btn btn-primary me-2" tabindex="0">
-					                <span class="d-none d-sm-block">새로운 사진 업로드</span>
+					                <span class="d-none d-sm-block">새로운 이미지 업로드</span>
 					                <i class="bx bx-upload d-block d-sm-none"></i>
 					                
 					                <input type="file" name="upload" id="upload" class="file-input" hidden="" accept="image/png, image/jpeg">
@@ -204,7 +204,7 @@
 					              </label>
 					              <button type="button" class="btn btn-outline-secondary image-reset">
 					                <i class="bx bx-reset d-block d-sm-none"></i>
-					                <span class="d-none d-sm-block">이전 사진으로</span>
+					                <span class="d-none d-sm-block">이전 이미지로</span>
 					              </button>
 					            </div>
 					          </div>

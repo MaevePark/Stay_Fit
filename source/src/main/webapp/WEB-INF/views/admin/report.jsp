@@ -432,22 +432,27 @@ function resetData() {
 // <삭제 방법 1> : html태그를 다 로딩한 후의 위치에 $("button.replydelete").on("click", replyDeleteHandler); 작성
 function replyDeleteHandler() {
 	
-	let rid = $(this).siblings("input[type=hidden]").val();
-	console.log(rid);
-	    
-    $.ajax({
-   		url : "replydelete",
-   		type : "post",
-   		data: { 'rid' : rid },
-   		success: function(data){
-   			if(data == 1) {
-				alert("댓글 삭제 성공");
-			} else {
-				alert("댓글 삭제 실패");
-			}
-   			getData();
-		 }
-   	});  
+	// 일단 정말 삭제할건지 다시 체크
+	if (confirm("정말 삭제하시겠습니까?") == true) { // 확인 클릭시
+		let rid = $(this).siblings("input[type=hidden]").val();
+		console.log(rid);
+		    
+	    $.ajax({
+	   		url : "replydelete",
+	   		type : "post",
+	   		data: { 'rid' : rid },
+	   		success: function(data){
+	   			if(data == 1) {
+					alert("댓글 삭제 성공");
+				} else {
+					alert("댓글 삭제 실패");
+				}
+	   			getData();
+			 }
+	   	});  
+	} else { // 취소 클릭시
+	    return false;
+	}
 }
 
 // <신고 취소>
@@ -455,7 +460,7 @@ function replyDeleteHandler() {
 function reportDeleteHandler() {
 	
 	// 일단 정말 삭제할건지 다시 체크
-	if (confirm("정말 삭제하시겠습니까?") == true) { // 확인 클릭시
+	if (confirm("정말 취소하시겠습니까?") == true) { // 확인 클릭시
 		let rid = $(this).siblings("input[name=rid]").val();
 		let reporter = $(this).siblings("input[name=reporter]").val();
 		console.log(rid);

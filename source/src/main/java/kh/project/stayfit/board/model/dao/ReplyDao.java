@@ -20,9 +20,14 @@ public class ReplyDao {
 		return rlist;
 	}
 	//댓글 작성
-//	public int write(Reply) throws Exception{
-//		return sqlsession.;
-//	}
+	public int write(Reply vo) throws Exception{
+		return sqlsession.insert("board.writereply", vo);
+	}
+	
+	//댓글 삭제
+	public int rdelete(int rid) throws Exception{
+		return sqlsession.delete("board.rdelete", rid);
+	}
 	
 //	//대댓글 작성
 //	public int answer(Reply) throws Exception{
@@ -34,11 +39,6 @@ public class ReplyDao {
 //		return sqlsession.;
 //	}
 
-//	//댓글 삭제
-//	public int delete(int) throws Exception{
-//		return sqlsession.;
-//	}
-	
 //	//댓글 신고
 //	public int report(Reply, int) throws Exception{
 //		return sqlsession.;

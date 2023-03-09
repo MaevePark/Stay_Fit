@@ -36,35 +36,45 @@
 		ORDER BY bid desc
 	</select>
 	
-	<!--게시물 상세조회  -->
+	<!-- 게시물 상세조회  -->
 	 <select id="selectone" resultType="Board" parameterType="int">
 		select bc.bcid, b.bid, bcname, btitle, bcontent, m.mid, mname, bviewcount, bcreate 
 		from board b join bcategory bc on b.bcid = bc.bcid join member m on b.mid=m.mid where bid=#{bid}
 	</select> 
 	
-	<!--게시물 작성  -->
+	<!-- 게시물 작성  -->
 	 <insert id="write"  parameterType="Board" >
 		INSERT INTO board(bid,bcid,mid,btitle,bcontent)VALUES((SELECT NVL(MAX(BID),0)+1 FROM BOARD),#{bcid},#{mid},#{btitle},#{bcontent})
 	</insert>
 	
-	<!--게시물 조회수  -->
+	<!-- 게시물 조회수  -->
 	<update id="bvcupdate" parameterType="int">
 		update board set bviewcount = bviewcount + 1 where bid=#{bid}
 	</update>
 	
-	<!--게시글 수정  -->
+	<!-- 게시글 수정  -->
 	<update id="update" parameterType="Board"> 
 		UPDATE BOARD SET btitle = #{btitle}, bcontent = #{bcontent} WHERE bid = #{bid}
 	</update>
 	
-	<!--게시물 삭제  -->
+	<!-- 게시물 삭제  -->
 	<delete id="bdelete" parameterType="int">
 		delete from board where bid=#{bid}
 	</delete>
 	
-	<!--댓글 조회  -->
+	<!-- 댓글 조회  -->
 	<select id="boardreply" resultType="Reply" parameterType="int">
-		SELECT profimg, mname, rcontent, rcreate, rstate FROM reply JOIN member USING(mid) WHERE BID=#{bid} ORDER BY RID,RCASE
+		SELECT mid, rid, profimg, mname, rcontent, rcreate, rstate FROM reply JOIN member USING(mid) WHERE bid = #{bid} ORDER BY rseq ASC, rcase
 	</select>
+	
+	<!-- 댓글 작성  -->
+	<insert id="writereply" parameterType="Reply">
+		INSERT INTO reply(rid,bid,mid,rcontent,rseq) VALUES ((SELECT NVL(MAX(rid),0)+1 FROM reply), #{bid}, #{mid}, #{rcontent}, (SELECT NVL(MAX(rseq),0)+1 FROM reply WHERE BID=#{bid}))
+	</insert>
+	
+	<!-- 댓글 삭제  -->
+	<delete id="rdelete" parameterType="int">
+		DELETE FROM reply WHERE rid=#{rid}
+	</delete>
 	
 </mapper>

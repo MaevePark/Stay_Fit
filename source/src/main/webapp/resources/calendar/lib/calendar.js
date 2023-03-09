@@ -27,5 +27,21 @@
 
     calendar.render();
   });
-  
-  
+
+  $('#diary-form').submit(function(event){
+	  event.preventDefault();
+	  
+	  var weight = $('#weight-input').val();
+	  
+	  $ajax({
+		  type:'POST',
+		  url:'/diary-write',
+		  data:{ weight: weight},
+		  success: function(data){
+			  //fullcalendar에 아이콘과 함께 표시
+		  },
+		  error: function(){
+			  console.log('실패');
+		  }
+	  })
+  })
