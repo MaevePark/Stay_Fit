@@ -113,9 +113,10 @@
 												<c:forEach items="${boardList }" var="list">
 													<tr>
 														<td><i class="fab fa-angular fa-lg text-danger me-3"></i>
-															<c:if test="${list.BCID  == 0}"><span>식단</span></c:if>
-															<c:if test="${list.BCID  == 1}"><span>팁&노하우</span></c:if>
-															<c:if test="${list.BCID  == 2}"><span>고민&질문</span></c:if>
+															<c:if test="${list.BCID  == 0}"><span>공지사항</span></c:if>
+															<c:if test="${list.BCID  == 1}"><span>식단</span></c:if>
+															<c:if test="${list.BCID  == 2}"><span>팁&노하우</span></c:if>
+															<c:if test="${list.BCID  == 3}"><span>고민&질문</span></c:if>
 														</td>
 														<td>${list.BTITLE }</td>
 														<td>${list.MNAME }</td>
@@ -139,9 +140,10 @@
 												<c:forEach items="${boardList }" var="list">
 													<tr>
 														<td><i class="fab fa-angular fa-lg text-danger me-3"></i>
-															<c:if test="${list.BCID  == 0}"><span>식단</span></c:if>
-															<c:if test="${list.BCID  == 1}"><span>팁&노하우</span></c:if>
-															<c:if test="${list.BCID  == 2}"><span>고민&질문</span></c:if>
+															<c:if test="${list.BCID  == 0}"><span>공지사항</span></c:if>
+															<c:if test="${list.BCID  == 1}"><span>식단</span></c:if>
+															<c:if test="${list.BCID  == 2}"><span>팁&노하우</span></c:if>
+															<c:if test="${list.BCID  == 3}"><span>고민&질문</span></c:if>
 														</td>
 														<td>${list.BTITLE }</td>
 														<td>${list.MNAME }</td>
