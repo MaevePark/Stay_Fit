@@ -28,9 +28,9 @@
 									<th>성별</th>				
 									<td>									
 										<input type="radio" class="radio" id="gender" name="gender"
-											value="F" checked=""><label class="pre" for="female">여자 </label>
+											value="F"><label class="pre" for="female">여자 </label>
 										<input type="radio" class="radio" id="gender" name="gender"
-											value="M"><label class="pre" for="male"> 남자</label>
+											value="M" checked="checked"><label class="pre" for="male"> 남자</label>
 									</td>
 								</tr>
 								<tr>
