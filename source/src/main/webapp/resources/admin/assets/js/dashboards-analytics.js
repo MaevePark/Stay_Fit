@@ -312,16 +312,15 @@ $(function() {
   // 차트 옵션 생성
   const orderChartConfig = {
       chart: {
-        height: 230,
-        width: 230,
+        height: 260,
+        width: 260,
         type: 'donut'
       },
-      labels: ['즉석밥/볶음밥', '샐러드/도시락', '기타'],
-      series: [85, 15, 50],
-      colors: [config.colors.primary, config.colors.info, config.colors.success],
+      labels: ['샐러드&도시락&볶음밥', '닭가슴살', '밥&면','간편요리&반찬','베이커리&떡','분식&만두&치킨','건강식&음료','단백질&시리얼&간식'],
+      series: [],
+      colors: ['hsl(0, 80%, 70%)', 'hsl(30, 80%, 70%)', 'hsl(60, 80%, 70%)', 'hsl(120, 80%, 70%)', 'hsl(240, 80%, 70%)', 'hsl(275, 80%, 70%)', 'hsl(300, 80%, 70%)', 'hsl(330, 80%, 70%)'],
       stroke: {
-        width: 5,
-        colors: cardColor
+        width: 5
       },
       dataLabels: {
         enabled: true,
@@ -373,33 +372,27 @@ $(function() {
   const statisticsChart = new ApexCharts(chartOrderStatistics, orderChartConfig);
   statisticsChart.render();
 
-//  $.ajax({
-//	  url: "chart2",
-//	  //data: JSON.stringify(data),
-//	  //contentType: 'application/json',
-//      type: "post",
-//      dataType:"json",
-//      success:function(data){
-//    	  console.log(data);
-//    	  
-//    	  let chartData = [];
-//          
-//          for (let i = 0; i < data.length; i++){    				  
-//        	  chartData.push(data[i].sales);    				  
-//		  }
-//  	  
-//          statisticsChart.updateSeries([
-//        	  {
-//        		  data: chartData
-//        	  }
-//          ]);
-//      },
-//	  error : function(request, status, errordata){
-//		  alert("error code:" + request.status + "\n"
-//				+ "message:" + request.responseText + "\n"
-//				+ "error" + errordata + "\n");
-//	  }
-//  });
+  $.ajax({
+	  url: "chart2",
+      type: "post",
+      dataType:"json",
+      success:function(data){
+    	  console.log(data);
+    	  
+    	  let chartData = [];
+          
+          for (let i = 0; i < data.length; i++){    				  
+        	  chartData.push(data[i].sales);    				  
+		  }
+  	  
+          statisticsChart.updateSeries(chartData);
+      },
+	  error : function(request, status, errordata){
+		  alert("error code:" + request.status + "\n"
+				+ "message:" + request.responseText + "\n"
+				+ "error" + errordata + "\n");
+	  }
+  });
   
   // --------------------------------------------------------------------
   // <세번째 차트> - Income Chart - Area chart
