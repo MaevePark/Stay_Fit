@@ -9,13 +9,7 @@
 </head>
 <body>
 <script>
-	if("${func}" == "productInsertSuccess"){
-		alert("${msg}");
-		location.href = "<%= request.getContextPath()%>/seller/product";
-	} else if("${func}" == "productInsertFail"){
-		alert("${msg}");
-		location.href = "<%= request.getContextPath()%>/seller/form";
-	} else if("${func}" == "sellerLogin"){
+	if("${func}" == "adminLogin"){
 		alert("${msg}");
 		location.href = "<%= request.getContextPath()%>/member/login";
 	}

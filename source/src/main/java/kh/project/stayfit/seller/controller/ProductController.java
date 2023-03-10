@@ -43,20 +43,32 @@ public class ProductController {
 
 	
 	@GetMapping("/product")
-	public ModelAndView product(ModelAndView mv) {
-
-		mv.addObject("currentMenu", 1);
-		mv.setViewName("/seller/product");
-
+	public ModelAndView product(ModelAndView mv, HttpServletRequest request) throws Exception {
+		
+		// 로그인을 하지 않은 경우나 seller가 아닌 사용자가 url로 접근하는 것 막는 코드
+		if(request.getSession().getAttribute("mrole") == null || !('S' == (char)request.getSession().getAttribute("mrole"))){
+			mv.addObject("func", "sellerLogin");
+			mv.addObject("msg", "판매자만 접근 가능한 페이지입니다.");
+			mv.setViewName("/seller/resultAlert");
+		} else {
+			mv.addObject("currentMenu", 1);
+			mv.setViewName("/seller/product");
+		}
 		return mv;
 	}
 
 	@GetMapping("/form")
-	public ModelAndView form(ModelAndView mv) {
-
-		mv.addObject("currentMenu", 2);
-		mv.setViewName("/seller/form");
-
+	public ModelAndView form(ModelAndView mv, HttpServletRequest request) throws Exception {
+		
+		// 로그인을 하지 않은 경우나 seller가 아닌 사용자가 url로 접근하는 것 막는 코드
+		if(request.getSession().getAttribute("mrole") == null || !('S' == (char)request.getSession().getAttribute("mrole"))){
+			mv.addObject("func", "sellerLogin");
+			mv.addObject("msg", "판매자만 접근 가능한 페이지입니다.");
+			mv.setViewName("/seller/resultAlert");
+		} else {
+			mv.addObject("currentMenu", 2);
+			mv.setViewName("/seller/form");
+		}
 		return mv;
 	}
 
