@@ -286,9 +286,6 @@ window.onload = function() {
     <!-- Main JS -->
     <script src="<%=request.getContextPath() %>/resources/admin/assets/js/main.js"></script>
 
-    <!-- Page JS -->
-    <script src="<%=request.getContextPath() %>/resources/admin/assets/js/ui-modals.js"></script>
-
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
   </body>
@@ -402,7 +399,7 @@ function displayData(currentPage, dataPerPage) {
 				"</td>" +
 				"<td style='padding-right:0;'>" + 
 					"<button type='button' class='btn btn-secondary btn-sm update' data-bs-toggle='modal' data-bs-target='#updateModal'>상품수정</button>" + 
-					"<input type='hidden' name='pimage' value='" + dataList[i].pimage + "'>" +
+					"<input type='hidden' name='image' value='" + dataList[i].pimage + "'>" +
 					"<input type='hidden' name='pricenum' value='" + dataList[i].pricenum + "'>" +
 				"</td>" +
 				"<td>" + 
@@ -552,7 +549,7 @@ function modalShowHandler() {
 	// 상품ID, 상품명, 판매가, 재고수량, 상품URL
 	let pid = $(this).parent().siblings().eq(0).text();
 	let pname = $(this).parent().siblings().eq(2).text();
-	let pimage = $(this).siblings("input[name=pimage]").val();
+	let pimage = $(this).siblings("input[name=image]").val();
 	console.log(pimage);
 	let pricenum = $(this).siblings("input[name=pricenum]").val();
 	let pstock = $(this).parent().siblings().eq(6).text();
@@ -562,7 +559,7 @@ function modalShowHandler() {
 	$("#pname").val(pname);
 	$("#thumbnail").prop("src", pimage);
 	$("input[name=pimage]").val(pimage); 
-	// '이전 사진으로'클릭 대비해서 기존 이미지 저장해놓기 -> input name이 pimage니까 vo의 pimage필드에 그대로 들어갈거임
+	// '이전 사진으로'클릭 대비해서 모달창 form 내부에 기존 이미지 저장해놓기 -> input name이 pimage니까 vo의 pimage필드에 그대로 들어갈거임
 	$("#pricenum").val(pricenum);
 	$("#pstock").val(pstock);
 	$("#plink").val(plink);
