@@ -52,6 +52,11 @@ public class BoardController {
 		HttpSession session = request.getSession();
 		session.removeAttribute("s");
 		
+		if(request.getSession().getAttribute("mid") != null) {
+			int mid = (int)request.getSession().getAttribute("mid");
+			mv.addObject("writer", mid);
+		}
+		
 		mv.addObject("bcid", bcid);
 		mv.addObject("boardlist", searchlist);
 		mv.addObject("sectionName", "board/list.jsp");
