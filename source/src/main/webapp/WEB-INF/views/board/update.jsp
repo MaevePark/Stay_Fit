@@ -34,11 +34,10 @@
 				<div class="row">
 
 					<div class="" style="width:"30%"; margin-bottom: 15px;"></div>
-					<form id="updateboard" name="updateboard"
-						action="<%=request.getContextPath()%>/board/update" method="post">
+					<form id="updateboard" name="updateboard" >
 						<div class="">
 							<select name="bcid" id="bcid">
-								<option value="" selected>${board.bcname }</option>
+								<option value="${board.bcid }" selected>${board.bcname }</option>
 								<c:if test="${board.bcid == 1 }">
 									<option value="2">팁&노하우</option>
 									<option value="3">고민&질문</option>
@@ -63,7 +62,7 @@
 						</div>
 
 						<div class="button_parent">
-							<button type="submit" class="site-btn btn-submit" id="save" onclic="save()">수정</button>
+							<button type="button" class="site-btn btn-submit" id="save">수정</button>
 							<button type="button" class="site-btn btn-list" onclick="location.href='list">목록으로</button>
 							<button type="button" class="site-btn btn-preview">미리보기</button>
 						</div>
@@ -86,15 +85,22 @@
 
 // 게시글 수정
 $(document).on('click', '#save', function() {
-		var bid = $('#bid');
-		var bcid = $('#bcid');
+		var bid = $('#bid').val();
+		var bcid = $('#bcid').val();
         var btitle = $('#btitle').val(); // 제목을 가져옵니다.
-        var bcontent = $('#summernote').summernote('getCode'); // Summernote에 작성한 내용을 가져옵니다.
+        var bcontent = $('#summernote').summernote('code'); // Summernote에 작성한 내용을 가져옵니다.
         
+        var updateboard = {
+    			"bid" : bid,
+    			"bcid" : bcid,
+    			"btitle" : btitle,
+    			"bcontent" : bcontent
+    	};
         
         $.ajax({
             url: 'update',
             type: 'POST',
+            contentType:"application/json",
             data: JSON.stringify(updateboard),
             success: function(data) {
             	alert("수정완료");
