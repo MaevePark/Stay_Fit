@@ -36,12 +36,11 @@ public class LoginController {
 		boolean result = memberService.loginCheck(member, session);
 		ModelAndView mv = new ModelAndView();
 		if(result == true) { //로그인 성공
-			mv.addObject("sectionName", "main.jsp");
-			mv.setViewName("index");	
+			mv.setViewName("redirect:/");	
 		}else { 			//로그인 실패
-			mv.addObject("sectionName", "member/login.jsp");
-			mv.setViewName("index");
+			mv.addObject("func", "loginFail");
 			mv.addObject("msg", "아이디 또는 비밀번호를 확인해주세요.");
+			mv.setViewName("/member/resultAlert");
 		}
 		return mv;
 	}
