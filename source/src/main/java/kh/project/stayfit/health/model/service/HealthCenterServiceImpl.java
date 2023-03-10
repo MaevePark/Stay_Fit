@@ -15,9 +15,9 @@ public class HealthCenterServiceImpl implements HealthCenterService {
 	@Autowired
 	private HealthCenterDao dao;
 	
-	// 게시글 목록 조회
+	// 게시글 목록 조회, 글 검색
 	@Override
-	public List<HealthCenter> selectCenter(int lid) throws Exception {
-		return dao.selectCenter(lid);
+	public List<HealthCenter> selectCenter(int lid, String keyword) throws Exception {
+		return dao.selectCenter(lid, keyword);
 	}
 }

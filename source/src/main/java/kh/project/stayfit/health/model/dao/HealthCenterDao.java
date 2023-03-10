@@ -1,6 +1,8 @@
 package kh.project.stayfit.health.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +16,11 @@ public class HealthCenterDao {
 	@Autowired
 	private SqlSession sqlSession;
 
-	// 게시글 목록 조회
-	public List<HealthCenter> selectCenter(int lid) throws Exception {
-		return sqlSession.selectList("healthcenter.selectCenter");
+	// 게시글 목록 조회, 글 검색
+	public List<HealthCenter> selectCenter(int lid, String keyword) throws Exception {
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("lid", lid);
+		param.put("keyword", keyword);
+		return sqlSession.selectList("healthcenter.selectCenter",param);
 	}
 }

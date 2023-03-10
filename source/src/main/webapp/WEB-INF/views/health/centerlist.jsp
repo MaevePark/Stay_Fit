@@ -18,9 +18,10 @@
 					</h4>
 
 					<div class="hero__search__form">
-						<form action="#">
+						<form action="<%=request.getContextPath()%>/health/listsearch"
+							name="search_form" method="get">
 							<div class="hero__search__categories">
-								<select>
+								<select name="lid" id="lid">
 									<option value="0" selected>전체</option>
 									<option value="1">서울특별시</option>
 									<option value="2">부산광역시</option>
@@ -37,9 +38,11 @@
 									<option value="13">제주도</option>
 								</select>
 							</div>
-
-							<input type="text" placeholder="검색어를 입력해주세요.">
+							<!-- 검색 시작 -->
+							<input type="text" name="keyword" id="keyword"
+								placeholder="검색어를 입력해주세요.">
 							<button type="submit" class="site-btn">SEARCH</button>
+							<!-- 검색 끝 -->
 						</form>
 					</div>
 
@@ -57,19 +60,25 @@
 										</tr>
 									</thead>
 									<tbody class="table-border-bottom-0">
-
-										<!-- 보건소 list 시작 -->
-										<c:forEach var="centerList" items="${centerList }">
-											<tr>
-												<!-- 측정 장소  -->
-												<td>${centerList.hplace }</td>
-												<!-- 주소 -->
-												<td colspan="3">${centerList.haddr }</td>
-												<!-- 전화번호 -->
-												<td>${centerList.hpnum }</td>
-												<!-- 위치 링크 시작 -->
-												<td id="map"><a id="maplink" style="cursor: pointer"
-													onclick="healthCenterMap (
+										<c:choose>
+											<c:when test="${empty centerList }">
+												<tr>
+													<td colspan="6" align="center">데이터가 없습니다.</td>
+												</tr>
+											</c:when>
+										<c:when test="${!empty centerList}">
+												<!-- 보건소 list 시작 -->
+												<c:forEach var="centerList" items="${centerList }">
+													<tr>
+														<!-- 측정 장소  -->
+														<td>${centerList.hplace }</td>
+														<!-- 주소 -->
+														<td colspan="3">${centerList.haddr }</td>
+														<!-- 전화번호 -->
+														<td>${centerList.hpnum }</td>
+														<!-- 위치 링크 시작 -->
+														<td id="map"><a id="maplink" style="cursor: pointer"
+															onclick="healthCenterMap (
 													    <c:if test="${centerList.lid eq 1 }">'강남구 보건소', '37.51630311339761', '127.04227756939835'</c:if>
 													    <c:if test="${centerList.lid eq 2 }">'강서구 보건소', '35.180235150684716', '128.9572976673653'</c:if>
 													    <c:if test="${centerList.lid eq 3 }">'강화군 보건소', '37.73728494653745', '126.48474092791898'</c:if>
@@ -84,12 +93,14 @@
 													    <c:if test="${centerList.lid eq 12 }">'계룡시 보건소', '36.27307427576665', '127.2500603578764'</c:if>
 													    <c:if test="${centerList.lid eq 13 }">'서귀포시 동부 보건소', '33.27562881836351', '126.70342326443737'</c:if>													    
 													  );"><img
-														src="<%=request.getContextPath()%>/resources/img/health/btn_spot.gif"
-														alt="위치"> </a></td>
-												<!-- 위치 링크 끝 -->
-											</tr>
-										</c:forEach>
-										<!-- 보건소 list 끝 -->
+																src="<%=request.getContextPath()%>/resources/img/health/btn_spot.gif"
+																alt="위치"> </a></td>
+														<!-- 위치 링크 끝 -->
+													</tr>
+												</c:forEach>
+												<!-- 보건소 list 끝 -->
+											</c:when>
+										</c:choose>
 									</tbody>
 								</table>
 							</div>
@@ -112,13 +123,16 @@
 <!-- Blog Section End -->
 <script>
 //<--------------------------------------------------------------------
-// 1. kakao map 이동 시작
+// 2. kakao map 이동 시작
 function healthCenterMap(location_name, latitude, longitude) {
 	window.open("https://map.kakao.com/link/map/" +
 			// link/map/장소이름,위도,경도 새로운 창으로 열기
 			location_name + ","	+ latitude + "," + longitude); 
 			
 }
-// 1. kakao map 이동 끝
+// 2. kakao map 이동 끝
 //-------------------------------------------------------------------->
+
+
+
 </script>
