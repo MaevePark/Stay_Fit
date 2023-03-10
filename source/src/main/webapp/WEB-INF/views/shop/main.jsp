@@ -15,20 +15,17 @@
 			<div class="col-lg-10 col-md-7">
 				<!-- Hero Section Begin -->
 				<div class="hero__search__form">
-					<form action="<%=request.getContextPath() %>/shop" method="get">
-						<c:set var="productCategory" value="${searchMap.productCategory}"></c:set>
+					<form action="<%=request.getContextPath() %>/shop/main" method="get">
+						<c:set var="productC" value="${searchMap.productCategory}"></c:set>
 						<div class="hero__search__categories">
 							<select name="productCategory">
-<%-- 								<c:if test="${categoryList.cid } == 0"> --%>
-<!-- 									<option value="0" selected>카테고리 전체</option> -->
-<%-- 								</c:if> --%>
+								<option value="0">전체</option>
 								<c:forEach items="${categoryList }" var="cList">
-									<option value="${cList.cid }">${cList.cname }</option>
 										<c:choose>
-											<c:when test="${cList.cid == productCategory }">
+											<c:when test="${cList.cid == productC }">
 												<option value="${cList.cid }" selected>${cList.cname }</option>
 											</c:when>
-											<c:when test="${cList.cid != productCategory }">
+											<c:when test="${cList.cid != productC }">
 												<option value="${cList.cid }">${cList.cname }</option>
 											</c:when>
 										</c:choose>
@@ -73,8 +70,13 @@
 					</c:forEach>
 				</div>
 				
-				<!-- 페에징 -->
-				<jsp:include page="/WEB-INF/views/paging.jsp" />
+				
+				<c:if test="${productList.size > 0 }">
+					<!-- 페에징 -->
+					<jsp:include page="/WEB-INF/views/paging.jsp" />
+				</c:if>
+				
+				
 
 
 			</div>
