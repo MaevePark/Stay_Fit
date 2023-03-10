@@ -82,7 +82,7 @@
 			      <div class="card-body">
 			      
 			      	<!-- 폼 시작 -->
-			        <form action="<%=request.getContextPath() %>/seller/productinsert" method="post" enctype="multipart/form-data">
+			        <form action="<%=request.getContextPath() %>/seller/productinsert" method="post" onsubmit="return validateForm();" enctype="multipart/form-data">
 			          <div class="row mb-3">
 			            <label class="col-sm-2 col-form-label">카테고리 <span style="font-size: 0.75rem; color: #696cff;"> (필수)</span></label>
 			            <div class="col-sm-10">
@@ -102,12 +102,12 @@
 					      </div>
 			            </div>
 			          </div>
-			          <input type="hidden" name="cid" id="cid" required value="1">
+			          <input type="hidden" name="cid" id="cid" value="">
 			          
 			          <div class="row mb-3">
 			            <label class="col-sm-2 col-form-label">상품명 <span style="font-size: 0.75rem; color: #696cff;"> (필수)</span></label>
 			            <div class="col-sm-10">
-			              <input type="text" name="pname" class="form-control" placeholder="예) 미주라 통밀도너츠" required>
+			              <input type="text" name="pname" id="pname" class="form-control" placeholder="예) 미주라 통밀도너츠">
 			            </div>
 			          </div>
 			          
@@ -121,7 +121,7 @@
 				                <span class="d-none d-sm-block">이미지 업로드</span>
 				                <i class="bx bx-upload d-block d-sm-none"></i>
 				                
-				                <input type="file" name="uploadFile" id="uploadFile" class="file-input" onchange="setThumbnail(event);" hidden="" accept="image/png, image/jpeg" required>
+				                <input type="file" name="uploadFile" id="uploadFile" class="file-input" onchange="setThumbnail(event);" hidden="" accept="image/png, image/jpeg">
 				              	<!-- file타입은 name을 vo의 필드명과 동일하게 작성하면 vo에 들어가려다가 고꾸라짐. 다르게 작성해야함 -->
 				              </label>
 				            </div>
@@ -132,21 +132,21 @@
 			          <div class="row mb-3">
 			            <label class="col-sm-2 col-form-label">판매가 <span style="font-size: 0.75rem; color: #696cff;"> (필수)</span></label>
 			            <div class="col-sm-10">
-			              <input type="text" name="pricenum" class="form-control" required>
+			              <input type="text" name="pricenum" id="pricenum" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
 			            </div>
 			          </div>
 			          
 			          <div class="row mb-3">
 			            <label class="col-sm-2 col-form-label">재고수량</label>
 			            <div class="col-sm-10">
-			              <input type="text" name="pstock" class="form-control">
+			              <input type="text" name="pstock" id="pstock" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
 			            </div>
 			          </div>
 			          
 			          <div class="row mb-3">
 			            <label class="col-sm-2 col-form-label">상품 URL <span style="font-size: 0.75rem; color: #696cff;"> (필수)</span></label>
 			            <div class="col-sm-10">
-			              <input type="text" name="plink" class="form-control" required>
+			              <input type="text" name="plink" id="plink" class="form-control">
 			            </div>
 			          </div>
 			          
@@ -237,6 +237,42 @@ function setThumbnail(event) {
   		thumbnail.style.padding = "0";
   	}
 }	
+
+//------------------------------------------------------------------------------
+// <유효성 검사>
+
+function validateForm() {
+	
+	let cid = document.getElementById("cid").value;
+	let pname = document.getElementById("pname").value;
+	let uploadFile = document.getElementById("uploadFile").value;
+	let pricenum = document.getElementById("pricenum").value;
+	let pstock = document.getElementById("pstock").value;
+	let plink = document.getElementById("plink").value;
+
+	if (cid === "") {
+		alert("카테고리를 선택해 주세요.");
+		return false;
+	}
+	if (pname === "") {
+		alert("상품명을 입력해 주세요.");
+		return false;
+	}
+	if (uploadFile === "") {
+		alert("대표이미지를 선택해 주세요.");
+		return false;
+	}
+	if (pricenum === "") {
+		alert("판매가를 입력해 주세요.");
+		return false;
+	}
+	if (plink === "") {
+		alert("상품 URL을 입력해 주세요.");
+		return false;
+	}
+
+	return true;
+}
 
 </script>
 
