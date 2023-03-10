@@ -86,7 +86,7 @@ public class ShopController {
 		return mv;
 	}
 	
-	@GetMapping("main")
+	@GetMapping("/main")
 	public ModelAndView shopPageSecond(
 			ModelAndView mv
 			, @RequestParam(name = "page", defaultValue = "1") int page
@@ -108,6 +108,7 @@ public class ShopController {
 			mv.addObject("categoryList", shopService.selectCategory());
 			mv.addObject("productList", shopService.selectProductList(searchMap, page, limits));
 			mv.addObject("pagingMap", pagingMap);
+			mv.addObject("searchMap", searchMap);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
