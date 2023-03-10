@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>  
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!-- <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script> -->
 
@@ -121,14 +122,18 @@
 							</table>
 						</div>
 					</div>
-
-					<!--게시판 글등록  -->
-					 
-					<div id="button_parent">
-						<button type="button" class="site-btn" id="write_page" onclick="location.href='write'" >글등록</button>
-					</div>
-					 
-					<!-- 게시판 글등록  -->
+					<!--게시판 글등록  버튼-->
+					<c:if test="${bcid != '0'}">
+						<div id="button_parent">
+							<button type="button" class="site-btn" onclick="location.href='write'">글등록</button>
+						</div>
+					</c:if>
+					<c:if test="${bcid == '0' && fn:contains(sessionScope.mrole, 'A')}">
+						<div id="button_parent">
+							<button type="button" class="site-btn" onclick="location.href='write'">글등록</button>
+						</div>
+					</c:if>
+					<!-- 게시판 글등록 버튼 끝 -->
 
 					<!-- <div class="col-lg-12">
 						<div class="product__pagination blog__pagination">
@@ -174,7 +179,7 @@
 		<!--   </div> -->
 </section>
 <script>
-
+	// 1. 검색기능 첫번째 성공
 	document.getElementByID("#btn_search").onclick = function() {
 		let search = document.getElementByName("search")[0].value;
 		let keyword = document.getElementByName("keyword")[0].value;

@@ -55,7 +55,7 @@
   </head>
 
   <body>
-  
+<%--   
 <!-- 로그인을 하지 않은 경우나 seller가 아닌 사용자가 url로 접근하는 것 막는 코드 -->  
 <% if(request.getSession().getAttribute("mrole") == null || !('S' == (char)request.getSession().getAttribute("mrole"))){ %>
 <script>
@@ -64,7 +64,7 @@ window.onload = function() {
 }
 </script>
 <%}%>
-
+ --%>
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
       <div class="layout-container">
@@ -198,7 +198,7 @@ window.onload = function() {
 		                  </div>
 		                  <div class="row">
 		                    <div class="col mb-3">
-		                      <label for="upload" class="form-label">대표이미지<span style="font-size: 0.75rem; color: #696cff;"> (필수)</span></label>
+		                      <label class="form-label">대표이미지<span style="font-size: 0.75rem; color: #696cff;"> (필수)</span></label>
 		                      <div class="d-flex align-items-start align-items-sm-center gap-4">
 					          
 					          <img src="" id="thumbnail" class="d-block rounded" height="100" width="100">

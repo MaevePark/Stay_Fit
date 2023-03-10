@@ -33,7 +33,7 @@
 							<select name="bcid" id="bcid">
 								<option value="" selected>카테고리 선택</option>
 								<!-- 관리자만 공지사항 작성가능-->
-								<c:if test="${writer == 4 }"> 
+								<c:if test="${writer == 1 }"> 
 									<option value="0">공지사항</option>
 								</c:if>
 								<!-- 관리자만 공지사항 작성가능 끝  -->
