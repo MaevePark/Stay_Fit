@@ -10,6 +10,7 @@
 		<div class="sidebar__item">
 			<h4>Department</h4>
 			<ul>
+				<li><a href="<%=request.getContextPath()%>/shop?productCategory=0">홈</a></li>
 				<c:forEach items="${categoryList }" var="cList">
 					<li><a href="<%=request.getContextPath()%>/shop/main?productCategory=${cList.cid}">${cList.cname }</a></li>
 				</c:forEach>
