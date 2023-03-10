@@ -45,15 +45,53 @@
 		  }
 	  })
   })
-  $('#btnSrcMeal').click(function(){
-	  var keyword = $('#searchMeal').val();
-	  $.ajax({
-		  url: '/search-meal',
-		  data: {keyword: keyword},
-		  success: function(data){
-			  $('#diarypage').html(data);
-		  }
-	  })
-  })
+//  $('#btnSrcMeal').click(function(){
+//	  var keyword = $('#searchMeal').val();
+//	  $.ajax({
+//		  url: '/search-meal',
+//		  data: {keyword: keyword},
+//		  success: function(data){
+//			  $('#diarypage').html(data);
+//		  }
+//	  })
+//  })
   $(document).on('click', '.btn-add', function(){
   })
+  
+  
+function search() {
+	let searchInput = document.getElementById('searchMeal');
+	if(searchInput.value !== "") {
+		$.ajax({
+			url: "searchmeal",
+			type: "get",
+			async: false,
+			data: {
+				keyword: searchInput.value
+			},
+			dataType: "json",
+			success: function(value) {
+					console.log("아아아아아아아아 여기는 return된 데이이이이이이터");
+					console.log(value.nutList);
+					var nutrition = value.nutList;
+					
+					for(var i=0; i< nutrition.length; i++) {
+						var list = nutrition[i];
+						
+						
+					}
+					
+			},
+			error: function(request, status, error) {
+				alert("code" + request.status + "\n" + "message : " + request.responseText + "\nerror" + error);
+			}
+		});
+	}
+}
+  
+  
+  
+  
+  
+  
+  

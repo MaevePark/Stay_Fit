@@ -21,11 +21,12 @@ public class DiaryDao {
 		return sqlsession.insert("diary.diarywirte", diary);	
 	}
 	public List<Nutrition> searchMeal(String keyword){
-		
-		return sqlsession.selectList("diary.searchMeal");
+		System.out.println("-------------------Dao---------------------");
+		System.out.println("keyword : " + keyword);
+		return sqlsession.selectList("diary.searchMeal", keyword);
 	}
 	public List<Exercise>searchExrc(String keyword){
-		return sqlsession.selectList("diary.searchExrc");
+		return sqlsession.selectList("diary.searchExrc", keyword);
 	}
 	//캘린더 출력
 	public List<Diary> selectList(String a, int b) throws Exception {
