@@ -46,7 +46,11 @@
 			<!--공지사항 -->
 			<div class="col-lg-4 col-md-6">
 				<div class="latest-product__text">
-					<h4>공지사항</h4>
+					<div style="display:flex; justify-content: space-between;">
+                        <h4>공지사항</h4>
+                        <button type="button" onclick="location.href='<%=request.getContextPath() %>/board/list?bcid=0'" style="margin-right: 20px; height: 30px; width: 30px; border: 1px solid rgb(232, 232, 232); background: #F3F6FA;">+</button>
+                    </div>
+
 					<!-- <span><button type="button" onclick="location.href='board/list?bcid=0'" class="btn btn-sm btn-notice">+</button>
 					</span> -->
 					<div class="latest-product__slider owl-carousel">
