@@ -200,14 +200,14 @@ public class MypageController {
 				System.out.println("★★★ newUrl : " + newUrl);
 
 // 기존 이미지가 있었다면 그 이미지 삭제
-//				if ((originalImage != null && !originalImage.equals("")) && !originalImage.equals("https://res.cloudinary.com/doxmm0ofz/image/upload/v1675945711/profile/defaultprofile_rmpnyj.jpg")) {
-//					try {
-//						cloudinary.uploader().destroy(publicId, ObjectUtils.emptyMap());
-//						System.out.println("File deleted successfully.");
-//					} catch (Exception e) {
-//						System.out.println("Error occurred while deleting file: " + e.getMessage());
-//					}
-//				}
+				if ((originalImage != null && !originalImage.equals("")) && !originalImage.equals("https://res.cloudinary.com/doxmm0ofz/image/upload/v1675945711/profile/defaultprofile_rmpnyj.jpg")) {
+					try {
+						cloudinary.uploader().destroy(publicId, ObjectUtils.emptyMap());
+						System.out.println("File deleted successfully.");
+					} catch (Exception e) {
+						System.out.println("Error occurred while deleting file: " + e.getMessage());
+					}
+				}
 				
 				upload_result.put("savedFileName", savedFileName);
 				upload_result.put("newUrl", newUrl);
