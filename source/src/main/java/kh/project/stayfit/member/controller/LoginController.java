@@ -1,5 +1,6 @@
 package kh.project.stayfit.member.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +24,18 @@ public class LoginController {
 	
 	//로그인 화면
 	@GetMapping("/login")
-	public ModelAndView login(ModelAndView mv) {
+	public ModelAndView login(ModelAndView mv, HttpSession session, HttpServletRequest request) {
+		int mid = -1;
+		if(request.getSession().getAttribute("mid") != null) {
+			mid = (int) request.getSession().getAttribute("mid");
+		}
 		
-		mv.addObject("sectionName", "member/login.jsp");
-		mv.setViewName("index");
-		
+		if(mid == -1) {
+			mv.addObject("sectionName", "member/login.jsp");
+			mv.setViewName("index");
+		} else {
+			mv.setViewName("redirect:/");
+		}
 		return mv;
 	}
 	
