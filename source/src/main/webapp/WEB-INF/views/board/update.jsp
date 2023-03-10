@@ -58,7 +58,7 @@
 							<input id="btitle" name="btitle" class="form-control" placeholder="제목을 입력하세요" value="${board.btitle }"required="required" /> 
 						</div>
 						<div class="form-group">
-							<textarea id="summernote" name="bcontent">${board.bcontent }7 </textarea>
+							<textarea id="summernote" name="bcontent">${board.bcontent } </textarea>
 						</div>
 
 						<div class="button_parent">
@@ -105,6 +105,7 @@ $(document).on('click', '#save', function() {
             success: function(data) {
             	alert("수정완료");
                 console.log(data);
+                location.href = "read.do?bid=${board.bid}"
             },
             error: function(err) {
             	alert("수정실패. 다시 시도해주세요.");
