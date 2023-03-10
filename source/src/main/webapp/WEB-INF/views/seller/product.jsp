@@ -184,7 +184,7 @@
 		                  <div class="row">
 		                    <div class="col mb-3">
 		                      <label for="pname" class="form-label">상품명<span style="font-size: 0.75rem; color: #696cff;"> (필수)</span></label>
-		                      <input type="text" name="pname" id="pname" class="form-control" required>
+		                      <input type="text" name="pname" id="pname" class="form-control">
 		                    </div>
 		                  </div>
 		                  <div class="row">
@@ -215,19 +215,19 @@
 		                  <div class="row">
 		                    <div class="col mb-3">
 		                      <label for="pricenum" class="form-label">판매가<span style="font-size: 0.75rem; color: #696cff;"> (필수)</span></label>
-		                      <input type="text" name="pricenum" id="pricenum" class="form-control" required>
+		                      <input type="text" name="pricenum" id="pricenum" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
 		                    </div>
 		                  </div>
 		                  <div class="row">
 		                    <div class="col mb-3">
 		                      <label for="pstock" class="form-label">재고수량</label>
-		                      <input type="text" name="pstock" id="pstock" class="form-control">
+		                      <input type="text" name="pstock" id="pstock" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
 		                    </div>
 		                  </div>
 		                  <div class="row">
 		                    <div class="col mb-3">
 		                      <label for="plink" class="form-label">상품 URL<span style="font-size: 0.75rem; color: #696cff;"> (필수)</span></label>
-		                      <input type="text" name="plink" id="plink" class="form-control" required>
+		                      <input type="text" name="plink" id="plink" class="form-control">
 		                    </div>
 		                  </div>
 		              </form>
@@ -577,10 +577,37 @@ function modalShowHandler() {
    	};
 }
 
+// 3. 먼저 입력값이 다 있는지 유효성체크
+function validateForm() {
+	
+	let pname = document.getElementById("pname").value;
+	let pricenum = document.getElementById("pricenum").value;
+	let plink = document.getElementById("plink").value;
 
-// 3. 수정된 정보 업데이트
+	if (pname === "") {
+		alert("상품명을 입력해 주세요.");
+		return false;
+	}
+	if (pricenum === "") {
+		alert("판매가를 입력해 주세요.");
+		return false;
+	}
+	if (plink === "") {
+		alert("상품 URL을 입력해 주세요.");
+		return false;
+	}
+
+	return true;
+}
+
+// 4. 수정된 정보 업데이트
 function productUpdate(e) {
 	e.preventDefault(); // form 안에 submit 역할을 하는 버튼을 누르면 창이 새로고침하여 실행되는데, 새로 실행하지 않게 하고싶을 경우 (submit은 작동됨)
+	
+	// 3. 먼저 입력값이 다 있는지 유효성체크
+  	if (!validateForm()) {
+	    return;
+	}
 	
 	var form = document.getElementById('updateForm');
 	form.method = 'post';

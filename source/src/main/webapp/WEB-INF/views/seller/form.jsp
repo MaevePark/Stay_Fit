@@ -247,7 +247,6 @@ function validateForm() {
 	let pname = document.getElementById("pname").value;
 	let uploadFile = document.getElementById("uploadFile").value;
 	let pricenum = document.getElementById("pricenum").value;
-	let pstock = document.getElementById("pstock").value;
 	let plink = document.getElementById("plink").value;
 
 	if (cid === "") {

@@ -45,7 +45,7 @@
 	        PNAME = #{pname},
 	        PIMAGE = #{pimage},
 	        PPRICE = #{pricenum},
-	        PSTOCK = #{pstock},
+	        PSTOCK = NVL(#{pstock}, 0),
 	        PLINK = #{plink}
 	    WHERE PID = #{pid}
   	</update>
