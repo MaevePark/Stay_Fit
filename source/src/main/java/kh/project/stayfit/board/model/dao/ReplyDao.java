@@ -19,7 +19,7 @@ public class ReplyDao {
 		List<Reply> rlist = sqlsession.selectList("board.boardreply", bid);
 		return rlist;
 	}
-	//댓글 작성
+	//부모 댓글 작성
 	public int write(Reply vo) throws Exception{
 		return sqlsession.insert("board.writereply", vo);
 	}

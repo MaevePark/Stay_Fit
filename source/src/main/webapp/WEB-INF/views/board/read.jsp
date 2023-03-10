@@ -84,20 +84,17 @@
 					</div>
 					<!-- 게시글 이모티콘 끝-->
 
+
 					<!-- 수정, 삭제, 목록 버튼 -->
 					<div id="button_parent">
 						<!-- 수정, 삭제 버튼은 본인이 작성한 글일때만 출력. -->
-						<%-- <c:if test="${sessionScope.principal.mid == read.mid }"> --%>
+						<c:if test="${writer == read.mid }">
 						<form>
-							<input type="hidden" id="board-bcid" value="${read.bid }">
-							<button type="button" class="site-btn" id="btn-upd"
-								onclick="location.href='update?bid=${read.bid}'">수정</button>
-							<button type="button" class="site-btn" id="btn-del"
-								onclick="del(${read.bid})">삭제</button>
+							<button type="button" class="site-btn" id="btn-upd" onclick="location.href='update?bid=${read.bid}'">수정</button>
+							<button type="button" class="site-btn" id="btn-del" onclick="del(${read.bid})">삭제</button>
 						</form>
-						<%-- </c:if> --%>
-						<button type="button" class="site-btn"
-							onclick="location.href='list?bcid=${read.bcid}'">목록</button>
+						</c:if>
+						<button type="button" class="site-btn" onclick="location.href='list?bcid=${read.bcid}'">목록</button>
 					</div>
 					<!-- 수정, 삭제, 목록 버튼 여기까지  -->
 
@@ -120,30 +117,32 @@
 									</tr>
 								</c:when>
 								<c:when test="${!empty reply}">
-									<c:forEach var="r" items="${reply}">
+									<c:forEach var="repl" items="${reply}">
 										<tr>
 											<td>
 												<div class="blog__sidebar__recent__item__pic">
-													<img id="profimg" src="${r.profimg }" />
+													<img id="profimg" src="${repl.profimg }" />
 												</div>
 												<div class="blog__sidebar__recent__item__text">
-													<span>${r.mname }</span>
-													<div>${r.rcontent }</div>
+													<span>${repl.mname }</span>
+													<div id="#updatecontent">${repl.rcontent }</div>
 												</div>
 											</td>
 											<td><fmt:formatDate pattern="YY/MM/dd HH:MM"
-													value="${r.rcreate}" /></td>
+													value="${repl.rcreate}" /></td>
 											<td>
-												<c:if test="${r.mid == user }">
+												<c:if test="${repl.mid == writer }">
 													<div class="container">
-														<button type="button" id="modify" onclick ="rmodi(${r.rid})"class="btn btn-sm btn-modify">수정</button>
-														<button type="button"  onclick ="rdel(${r.rid})"class="btn btn-sm btn-del">삭제</button>
+														<button type="button" id="modify" onclick ="updateReply(${repl.rid})" value="${repl.rid}"class="btn btn-sm btn-modify">수정</button>
+														<button type="button"  onclick ="rdel(${repl.rid})"class="btn btn-sm btn-del">삭제</button>
+														<button type="button" class="btn btn-primary btn-sm btn-light">답글</button>
 													</div>
 												</c:if> 
-												<c:if test="${r.mid != user }">
+												<c:if test="${repl.mid != writer }">
 													<div class="container">
 														<button type="button" class="btn btn-primary btn-sm btn-light">공감</button>
 														<button type="button" class="btn btn-primary btn-sm btn-light">신고</button>
+														<button type="button" class="btn btn-primary btn-sm btn-light">답글</button>
 													</div>
 												</c:if>
 											</td>
@@ -160,7 +159,7 @@
 						<!-- 댓글 작성  -->
 						<div class="hero__search__form">
 							<form>
-								<input type="hidden" id="mid" name="mid" value="${user }">
+								<input type="hidden" id="mid" name="mid" value="${writer }">
 								<input type="hidden" id="bid" name="bid" value="${read.bid }">
 								<input type="text" name="rcontent" id="rcontent" placeholder="댓글을 작성해주세요">
 								<button type="submit" id="rep_write" onclick="rep_btn()" class="site-btn">댓글 등록</button>
@@ -202,7 +201,7 @@ function del(bid){
  function rep_btn(){
 	var rcontent = $("#rcontent").val();
 	var bid = ${read.bid};
-	var mid = ${user}; 
+	var mid = ${writer}; 
 	
 	var reply = {
 			"rcontent" : rcontent,
@@ -225,12 +224,57 @@ function del(bid){
 	});
 	
 } 
+
 //댓글 수정
-function rmodi(rid){
-	$("#modify").on("click",function(){
+ $("#modify").on("click",function(){
 		alert('aaa');
 	})
-}
+	$.ajax({
+    url: "replyupdate",
+    method: "PUT",
+    data: {
+        text: editedCommentText
+    },
+    success: function(response) {
+        // 서버에서 수정된 댓글 데이터를 받아서 HTML에 반영
+    },
+    error: function(xhr, status, error) {
+        // 에러 처리
+    }
+});
+
+/*
+$.ajax({
+  url: "read.do",
+  method: "GET",
+  success: function(data) {
+    // 응답 데이터를 파싱하거나 처리합니다.
+    var newContent = "<p>" + data + "</p>";
+    
+    // 새로운 콘텐츠를 기존 요소에 추가합니다.
+    $("#existing-element").append(newContent);
+  },
+  error: function(jqXHR, textStatus, errorThrown) {
+    // 오류 처리 로직
+  }
+}); */
+
+//댓글 리스트업
+/* $.ajax({
+    url: "read.do",
+    method: "GET",
+    dataType: "json",
+    success: function(data) {
+        // 받은 데이터를 처리하고 HTML에 추가
+        var html = "<ul>";
+        $.each(data, function(index, item) {
+            html += "<li>" + item.name + "</li>";
+        });
+        html += "</ul>";
+        $("#myDiv").append(html);
+    }
+}); */
+
 //댓글 삭제
 function rdel(rid){
 	var check = confirm("댓글을 삭제하겠습니까?");

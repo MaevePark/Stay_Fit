@@ -13,6 +13,13 @@
 <!--index이동 끝  삭제예정 -->
 
 <!-- 게시판 글작성 페이지 -->
+
+<%if(request.getSession().getAttribute("mid") != null) {
+    int mid = (int) request.getSession().getAttribute("mid");
+    %>
+<input type="hidden" id="mid" name="mid" value="<%=mid%>">
+<%}%>
+
 <section class="blog spad">
 	<div class="container">
 		<div class="row">
@@ -26,7 +33,7 @@
 							<select name="bcid" id="bcid">
 								<option value="" selected>카테고리 선택</option>
 								<!-- 관리자만 공지사항 작성가능-->
-								<c:if test="${user == 4 }"> 
+								<c:if test="${writer == 4 }"> 
 									<option value="0">공지사항</option>
 								</c:if>
 								<!-- 관리자만 공지사항 작성가능 끝  -->
@@ -39,7 +46,7 @@
 							<input id="btitle" name="btitle" class="form-control" placeholder="제목을 입력하세요" required="required">
 						</div>
 						<div class="form-group">
-							<input type="hidden" id="mid" name="mid" value="${user}">
+							<input type="hidden" id="mid" name="mid" value="${writer}">
 							<textarea id="summernote" name="bcontent"></textarea>
 						</div>
 

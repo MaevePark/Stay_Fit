@@ -2999,3 +2999,17 @@ ol {
 		font-size: 24px;
 	}
 }
+
+/*공지사항 버튼  */
+.btn-notice {
+	margin-right: 0;
+	height: 30px;
+    width: 30px
+    color: #7fad39;;
+    border-color: #7fad39;;
+}
+.btn-notice:hover {
+    background-color: #7fad39;
+    color: white;
+}
+/*공지사항 버튼  끝*/

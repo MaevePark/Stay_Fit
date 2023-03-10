@@ -65,6 +65,7 @@ public class BoardController {
 	public ModelAndView read(ModelAndView mv, int bid, HttpServletRequest request) throws Exception {
 		// 게시글 상세보기
 		Board bone = srv.read(bid);
+		//댓글 리스트
 		List<Reply> rlist = lsrv.replylist(bid);
 		
 		//한페이지 새로고침 방지 조회수 증가 session에 s 체크상태인 동시에 조회수 1증가 새로고침해도 조회수 증가 안 함 
@@ -76,8 +77,11 @@ public class BoardController {
 			session.setAttribute("s", "check");
 		}
 		
-		int mid = 1; // 임시 user
-		mv.addObject("user", mid);
+		
+		if(request.getSession().getAttribute("mid") != null) {
+			int mid = (int)request.getSession().getAttribute("mid");
+			mv.addObject("writer", mid);
+		}
 		
 		mv.addObject("reply", rlist);
 		mv.addObject("sectionName", "board/read.jsp");
@@ -89,14 +93,18 @@ public class BoardController {
 
 	//게시글 등록화면
 	@GetMapping("/write")
-	public ModelAndView writeview(ModelAndView mv) throws Exception{
-		
-		int mid = 3; //user값 임시 mid=3(일반유저) mid=4(관리자)
-		mv.addObject("user", mid);
-		
-		mv.addObject("sectionName", "board/write.jsp");
-		mv.setViewName("index");
-
+	public ModelAndView writeview(ModelAndView mv, HttpServletRequest request) throws Exception{
+			
+		if(request.getSession().getAttribute("mid") != null) {
+			int mid = (int)request.getSession().getAttribute("mid");
+			mv.addObject("writer", mid);
+			mv.addObject("sectionName", "board/write.jsp");
+		}
+		else {
+			mv.addObject("sectionName", "member/login.jsp");
+			mv.addObject("urlpattern", "member/login");
+		}			
+		mv.setViewName("index");	
 		return mv;
 	}
 	//게시글 등록
@@ -118,19 +126,13 @@ public class BoardController {
 	}
 	
 	//게시글 수정
-//	@PostMapping("/update")
-//	@ResponseBody
-//	public String boardupdate(@RequestParam Board vo) throws Exception {
-//		System.out.println("게시글 수정>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-//		System.out.println(vo.toString());
-//		vo.setBtitle(vo.getBtitle());
-//		vo.setBcontent(vo.getBcontent());
-//		vo.setBid(vo.getBid());
-//		vo.setBcid(vo.getBcid());
-//		srv.update(vo);
-//		return "redirect: /board/read?bid="+ vo.getBid();
-//	}
-
+	@PostMapping("/update")
+	@ResponseBody
+	public String boardupdate(@RequestBody Board vo) throws Exception {
+		srv.update(vo);
+		return "redirect: /board/read?bid="+ vo.getBid();
+	}
+	
 	//게시글 삭제
 	@PostMapping("/delete")
 	@ResponseBody

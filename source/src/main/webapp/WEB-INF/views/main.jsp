@@ -47,6 +47,8 @@
 			<div class="col-lg-4 col-md-6">
 				<div class="latest-product__text">
 					<h4>공지사항</h4>
+					<!-- <span><button type="button" onclick="location.href='board/list?bcid=0'" class="btn btn-sm btn-notice">+</button>
+					</span> -->
 					<div class="latest-product__slider owl-carousel">
 						<div class="latest-prdouct__slider__item">
 							<!--공지사항 list   -->

@@ -22,7 +22,7 @@ public class ReplyController {
 	@Autowired
 	private ReplyService srv;
 
-	//댓글 작성
+	//부모 댓글 작성
 	@PostMapping("/replywrite")
 	@ResponseBody
 	public String write(@RequestBody Reply vo) throws Exception {

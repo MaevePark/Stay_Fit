@@ -9,7 +9,7 @@ public interface ReplyService {
 	//댓글 조회
 	public List<Reply> replylist(int bid) throws Exception;
 	
-	//댓글 작성
+	//부모 댓글 작성
 	public int write(Reply vo) throws Exception;
 	
 	//댓글 삭제

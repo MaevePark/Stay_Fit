@@ -20,7 +20,7 @@ public class ReplyServiceImpl implements ReplyService{
 		return rlist;
 	}
 	
-//	//댓글 작성
+	//부모 댓글 작성
 	@Override
 	public int write(Reply vo) throws Exception{
 		return dao.write(vo);
