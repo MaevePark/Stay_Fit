@@ -60,7 +60,7 @@
   	<insert id="insertProduct" parameterType="SellerProduct">
 	  	INSERT INTO PRODUCT (PID, CID, PNAME, PIMAGE, PPRICE, PSTOCK, PLINK) 
 		    VALUES ((SELECT NVL(MAX(PID), 0)+1 FROM PRODUCT),
-		        #{cid}, #{pname}, #{pimage}, #{pricenum}, #{pstock}, #{plink})
+		        #{cid}, #{pname}, #{pimage}, #{pricenum}, NVL(#{pstock}, 0), #{plink})
   	</insert>
   
 </mapper>
