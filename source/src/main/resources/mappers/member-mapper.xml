@@ -11,10 +11,11 @@
  	</select>
  	
 	<insert id="join" parameterType="Member">
- 	INSERT INTO MEMBER (MID, MEMAIL, MPW, MNAME) 
+ 	INSERT all INTO MEMBER (MID, MEMAIL, MPW, MNAME) 
  	VALUES (#{mid}, #{memail}, #{mpw}, #{mname})
- 	INSERT INTO USERAUTH (MID)
+ 	INTO USERAUTH (MID)
  	VALUES (#{mid})
+ 	select * from dual
  	</insert>
   
 </mapper>

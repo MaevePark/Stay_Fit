@@ -6,4 +6,10 @@
  	INSERT INTO DIARY VALUES #{ddate}, #{mid}, #{snack1}, #{lunch}, #{snack2}, #{dinner}, #{snack3}, #{exercise}, #{weight}
  	</insert>
   
+	<select id="searchMeal" resultType="Food">
+		SELECT ID, PRODUCT, CAPUNIT, KCAL FROM NUTRITION WHERE PRODUCT LIKE '%' || #{keyword} || '%'
+	</select>
+	<select id="searchExec" resultType="Exercise">
+		SELECT EXID, EXERCISE, FIVE_KCAL FROM EXERCISE WHERE EXERCISE LIKE '%' || #{keyword} || '%'
+	</select>
 </mapper>

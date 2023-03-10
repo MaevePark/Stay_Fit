@@ -42,7 +42,7 @@
 							</div>
 							<div class="col-md-9 join-input-box">
 								<label for="pwd1" class="form-label">비밀번호</label> <input
-									type="password" name="pwd1" id="pwd1" class="form-control" autocomplete="off"
+									type="password" name="mpw" id="pwd1" class="form-control" autocomplete="off"
 									value="" maxLength=16>
 							</div>
 							<div class="col-md-9 join-input-box">

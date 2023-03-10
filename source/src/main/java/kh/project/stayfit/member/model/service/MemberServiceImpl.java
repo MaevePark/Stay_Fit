@@ -36,9 +36,11 @@ public class MemberServiceImpl implements MemberService {
 //		return 0;
 //	}
 
-//	@Override
+	@Override
 	public int join(Member member) {
-		return memberDao.join(member);
+		int result = 0;
+			result = memberDao.join(member);	
+		return result;
 	}
 
 	@Override

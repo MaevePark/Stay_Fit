@@ -38,6 +38,8 @@
 		<typeAlias type="kh.project.stayfit.member.model.vo.Member" alias="Member"/>
 		
 		<typeAlias type="kh.project.stayfit.diary.model.vo.Diary" alias="Diary"/>
+		<typeAlias type="kh.project.stayfit.diary.model.vo.Nutrition" alias="Food"/>
+		<typeAlias type="kh.project.stayfit.diary.model.vo.Exercise" alias="Exercise"/>
 	</typeAliases>
 
 	

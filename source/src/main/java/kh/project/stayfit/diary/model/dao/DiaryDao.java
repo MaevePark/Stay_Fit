@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kh.project.stayfit.diary.model.vo.Diary;
+import kh.project.stayfit.diary.model.vo.Exercise;
+import kh.project.stayfit.diary.model.vo.Nutrition;
 
 @Repository
 public class DiaryDao {
@@ -17,6 +19,13 @@ public class DiaryDao {
 	public int diarywirte(Diary diary) throws Exception {  // insert(??)
 		
 		return sqlsession.insert("diary.diarywirte", diary);	
+	}
+	public List<Nutrition> searchMeal(String keyword){
+		
+		return sqlsession.selectList("diary.searchMeal");
+	}
+	public List<Exercise>searchExrc(String keyword){
+		return sqlsession.selectList("diary.searchExrc");
 	}
 	//캘린더 출력
 	public List<Diary> selectList(String a, int b) throws Exception {

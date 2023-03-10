@@ -45,3 +45,15 @@
 		  }
 	  })
   })
+  $('#btnSrcMeal').click(function(){
+	  var keyword = $('#searchMeal').val();
+	  $.ajax({
+		  url: '/search-meal',
+		  data: {keyword: keyword},
+		  success: function(data){
+			  $('#diarypage').html(data);
+		  }
+	  })
+  })
+  $(document).on('click', '.btn-add', function(){
+  })

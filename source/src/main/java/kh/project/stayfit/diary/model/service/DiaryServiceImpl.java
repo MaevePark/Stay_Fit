@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import kh.project.stayfit.diary.model.dao.DiaryDao;
 import kh.project.stayfit.diary.model.vo.Diary;
+import kh.project.stayfit.diary.model.vo.Exercise;
+import kh.project.stayfit.diary.model.vo.Nutrition;
 
 @Service
 public class DiaryServiceImpl implements DiaryService {
@@ -18,6 +20,15 @@ public class DiaryServiceImpl implements DiaryService {
 	public int diarywirte(Diary diary) throws Exception {
 		return dao.diarywirte(diary);
 	}
+	
+	public List<Nutrition> searchMeal(String keyword) throws Exception{
+		return dao.searchMeal(keyword);
+	}
+	
+	public List<Exercise> searchExrc(String keyword) throws Exception{
+		return dao.searchExrc(keyword);
+	}
+	
 	//캘린더 출력
 	@Override
 	public List<Diary> selectList(String a, int b) throws Exception {
