@@ -31,7 +31,53 @@
 /*검색창 끝*/
 
 
+/* 마이페이지 게시판 관련 시작 */
+th {
+	text-align: center;
+}
 
+table {
+  table-layout: fixed; /* 테이블 너비 고정 */
+  width: 100%; /* 테이블 전체 너비 설정 */
+}
+th, td {
+  white-space: nowrap; /* 줄바꿈 방지 */
+  overflow: hidden; /* 넘치는 내용 숨김 처리 */
+  text-overflow: ellipsis; /* 넘치는 내용 ...으로 표시 */
+}
+
+.bcid {
+	width: 15%;
+}
+.boardTitle_1 {
+	width: 40%;
+}
+.writer_1 {
+	width: 15%;
+}
+.viewcnt_1 {
+	width: 10%;
+}
+.createDate_1 {
+	width: 22%
+}
+.replyContent{
+	width: 30%;
+}
+.createDate_2{
+	width: 22%;
+}
+.boardTitle_2{
+	width: 33%;
+}
+
+table a {
+	color: black;
+}
+table a:hover {
+	color: black;
+}
+/* 마이페이지 게시판 관련 끝 */
 
 
 

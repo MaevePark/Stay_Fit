@@ -89,18 +89,19 @@
 									<c:choose>
 										<c:when test="${!type.equals('likereply') && !type.equals('myreply') }">
 											<tr>
-												<th>게시판</th>
-												<th>제목</th>
-												<th>작성자</th>
-												<th>조회수</th>
-												<th>작성일</th>
+												<th class="bcid">게시판</th>
+												<th class="boardTitle_1">제목</th>
+												<th class="writer_1">작성자</th>
+												<th class="viewcnt_1">조회수</th>
+												<th class="createDate_1">작성일자</th>
 											</tr>
 										</c:when>
 										<c:when test="${type.equals('likereply') || type.equals('myreply') }">
 											<tr>
-												<th>댓글 내용</th>
-												<th>작성일자</th>
-												<th>게시글</th>
+												<th class="bcid">게시판</th>
+												<th class="replyContent">댓글 내용</th>
+												<th class="createDate_2">작성일자</th>
+												<th class="boardTitle_2">게시글</th>
 											</tr>
 										</c:when>
 									</c:choose>
@@ -118,8 +119,8 @@
 															<c:if test="${list.BCID  == 2}"><span>팁&노하우</span></c:if>
 															<c:if test="${list.BCID  == 3}"><span>고민&질문</span></c:if>
 														</td>
-														<td>${list.BTITLE }</td>
-														<td>${list.MNAME }</td>
+														<td><a class="boardTitle" href="<%=request.getContextPath()%>/board/read.do?bid=${list.BID}">${list.BTITLE }</a></td>
+														<td><span>${list.MNAME }</span></td>
 														<td><span>${list.BVIEWCOUNT }</span></td>
 														<td><span>${list.BCREATE }</span></td>
 													</tr>
@@ -128,25 +129,29 @@
 											<c:when test="${type.equals('likereply') }">
 												<c:forEach items="${boardList }" var="list">
 													<tr>
-														<td><i class="fab fa-angular fa-lg text-danger me-3"></i>
-															<span>${list.RCONTENT }</span>
+														<td>
+															<c:if test="${list.BCID  == 0}"><span>공지사항</span></c:if>
+															<c:if test="${list.BCID  == 1}"><span>식단</span></c:if>
+															<c:if test="${list.BCID  == 2}"><span>팁&노하우</span></c:if>
+															<c:if test="${list.BCID  == 3}"><span>고민&질문</span></c:if>
 														</td>
+														<td><span>${list.RCONTENT }</span></td>
 														<td><span>${list.RCREATE }</span></td>
-														<td><span>${list.BTITLE }</span></td>
+														<td><a class="boardTitle" href="<%=request.getContextPath()%>/board/read.do?bid=${list.BID}">${list.BTITLE }</a></td>
 													</tr>
 												</c:forEach>
 											</c:when>
 											<c:when test="${type.equals('myboard') }">
 												<c:forEach items="${boardList }" var="list">
 													<tr>
-														<td><i class="fab fa-angular fa-lg text-danger me-3"></i>
+														<td>
 															<c:if test="${list.BCID  == 0}"><span>공지사항</span></c:if>
 															<c:if test="${list.BCID  == 1}"><span>식단</span></c:if>
 															<c:if test="${list.BCID  == 2}"><span>팁&노하우</span></c:if>
 															<c:if test="${list.BCID  == 3}"><span>고민&질문</span></c:if>
 														</td>
-														<td>${list.BTITLE }</td>
-														<td>${list.MNAME }</td>
+														<td><a class="boardTitle" href="<%=request.getContextPath()%>/board/read.do?bid=${list.BID}">${list.BTITLE }</a></td>
+														<td><span>${list.MNAME }</span></td>
 														<td><span>${list.BVIEWCOUNT }</span></td>
 														<td><span>${list.BCREATE }</span></td>
 													</tr>
@@ -155,11 +160,15 @@
 											<c:when test="${type.equals('myreply') }">
 												<c:forEach items="${boardList }" var="list">
 													<tr>
-														<td><i class="fab fa-angular fa-lg text-danger me-3"></i>
-															<span>${list.RCONTENT }</span>
+														<td>
+															<c:if test="${list.BCID  == 0}"><span>공지사항</span></c:if>
+															<c:if test="${list.BCID  == 1}"><span>식단</span></c:if>
+															<c:if test="${list.BCID  == 2}"><span>팁&노하우</span></c:if>
+															<c:if test="${list.BCID  == 3}"><span>고민&질문</span></c:if>
 														</td>
+														<td><span>${list.RCONTENT }</span></td>
 														<td><span>${list.RCREATE }</span></td>
-														<td><span>${list.BTITLE }</span></td>
+														<td><a class="boardTitle" href="<%=request.getContextPath()%>/board/read.do?bid=${list.BID}">${list.BTITLE }</a></td>
 													</tr>
 												</c:forEach>
 											</c:when>

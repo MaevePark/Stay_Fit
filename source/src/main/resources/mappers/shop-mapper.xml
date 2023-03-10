@@ -64,6 +64,14 @@
 			PPRICE > 0 
   	</select>
   	
+  	<!-- 할인 상품 리스트업 -->
+  	<select id="selectSale" resultType="ShopProduct">
+		SELECT * FROM PRODUCT 
+			WHERE PSALE > 20 
+		ORDER BY DBMS_RANDOM.VALUE
+  	</select>
+  	
+  	
   	
 	<!-- 찜목록 등록 -->
   	<select id="insertWish" parameterType="ShopCart" resultType="int">

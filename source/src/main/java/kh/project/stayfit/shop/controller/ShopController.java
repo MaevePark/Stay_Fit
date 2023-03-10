@@ -86,6 +86,43 @@ public class ShopController {
 		return mv;
 	}
 	
+	@GetMapping("main")
+	public ModelAndView shopPageSecond(
+			ModelAndView mv
+			, @RequestParam(name = "page", defaultValue = "1") int page
+			, @RequestParam(name="productCategory", defaultValue = "0") int productCategory
+			, @RequestParam(name="searchProduct", defaultValue = "") String searchProduct
+			) {
+		int limits = 12;
+		int pageLimit = 5;
+		
+		Map<String, Object> searchMap = new HashMap<String, Object>();
+		searchMap.put("productCategory", productCategory);
+		searchMap.put("searchProduct", searchProduct);
+		
+		try {
+			int totalCnt = shopService.selectProductTotalCnt(searchMap);
+			Map<String, Object> pagingMap = Paging.paging(page, totalCnt, limits, pageLimit);
+			
+			
+			mv.addObject("categoryList", shopService.selectCategory());
+			mv.addObject("productList", shopService.selectProductList(searchMap, page, limits));
+			mv.addObject("pagingMap", pagingMap);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		mv.addObject("urlpattern", "shop");
+		mv.addObject("sectionName", "shop/main.jsp");
+		//페이징
+		//인기상품
+		//일반상품
+		//추천상품
+		mv.setViewName("index");
+		return mv;
+	}
+	
 	//찜목록 추가
 	@GetMapping("/insertwish")
 	public void insertWish(

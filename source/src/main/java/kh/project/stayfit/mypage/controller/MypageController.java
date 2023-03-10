@@ -247,15 +247,17 @@ public class MypageController {
 				
 				mv.addObject("wishList", productservice.selectWishProductList(mid, page, limits));
 				mv.addObject("pagingMap", pagingMap);
+				mv.addObject("urlpattern", "mypage/wish");
+				mv.addObject("sectionName", "mypage/mywish.jsp");
 				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			
-			mv.addObject("urlpattern", "mypage/wish");
-			mv.addObject("sectionName", "mypage/mywish.jsp");
-			mv.setViewName("index");
+			
+			
 		}
+		mv.setViewName("index");
 		return mv;
 	}
 	//찜목록 재호출

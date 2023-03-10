@@ -6,7 +6,7 @@
 	<select id="selectProfile" parameterType="int" resultType="MypageMember">
 		SELECT MID, MROLE, MEMAIL, MNAME, MCREATE, MUPDATE, PROFIMG
 			FROM MEMBER
-				WHERE ENABLED='A' AND MID=${mid}
+				WHERE ENABLED='1' AND MID=${mid}
 	</select>
 	<!-- 프로필 변경 -->
 	<update id="updateProfile" parameterType="map">
@@ -180,7 +180,7 @@
 	</select>
 	<!-- 작성한 댓글 select -->
 	<select id="selectMyReply" parameterType="map" resultType="map">
-		SELECT R.RID RID, R.BID BID, B.BTITLE BTITLE, R.RCONTENT RCONTENT, R.RCREATE RCREATE 
+		SELECT B.BCID, R.RID RID, R.BID BID, B.BTITLE BTITLE, R.RCONTENT RCONTENT, R.RCREATE RCREATE 
 			FROM BOARD B JOIN REPLY R  ON B.BID = R.RID
 			AND R.MID=${mid } 
 			WHERE 
@@ -266,13 +266,13 @@
 			<if test="boardCategory != 1">
 				<choose>
 					<when test="boardCategory == 2">
-						B.BCID=0 AND 
-					</when>
-					<when test="boardCategory == 3">
 						B.BCID=1 AND 
 					</when>
-					<when test="boardCategory == 4">
+					<when test="boardCategory == 3">
 						B.BCID=2 AND 
+					</when>
+					<when test="boardCategory == 4">
+						B.BCID=3 AND 
 					</when>
 				</choose>
 			</if>
@@ -300,13 +300,13 @@
 			<if test="boardCategory != 1">
 				<choose>
 					<when test="boardCategory == 2">
-						B.BCID=0 AND 
-					</when>
-					<when test="boardCategory == 3">
 						B.BCID=1 AND 
 					</when>
-					<when test="boardCategory == 4">
+					<when test="boardCategory == 3">
 						B.BCID=2 AND 
+					</when>
+					<when test="boardCategory == 4">
+						B.BCID=3 AND 
 					</when>
 				</choose>
 			</if>
@@ -330,7 +330,7 @@
 <!-- 	</select> -->
 	<!-- 공감 댓글 select -->
 	<select id="selectLikeReply" parameterType="map" resultType="map">
-		SELECT R.RID RID, R.BID BID, B.BTITLE BTITLE, R.RCONTENT RCONTENT , R.RCREATE RCREATE
+		SELECT B.BCID, R.RID RID, R.BID BID, B.BTITLE BTITLE, R.RCONTENT RCONTENT , R.RCREATE RCREATE
 			FROM REPLY_LIKE LR 
 				JOIN REPLY R ON LR.RID = R.RID AND LR.MID=${mid} 
 				JOIN BOARD B ON B.BID = R.BID 
@@ -338,13 +338,13 @@
 			<if test="boardCategory != 1">
 				<choose>
 					<when test="boardCategory == 2">
-						B.BCID=0 AND 
-					</when>
-					<when test="boardCategory == 3">
 						B.BCID=1 AND 
 					</when>
-					<when test="boardCategory == 4">
+					<when test="boardCategory == 3">
 						B.BCID=2 AND 
+					</when>
+					<when test="boardCategory == 4">
+						B.BCID=3 AND 
 					</when>
 				</choose>
 			</if>
@@ -378,13 +378,13 @@
 			<if test="boardCategory != 1">
 				<choose>
 					<when test="boardCategory == 2">
-						B.BCID=0 AND 
-					</when>
-					<when test="boardCategory == 3">
 						B.BCID=1 AND 
 					</when>
-					<when test="boardCategory == 4">
+					<when test="boardCategory == 3">
 						B.BCID=2 AND 
+					</when>
+					<when test="boardCategory == 4">
+						B.BCID=3 AND 
 					</when>
 				</choose>
 			</if>
