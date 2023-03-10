@@ -3000,16 +3000,12 @@ ol {
 	}
 }
 
-/*°øÁö»çÇ× ¹öÆ°  */
+/*ê³µì§€ì‚¬í•­ ë²„íŠ¼  */
 .btn-notice {
-	margin-right: 0;
-	height: 30px;
-    width: 30px
-    color: #7fad39;;
-    border-color: #7fad39;;
+	style=margin-right: 20px; 
+	height: 30px; 
+	width: 30px; 
+	border: 1px solid rgb(232, 232, 232); 
+	background: #F3F6FA
 }
-.btn-notice:hover {
-    background-color: #7fad39;
-    color: white;
-}
-/*°øÁö»çÇ× ¹öÆ°  ³¡*/
+/*ê³µì§€ì‚¬í•­ ë²„íŠ¼  ë*/
