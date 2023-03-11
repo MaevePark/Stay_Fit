@@ -31,7 +31,7 @@
 		                            	</c:when>
 		                            	<c:otherwise>
 		                            		<div class="header__top__right__auth">
-				                                <a href="<%=request.getContextPath()%>/seller/product" target="_blank"><i class="fa fa-user"></i> 판매자페이지</a>
+				                                <a href="<%=request.getContextPath()%>/seller/dashboard" target="_blank"><i class="fa fa-user"></i> 판매자페이지</a>
 				                            </div>
 		                            	</c:otherwise>
 		                            </c:choose>	
