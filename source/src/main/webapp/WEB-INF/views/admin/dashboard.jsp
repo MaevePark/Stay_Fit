@@ -89,8 +89,18 @@
 								<div class="card">
 									<div class="row row-bordered g-0">
 										<div class="col-md-12">
-											<h5 class="card-header m-0 me-2 pb-3">총 수익 현황</h5>
-
+											<div class="card-header d-flex align-items-center justify-content-between">
+												<h5 class="card-title m-0 me-2">총 수익 현황</h5>
+												<div class="dropdown">
+									                <button id="dropdownbtn" value="2023" class="btn btn-sm btn-outline-primary dropdown-toggle" type="button" id="growthReportId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									                	2023
+									                </button>
+									                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="growthReportId" style="">
+									                  <a data-value="2023" class="dropdown-item" class="dropdown-item">2023</a>
+									                  <a data-value="2022" class="dropdown-item" class="dropdown-item">2022</a>
+									                </div>
+									            </div>
+											</div>
 											<div id="totalRevenueChart" class="px-2"></div>
 
 										</div>
@@ -191,8 +201,8 @@
 		src="<%=request.getContextPath()%>/resources/admin/assets/js/main.js"></script>
 
 	<!-- Page JS -->
-	<script
-		src="<%=request.getContextPath()%>/resources/admin/assets/js/dashboards-analytics.js"></script>
+
+	<script src="<%=request.getContextPath()%>/resources/admin/assets/js/dashboards-analytics.js"></script>
 
 	<!-- Place this tag in your head or just before your close body tag. -->
 	<script async defer src="https://buttons.github.io/buttons.js"></script>

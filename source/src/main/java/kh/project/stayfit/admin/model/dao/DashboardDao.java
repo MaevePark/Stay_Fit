@@ -18,8 +18,8 @@ public class DashboardDao {
 	
 	
 	// 첫번째 차트
-	public List<AdminDashboard1> selectChart1() throws Exception{
-		return sqlsession.selectList("admin.selectChart1") ;
+	public List<AdminDashboard1> selectChart1(String year) throws Exception{
+		return sqlsession.selectList("admin.selectChart1", year) ;
 	}
 	
 	// 두번째 차트

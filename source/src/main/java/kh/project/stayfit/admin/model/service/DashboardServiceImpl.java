@@ -18,8 +18,8 @@ public class DashboardServiceImpl implements DashboardService {
 	
 
 	@Override
-	public List<AdminDashboard1> selectChart1() throws Exception {
-		return dao.selectChart1();
+	public List<AdminDashboard1> selectChart1(String year) throws Exception {
+		return dao.selectChart1(year);
 	}
 
 	@Override
