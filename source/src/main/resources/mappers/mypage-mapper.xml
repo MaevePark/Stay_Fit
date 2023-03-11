@@ -45,6 +45,10 @@
 	<delete id="deleteMyWish" parameterType="MypageWish">
 		DELETE FROM WISH WHERE PID=${pid} AND MID=${mid}
 	</delete>
+	<!-- 찜목록 등록 -->
+	<insert id="insertWish" parameterType="MypageWish">
+		INSERT INTO WISH VALUES(${pid}, ${mid})
+	</insert>
 	
 	
 	
