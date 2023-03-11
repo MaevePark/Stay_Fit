@@ -15,6 +15,8 @@ public interface MyProductService {
 	public int selectWishTotalCnt(int mid) throws Exception;
 	//찜목록 삭제
 	public int deleteWish(MypageWish vo) throws Exception;
+	//찜목록 등록
+	public int insertWish(MypageWish vo) throws Exception;
 	
 	
 	//장바구니 호출

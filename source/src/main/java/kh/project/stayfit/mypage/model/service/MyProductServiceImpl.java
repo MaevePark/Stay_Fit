@@ -30,6 +30,11 @@ public class MyProductServiceImpl implements MyProductService {
 	public int deleteWish(MypageWish vo) throws Exception {
 		return dao.deleteWish(vo);
 	}
+	//찜목록 등록
+	@Override
+	public int insertWish(MypageWish vo) throws Exception {
+		return dao.insertWish(vo);
+	}
 	
 	@Override
 	//장바구니 호출
