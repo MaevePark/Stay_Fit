@@ -83,8 +83,6 @@
 						</form>
 					</div>
 					<!-- 게시글 이모티콘 끝-->
-
-					<button class="btn btn-primary btn-sm btn-light bookmark" value="${read.bid}">북마크</button>
 					<!-- 수정, 삭제, 목록 버튼 -->
 					<div id="button_parent">
 						<!-- 수정, 삭제 버튼은 본인이 작성한 글일때만 출력. -->
@@ -101,13 +99,15 @@
 					</div>
 					<!-- 수정, 삭제, 목록 버튼 여기까지  -->
 
-
-					<!-- 북마크 보류-->
-					<!-- <label for="bookmark"> <input type="radio" id="bookmark"
-						name="" value="5">
-						<p>북마크</p>
-					</label> -->
-					<!-- 북마크 여기까지  -->
+					<!-- 북마크  -->
+					<div style = "border : none;">
+						<button class="bookmark" value="${read.bid}">
+							<img class="default-img"/>
+							<img class="active-img"/>
+						</button>
+							<span>북마크</span>
+					</div>
+					<!-- 북마크 끝  -->
 
 					<!-- 댓글 -->
 					<div id="replyArea">
@@ -122,7 +122,8 @@
 								<c:when test="${!empty reply}">
 									<c:forEach var="repl" items="${reply}">
 										<tr>
-											<td style="width:400px">  <!-- overflow: hidden때문에 임시부여 수정예정 -->
+											<td style="width: 400px">
+												<!-- overflow: hidden때문에 임시부여 수정예정 -->
 												<div class="blog__sidebar__recent__item__pic">
 													<img id="profimg" src="${repl.profimg }" />
 												</div>
@@ -130,35 +131,47 @@
 													<span>${repl.mname }</span>
 													<%-- <div id="old-reply" style="dispay:none;">${repl.rcontent }
 													</div> --%>
-													<div class ="reply-form">
+													<div class="reply-form">
 														<!--기존 댓글 정보  -->
 														<div id="old-reply" class="old-reply">
-															<c:out value="${repl.rcontent }"/>
+															<c:out value="${repl.rcontent }" />
 														</div>
 														<!--댓글 수정 폼  -->
-														<div id="comment-form" class="comment-form" style="display: none;" >
-															<input type="text" id="comment-input" class="comment-input">
+														<div id="comment-form" class="comment-form"
+															style="display: none;">
+															<input type="text" id="comment-input"
+																class="comment-input">
 															<div class="container">
-															<button id="submit-button" class="modify-rid btn btn-primary btn-sm btn-light" value="${repl.rid }">등록</button>
-															<button id="cancel-button" class="btn btn-primary btn-sm btn-light">취소</button>
+																<button id="submit-button"
+																	class="modify-rid btn btn-primary btn-sm btn-light"
+																	value="${repl.rid }">등록</button>
+																<button id="cancel-button"
+																	class="btn btn-primary btn-sm btn-light">취소</button>
 															</div>
 														</div>
 														<c:if test="${repl.mid == writer }">
-														<div class="container">
-															
-															<!-- <button id="modify-button" onclick="showForm()" class="btn btn-sm btn-modify">수정</button> -->
-															<button id="modi-reply" class="btn btn-sm btn-modify" value="${repl.rid }">수정</button>
-															<button id="del-reply"type="button" onclick="rdel(${repl.rid})" class="btn btn-sm btn-del">삭제</button>
-															<button id="repl-repl"type="button" class="btn btn-primary btn-sm btn-light">답글</button>
-														</div>
-												</c:if> 
-												<c:if test="${repl.mid != writer }">
-													<div class="container">
-														<button class="btn btn-primary btn-sm btn-light like-button" value="${repl.rid }">공감</button>
-														<button type="button" class="btn btn-primary btn-sm btn-light">신고</button>
-														<button type="button" class="btn btn-primary btn-sm btn-light">답글</button>
-													</div>
-												</c:if>
+															<div class="container">
+
+																<!-- <button id="modify-button" onclick="showForm()" class="btn btn-sm btn-modify">수정</button> -->
+																<button id="modi-reply" class="btn btn-sm btn-modify"
+																	value="${repl.rid }">수정</button>
+																<button id="del-reply" type="button"
+																	onclick="rdel(${repl.rid})" class="btn btn-sm btn-del">삭제</button>
+																<button id="repl-repl" type="button"
+																	class="btn btn-primary btn-sm btn-light">답글</button>
+															</div>
+														</c:if>
+														<c:if test="${repl.mid != writer }">
+															<div class="container">
+																<button
+																	class="btn btn-primary btn-sm btn-light like-button"
+																	value="${repl.rid }">공감</button>
+																<button type="button"
+																	class="btn btn-primary btn-sm btn-light">신고</button>
+																<button type="button"
+																	class="btn btn-primary btn-sm btn-light">답글</button>
+															</div>
+														</c:if>
 													</div>
 												</div>
 											</td>
@@ -340,65 +353,87 @@ function rdel(rid){
 	}	
 }
 
-//댓글 공감
-$(document).ready(function() {
-    // 버튼 클릭 이벤트 처리
-    $(document).on('click', '.like-button', function() {
-        var rid = $(this).val(); // 댓글 번호
-        var btn = $(this); // 버튼
+//댓글 공감 
+$(document).ready(function(){
+	$(document).on('click','.like-button',function(){
+		var rid = $(this).val(); //변수 rid에 클릭한 버튼의 value 담기(댓글 번호)
+		var btn = $(this); //활성화 여부(active) 추가를 위한 변수
+		var isLiked = localStorage.getItem('like-' + rid); //버튼의 활성화 여부 체크
 		
-        console.log(rid);
-        
-        // Ajax 요청
-        $.ajax({
-            type: 'POST',
-            url: 'like',
-            data : {rid:rid},
-            success: function(data) {
-            	console.log('Ajax response:', data)
-                if (data.result == 'success') {
-                    if (data.action == 'like') {
-                        btn.addClass('active');
-                    } else if (data.action == 'unlike') {
-                        btn.removeClass('active');
-                    }
-                }
-            },
-            error: function(xhr, status, error){
-            	console.log('Ajax error:', error)
-            }
-        });
-    });
+		console.log(rid, isLiked);
+		
+		$.ajax({
+			type : 'POST',
+			url : 'like',
+			data : {rid : rid},
+			success : function(data){
+				if(data.result == 'success'){
+					if(data.action == 'like'){
+						btn.addClass('active');
+						localStorage.setItem('like-' + rid, 'true'); //페이지 이동해도 활성화 상태 변화 없도록 저장
+					}else if(data.action == 'unlike'){
+						btn.removeClass('active');
+						localStorage.removeItem('like-' + rid); //버튼상태 삭제
+					}
+				}
+			},
+			error: function(xhr,status, error){
+				console.log('ajax!!:', error)
+			}
+		});
+	});
+	
+	//페이지 리로드시 버튼 상태 복원
+	$('.like-button').each(function(){
+		var rid = $(this).val();
+		var isLiked = localStorage.getItem('like-' + rid);
+		
+		if(isLiked == 'true'){
+			$(this).addClass('active');
+		}
+	});
 });
 
 
-$(document).ready(function() {
-    // 버튼 클릭 이벤트 처리
-    $(document).on('click', '.bookmark', function() {
-        var bid = $(this).val(); // 게시글 번호
-        var btn = $(this); // 버튼
+//북마크
+$(document).ready(function(){
+	$(document).on('click','.bookmark',function(){
+		var bid = $(this).val(); 
+		var btn = $(this); 
+		var isBookmarked = localStorage.getItem('bookmark-' + bid); 
 		
-        console.log(bid);
-        
-        // Ajax 요청
-        $.ajax({
-            type: 'POST',
-            url: 'book',
-            data : {bid : bid},
-            success: function(data) {
-            	console.log('Ajax response:', data)
-                if (data.result == 'success') {
-                    if (data.action == 'book') {
-                        btn.addClass('active');
-                    } else if (data.action == 'delbook') {
-                        btn.removeClass('active');
-                    }
-                }
-            },
-            error: function(xhr, status, error){
-            	console.log('Ajax error:', error)
-            }
-        });
-    });
+		console.log(bid, isBookmarked);
+		
+		$.ajax({
+			type : 'POST',
+			url : 'book',
+			data : {bid : bid},
+			success : function(data){
+				if(data.result == 'success'){
+					if(data.action == 'book'){
+						btn.addClass('active');
+						localStorage.setItem('bookmark-' + bid, 'true'); 
+					}else if(data.action == 'delbook'){
+						btn.removeClass('active');
+						localStorage.removeItem('bookmark-' + bid); 
+					}
+				}
+			},
+			error: function(xhr,status, error){
+				console.log('ajax!!:', error)
+			}
+		});
+	});
+	
+	//페이지 리로드시 버튼 상태 복원
+	$('.bookmark').each(function(){
+		var bid = $(this).val();
+		var isBookmarked = localStorage.getItem('bookmark-' + bid);
+		
+		if(isBookmarked == 'true'){
+			$(this).addClass('active');
+		}
+	});
 });
+
 </script>
