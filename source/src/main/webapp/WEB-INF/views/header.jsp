@@ -63,7 +63,7 @@
 				<div class="col-lg-9">
 					<nav class="header__menu">
 						<ul>
-							<li class="active"><a href="<%=request.getContextPath()%>/shop">상품</a></li>
+							<li><a href="<%=request.getContextPath()%>/shop">상품</a></li>
 							<li><a href="<%=request.getContextPath()%>/board/list?bcid=0">게시판</a>
 								<ul class="header__menu__dropdown">
 									<li><a href="<%=request.getContextPath()%>/board/list?bcid=0">공지사항</a></li>
@@ -72,7 +72,7 @@
 									<li><a href="<%=request.getContextPath()%>/board/list?bcid=3">고민&질문</a></li>
 								</ul>
 							</li>
-							<li><a a href="<%=request.getContextPath()%>/health/caloriewrite">건강관리</a>
+							<li><a href="<%=request.getContextPath()%>/health/caloriewrite">건강관리</a>
 								<ul class="header__menu__dropdown">
 									<li><a href="<%=request.getContextPath()%>/health/caloriewrite">칼로리 처방 받기</a></li>
 									<li><a href="<%=request.getContextPath()%>/health/bmiwrite">BMI 지수 조회</a></li>
@@ -89,4 +89,20 @@
 			</div>
 		</div>
 	</header>
+	
+<script>
+// <헤더 메뉴 클릭시 색상 고정>
+// 1. 현재 페이지의 URL을 가져옴
+var currentUrl = window.location.href;
+// 2. a 태그를 가져옴
+var menuLinks = document.querySelectorAll('nav ul li a');
+// 3. 헤더 항목들을 반복하면서 현재 페이지의 URL과 일치하는 항목에 active 클래스를 추가
+menuLinks.forEach(function(link) {
+	if (link.href === currentUrl) {
+			link.parentElement.classList.add('active');
+		} else {
+			link.parentElement.classList.remove('active');
+		}
+});
+</script>
 <!-- Header Section End -->
