@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<script src='<%=request.getContextPath() %>/resources/js/mainPage.js'></script>
 
 <!-- Categories Section Begin -->
 <section class="categories">
@@ -222,8 +223,6 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 col-md-7">
-
-
 				<jsp:include page="/WEB-INF/views/shop/saleList.jsp" />
 			</div>
 		</div>
