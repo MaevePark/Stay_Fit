@@ -9,11 +9,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kh.project.stayfit.board.model.vo.Board;
 import kh.project.stayfit.main.service.MainService;
+import kh.project.stayfit.shop.model.service.ShopService;
 
 @Controller
 public class MainController {
 	@Autowired
 	private MainService srv;
+	@Autowired
+	private ShopService shopService;
 
 	@GetMapping({ "/", "/main", "/index" })
 	public ModelAndView mainPage(ModelAndView mv) throws Exception {
@@ -26,6 +29,9 @@ public class MainController {
 		//최신글
 		List<Board> recent = srv.recent();
 		mv.addObject("recent", recent);
+		
+		//세일품목
+		mv.addObject("saleList", shopService.selectSaleList());
 		
 		mv.addObject("sectionName", "main.jsp");
 		mv.setViewName("index");
