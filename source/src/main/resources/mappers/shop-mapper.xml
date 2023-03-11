@@ -50,7 +50,13 @@
 				PNAME LIKE '%'||#{searchProduct }||'%' AND 
 			</if>
 			PPRICE > 0 
-		ORDER BY DBMS_RANDOM.VALUE
+		<if test="productCategory != 0">
+			ORDER BY PID ASC
+		</if>
+		<if test="productCategory == 0">
+			ORDER BY DBMS_RANDOM.VALUE
+		</if>
+		
   	</select>
   	<select id="countProduct" parameterType="map" resultType="int">
 		SELECT COUNT(PID) FROM PRODUCT 
