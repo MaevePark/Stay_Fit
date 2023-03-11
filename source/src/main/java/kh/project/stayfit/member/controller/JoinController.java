@@ -56,10 +56,10 @@ public class JoinController {
 		System.out.println("이메일 인증 이메일 : " + memail);
 		return mailService.EmailForm(memail);
 	}
-	@RequestMapping("/send")
-	public void sendMail() {
+	@PostMapping("/send")
+	public void sendMail(@RequestParam(name="memail") String memail) {
 		SimpleMailMessage message = new SimpleMailMessage();
-		message.setTo("limskyu@naver.com");
+		message.setTo(memail);
 		message.setSubject("회원 가입 인증 이메일 입니다.");
 		message.setText("홈페이지를 방문해주셔서 감사합니다.");
 		mailSender.send(message);

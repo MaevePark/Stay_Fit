@@ -141,13 +141,15 @@ function checkName(mname) {
 }
 
 $('#btnChkMail').click(function(){
-	// const eamil = $('#memail').val(); // 이메일 주소값 얻어오기!
-	// console.log('이메일 : ' + eamil); // 이메일 오는지 확인
+	 const eamil = $('#memail').val(); // 이메일 주소값 얻어오기!
+	 console.log('이메일 : ' + eamil); // 이메일 오는지 확인
 	const checkInput = $('.cdnum') // 인증번호 입력하는곳 
 	
 	$.ajax({
-		type : 'get',
-		url : 'mailCheck',
+		type : 'post',
+		url : 'send',
+		data : {memail : eamil},
+		dataType : 'text',
 		success : function (data) {
 			console.log("data : " +  data);
 			checkInput.attr('disabled',false);
