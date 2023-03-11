@@ -110,7 +110,8 @@
 								<c:set var="itemTotal" value="${(price * sale)/100/10*10 * quantity}" />
 								<c:set var="totalPrice" value="${totalPrice + itemTotal}" />
 							</c:forEach>
-							${totalPrice}원
+							<fmt:formatNumber var="total" value="${totalPrice }" pattern="###,###,##0" />
+							${total }원
 							</span></li>
 						</c:if>
 						<c:if test="${cartList.size() == 0 }">
