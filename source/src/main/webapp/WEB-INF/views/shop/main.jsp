@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script src='<%=request.getContextPath() %>/resources/js/shop/shop.js'></script>
-
 
 <!-- Product Section Begin -->
 <section class="product spad">
@@ -33,48 +34,80 @@
 								</c:forEach>
 							</select>
 						</div>
-						
-						
-						<input type="text" name="searchProduct" id="searchProduct" placeholder="상품명을 검색해 주세요.">
+						<input type="text" name="searchProduct" id="searchProduct" placeholder="상품명을 검색해 주세요." value="${searchMap.searchProduct }">
 						<button type="submit" class="site-btn">SEARCH</button>
 					</form>
 				</div>
 				<!-- Hero Section End -->
-
-
-				<!-- TODO 검색이 되지 않았다는 조건하에 세일메뉴 생성 -->
-				<!-- 세일항목 캐러셀 -->
-				<jsp:include page="/WEB-INF/views/shop/saleList.jsp" />
+				
+				
+				<c:if test="${(searchMap.productCategory == 0 || searchMap.productCategory == null) && (searchMap.searchProduct == '' || searchMap.searchProduct == null)}">
+					<!-- 세일항목 캐러셀 -->
+					<jsp:include page="/WEB-INF/views/shop/saleList.jsp" />
+				</c:if>
+				
 
 
 
 				<div class="row">
 					<c:forEach items="${productList }" var="product">
 						<div class="col-lg-4 col-md-6 col-sm-6">
-							<div class="product__item">
-								<div class="product__item__pic set-bg"
-									data-setbg="${product.pimage }">
-									<ul class="product__item__pic__hover">
-										<li><a class="addWish" data-pid="${product.pid }" onclick="addWish(this)"><i class="fa fa-heart"></i></a></li>
-										<li><a class="fa fa-shopping-cart" data-pid="${product.pid }" onclick="addCart(this)"></a></li>
-									</ul>
-								</div>
-								<div class="product__item__text">
-									<h6>
-										<a href="#">${product.pname }</a>
-									</h6>
-									<h5>${product.pprice }원</h5>
-								</div>
-							</div>
+							<c:choose>
+								<c:when test="${product.psale > 0}">									
+									<div class="product__item">
+										<div class="product__item__pic set-bg" data-setbg="${product.pimage }">
+											<ul class="product__item__pic__hover">
+												<li><a class="addWish" data-pid="${product.pid }" onclick="addWish(this)"><i class="fa fa-heart"></i></a></li>
+												<li><a class="fa fa-shopping-cart" data-pid="${product.pid }" onclick="addCart(this)"></a></li>
+											</ul>
+										</div>
+										<div class="product__discount__item__text">
+											<span>${product.cname }</span>
+											<h5>
+												<a href="${product.plink }" target="_blank">${product.pname }</a>
+											</h5>
+											<div>
+												
+											</div>
+											
+											<c:set var="sale" value="${(100 - product.psale) }"></c:set>
+											<fmt:formatNumber var="finalPrice" value="${Math.floor((product.pprice * sale)/100/10)*10}" pattern="###,###,##0" />
+											<fmt:formatNumber var="price" value="${product.pprice}" pattern="###,###,##0" />
+											<div class="product__item__price">
+												${finalPrice }원 <span>${price }원</span><p style="display:inline-block; width:30px; margin-left:10px; color:red; font-size: 20px; font-weight:bold;">  -${product.psale }%</p>
+											</div>
+										</div>
+									</div>
+								</c:when>
+								
+								<c:when test="${product.psale <= 0}">
+									<div class="product__item">
+										<div class="product__item__pic set-bg" data-setbg="${product.pimage }">
+											<ul class="product__item__pic__hover">
+												<li><a class="addWish" data-pid="${product.pid }" onclick="addWish(this)"><i class="fa fa-heart"></i></a></li>
+												<li><a class="fa fa-shopping-cart" data-pid="${product.pid }" onclick="addCart(this)"></a></li>
+											</ul>
+										</div>
+										
+										<div class="product__item__text">
+											<h6>
+												<a href="${product.plink }" target="_blank">${product.pname }</a>
+											</h6>
+											<fmt:formatNumber var="price" value="${product.pprice}" pattern="###,###,##0" />
+											<h5>${price }원</h5>
+										</div>
+									</div>
+								</c:when>
+							</c:choose>
 						</div>
 					</c:forEach>
 				</div>
 				
 				
-<%-- 				<c:if test="${productList.size > 0 }"> --%>
-<!-- 					페에징 -->
-<%-- 					<jsp:include page="/WEB-INF/views/paging.jsp" /> --%>
-<%-- 				</c:if> --%>
+				<c:if test="${fn:length(product) > 0 }">
+					<!-- 페이징 -->
+					<jsp:include page="/WEB-INF/views/paging.jsp" />
+				</c:if>
 				
 				
 
