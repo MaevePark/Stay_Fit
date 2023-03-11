@@ -7,12 +7,20 @@
 <div class="col-lg-2 col-md-5">
 	<div class="sidebar">
 
-		<div class="sidebar__item">
+		<div class="sidebar__item category_title">
 			<h4>Department</h4>
 			<ul>
 				<li><a href="<%=request.getContextPath()%>/shop?productCategory=0">홈</a></li>
 				<c:forEach items="${categoryList }" var="cList">
-					<li><a href="<%=request.getContextPath()%>/shop/main?productCategory=${cList.cid}">${cList.cname }</a></li>
+					<c:if test="${searchMap.productCategory == cList.cid }">
+						<li><a href="<%=request.getContextPath()%>/shop/main?productCategory=${cList.cid}" class="category_bolder">${cList.cname }</a></li>
+					</c:if>
+					
+					<c:if test="${searchMap.productCategory != cList.cid }">
+						<li><a href="<%=request.getContextPath()%>/shop/main?productCategory=${cList.cid}">${cList.cname }</a></li>
+					</c:if>
+					
+					
 				</c:forEach>
 			</ul>
 		</div>
