@@ -34,3 +34,15 @@
 	width: 60%
 }
 /*검색창 끝*/
+
+/* 카테고리 시작 */
+.category_title ul li a {
+	letter-spacing: -0.1em;
+}
+
+.category_bolder {
+	font-weight: bold;
+}
+/* 카테고리 끝 */
+
+

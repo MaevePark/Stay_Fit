@@ -1,4 +1,4 @@
-package kh.project.stayfit.admin.model.service;
+package kh.project.stayfit.seller.model.service;
 
 import java.util.List;
 
@@ -9,17 +9,18 @@ import kh.project.stayfit.admin.model.dao.DashboardDao;
 import kh.project.stayfit.admin.model.vo.AdminDashboard1;
 import kh.project.stayfit.admin.model.vo.AdminDashboard2;
 import kh.project.stayfit.admin.model.vo.AdminDashboard3;
+import kh.project.stayfit.seller.model.dao.SellerDashboardDao;
 
 @Service
-public class DashboardServiceImpl implements DashboardService {
+public class SellerDashboardServiceImpl implements SellerDashboardService {
 	
 	@Autowired
-	private DashboardDao dao;
+	private SellerDashboardDao dao;
 	
 
 	@Override
-	public List<AdminDashboard1> selectChart1(String year) throws Exception {
-		return dao.selectChart1(year);
+	public List<AdminDashboard1> selectChart1() throws Exception {
+		return dao.selectChart1();
 	}
 
 	@Override

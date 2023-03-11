@@ -31,7 +31,7 @@
 		                            	</c:when>
 		                            	<c:otherwise>
 		                            		<div class="header__top__right__auth">
-				                                <a href="<%=request.getContextPath()%>/seller/product" target="_blank"><i class="fa fa-user"></i> 판매자페이지</a>
+				                                <a href="<%=request.getContextPath()%>/seller/dashboard" target="_blank"><i class="fa fa-user"></i> 판매자페이지</a>
 				                            </div>
 		                            	</c:otherwise>
 		                            </c:choose>	
@@ -63,8 +63,8 @@
 				<div class="col-lg-9">
 					<nav class="header__menu">
 						<ul>
-							<li><a href="<%=request.getContextPath()%>/shop">상품</a></li>
-							<li><a href="<%=request.getContextPath()%>/board/list?bcid=0">게시판</a>
+							<li id="shop"><a href="<%=request.getContextPath()%>/shop">상품</a></li>
+							<li id="board"><a href="<%=request.getContextPath()%>/board/list?bcid=0">게시판</a>
 								<ul class="header__menu__dropdown">
 									<li><a href="<%=request.getContextPath()%>/board/list?bcid=0">공지사항</a></li>
 									<li><a href="<%=request.getContextPath()%>/board/list?bcid=1">식단</a></li>
@@ -72,14 +72,14 @@
 									<li><a href="<%=request.getContextPath()%>/board/list?bcid=3">고민&질문</a></li>
 								</ul>
 							</li>
-							<li><a href="<%=request.getContextPath()%>/health/caloriewrite">건강관리</a>
+							<li id="health"><a href="<%=request.getContextPath()%>/health/caloriewrite">건강관리</a>
 								<ul class="header__menu__dropdown">
 									<li><a href="<%=request.getContextPath()%>/health/caloriewrite">칼로리 처방 받기</a></li>
 									<li><a href="<%=request.getContextPath()%>/health/bmiwrite">BMI 지수 조회</a></li>
 									<li><a href="<%=request.getContextPath()%>/health/centerlist">보건소 조회</a></li>
 								</ul>
 							</li>
-							<li><a href="<%=request.getContextPath()%>/diary">다이어리</a></li>
+							<li id="diary"><a href="<%=request.getContextPath()%>/diary">다이어리</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -92,17 +92,38 @@
 	
 <script>
 // <헤더 메뉴 클릭시 색상 고정>
-// 1. 현재 페이지의 URL을 가져옴
-var currentUrl = window.location.href;
-// 2. a 태그를 가져옴
-var menuLinks = document.querySelectorAll('nav ul li a');
-// 3. 헤더 항목들을 반복하면서 현재 페이지의 URL과 일치하는 항목에 active 클래스를 추가
-menuLinks.forEach(function(link) {
-	if (link.href === currentUrl) {
-			link.parentElement.classList.add('active');
-		} else {
-			link.parentElement.classList.remove('active');
-		}
+// 1. 현재 페이지 URL을 가져옴
+const currentUrl = window.location.href;
+
+// 2. li 요소들을 가져와서 반복문을 돌며 현재 URL이 shop, board, health, diary를 포함하는 각각의 경우 li에 active 클래스 추가
+const liList = document.querySelectorAll("li");
+liList.forEach(function (li) {
+
+	if (currentUrl.includes("<%=request.getContextPath()%>/shop")) {
+		document.querySelectorAll("li").forEach(function(item) {
+			item.classList.remove("active");
+		});
+		document.getElementById("shop").classList.add("active");
+	} 
+	if (currentUrl.includes("<%=request.getContextPath()%>/board")) {
+		document.querySelectorAll("li").forEach(function(item) {
+			item.classList.remove("active");
+		});
+		document.getElementById("board").classList.add("active");
+	}
+	if (currentUrl.includes("<%=request.getContextPath()%>/health")) {
+		document.querySelectorAll("li").forEach(function(item) {
+			item.classList.remove("active");
+		});
+		document.getElementById("health").classList.add("active");
+	}
+	if (currentUrl.includes("<%=request.getContextPath()%>/diary")) {
+		document.querySelectorAll("li").forEach(function(item) {
+			item.classList.remove("active");
+		});
+		document.getElementById("diary").classList.add("active");
+	}
+
 });
 </script>
 <!-- Header Section End -->

@@ -84,7 +84,7 @@
 					</div>
 					<!-- 게시글 이모티콘 끝-->
 
-
+					<button class="btn btn-primary btn-sm btn-light bookmark" value="${read.bid}">북마크</button>
 					<!-- 수정, 삭제, 목록 버튼 -->
 					<div id="button_parent">
 						<!-- 수정, 삭제 버튼은 본인이 작성한 글일때만 출력. -->
@@ -360,6 +360,37 @@ $(document).ready(function() {
                     if (data.action == 'like') {
                         btn.addClass('active');
                     } else if (data.action == 'unlike') {
+                        btn.removeClass('active');
+                    }
+                }
+            },
+            error: function(xhr, status, error){
+            	console.log('Ajax error:', error)
+            }
+        });
+    });
+});
+
+
+$(document).ready(function() {
+    // 버튼 클릭 이벤트 처리
+    $(document).on('click', '.bookmark', function() {
+        var bid = $(this).val(); // 게시글 번호
+        var btn = $(this); // 버튼
+		
+        console.log(bid);
+        
+        // Ajax 요청
+        $.ajax({
+            type: 'POST',
+            url: 'book',
+            data : {bid : bid},
+            success: function(data) {
+            	console.log('Ajax response:', data)
+                if (data.result == 'success') {
+                    if (data.action == 'book') {
+                        btn.addClass('active');
+                    } else if (data.action == 'delbook') {
                         btn.removeClass('active');
                     }
                 }

@@ -30,49 +30,71 @@ public class ReplyController {
 	@Autowired
 	private ReplyService srv;
 
-	//부모 댓글 작성
+	// 부모 댓글 작성
 	@PostMapping("/replywrite")
 	@ResponseBody
 	public String write(@RequestBody Reply vo) throws Exception {
 		srv.write(vo);
 		return new Gson().toJson(vo);
 	}
-	
-	//댓글 수정
+
+	// 댓글 수정
 	@PostMapping("/replyupdate")
 	@ResponseBody
 	public String rupdate(@RequestBody Reply vo) throws Exception {
 		srv.update(vo);
 		return new Gson().toJson(vo);
 	}
-	
-	//댓글 삭제
+
+	// 댓글 삭제
 	@PostMapping("/replydelete")
 	@ResponseBody
 	public int delete(@RequestParam("rid") int rid) throws Exception {
 		return srv.delete(rid);
 	}
-	
-	//댓글 공감
+
+	// 댓글 공감
 	@PostMapping("/like")
 	@ResponseBody
 	public Map<String, String> like(@RequestParam("rid") int rid, HttpSession session) throws Exception {
-		
+
 		int mid = (int) session.getAttribute("mid"); // 세션에서 회원번호 가져오기
-		
+
 		int count = srv.checklike(rid, mid); // 해당 댓글에 대한 회원의 좋아요 상태 확인
-	    Map<String, String> map = new HashMap<>();
-	    
-	    if (count == 0) { // 좋아요를 누르지 않은 경우
-	        srv.like(rid, mid); // 좋아요 추가
-	        map.put("result", "success");
-	        map.put("action", "like");
-	    } else { // 좋아요를 이미 누른 경우
-	        srv.unlike(rid, mid); // 좋아요 제거
-	        map.put("result", "success");
-	        map.put("action", "unlike");
-	    }
-	    return map;
+		Map<String, String> map = new HashMap<>();
+
+		if (count == 0) { // 좋아요를 누르지 않은 경우
+			srv.like(rid, mid); // 좋아요 추가
+			map.put("result", "success");
+			map.put("action", "like");
+		} else { // 좋아요를 이미 누른 경우
+			srv.unlike(rid, mid); // 좋아요 제거
+			map.put("result", "success");
+			map.put("action", "unlike");
+		}
+		return map;
+	}
+
+	// 북마크
+	@PostMapping("/book")
+	@ResponseBody
+	public Map<String, String> bookmark(HttpSession session, @RequestParam("bid") int bid) throws Exception {
+
+		int mid = (int) session.getAttribute("mid"); // 세션에서 회원번호 가져오기
+
+		int count = srv.checkbook(mid, bid); // 해당 댓글에 대한 회원의 좋아요 상태 확인
+		Map<String, String> map = new HashMap<>();
+
+		if (count == 0) { // 좋아요를 누르지 않은 경우
+			srv.book(mid,bid); // 좋아요 추가
+			map.put("result", "success");
+			map.put("action", "book");
+		} else { // 좋아요를 이미 누른 경우
+			srv.delbook(mid,bid); // 좋아요 제거
+			map.put("result", "success");
+			map.put("action", "delbook");
+		}
+		return map;
 	}
 
 //	@PostMapping("/replyreport")

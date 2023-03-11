@@ -6,7 +6,7 @@
         <!-- Menu -->
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
-            <a href="<%=request.getContextPath()%>/seller/product" class="app-brand-link">
+            <a href="<%=request.getContextPath()%>/seller/dashboard" class="app-brand-link">
               <span class="app-brand-logo demo">
               	<img src="https://res.cloudinary.com/doxmm0ofz/image/upload/v1675951769/STAY_FIT_logo_ewct4e.png" style="width: 120px; height: 45px;">
               </span>
@@ -25,10 +25,29 @@
               <span class="menu-header-text">SELLER</span>
             </li>
             
+            <!-- 대시보드 -->
+<c:choose>
+	<c:when test="${currentMenu == 1}">
+            <li class="menu-item active">
+              <a href="<%=request.getContextPath()%>/seller/dashboard" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div>대시보드</div>
+              </a>
+            </li>
+	</c:when>
+	<c:otherwise>
+            <li class="menu-item">
+              <a href="<%=request.getContextPath()%>/seller/dashboard" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div>대시보드</div>
+              </a>
+            </li>
+	</c:otherwise>
+</c:choose> 
           
 			<!-- 상품 -->
 <c:choose>
-	<c:when test="${currentMenu == 1 || currentMenu == 2}">			
+	<c:when test="${currentMenu == 2 || currentMenu == 3}">			
             <li class="menu-item active open">
     </c:when>
 	<c:otherwise>
@@ -43,7 +62,7 @@
               
             <!-- 상품 관리 -->
 <c:choose>
-	<c:when test="${currentMenu == 1}">
+	<c:when test="${currentMenu == 2}">
             <li class="menu-item active">
               <a href="<%=request.getContextPath()%>/seller/product" class="menu-link">
                 <div>상품 관리</div>
@@ -60,7 +79,7 @@
 </c:choose>                  
             <!-- 상품 등록 -->
 <c:choose>
-	<c:when test="${currentMenu == 2}">
+	<c:when test="${currentMenu == 3}">
             <li class="menu-item active">
                   <a href="<%=request.getContextPath()%>/seller/form" class="menu-link">
                     <div>상품 등록</div>

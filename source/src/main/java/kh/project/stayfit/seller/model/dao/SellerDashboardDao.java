@@ -1,4 +1,4 @@
-package kh.project.stayfit.admin.model.dao;
+package kh.project.stayfit.seller.model.dao;
 
 import java.util.List;
 
@@ -11,25 +11,25 @@ import kh.project.stayfit.admin.model.vo.AdminDashboard2;
 import kh.project.stayfit.admin.model.vo.AdminDashboard3;
 
 @Repository
-public class DashboardDao {
+public class SellerDashboardDao {
 	
 	@Autowired
 	private SqlSession sqlsession;
 	
 	
 	// 첫번째 차트
-	public List<AdminDashboard1> selectChart1(String year) throws Exception{
-		return sqlsession.selectList("admin.selectChart1", year) ;
+	public List<AdminDashboard1> selectChart1() throws Exception{
+		return sqlsession.selectList("seller.selectChart1") ;
 	}
 	
 	// 두번째 차트
 	public List<AdminDashboard2> selectChart2() throws Exception{
-		return sqlsession.selectList("admin.selectChart2") ;
+		return sqlsession.selectList("seller.selectChart2") ;
 	}
 	
 	// 세번째 차트
 	public List<AdminDashboard3> selectChart3() throws Exception{
-		return sqlsession.selectList("admin.selectChart3") ;
+		return sqlsession.selectList("seller.selectChart3") ;
 	}
 
 }

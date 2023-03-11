@@ -51,7 +51,7 @@ public class ProductController {
 			mv.addObject("msg", "판매자만 접근 가능한 페이지입니다.");
 			mv.setViewName("/seller/resultAlert");
 		} else {
-			mv.addObject("currentMenu", 1);
+			mv.addObject("currentMenu", 2);
 			mv.setViewName("/seller/product");
 		}
 		return mv;
@@ -66,7 +66,7 @@ public class ProductController {
 			mv.addObject("msg", "판매자만 접근 가능한 페이지입니다.");
 			mv.setViewName("/seller/resultAlert");
 		} else {
-			mv.addObject("currentMenu", 2);
+			mv.addObject("currentMenu", 3);
 			mv.setViewName("/seller/form");
 		}
 		return mv;

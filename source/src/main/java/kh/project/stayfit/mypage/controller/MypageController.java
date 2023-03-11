@@ -321,7 +321,61 @@ public class MypageController {
 			}
 		}
 	}
-	
+	//찜목록 추가
+	@GetMapping("/insertwish")
+	public void insertWish(
+			HttpServletResponse response
+			, HttpServletRequest request
+			, @RequestParam("pid") int pid
+			) {
+		int result = 0;
+		MypageWish vo = new MypageWish();
+		
+		int mid = -1;
+		if(request.getSession().getAttribute("mid") != null) {
+			mid = (int) request.getSession().getAttribute("mid");
+			System.out.println("mid = "+mid);
+		}
+		
+		if(mid == -1) {
+			System.out.println("mid = "+mid);
+			result = 3;
+			try {
+				PrintWriter out = response.getWriter();
+				out.append(new GsonBuilder().create().toJson(result));
+				out.flush();
+				out.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		} else {
+			vo.setMid(mid);
+			vo.setPid(pid);
+			try {
+				result = productservice.insertWish(vo);
+				
+				PrintWriter out = response.getWriter();
+				out.append(new GsonBuilder().create().toJson(result));
+				out.flush();
+				out.close();
+			} catch (DuplicateKeyException e) {
+			    result = 2;
+			    PrintWriter out;
+				try {
+					out = response.getWriter();
+					out.append(new GsonBuilder().create().toJson(result));
+					out.flush();
+					out.close();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
 	
 	
 	
@@ -387,9 +441,9 @@ public class MypageController {
 	}
 	//장바구니 추가
 	@GetMapping("/insertcart")
-	public void insertCart(
+	public void insertCart_1(
 			HttpServletResponse response
-			, @RequestParam("mid") int mid
+			, HttpServletRequest request
 			, @RequestParam("pid") int pid
 			, @RequestParam("pcount") int pcount
 			) {
@@ -397,33 +451,110 @@ public class MypageController {
 		int result1 = 0;
 		int result2 = 0;
 		MypageWish vo = new MypageWish();
-		vo.setMid(mid);
-		vo.setPid(pid);
-		try {
-			result1 = productservice.insertCart(vo);
-			if(result1 > 0) {
-				result2 = productservice.deleteWish(vo);
-				if(result2 > 0) result = 1;
-			}
-			
-			PrintWriter out = response.getWriter();
-			out.append(new GsonBuilder().create().toJson(result));
-			out.flush();
-			out.close();
-		} catch (DuplicateKeyException e) {
-		    result = 2;
-		    PrintWriter out;
+		
+		int mid = -1;
+		if(request.getSession().getAttribute("mid") != null) {
+			mid = (int) request.getSession().getAttribute("mid");
+			System.out.println("mid = "+mid);
+		}
+		
+		if(mid == -1) {
+			System.out.println("mid = "+mid);
+			result = 3;
 			try {
-				out = response.getWriter();
+				PrintWriter out = response.getWriter();
 				out.append(new GsonBuilder().create().toJson(result));
 				out.flush();
 				out.close();
-			} catch (IOException e1) {
-				e1.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 			
-		} catch (Exception e) {
-			e.printStackTrace();
+		} else {
+			vo.setMid(mid);
+			vo.setPid(pid);
+			try {
+				result1 = productservice.insertCart(vo);
+				if(result1 > 0) {
+					result2 = productservice.deleteWish(vo);
+					if(result2 > 0) result = 1;
+				}
+				
+				PrintWriter out = response.getWriter();
+				out.append(new GsonBuilder().create().toJson(result));
+				out.flush();
+				out.close();
+			} catch (DuplicateKeyException e) {
+			    result = 2;
+			    PrintWriter out;
+				try {
+					out = response.getWriter();
+					out.append(new GsonBuilder().create().toJson(result));
+					out.flush();
+					out.close();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	//장바구니 추가
+	@GetMapping("/minsertcart")
+	public void insertCart_2(
+			HttpServletResponse response
+			, HttpServletRequest request
+			, @RequestParam("pid") int pid
+			, @RequestParam("pcount") int pcount
+			) {
+		int result = 0;
+		MypageWish vo = new MypageWish();
+		
+		int mid = -1;
+		if(request.getSession().getAttribute("mid") != null) {
+			mid = (int) request.getSession().getAttribute("mid");
+			System.out.println("mid = "+mid);
+		}
+		
+		if(mid == -1) {
+			System.out.println("mid = "+mid);
+			result = 3;
+			try {
+				PrintWriter out = response.getWriter();
+				out.append(new GsonBuilder().create().toJson(result));
+				out.flush();
+				out.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		} else {
+			vo.setMid(mid);
+			vo.setPid(pid);
+			try {
+				result = productservice.insertCart(vo);
+				
+				PrintWriter out = response.getWriter();
+				out.append(new GsonBuilder().create().toJson(result));
+				out.flush();
+				out.close();
+			} catch (DuplicateKeyException e) {
+			    result = 2;
+			    PrintWriter out;
+				try {
+					out = response.getWriter();
+					out.append(new GsonBuilder().create().toJson(result));
+					out.flush();
+					out.close();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	//장바구니 삭제
