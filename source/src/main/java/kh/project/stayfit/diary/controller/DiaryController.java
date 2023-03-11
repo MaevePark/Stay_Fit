@@ -53,4 +53,19 @@ public class DiaryController {
 		String result = new GsonBuilder().create().toJson(dataMap);
 		return result;
 	}
+	
+	@GetMapping("/searchexrc")
+	@ResponseBody
+	public String searchExrc(@RequestParam("keyword") String keyword) throws Exception {
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+		try {
+			dataMap.put("exrcList", diaryService.searchExrc(keyword));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		String result = new GsonBuilder().create().toJson(dataMap);
+		return result;
+	}
+	
 }

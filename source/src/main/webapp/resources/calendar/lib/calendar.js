@@ -89,6 +89,35 @@ function search() {
 	}
 }
   
+  function search() {
+		let searchInput = document.getElementById('searchExrc');
+		if(searchInput.value !== "") {
+			$.ajax({
+				url: "searchexrc",
+				type: "get",
+				async: false,
+				data: {
+					keyword: searchInput.value
+				},
+				dataType: "json",
+				success: function(value) {
+						console.log("아아아아아아아아 여기는 return된 데이이이이이이터");
+						console.log(value.exrcList);
+						var exercise = value.exrcList;
+						
+						for(var i=0; i< exercise.length; i++) {
+							var list = exercise[i];
+							
+							
+						}
+						
+				},
+				error: function(request, status, error) {
+					alert("code" + request.status + "\n" + "message : " + request.responseText + "\nerror" + error);
+				}
+			});
+		}
+	}
   
   
   

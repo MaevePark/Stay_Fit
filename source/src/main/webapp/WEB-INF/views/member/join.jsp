@@ -25,15 +25,18 @@
 									placeholder="email@stayfit.com" value="">
 							</div>
 							<div class="col-md-3 join-button-box">
-								<button type="button" onclick="#" name="btnChk"
+								<button type="button" id="btnChkMail" name="btnChkMail"
 									class="member-btn btn btn-success">
 									<span class="btn-txt">인증번호 전송</span>
 								</button>
 							</div>
 							<div class="col-md-9 join-input-box">
 								<label for="cdnum" class="form-label">인증번호</label> <input
-									type="text" name="cdnum" id="cdnum" class="form-control"
+									type="text" disabled="disabled" maxlength="6" name="cdnum" id="cdnum" class="form-control"
 									value="">
+							</div>
+							<div class="col-md-9 join-input-box">
+								<span id="mail-check-msg"></span>
 							</div>
 							<div class="col-md-9 join-input-box">
 								<label for="mname" class="form-label">닉네임</label> <input
@@ -137,5 +140,36 @@ function checkName(mname) {
     return true; //확인이 완료되었을 때
 }
 
+$('#btnChkMail').click(function(){
+	// const eamil = $('#memail').val(); // 이메일 주소값 얻어오기!
+	// console.log('이메일 : ' + eamil); // 이메일 오는지 확인
+	const checkInput = $('.cdnum') // 인증번호 입력하는곳 
+	
+	$.ajax({
+		type : 'get',
+		url : 'mailCheck',
+		success : function (data) {
+			console.log("data : " +  data);
+			checkInput.attr('disabled',false);
+			code = data;
+			alert('인증번호가 전송되었습니다.')
+		}			
+	});
+}); 
+
+$('#cdnum').blur(function () {
+	const inputCode = $(this).val();
+	const $resultMsg = $('#mail-check-msg');
+	
+	if(inputCode === code){
+		$resultMsg.html('인증번호가 일치합니다.');
+		$resultMsg.css('color','green');
+		$('#btnChkMail').attr('disabled',true);
+		$('#memail').attr('readonly',true);
+	}else{
+		$resultMsg.html('인증번호가 불일치 합니다. 다시 확인해주세요!.');
+		$resultMsg.css('color','red');
+	}
+});
 
 </script>

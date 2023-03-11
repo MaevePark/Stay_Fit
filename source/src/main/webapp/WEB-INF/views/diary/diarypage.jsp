@@ -43,7 +43,10 @@ window.onload = function() {
 					<div class="weight-group">
 						<span class="modal-txt">몸무게 : </span> 
 						<input type="text" class="diary-modal-input"
-							id="weight-input"><span>&nbsp;&nbsp;kg</span>
+							id="weight-input" onkeydown="this.value=this.value.replace(/[^0-9]/g,'')"
+							onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"
+							onblur="this.value=this.value.replace(/[^0-9]/g,'')">
+							<span>&nbsp;&nbsp;kg</span>
 					</div>
 					<div class="btn-group-toggle radio-group" data-toggle="buttons">
 						<label class="rounded-circle btn btn-light btn-kcal"
@@ -140,7 +143,7 @@ window.onload = function() {
 				<div class="modal-body">
 					<form method="get" name="searchMeal">
 						<div class="input-group">
-							<input type="text" class="form-control" id="searchMeal" placeholder="식단 메뉴에 대한 검색어를 입력하세요.">
+							<input type="text" class="form-control" id="searchMeal" placeholder="식단 메뉴명에 대한 검색어를 입력하세요.">
 							<div class="input-group-append">
 								<button type="button" class="btn btn-secondary" id="btnSrcMeal" onclick="search()">
 								<i class="fa fa-search"></i>
@@ -181,11 +184,11 @@ window.onload = function() {
 				</div>
 				<!-- Modal Body -->
 				<div class="modal-body">
-					<form method="post" name="searchMeal">
+					<form method="post" name="searchExrc">
 						<div class="input-group">
 							<input type="text" class="form-control" id="searchExrc" placeholder="운동 종류에 대한 검색어를 입력하세요.">
 							<div class="input-group-append">
-								<button type="button" class="btn btn-secondary" id="btnSrcMeal">
+								<button type="button" class="btn btn-secondary" id="btnSrcExrc">
 								<i class="fa fa-search"></i>
 								</button>
 							</div>

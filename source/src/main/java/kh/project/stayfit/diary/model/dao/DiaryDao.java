@@ -26,6 +26,8 @@ public class DiaryDao {
 		return sqlsession.selectList("diary.searchMeal", keyword);
 	}
 	public List<Exercise>searchExrc(String keyword){
+		System.out.println("-------------------Dao---------------------");
+		System.out.println("keyword : " + keyword);
 		return sqlsession.selectList("diary.searchExrc", keyword);
 	}
 	//캘린더 출력
