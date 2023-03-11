@@ -147,14 +147,14 @@
 														<div class="container">
 															
 															<!-- <button id="modify-button" onclick="showForm()" class="btn btn-sm btn-modify">수정</button> -->
-															<button id="modi-reply" class="btn btn-sm btn-modify">수정</button>
+															<button id="modi-reply" class="btn btn-sm btn-modify" value="${repl.rid }">수정</button>
 															<button id="del-reply"type="button" onclick="rdel(${repl.rid})" class="btn btn-sm btn-del">삭제</button>
 															<button id="repl-repl"type="button" class="btn btn-primary btn-sm btn-light">답글</button>
 														</div>
 												</c:if> 
 												<c:if test="${repl.mid != writer }">
 													<div class="container">
-														<button type="button" class="btn btn-primary btn-sm btn-light">공감</button>
+														<button class="btn btn-primary btn-sm btn-light like-button" value="${repl.rid }">공감</button>
 														<button type="button" class="btn btn-primary btn-sm btn-light">신고</button>
 														<button type="button" class="btn btn-primary btn-sm btn-light">답글</button>
 													</div>
@@ -340,4 +340,34 @@ function rdel(rid){
 	}	
 }
 
+//댓글 공감
+$(document).ready(function() {
+    // 버튼 클릭 이벤트 처리
+    $(document).on('click', '.like-button', function() {
+        var rid = $(this).val(); // 댓글 번호
+        var btn = $(this); // 버튼
+		
+        console.log(rid);
+        
+        // Ajax 요청
+        $.ajax({
+            type: 'POST',
+            url: 'like',
+            data : {rid:rid},
+            success: function(data) {
+            	console.log('Ajax response:', data)
+                if (data.result == 'success') {
+                    if (data.action == 'like') {
+                        btn.addClass('active');
+                    } else if (data.action == 'unlike') {
+                        btn.removeClass('active');
+                    }
+                }
+            },
+            error: function(xhr, status, error){
+            	console.log('Ajax error:', error)
+            }
+        });
+    });
+});
 </script>

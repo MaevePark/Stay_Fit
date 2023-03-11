@@ -1,6 +1,8 @@
 package kh.project.stayfit.board.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +36,30 @@ public class ReplyDao {
 		return sqlsession.delete("board.rdelete", rid);
 	}
 	
+	//댓글 좋아요 카운트
+	public int checklike(int rid, int mid) throws Exception{
+		Map<String, Object> map = new HashMap<>();
+		map.put("rid", rid);
+		map.put("mid", mid);
+		return sqlsession.selectOne("board.checklike", map);
+	}
+	
+	//댓글 좋아요
+	public int like(int rid, int mid) throws Exception{
+		Map<String, Object> map = new HashMap<>();
+	    map.put("rid", rid);
+	    map.put("mid", mid);
+		return sqlsession.update("board.rlike", map);
+	}
+	
+	//댓글 좋아요 삭제
+	public int unlike(int rid, int mid) throws Exception {
+	    Map<String, Object> map = new HashMap<>();
+	    map.put("rid", rid);
+	    map.put("mid", mid);
+	    return sqlsession.delete("board.dellike", map);
+	}
+	
 //	//대댓글 작성
 //	public int answer(Reply) throws Exception{
 //		return sqlsession.;
@@ -46,10 +72,6 @@ public class ReplyDao {
 //		return sqlsession.;
 //	}
 
-//	//댓글 좋아요
-//	public int like(int, int) throws Exception{
-//		return sqlsession.;
-//	}
 	
 //	//답변 선택
 //	public int adopt(int, int, int, int) throws Exception{

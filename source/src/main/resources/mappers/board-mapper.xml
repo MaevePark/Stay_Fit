@@ -82,4 +82,19 @@
 		DELETE FROM reply WHERE rid=#{rid}
 	</delete>
 	
+	<!-- 댓글 공감 카운트  -->
+	<select id="checklike" parameterType="map" resultType="int">
+		SELECT COUNT(*) FROM reply_like WHERE rid=#{rid} AND mid=#{mid}
+	</select>
+	
+	<!-- 댓글 공감 -->
+	<insert id="rlike" parameterType="map">
+		INSERT INTO reply_like (rid,mid) VALUES(#{rid}, #{mid})
+	</insert>
+	
+	<!-- 댓글 공감 삭제 -->
+	<delete id="dellike" parameterType="map">
+		DELETE FROM reply_like WHERE rid=#{rid} AND mid=#{mid}
+	</delete>
+	
 </mapper>

@@ -38,6 +38,25 @@ public class ReplyServiceImpl implements ReplyService{
 		return dao.delete(rid);
 	}
 	
+	//댓글 좋아요 카운트
+	@Override
+	public int checklike(int rid, int mid) throws Exception{
+		int count = dao.checklike(rid, mid);
+		return count;
+	}
+	
+	//댓글 좋아요
+	@Override
+	public int like(int rid, int mid) throws Exception{
+		return dao.like(rid, mid);
+	}
+	
+	//댓글 좋아요 삭제
+	@Override
+	public int unlike(int rid, int mid) throws Exception{
+		return dao.unlike(rid, mid);
+	}
+	
 //	//대댓글 작성
 //	@Override
 //	public int answer(Reply) throws Exception{
@@ -53,11 +72,6 @@ public class ReplyServiceImpl implements ReplyService{
 //		return ;
 //	}
 
-//	//댓글 좋아요
-//	@Override
-//	public int like(int, int) throws Exception{
-//		return ;
-//	}
 
 //	//답변 선택
 //	@Override
