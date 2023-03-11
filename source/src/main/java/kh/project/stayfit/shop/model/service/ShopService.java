@@ -16,6 +16,8 @@ public interface ShopService {
 	public List<Category> selectCategory() throws Exception;
 	public List<ShopProduct> selectProductList(Map<String, Object> searchMap, int page, int limits) throws Exception;
 	public int selectProductTotalCnt(Map<String, Object> searchMap) throws Exception;
+	//할인상품
+	public List<ShopProduct> selectSaleList() throws Exception;
 	
 
 	//찜목록 등록

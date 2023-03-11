@@ -33,12 +33,12 @@
 	SELECT NVL(MAX(PID), 0)+1 MAXID FROM PRODUCT
   	</insert>
   	
+  	
+  	
   	<!-- 상품 카테고리 리스트업 -->
   	<select id="selectCategory" resultType="Category">
   		SELECT * FROM CATEGORY
   	</select>
-  	
-  	
   	<!-- 상품 리스트업 -->
   	<select id="selectProduct" parameterType="hashmap" resultType="ShopProduct">
 		SELECT * FROM PRODUCT 
@@ -66,9 +66,14 @@
   	
   	<!-- 할인 상품 리스트업 -->
   	<select id="selectSale" resultType="ShopProduct">
-		SELECT * FROM PRODUCT 
-			WHERE PSALE > 20 
-		ORDER BY DBMS_RANDOM.VALUE
+  	<![CDATA[
+		SELECT * 
+			FROM (SELECT P.PID, P.CID, C.CNAME, P.PNAME, P.PIMAGE, P.PPRICE, P.PSALE, P.PLINK 
+					FROM PRODUCT P JOIN CATEGORY C ON P.CID = C.CID 
+						WHERE P.PSALE > 40
+					ORDER BY DBMS_RANDOM.VALUE)
+			WHERE ROWNUM < 7
+	]]>
   	</select>
   	
   	

@@ -34,6 +34,11 @@ public class ShopServiceImpl implements ShopService{
 		return dao.selectProductTotalCnt(searchMap);
 	}
 	
+	//할인상품
+	public List<ShopProduct> selectSaleList() throws Exception {
+		return  dao.selectSaleList();
+	}
+	
 	//찜목록 등록
 	public int insertWish(ShopCart vo) throws Exception {
 		return dao.insertWish(vo);

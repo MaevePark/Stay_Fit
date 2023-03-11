@@ -27,5 +27,6 @@ public class ShopProduct {//사용여부 담당자기 결정
 	private int pstock;
 	private int psale;
 	private String plink;
+	private String cname;
 
 }

@@ -29,10 +29,15 @@ public class ShopDao {
 	public List<ShopProduct> selectProductList(Map<String, Object> searchMap, int page, int limits) throws Exception{
 		return sqlsession.selectList("shop.selectProduct", searchMap, new RowBounds((page-1)*limits, limits));
 	}
-	public int selectProductTotalCnt(Map<String, Object> searchMap) throws Exception{
+	public int selectProductTotalCnt(Map<String, Object> searchMap) throws Exception {
 		System.out.println(searchMap.get("productCategory"));
 		System.out.println(searchMap.get("searchProduct"));
 		return sqlsession.selectOne("shop.countProduct", searchMap);
+	}
+	
+	//할인상품
+	public List<ShopProduct> selectSaleList() throws Exception {
+		return sqlsession.selectList("shop.selectSale");
 	}
 	
 	//장바구니 등록

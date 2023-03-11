@@ -59,6 +59,8 @@ public class ShopController {
 		int limits = 12;
 		int pageLimit = 5;
 		
+		
+		
 		Map<String, Object> searchMap = new HashMap<String, Object>();
 		searchMap.put("productCategory", productCategory);
 		searchMap.put("searchProduct", searchProduct);
@@ -69,7 +71,11 @@ public class ShopController {
 			
 			
 			mv.addObject("categoryList", shopService.selectCategory());
-			mv.addObject("productList", shopService.selectProductList(searchMap, page, limits));
+			mv.addObject("productList", shopService.selectProductList(searchMap, page, limits));//일반상품
+			mv.addObject("saleList", shopService.selectSaleList());//할인상품
+			
+			//추천상품
+			
 			mv.addObject("pagingMap", pagingMap);
 			
 		} catch (Exception e) {
@@ -78,10 +84,7 @@ public class ShopController {
 		
 		mv.addObject("urlpattern", "shop");
 		mv.addObject("sectionName", "shop/main.jsp");
-		//페이징
-		//인기상품
-		//일반상품
-		//추천상품
+		
 		mv.setViewName("index");
 		return mv;
 	}
