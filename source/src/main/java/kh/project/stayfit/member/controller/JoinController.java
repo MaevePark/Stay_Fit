@@ -1,6 +1,12 @@
 package kh.project.stayfit.member.controller;
 
 
+import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -11,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.google.gson.GsonBuilder;
 
 import kh.project.stayfit.member.model.service.MemberMailService;
 import kh.project.stayfit.member.model.service.MemberService;
@@ -57,12 +65,25 @@ public class JoinController {
 		return mailService.EmailForm(memail);
 	}
 	@PostMapping("/send")
-	public void sendMail(@RequestParam(name="memail") String memail) {
-		SimpleMailMessage message = new SimpleMailMessage();
-		message.setTo(memail);
-		message.setSubject("회원 가입 인증 이메일 입니다.");
-		message.setText("홈페이지를 방문해주셔서 감사합니다.");
-		mailSender.send(message);
+	public void sendMail(HttpServletResponse response, @RequestParam(name="memail") String memail) {
+		String result = null;
+		try {
+			PrintWriter out = response.getWriter();
+			try {
+				SimpleMailMessage message = new SimpleMailMessage();
+				message.setTo(memail);
+				message.setSubject("회원 가입 인증 이메일 입니다.");
+				message.setText("홈페이지를 방문해주셔서 감사합니다.");
+				mailSender.send(message);
+				result = "success";
+			} catch (Exception e) {
+				result = "fail";
+			}
+			out.append(new GsonBuilder().create().toJson(result));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("result : "+result);
 	}
 	@GetMapping("/codechk")
 	public ModelAndView codechk(ModelAndView mv) {
