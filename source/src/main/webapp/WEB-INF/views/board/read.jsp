@@ -89,12 +89,15 @@
 					<div id="button_parent">
 						<!-- 수정, 삭제 버튼은 본인이 작성한 글일때만 출력. -->
 						<c:if test="${writer == read.mid }">
-						<form>
-							<button type="button" class="site-btn" id="btn-upd" onclick="location.href='update?bid=${read.bid}'">수정</button>
-							<button type="button" class="site-btn" id="btn-del" onclick="del(${read.bid})">삭제</button>
-						</form>
+							<form>
+								<button type="button" class="site-btn" id="btn-upd"
+									onclick="location.href='update?bid=${read.bid}'">수정</button>
+								<button type="button" class="site-btn" id="btn-del"
+									onclick="del(${read.bid})">삭제</button>
+							</form>
 						</c:if>
-						<button type="button" class="site-btn" onclick="location.href='list?bcid=${read.bcid}'">목록</button>
+						<button type="button" class="site-btn"
+							onclick="location.href='list?bcid=${read.bcid}'">목록</button>
 					</div>
 					<!-- 수정, 삭제, 목록 버튼 여기까지  -->
 
@@ -119,22 +122,56 @@
 								<c:when test="${!empty reply}">
 									<c:forEach var="repl" items="${reply}">
 										<tr>
-											<td>
+											<td style="width:400px">  <!-- overflow: hidden때문에 임시부여 수정예정 -->
 												<div class="blog__sidebar__recent__item__pic">
 													<img id="profimg" src="${repl.profimg }" />
 												</div>
 												<div class="blog__sidebar__recent__item__text">
 													<span>${repl.mname }</span>
-													<div id="#updatecontent">${repl.rcontent }</div>
+													<%-- <div id="old-reply" style="dispay:none;">${repl.rcontent }
+													</div> --%>
+													<div class ="reply-form">
+														<!--기존 댓글 정보  -->
+														<div id="old-reply" class="old-reply">
+															<c:out value="${repl.rcontent }"/>
+														</div>
+														<!--댓글 수정 폼  -->
+														<div id="comment-form" class="comment-form" style="display: none;" >
+															<input type="text" id="comment-input" class="comment-input">
+															<div class="container">
+															<button id="submit-button" class="modify-rid btn btn-primary btn-sm btn-light" value="${repl.rid }">등록</button>
+															<button id="cancel-button" class="btn btn-primary btn-sm btn-light">취소</button>
+															</div>
+														</div>
+														<c:if test="${repl.mid == writer }">
+														<div class="container">
+															
+															<!-- <button id="modify-button" onclick="showForm()" class="btn btn-sm btn-modify">수정</button> -->
+															<button id="modi-reply" class="btn btn-sm btn-modify">수정</button>
+															<button id="del-reply"type="button" onclick="rdel(${repl.rid})" class="btn btn-sm btn-del">삭제</button>
+															<button id="repl-repl"type="button" class="btn btn-primary btn-sm btn-light">답글</button>
+														</div>
+												</c:if> 
+												<c:if test="${repl.mid != writer }">
+													<div class="container">
+														<button type="button" class="btn btn-primary btn-sm btn-light">공감</button>
+														<button type="button" class="btn btn-primary btn-sm btn-light">신고</button>
+														<button type="button" class="btn btn-primary btn-sm btn-light">답글</button>
+													</div>
+												</c:if>
+													</div>
 												</div>
 											</td>
+											<td></td>
 											<td><fmt:formatDate pattern="YY/MM/dd HH:MM"
 													value="${repl.rcreate}" /></td>
-											<td>
-												<c:if test="${repl.mid == writer }">
+											<%-- <td>
+											<c:if test="${repl.mid == writer }">
 													<div class="container">
-														<button type="button" id="modify" onclick ="updateReply(${repl.rid})" value="${repl.rid}"class="btn btn-sm btn-modify">수정</button>
-														<button type="button"  onclick ="rdel(${repl.rid})"class="btn btn-sm btn-del">삭제</button>
+														
+														<!-- <button id="modify-button" onclick="showForm()" class="btn btn-sm btn-modify">수정</button> -->
+														<button id="modify-button" class="btn btn-sm btn-modify">수정</button>
+														<button type="button" onclick="rdel(${repl.rid})" class="btn btn-sm btn-del">삭제</button>
 														<button type="button" class="btn btn-primary btn-sm btn-light">답글</button>
 													</div>
 												</c:if> 
@@ -145,7 +182,7 @@
 														<button type="button" class="btn btn-primary btn-sm btn-light">답글</button>
 													</div>
 												</c:if>
-											</td>
+											</td> --%>
 										</tr>
 									</c:forEach>
 								</c:when>
@@ -161,8 +198,10 @@
 							<form>
 								<input type="hidden" id="mid" name="mid" value="${writer }">
 								<input type="hidden" id="bid" name="bid" value="${read.bid }">
-								<input type="text" name="rcontent" id="rcontent" placeholder="댓글을 작성해주세요">
-								<button type="submit" id="rep_write" onclick="rep_btn()" class="site-btn">댓글 등록</button>
+								<input type="text" name="rcontent" id="rcontent"
+									placeholder="댓글을 작성해주세요">
+								<button type="submit" id="rep_write" onclick="rep_btn()"
+									class="site-btn">댓글 등록</button>
 							</form>
 						</div>
 						<!-- 댓글 작성 끝  -->
@@ -225,55 +264,59 @@ function del(bid){
 	
 } 
 
-//댓글 수정
- $("#modify").on("click",function(){
-		alert('aaa');
-	})
-	$.ajax({
-    url: "replyupdate",
-    method: "PUT",
-    data: {
-        text: editedCommentText
-    },
-    success: function(response) {
-        // 서버에서 수정된 댓글 데이터를 받아서 HTML에 반영
-    },
-    error: function(xhr, status, error) {
-        // 에러 처리
-    }
+//수정화면
+$(document).on('click','#modi-reply',function(){
+	var $reply = $(this).parents('.reply-form');     //reply에 기존댓글 + 수정폼 담기 (현재수정중인 댓글)
+	var content = $reply.find('.old-reply').html().trim();	//content에 공백 없애고 내용담기
+	var $editForm = $reply.find('.comment-form');	//editForm에 수정폼 담기
+	var $commentInput = $editForm.find('.comment-input');	//commentInput에 기존댓글내용 담기
+	
+	$commentInput.val(content);  //commentInput에 수정된 댓글내용담기
+	$reply.addClass('editing');  //현재수정중 구분용 editing추가
+	$reply.find('.old-reply, #modi-reply, #del-reply, #repl-repl').hide();  //수정하기버튼과 기존댓글 숨기기 
+	$editForm.show(); //수정폼 보이게하기 
+	
+	 $commentInput.focus();
+	
+	 console.log(content);
 });
-
-/*
-$.ajax({
-  url: "read.do",
-  method: "GET",
-  success: function(data) {
-    // 응답 데이터를 파싱하거나 처리합니다.
-    var newContent = "<p>" + data + "</p>";
-    
-    // 새로운 콘텐츠를 기존 요소에 추가합니다.
-    $("#existing-element").append(newContent);
-  },
-  error: function(jqXHR, textStatus, errorThrown) {
-    // 오류 처리 로직
-  }
-}); */
-
-//댓글 리스트업
-/* $.ajax({
-    url: "read.do",
-    method: "GET",
-    dataType: "json",
-    success: function(data) {
-        // 받은 데이터를 처리하고 HTML에 추가
-        var html = "<ul>";
-        $.each(data, function(index, item) {
-            html += "<li>" + item.name + "</li>";
-        });
-        html += "</ul>";
-        $("#myDiv").append(html);
-    }
-}); */
+//취소버튼 클릭시 기존화면으로 
+$(document).on('click', '#cancel-button', function() {
+	var $reply = $(this).closest('.reply-form');
+	$reply.removeClass('editing');
+	$reply.find('.old-reply, #modi-reply, #del-reply, #repl-repl').show();
+	$reply.find('.comment-form').hide();
+	});
+	
+//등록버튼
+//수정데이터 넘기기 	
+$(document).on('click', '#submit-button', function() {
+	var $reply = $(this).closest('.reply-form');
+	var $editInput = $reply.find('.comment-input');
+	var content = $editInput.val().trim();
+	var rid = $reply.find('.modify-rid').val();
+	
+	var vo ={rid : rid , rcontent : content};
+	
+	if (!content) {
+	   alert('내용을 입력해주세요.');
+	   return;
+	 }
+	$.ajax({
+		type: 'POST',  
+		url: 'replyupdate',
+		dataType : 'json',
+		contentType : 'application/json',
+		data : JSON.stringify(vo),
+		success: function(response) {
+		  console.log(response);
+		  location.reload();     
+		},
+		error: function(xhr, status, error) {
+		  console.error(error);
+		}
+		});
+	});
 
 //댓글 삭제
 function rdel(rid){

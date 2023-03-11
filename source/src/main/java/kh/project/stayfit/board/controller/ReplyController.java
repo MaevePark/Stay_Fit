@@ -29,10 +29,53 @@ public class ReplyController {
 		srv.write(vo);
 		return new Gson().toJson(vo);
 	}
+	
+	//댓글 수정
+	@PostMapping("/replyupdate")
+	@ResponseBody
+	public String rupdate(@RequestBody Reply vo) throws Exception {
+		srv.update(vo);
+		return new Gson().toJson(vo);
+	}
+	
 	//댓글 삭제
 	@PostMapping("/replydelete")
 	@ResponseBody
 	public int delete(@RequestParam("rid") int rid) throws Exception {
-		return srv.rdelete(rid);
+		return srv.delete(rid);
 	}
+
+//	@PostMapping("/replyreport")
+//	public ModelAndView report(ModelAndView mv) {
+////		Board bone = srv.read(bid);
+//
+//		mv.addObject("sectionName", "board/read.jsp");
+////		mv.addObject("read", bone);
+//		mv.setViewName("index");
+//
+//		return mv;
+//	}
+
+//	@PostMapping("/replylike")
+//	public ModelAndView like(ModelAndView mv) {
+////		Board bone = srv.read(bid);
+//
+//		mv.addObject("sectionName", "board/read.jsp");
+////		mv.addObject("read", bone);
+//		mv.setViewName("index");
+//
+//		return mv;
+//	}
+//
+//	@PostMapping("/replyadopt")
+//	public ModelAndView adopt(ModelAndView mv) {
+////		Board bone = srv.read(bid);
+//
+//		mv.addObject("sectionName", "board/read.jsp");
+////		mv.addObject("read", bone);
+//		mv.setViewName("index");
+//
+//		return mv;
+//	}
+
 }

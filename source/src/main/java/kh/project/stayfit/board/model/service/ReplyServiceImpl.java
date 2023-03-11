@@ -25,11 +25,17 @@ public class ReplyServiceImpl implements ReplyService{
 	public int write(Reply vo) throws Exception{
 		return dao.write(vo);
 	}
+	
+	//댓글 수정
+	@Override
+	public int update(Reply vo) throws Exception{
+		return dao.update(vo);
+	}
 
 	//댓글 삭제
 	@Override
-	public int rdelete(int rid) throws Exception{
-		return dao.rdelete(rid);
+	public int delete(int rid) throws Exception{
+		return dao.delete(rid);
 	}
 	
 //	//대댓글 작성
@@ -38,11 +44,7 @@ public class ReplyServiceImpl implements ReplyService{
 //		return ;
 //	}
 
-//	//댓글 수정
-//	@Override
-//	public int update(Reply, int) throws Exception{
-//		return ;
-//	}
+
 
 
 //	//댓글 신고
