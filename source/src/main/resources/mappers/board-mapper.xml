@@ -97,4 +97,19 @@
 		DELETE FROM reply_like WHERE rid=#{rid} AND mid=#{mid}
 	</delete>
 	
+	<!-- 북마크 카운트  -->
+	<select id="checkbook" parameterType="map" resultType="int">
+		SELECT COUNT(*) FROM bookmark WHERE mid=#{mid} AND bid=#{bid}
+	</select>
+	
+	<!-- 북마크  -->
+	<insert id="book" parameterType="map">
+		INSERT INTO bookmark (mid,bid) VALUES(#{mid}, #{bid})
+	</insert>
+	
+	<!-- 북마크 취소 -->
+	<delete id="delbook" parameterType="map">
+		DELETE FROM bookmark WHERE mid=#{mid} AND bid=#{bid}
+	</delete>
+	
 </mapper>
