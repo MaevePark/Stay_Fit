@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/mycart.css" type="text/css">
 <script src='<%=request.getContextPath() %>/resources/js/mypage/cart.js'></script>
@@ -39,20 +40,27 @@
 										<td class="shoping__cart__item"><img src="${list.PIMAGE }" alt="product_img">
 											<h5>${list.PNAME }</h5></td>
 										<td class="shoping__cart__price">
+											<c:set var="sale" value="${(100 - list.PSALE) }"></c:set>
+											<c:set var="fp" value="${Math.floor((list.PPRICE * sale)/100/10)*10 }"></c:set>
+											<fmt:formatNumber var="finalPrice" value="${fp }" pattern="###,###,##0" />
+											<fmt:formatNumber var="price" value="${list.PPRICE }" pattern="###,###,##0" />
+											<fmt:formatNumber var="total" value="${fp * list.PCOUNT }" pattern="###,###,##0" />
+										
 											<c:if test="${list.PSALE != 0 }">
-												<c:set var="sale" value="${(100 - list.PSALE) }"></c:set>
 												<div>
-													<span>${list.PPRICE }원</span>
+													<span>${price }원</span>
 												</div>
 												<div>
 													<span>${list.PSALE }%</span>
 												</div>
-												<span class="price">${(list.PPRICE * sale)/100/10*10}</span><span>원</span>
-												<c:set var="cost" value="${(list.PPRICE * sale)/100}"></c:set>
+												<input class="price" type="hidden" value="${fp }">
+												<span>${finalPrice}</span><span>원</span>
+												<c:set var="cost" value="${fp }"></c:set>
 											</c:if>
 											
 											<c:if test="${list.PSALE == 0 }">
-												<span class="price">${list.PPRICE/10*10 }</span><span>원</span>
+												<input class="price" type="hidden" value="${list.PPRICE/10*10 }">
+												<span>${list.PPRICE/10*10 }</span><span>원</span>
 												<c:set var="cost" value="${list.PPRICE }"></c:set>
 											</c:if>
 										</td>
@@ -64,7 +72,10 @@
 											</div>
 											<div><span>재고수량 : ${list.PSTOCK }</span></div>
 										</td>
-										<td class="shoping__cart__total"><span>${cost * list.PCOUNT /10*10 }</span>원</td>
+										<td class="shoping__cart__total">
+											<span>${total }</span>원
+											<input type="hidden" value="${cost * list.PCOUNT /10*10 }">
+										</td>
 										<td class="shoping__cart__go_to_buy">
 											<c:set var="plink" value="${list.PLINK }"></c:set>
 											<button type="button" onclick="insertRecord(${list.PID }, '${plink }')">구매하러 가기</button>

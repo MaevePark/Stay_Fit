@@ -178,17 +178,19 @@ function updateCart(el) {
 		, success: function(result) {
 			console.log(result);
 			
-			var totalPrice = parent.parentNode.parentNode.parentNode.querySelector('.shoping__cart__total').querySelector('span');
+			var totalPrice = parent.parentNode.parentNode.parentNode.querySelector('.shoping__cart__total');
 			var finalPrice = parent.parentNode.parentNode.parentNode.querySelector('.shoping__cart__price').querySelector('.price');
-			totalPrice.innerText = finalPrice.innerText * pcount;
+			totalPrice.querySelector('span').innerHTML = numberWithCommas(finalPrice.value * pcount);
+			totalPrice.querySelector('input').value = finalPrice.value * pcount;
 			
 			var totalClass = document.getElementsByClassName('shoping__cart__total');
 			var totalCost = 0;
 			for(var i=0; i<totalClass.length; i++) {
-				console.log(i+"번째 값 : "+totalClass[i].querySelector('span').innerText);
-				totalCost += parseInt(totalClass[i].querySelector('span').innerText);
+				console.log(i+"번째 값 : "+totalClass[i].querySelector('input').value);
+				totalCost += parseInt(totalClass[i].querySelector('input').value);
 			}
-			document.getElementById("fullCost").innerText = totalCost +"원";
+			console.log(totalCost);
+			document.getElementById("fullCost").innerText = numberWithCommas(totalCost) +"원";
 			
 		}
 		, error: function(request, status, errordata) {
@@ -197,6 +199,9 @@ function updateCart(el) {
 					+"error: "+errordata+"\n");
 		}
 	});
+}
+function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 function insertRecord(pid, url) {

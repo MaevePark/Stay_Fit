@@ -8,7 +8,7 @@
 <section class="product spad">
 	<div class="container">
 		<div class="row">
-			
+			<!-- 상품 카테고리 -->
 			<jsp:include page="/WEB-INF/views/shop/shopcategory.jsp"></jsp:include>
 			
 			
@@ -71,10 +71,10 @@
 				</div>
 				
 				
-				<c:if test="${productList.size > 0 }">
-					<!-- 페에징 -->
-					<jsp:include page="/WEB-INF/views/paging.jsp" />
-				</c:if>
+<%-- 				<c:if test="${productList.size > 0 }"> --%>
+<!-- 					페에징 -->
+<%-- 					<jsp:include page="/WEB-INF/views/paging.jsp" /> --%>
+<%-- 				</c:if> --%>
 				
 				
 
