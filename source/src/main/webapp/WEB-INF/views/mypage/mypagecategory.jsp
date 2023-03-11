@@ -15,8 +15,7 @@
 				<li><a href="<%=request.getContextPath()%>/mypage/board?type=likereply">공감한 댓글</a></li>
 				<li><a href="<%=request.getContextPath()%>/mypage/board?type=myboard">작성한 글</a></li>
 				<li><a href="<%=request.getContextPath()%>/mypage/board?type=myreply">작성한 댓글</a></li>
-				<li><a href="<%=request.getContextPath()%>/mypage/profile">사용자
-						정보</a></li>
+				<li><a href="<%=request.getContextPath()%>/mypage/profile">사용자 정보</a></li>
 			</ul>
 		</div>
 	</div>
