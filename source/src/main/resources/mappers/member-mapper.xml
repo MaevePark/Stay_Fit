@@ -12,9 +12,9 @@
  	
 	<insert id="join" parameterType="Member">
  	INSERT all INTO MEMBER (MID, MEMAIL, MPW, MNAME) 
- 	VALUES (#{mid}, #{memail}, #{mpw}, #{mname})
+ 	VALUES ((SELECT NVL(MAX(MID),0)+1 FROM MEMBER), #{memail}, #{mpw}, #{mname})
  	INTO USERAUTH (MID)
- 	VALUES (#{mid})
+ 	VALUES ((SELECT NVL(MAX(MID),0)+1 FROM USERAUTH))
  	select * from dual
  	</insert>
   

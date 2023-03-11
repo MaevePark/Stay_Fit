@@ -2,8 +2,7 @@ package kh.project.stayfit.member.controller;
 
 
 import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -64,18 +63,26 @@ public class JoinController {
 		System.out.println("이메일 인증 이메일 : " + memail);
 		return mailService.EmailForm(memail);
 	}
+	
 	@PostMapping("/send")
 	public void sendMail(HttpServletResponse response, @RequestParam(name="memail") String memail) {
 		String result = null;
+		int authNum;
+		Random r = new Random();
+		int cdNum = r.nextInt(888888) + 111111;
+		System.out.println("인증번호 : " + cdNum);
+		authNum = cdNum;
 		try {
 			PrintWriter out = response.getWriter();
 			try {
 				SimpleMailMessage message = new SimpleMailMessage();
 				message.setTo(memail);
 				message.setSubject("회원 가입 인증 이메일 입니다.");
-				message.setText("홈페이지를 방문해주셔서 감사합니다.");
+				message.setText("홈페이지를 방문해주셔서 감사합니다.\n \n" +
+						"인증 번호는 " + authNum + " 입니다. \n \n" + 
+						"해당 인증번호를 인증번호 확인란에 기입하여 주세요.");
 				mailSender.send(message);
-				result = "success";
+				result = Integer.toString(authNum);
 			} catch (Exception e) {
 				result = "fail";
 			}

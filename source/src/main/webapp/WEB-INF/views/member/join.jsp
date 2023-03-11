@@ -16,12 +16,12 @@
 				</p>
 			</div>
 			<div class="input-form col-md-12 mx-auto">
-				<form name=form class="validation-form" id="joinform" method="POST" onsubmit="joinCheck()">
+				<form name=form class="validation-form" id="joinform" method="POST" onsubmit="return joinCheck()">
 					<div class="member-form">
 						<div class="row join-wrap">
 							<div class="col-md-9 join-input-box">
 								<label for="email" class="form-label">이메일</label> <input
-									type="text" name="memail" id="memail" class="form-control"
+									type="text" name="memail" id="memail" class="form-control" pattern="[^-\s]+"
 									placeholder="email@stayfit.com" value="">
 							</div>
 							<div class="col-md-3 join-button-box">
@@ -31,7 +31,10 @@
 								</button>
 							</div>
 							<div class="col-md-9 join-input-box">
-								<label for="cdnum" class="form-label">인증번호</label> <input
+								<label for="cdnum" class="form-label">인증번호</label> <input 
+									onkeydown="this.value=this.value.replace(/[^0-9]/g,'')"
+									onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"
+									onblur="this.value=this.value.replace(/[^0-9]/g,'')"
 									type="text" disabled="disabled" maxlength="6" name="cdnum" id="cdnum" class="form-control"
 									value="">
 							</div>
@@ -74,7 +77,8 @@
 function joinCheck() {
     if (!checkEmail(form.memail.value)) {
         return false;
-    //} 인증번호 {
+    } else if (!checkCdnum(form.cdnum.value)){
+    	return false;
     } else if (!checkName(form.mname.value)) {
         return false;
     } else if (!checkPassword(form.pwd1.value, form.pwd2.value)) {
@@ -94,8 +98,15 @@ function checkExistData(value, dataName) {
 
 function checkEmail(memail) {
     //이메일이 입력되었는지 확인하기
-    if (!checkExistData(memail, "이메일을"))
-        return false;
+    if (!checkExistData(memail, "이메일을")){
+    	form.memail.focus();
+    	$resultMsg.html('');
+		$('#btnChkMail').attr('disabled',false);
+		$('#memail').attr('readonly',false);
+		$('#cdnum').attr('disabled', false);
+		$('#cdnum').value('');
+    	return false;	
+    }
 
     var emailRegExp = /^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{2,3}$/;
     if (!emailRegExp.test(memail)) {
@@ -105,14 +116,31 @@ function checkEmail(memail) {
     }
     return true; //확인이 완료되었을 때
 }
+function checkCdNum(cdnum){
+	if(!checkExistData(cdnum, "인증번호를")){
+		form.cdnum.focus();
+		return false;
+	}
+	var cdnumRegExp = /^\d{6}$/;
+	if (!cdnumRegExp.test(cdnum)){
+		alert("인증번호 6자리를 입력해주세요.")
+		form.cdnum.focus();
+		return false;
+	}
+	return true;
+}
 
 function checkPassword(pwd1, pwd2) {
     //비밀번호가 입력되었는지 확인하기
-    if (!checkExistData(pwd1, "비밀번호를"))
+    if (!checkExistData(pwd1, "비밀번호를")){
+    	form.pwd1.focus();
         return false;
+    }
     //비밀번호 확인이 입력되었는지 확인하기
-    if (!checkExistData(pwd2, "비밀번호 확인을"))
+    if (!checkExistData(pwd2, "비밀번호 확인을")){
+    	form.pwd2.focus();
         return false;
+    }
 
     var password1RegExp = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@!%*#?&])[A-Za-z\d@!%*#?&]{8,16}$/; //비밀번호 유효성 검사
     if (!password1RegExp.test(pwd1)) {
@@ -129,12 +157,15 @@ function checkPassword(pwd1, pwd2) {
     return true; //확인이 완료되었을 때
 }
 function checkName(mname) {
-    if (!checkExistData(mname, "닉네임을"))
-        return false;
-
+    if (!checkExistData(mname, "닉네임을")){
+    	form.mname.focus();
+    	return false;
+    }
+        
     var nameRegExp = /^[가-힣a-zA-Z0-9]{2,12}$/;
     if (!nameRegExp.test(mname)) {
         alert("닉네임은 2~12자의 한글, 영문, 숫자를 입력해주세요.");
+        form.mname.focus();
         return false;
     }
     return true; //확인이 완료되었을 때
@@ -143,7 +174,7 @@ function checkName(mname) {
 $('#btnChkMail').click(function(){
 	var eamil = $('#memail').val(); // 이메일 주소값 얻어오기!
 	console.log('이메일 : ' + eamil); // 이메일 오는지 확인
-	var checkInput = $('.cdnum') // 인증번호 입력하는곳 
+	var checkInput = $('#cdnum') // 인증번호 입력하는곳 
 	
 	$.ajax({
 		type : 'post',
@@ -155,14 +186,13 @@ $('#btnChkMail').click(function(){
 		dataType : 'json',
 		success : function (data) {
 			console.log("data : " +  data);
-			if(data === "success") {
+			code = data;
+			if(isNaN(code)) {
+				alert("이메일 전송에 실패하였습니다. 다시 시도해주세요.")
+			} else{
 				alert("이메일이 전송되었습니다. 메일함을 확인해 주세요.");
-			} else {
-				alert("이메일 전송에 실패하였습니다. 다시 시도해주세요.");
+				checkInput.attr('disabled',false);
 			}
-			
-			checkInput.attr('disabled',false);
-			var code = data;
 		}			
 	});
 }); 
@@ -170,14 +200,16 @@ $('#btnChkMail').click(function(){
 $('#cdnum').blur(function () {
 	const inputCode = $(this).val();
 	const $resultMsg = $('#mail-check-msg');
+	const emailInput = $('#memail');
 	
 	if(inputCode === code){
-		$resultMsg.html('인증번호가 일치합니다.');
+		$resultMsg.html('인증 성공');
 		$resultMsg.css('color','green');
 		$('#btnChkMail').attr('disabled',true);
 		$('#memail').attr('readonly',true);
+		$('#cdnum').attr('disabled', true);
 	}else{
-		$resultMsg.html('인증번호가 불일치 합니다. 다시 확인해주세요!.');
+		$resultMsg.html('인증번호가 불일치 합니다. 다시 확인해주세요!');
 		$resultMsg.css('color','red');
 	}
 });

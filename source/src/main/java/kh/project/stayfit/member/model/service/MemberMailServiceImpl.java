@@ -47,7 +47,7 @@ public class MemberMailServiceImpl implements MemberMailService {
 			Random r = new Random();
 			int cdNum = r.nextInt(888888) + 111111;
 			System.out.println("인증번호 : " + cdNum);
-//			authNum = cdNum;
+			authNum = cdNum;
 	}
 	
 	//이메일 전송
