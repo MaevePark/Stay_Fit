@@ -13,11 +13,11 @@
 				<li><a href="<%=request.getContextPath()%>/shop?productCategory=0">홈</a></li>
 				<c:forEach items="${categoryList }" var="cList">
 					<c:if test="${searchMap.productCategory == cList.cid }">
-						<li><a href="<%=request.getContextPath()%>/shop/main?productCategory=${cList.cid}" class="category_bolder">${cList.cname }</a></li>
+						<li><a href="<%=request.getContextPath()%>/shop?productCategory=${cList.cid}" class="category_bolder">${cList.cname }</a></li>
 					</c:if>
 					
 					<c:if test="${searchMap.productCategory != cList.cid }">
-						<li><a href="<%=request.getContextPath()%>/shop/main?productCategory=${cList.cid}">${cList.cname }</a></li>
+						<li><a href="<%=request.getContextPath()%>/shop?productCategory=${cList.cid}">${cList.cname }</a></li>
 					</c:if>
 					
 					
