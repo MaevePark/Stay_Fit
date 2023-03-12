@@ -11,9 +11,11 @@
                             <a href="./index.html"><img src="<%=request.getContextPath() %>/resources/img/STAY_FIT_footer_logo.png" alt=""></a>
                         </div>
                         <ul>
-                            <li>Address: 60-49 Road 11378 New York</li>
-                            <li>Phone: +65 11.188.888</li>
-                            <li>Email: hello@colorlib.com</li>
+                            <li>Who joined :</li>
+                            <li>정병주 | 박민지</li>
+                            <li>최경선 | 임승규</li>
+                            <li>전혜지</li>
+                            <li>Git : https://github.com/ChocoJ1721031/Stay_Fit</li>
                         </ul>
                     </div>
                 </div>
@@ -21,47 +23,26 @@
                     <div class="footer__widget">
                         <h6>Useful Links</h6>
                         <ul>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">About Our Shop</a></li>
-                            <li><a href="#">Secure Shopping</a></li>
-                            <li><a href="#">Delivery infomation</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Our Sitemap</a></li>
+                            <li><a href="<%=request.getContextPath()%>/">HomePage</a></li>
+                            <li><a href="<%=request.getContextPath()%>/shop/">Shop</a></li>
+                            <li><a href="<%=request.getContextPath()%>/board/list?bcid=0">Board</a></li>
+                            <li><a href="<%=request.getContextPath()%>/health/caloriewrite">HealthCare</a></li>
+                            <li><a href="<%=request.getContextPath()%>/diary">Diary</a></li>
+                            <li><a href="<%=request.getContextPath()%>/mypage">MyPage</a></li>
                         </ul>
                         <ul>
-                            <li><a href="#">Who We Are</a></li>
-                            <li><a href="#">Our Services</a></li>
-                            <li><a href="#">Projects</a></li>
-                            <li><a href="#">Contact</a></li>
-                            <li><a href="#">Innovation</a></li>
-                            <li><a href="#">Testimonials</a></li>
+                            <li><a href="<%=request.getContextPath()%>/admin/dashboard">AdminPage</a></li>
+                            <li><a href="<%=request.getContextPath()%>/member/login">LoginPage</a></li>
+                            <li><a href="<%=request.getContextPath()%>/member/join">JoinPage</a></li>
+                            <li><a href="<%=request.getContextPath()%>/member/pwfind">SearchPassword</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-12">
                     <div class="footer__widget">
-                        <h6>Join Our Newsletter Now</h6>
-                        <p>Get E-mail updates about our latest shop and special offers.</p>
-                        <form action="#">
-                            <input type="text" placeholder="Enter your mail">
-                            <button type="submit" class="site-btn">Subscribe</button>
-                        </form>
-                        <div class="footer__widget__social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-pinterest"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="footer__copyright">
-                        <div class="footer__copyright__text"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
-                        <div class="footer__copyright__payment"><img src="<%=request.getContextPath() %>/resources/img/payment-item.png" alt=""></div>
+                        <h6>Tech Support</h6>
+                        <p>KH Academy Gangnam Branch</p>
+                        <img alt="kh_logo" src="resources/img/khlogo.jpg">
                     </div>
                 </div>
             </div>
