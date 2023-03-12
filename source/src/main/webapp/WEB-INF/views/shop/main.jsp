@@ -66,9 +66,6 @@
 												<h5>
 													<a href="${product.plink }" target="_blank">${product.pname }</a>
 												</h5>
-												<div>
-													
-												</div>
 												
 												<c:set var="sale" value="${(100 - product.psale) }"></c:set>
 												<fmt:formatNumber var="finalPrice" value="${Math.floor((product.pprice * sale)/100/10)*10}" pattern="###,###,##0" />
