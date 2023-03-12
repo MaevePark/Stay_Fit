@@ -717,7 +717,7 @@ public class MypageController {
 			ModelAndView mv
 			,@RequestParam(name = "page", defaultValue = "1") int page
 			, @RequestParam(name="type") String type
-			, @RequestParam(name="boardCategory", defaultValue = "1") int boardCategory
+			, @RequestParam(name="boardCategory", defaultValue = "0") int boardCategory
 			, @RequestParam(name="searchRange", defaultValue = "1") int searchRange
 			, @RequestParam(name="searchword", defaultValue = "") String searchword
 			) throws Exception {
@@ -743,7 +743,10 @@ public class MypageController {
 			mv.addObject("boardList", boardservice.selectBoardList(mid, type, boardCategory, searchRange, searchword, page, limits));
 			mv.addObject("pagingMap", pagingMap);
 			mv.addObject("type", type);
+			mv.addObject("boardCategory", boardCategory);
 			mv.addObject("searchword", searchword);
+			mv.addObject("searchRange", searchRange);
+			mv.addObject("mrole", request.getSession().getAttribute("mrole"));
 		}
 		mv.setViewName("index");
 		

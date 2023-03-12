@@ -50,27 +50,42 @@
 
 				<div class="hero__search__form">
 					<form action="<%=request.getContextPath() %>/mypage/board?searchword=${searchword}" method="get">
+					<%
+					int boardCategory = (int) request.getAttribute("boardCategory");
+					int searchRange = (int) request.getAttribute("searchRange");
+					%>
 						<input type="hidden" name="type" value="${type }">
 						<div class="hero__search__categories">
-							<select name="boardCategory">
-								<option value="1" selected>카테고리 전체</option>
-								<option value="2">식단</option>
-								<option value="3">팁&노하우</option>
-								<option value="4">고민&질문</option>
-							</select>
+							<c:if test="${mrole.equals('A') }">
+								<select name="boardCategory">
+									<option value="0" <%if(boardCategory == 0) {%>selected<%} %>>카테고리 전체</option>
+									<option value="1" <%if(boardCategory == 1) {%>selected<%} %>>공지사항</option>
+									<option value="2" <%if(boardCategory == 2) {%>selected<%} %>>식단</option>
+									<option value="3" <%if(boardCategory == 3) {%>selected<%} %>>팁&노하우</option>
+									<option value="4" <%if(boardCategory == 4) {%>selected<%} %>>고민&질문</option>
+								</select>
+							</c:if>
+							<c:if test="${!mrole.equals('A') }">
+								<select name="boardCategory">
+									<option value="0" <%if(boardCategory == 0) {%>selected<%} %>>카테고리 전체</option>
+									<option value="2" <%if(boardCategory == 2) {%>selected<%} %>>식단</option>
+									<option value="3" <%if(boardCategory == 3) {%>selected<%} %>>팁&노하우</option>
+									<option value="4" <%if(boardCategory == 4) {%>selected<%} %>>고민&질문</option>
+								</select>
+							</c:if>
 						</div>
 						<div class="hero__search__categories">
 							<select name="searchRange">
 								<c:if test="${type.equals('likereply') || type.equals('myreply') }">
-									<option value="1" selected>전체</option>
-									<option value="2">댓글 내용</option>
-									<option value="3">게시글 제목</option>
-									<option value="4">게시글 내용</option>
+									<option value="1" <%if(searchRange == 1) {%>selected<%} %>>전체</option>
+									<option value="2" <%if(searchRange == 2) {%>selected<%} %>>댓글 내용</option>
+									<option value="3" <%if(searchRange == 3) {%>selected<%} %>>게시글 제목</option>
+									<option value="4" <%if(searchRange == 4) {%>selected<%} %>>게시글 내용</option>
 								</c:if>
 								<c:if test="${!type.equals('likereply') && !type.equals('myreply') }">
-									<option value="1" selected>전체</option>
-									<option value="2">제목</option>
-									<option value="3">내용</option>
+									<option value="1" <%if(searchRange == 1) {%>selected<%} %>>전체</option>
+									<option value="2" <%if(searchRange == 2) {%>selected<%} %>>제목</option>
+									<option value="3" <%if(searchRange == 3) {%>selected<%} %>>내용</option>
 								</c:if>
 								
 							</select>
@@ -105,7 +120,6 @@
 											</tr>
 										</c:when>
 									</c:choose>
-									
 								</thead>
 								<tbody class="table-border-bottom-0">
 									<c:if test="${fn:length(boardList) > 0 }">
@@ -203,23 +217,23 @@
 					<div class="col-lg-12">
 						<div class="product__pagination blog__pagination">
 							<c:if test="${pagingMap.start != 1}">
-								<a href="<%=request.getContextPath()%>/${urlpattern }?type=${type }&page=1"> << </a>
+								<a href="<%=request.getContextPath()%>/${urlpattern }?type=${type }&page=1&searchword=${searchword }&boardCategory=${boardCategory }&searchRange=${searchRange }"> << </a>
 							</c:if>
 							<c:if test="${pagingMap.currentPage != 1}">
-								<a href="<%=request.getContextPath()%>/${urlpattern }?type=${type }&page=${pagingMap.currentPage -1}"> < </a>
+								<a href="<%=request.getContextPath()%>/${urlpattern }?type=${type }&page=${pagingMap.currentPage -1 }&searchword=${searchword }&boardCategory=${boardCategory }&searchRange=${searchRange }"> < </a>
 							</c:if>
 							
 							
 							<c:forEach begin="${pagingMap.start }" end="${pagingMap.end }" var="num">                                
-								<a href="<%=request.getContextPath()%>/${urlpattern }?type=${type }&page=${num}">${num}</a>
+								<a href="<%=request.getContextPath()%>/${urlpattern }?type=${type }&page=${num }&searchword=${searchword }&boardCategory=${boardCategory }&searchRange=${searchRange }">${num }</a>
 							</c:forEach>
 							
 							
 							<c:if test="${pagingMap.currentPage != pagingMap.totalPageCnt}">
-								<a href="<%=request.getContextPath()%>/${urlpattern }?type=${type }&page=${pagingMap.currentPage +1}"> > </a>
+								<a href="<%=request.getContextPath()%>/${urlpattern }?type=${type }&page=${pagingMap.currentPage +1 }&searchword=${searchword }&boardCategory=${boardCategory }&searchRange=${searchRange }"> > </a>
 							</c:if>
 							<c:if test="${pagingMap.end != pagingMap.totalPageCnt}">
-								<a href="<%=request.getContextPath()%>/${urlpattern }?type=${type }&page=${pagingMap.totalPageCnt }"> >> </a>
+								<a href="<%=request.getContextPath()%>/${urlpattern }?type=${type }&page=${pagingMap.totalPageCnt }&searchword=${searchword }&boardCategory=${boardCategory }&searchRange=${searchRange }"> >> </a>
 							</c:if>
 						</div>
 					</div>
