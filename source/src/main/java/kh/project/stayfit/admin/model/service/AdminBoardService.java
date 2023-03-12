@@ -21,8 +21,8 @@ public interface AdminBoardService {
 	public List<AdminReport> selectReport(String reason, String sort) throws Exception;
 
 	//신고댓글삭제
-	public int deleteReply(String rid) throws Exception;
+	public int deleteReply(List<String> ridList) throws Exception;
 	
 	//신고삭제
-	public int deleteReport(String rid, String reporter) throws Exception;
+	public int deleteReport(List<String> ridList, List<String> reporterList) throws Exception;
 }

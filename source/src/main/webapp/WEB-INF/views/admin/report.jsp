@@ -129,7 +129,9 @@
 			    </div>
 			  </div>
 
-              <p id="displayCount" style="margin-left: 20px"></p>
+              <p id="displayCount" style="margin: 0 0.5rem 1rem; display: inline-block"></p>
+              <p id="replyDeleteBtn" style="margin: 0 0.5rem 1rem; display: inline-block"></p>
+              <p id="reportDeleteBtn" style="margin: 0 0.5rem 1rem; display: inline-block"></p>
   
               
               <!-- Basic Bootstrap Table -->
@@ -137,16 +139,7 @@
                 <div class="table-responsive text-nowrap">
                   	
                   <table class="table">
-                    <thead>
-                      <tr>
-                        <th>신고 사유</th>
-                        <th>댓글 ID</th>
-                        <th>댓글 내용</th>
-                        <th>작성자</th>
-                        <th>신고 시간</th>
-                        <th>신고 횟수</th>
-                      </tr>
-                    </thead>
+                    <thead id="dataTableHead"></thead>
                     <tbody id="dataTableBody" class="table-border-bottom-0"></tbody>
                   </table>
                 </div>
@@ -272,6 +265,27 @@ function getData() {
 //2. 글 목록 출력 함수
 //현재 페이지(currentPage)와 페이지당 글 개수(dataPerPage) 반영
 function displayData(currentPage, dataPerPage) {
+	
+	// 1) 삭제버튼
+	let replyDeleteBtnHtml = "<button type='button' class='btn btn-secondary btn-sm replydelete' style='display:none'>댓글삭제</button>";
+	let reportDeleteBtnHtml = "<button type='button' class='btn btn-secondary btn-sm reportdelete' style='display:none'>신고취소</button>";
+	
+	// 2) 테이블 헤드 부분
+	let headHtml = "";
+	headHtml +=
+		"<tr>" +
+		    "<th style='padding-right: 0'>" +
+		    	"<input id='checkAll' class='form-check-input me-3' type='checkbox'>" +
+		    "</th>" +
+		    "<th style='padding-left: 0'>댓글ID</th>" +
+		    "<th>신고 사유</th>" +
+		    "<th>댓글 내용</th>" +
+		    "<th>작성자</th>" +
+		    "<th>신고 시간</th>" +
+		    "<th>신고 횟수</th>" +
+	  	"</tr>";
+	
+	// 3) 테이블 데이터 부분
 	let chartHtml = "";
 	
 	//totalData가 0건인 경우
@@ -290,24 +304,25 @@ function displayData(currentPage, dataPerPage) {
 	for (let i = (currentPage - 1) * dataPerPage; i < Math.min((currentPage - 1) * dataPerPage + dataPerPage, totalData); i++) {
 		chartHtml += 
 			"<tr>" +
+				"<td style='padding-right: 0'>" +
+					"<input class='form-check-input item' type='checkbox'>" +
+					"<input type='hidden' name='rid' value='" + dataList[i].rid + "'>" +
+					"<input type='hidden' name='reporter' value='" + dataList[i].reporter + "'>" +
+				"</td>" +
+				"<td style='padding-left: 0'>" + dataList[i].rid + "</td>" +
 				"<td>" + dataList[i].reason + "</td>" +
-				"<td>" + dataList[i].rid + "</td>" +
 				"<td>" + dataList[i].rcontent + "</td>" +
 				"<td>" + dataList[i].poster + "</td>" +
 				"<td>" + dataList[i].rcreate + "</td>" +
 				"<td>" + dataList[i].cnt + "</td>" +
-				"<td style='padding-left:0; padding-right:0;'>" + 
-					"<button type='button' class='btn btn-secondary btn-sm replydelete'>댓글삭제</button>" + 
-					"<input type='hidden' name='rid' value='" + dataList[i].rid + "'>" +
-				"</td>" +
-				"<td>" + 
-					"<button type='button' class='btn btn-secondary btn-sm reportdelete'>신고취소</button>" + 
-					"<input type='hidden' name='rid' value='" + dataList[i].rid + "'>" +
-					"<input type='hidden' name='reporter' value='" + dataList[i].reporter + "'>" +
-				"</td>" +
 			"</tr>";
 	}
+	$("#replyDeleteBtn").html(replyDeleteBtnHtml);
+	$("#reportDeleteBtn").html(reportDeleteBtnHtml);
+	$("#dataTableHead").html(headHtml);
 	$("#dataTableBody").html(chartHtml);
+	$("#checkAll").on("click", checkAllClickHandler); // checkAll 체크박스 클릭에 따른 동작
+	$(".item").on("click", checkClickHandler); // 각 체크박스 클릭에 따른 동작
 	$("button.replydelete").on("click", replyDeleteHandler); // <삭제 방법 1>
 	$("button.reportdelete").on("click", reportDeleteHandler); // <삭제 방법 1>
 }
@@ -429,21 +444,68 @@ function resetData() {
 //참고사이트 -> https://mchch.tistory.com/140
 //------------------------------------------------------------------------------
 
+// <체크박스 동작>
+// 1. checkAll 체크박스 클릭에 따른 동작
+function checkAllClickHandler() {
+	
+	// checkAll 체크박스가 체크되면 모든 체크박스 체크
+	if($(this).prop("checked")) {
+        $(".item").prop("checked", true);
+    } else {
+        $(".item").prop("checked", false);
+    }
+	
+	// 체크박스가 하나라도 체크되면 삭제 버튼 활성화
+    if($('.item:checked').length > 0) {
+    	$('button.replydelete').show();
+    	$('button.reportdelete').show();
+    } else {
+    	$('button.replydelete').hide();
+    	$('button.reportdelete').hide();
+    }
+}
+// 2. 각 체크박스 클릭에 따른 동작
+function checkClickHandler() {
+	
+	// 모든 체크박스가 체크되면 checkAll 체크박스도 체크
+    if($(".item:checked").length < $(".item").length) {
+        $("#checkAll").prop("checked", false);
+    } else {
+        $("#checkAll").prop("checked", true);
+    }
+    
+ 	// 체크박스가 하나라도 체크되면 삭제 버튼 활성화
+    if ($(".item:checked").length > 0) {
+    	$('button.replydelete').show();
+    	$('button.reportdelete').show();
+    } else {
+    	$('button.replydelete').hide();
+    	$('button.reportdelete').hide();
+    }
+}
+
+//------------------------------------------------------------------------------
+
 // <댓글 삭제>
 // <삭제 방법 1> : html태그를 다 로딩한 후의 위치에 $("button.replydelete").on("click", replyDeleteHandler); 작성
 function replyDeleteHandler() {
 	
+	let checkedBoxes = $(".item:checked");
+	let ridList = []; // 선택된 rid 담을 배열
+	checkedBoxes.each(function() {
+		ridList.push($(this).siblings("input[name=rid]").val());
+	});
+	console.log(ridList);
+	
 	// 일단 정말 삭제할건지 다시 체크
 	if (confirm("정말 삭제하시겠습니까?") == true) { // 확인 클릭시
-		let rid = $(this).siblings("input[type=hidden]").val();
-		console.log(rid);
 		    
 	    $.ajax({
 	   		url : "replydelete",
 	   		type : "post",
-	   		data: { 'rid' : rid },
+	   		data: { 'ridList' : ridList },
 	   		success: function(data){
-	   			if(data == 1) {
+	   			if(data > 0) {
 					alert("댓글 삭제 성공");
 				} else {
 					alert("댓글 삭제 실패");
@@ -460,19 +522,25 @@ function replyDeleteHandler() {
 // <삭제 방법 1> : html태그를 다 로딩한 후의 위치에 $("button.reportdelete").on("click", reportDeleteHandler); 작성
 function reportDeleteHandler() {
 	
+	let checkedBoxes = $(".item:checked");
+	let ridList = []; // 선택된 rid 담을 배열
+	let reporterList = []; // 선택된 reporter 담을 배열
+	checkedBoxes.each(function() {
+    	ridList.push($(this).siblings("input[name=rid]").val());
+    	reporterList.push($(this).siblings("input[name=reporter]").val());
+    });
+	console.log("ridList : " + ridList);
+	console.log("reporterList : " + reporterList);
+	
 	// 일단 정말 삭제할건지 다시 체크
 	if (confirm("정말 취소하시겠습니까?") == true) { // 확인 클릭시
-		let rid = $(this).siblings("input[name=rid]").val();
-		let reporter = $(this).siblings("input[name=reporter]").val();
-		console.log(rid);
-		console.log(reporter);
 		    
 	    $.ajax({
 	   		url : "reportdelete",
 	   		type : "post",
-	   		data: { 'rid' : rid, 'reporter' : reporter },
+	   		data: { 'ridList' : ridList, 'reporterList' : reporterList },
 	   		success: function(data){
-	   			if(data == 1) {
+	   			if(data > 0) {
 					alert("신고 취소 성공");
 				} else {
 					alert("신고 취소 실패");

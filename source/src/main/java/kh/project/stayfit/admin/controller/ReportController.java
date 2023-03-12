@@ -57,9 +57,9 @@ public class ReportController {
 	// 신고댓글 삭제
 	@PostMapping("/replydelete")
 	@ResponseBody
-	public int deleteReply(@RequestParam("rid") String rid) throws Exception {
+	public int deleteReply(@RequestParam("ridList[]") List<String> ridList) throws Exception {
 		
-		int result = service.deleteReply(rid);
+		int result = service.deleteReply(ridList);
 
 		return result;
 	}
@@ -67,11 +67,11 @@ public class ReportController {
 	// 신고 삭제
 	@PostMapping("/reportdelete")
 	@ResponseBody
-	public int deleteReport(@RequestParam("rid") String rid,
-							@RequestParam("reporter") String reporter
+	public int deleteReport(@RequestParam("ridList[]") List<String> ridList,
+							@RequestParam("reporterList[]") List<String> reporterList
 							) throws Exception {
 		
-		int result = service.deleteReport(rid, reporter);
+		int result = service.deleteReport(ridList, reporterList);
 		
 		return result;
 	}

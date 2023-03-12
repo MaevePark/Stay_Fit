@@ -337,10 +337,6 @@ function displayData(currentPage, dataPerPage) {
 					"<button type='button' class='btn btn-secondary btn-sm link'>글보기</button>" + 
 					"<input type='hidden' name='bid' value='" + dataList[i].bid + "'>" +
 				"</td>" +
-				//"<td>" + 
-				//	"<button type='button' class='btn btn-secondary btn-sm delete'>글삭제</button>" + 
-				//	"<input type='hidden' name='bid' value='" + dataList[i].bid + "'>" +
-				//"</td>" +
 			"</tr>";
 	}
 	$("#deleteBtn").html(deleteBtnHtml);

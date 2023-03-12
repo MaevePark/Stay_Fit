@@ -194,14 +194,25 @@
 			</choose>
   	</select>
   
-    <delete id="deleteReply" parameterType="string">
+  	<!-- 신고댓글 삭제 -->
+    <delete id="deleteReply" parameterType="list">
 		DELETE FROM REPLY
-		    WHERE RID = #{rid}
+		    WHERE RID IN
+		    <foreach item="rid" collection="list" open="(" separator="," close=")">
+		        #{rid}
+		    </foreach> 
   	</delete>
   
+  	<!-- 신고 취소 -->
     <delete id="deleteReport" parameterType="map">
-		DELETE FROM RREPORT
-		    WHERE RID = #{rid} AND MID = #{reporter} 
+	    DELETE FROM RREPORT
+		    WHERE (RID, MID) IN
+		    <foreach item="rid" collection="ridList" index="index" separator=",">
+				(#{rid}, #{reporterList[#{index}]})
+			</foreach>
+		    <!-- WHERE (RID, MID) IN (('3','7'), ('1','3')) -> 다중 컬럼 IN 사용 -->
+		    <!-- 위 코드에서는 'map.ridList'를 순회하면서 각각의 'rid' 값을 가져와 SQL문의 IN 절에 적용. 
+		    	이때, 'reporterList' 값도 같은 인덱스 위치에 있는 값과 함께 사용하기 위해 'index' 값을 추가적으로 선언 -->
   	</delete>
   
   

@@ -35,14 +35,14 @@ public class AdminBoardServiceImpl implements AdminBoardService {
 	
 	//신고댓글 삭제
 	@Override
-	public int deleteReply(String rid) throws Exception {
-		return dao.deleteReply(rid);
+	public int deleteReply(List<String> ridList) throws Exception {
+		return dao.deleteReply(ridList);
 	}
 	
 	//신고 삭제
 	@Override
-	public int deleteReport(String rid, String reporter) throws Exception {
-		return dao.deleteReport(rid, reporter);
+	public int deleteReport(List<String> ridList, List<String> reporterList) throws Exception {
+		return dao.deleteReport(ridList, reporterList);
 	}
 	
 	

@@ -47,16 +47,16 @@ public class AdminBoardDao {
 	}
 	
 	// 신고댓글 삭제
-	public int deleteReply(String rid) throws Exception {
-		return sqlsession.delete("admin.deleteReply", rid);
+	public int deleteReply(List<String> ridList) throws Exception {
+		return sqlsession.delete("admin.deleteReply", ridList);
 	}
 	
 	// 신고 삭제
-	public int deleteReport(String rid, String reporter) throws Exception {
+	public int deleteReport(List<String> ridList, List<String> reporterList) throws Exception {
 		
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("rid", rid);
-		map.put("reporter", reporter);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("ridList", ridList);
+		map.put("reporterList", reporterList);
 		
 		return sqlsession.delete("admin.deleteReport", map);
 	}
