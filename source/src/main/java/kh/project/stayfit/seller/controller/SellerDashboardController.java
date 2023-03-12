@@ -57,7 +57,7 @@ public class SellerDashboardController {
 	}
 	
 	// 두번째 차트
-	@PostMapping("/chart2")
+	@PostMapping("/sellerChart2")
 	@ResponseBody
 	public String selectChart2() throws Exception {
 		
@@ -67,11 +67,11 @@ public class SellerDashboardController {
 	}
 	
 	// 세번째 차트
-	@PostMapping("/chart3")
+	@PostMapping("/sellerChart3")
 	@ResponseBody
-	public String selectChart3() throws Exception {
+	public String selectChart3(@RequestParam("year2") String year) throws Exception {
 		
-		List<AdminDashboard3> list = service.selectChart3();
+		List<AdminDashboard3> list = service.selectChart3(year);
 		
 		return new Gson().toJson(list);
 	}

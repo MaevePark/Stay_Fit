@@ -92,12 +92,12 @@
 											<div class="card-header d-flex align-items-center justify-content-between">
 												<h5 class="card-title m-0 me-2">총 수익 현황</h5>
 												<div class="dropdown">
-									                <button id="dropdownbtn" value="2023" class="btn btn-sm btn-outline-primary dropdown-toggle" type="button" id="growthReportId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									                <button id="dropdownbtn1" value="2023" class="btn btn-sm btn-outline-primary dropdown-toggle" type="button" id="growthReportId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 									                	2023
 									                </button>
 									                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="growthReportId" style="">
-									                  <a data-value="2023" class="dropdown-item" class="dropdown-item">2023</a>
-									                  <a data-value="2022" class="dropdown-item" class="dropdown-item">2022</a>
+									                  <a data-value="2023" class="dropdown-item chart1">2023</a>
+									                  <a data-value="2022" class="dropdown-item chart1">2022</a>
 									                </div>
 									            </div>
 											</div>
@@ -132,10 +132,17 @@
 							<!-- 판매량 (Sales Volume Chart) -->
 							<div class="col-6 col-md-6 col-lg-6 order-3 mb-4">
 								<div class="card h-100">
-									<div class="card-header">
-										<div class="card-title mb-0">
-											<h5 class="m-0 me-2">판매량 현황</h5>
-										</div>
+									<div class="card-header d-flex align-items-center justify-content-between">
+										<h5 class="card-title m-0 me-2">판매량 현황</h5>
+										<div class="dropdown">
+							                <button id="dropdownbtn2" value="2023" class="btn btn-sm btn-outline-primary dropdown-toggle" type="button" id="growthReportId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							                	2023
+							                </button>
+							                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="growthReportId" style="">
+							                  <a data-value="2023" class="dropdown-item chart3">2023</a>
+							                  <a data-value="2022" class="dropdown-item chart3">2022</a>
+							                </div>
+							            </div>
 									</div>
 									<div class="card-body px-0">
 										<div class="tab-content p-0">

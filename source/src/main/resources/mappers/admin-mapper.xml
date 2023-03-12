@@ -20,10 +20,10 @@
 	</select>
 
  	<!-- 대시보드 - 세번째 차트 -->
-	<select id="selectChart3" resultType="AdminDashboard3">
+	<select id="selectChart3" parameterType="string" resultType="AdminDashboard3">
 		SELECT SUBSTR(TO_CHAR(ODATE, 'YYYY/MM/DD'), 6, 2) AS MM, COUNT(OID) AS CNT
 		    FROM "ORDER"
-		    WHERE SUBSTR(TO_CHAR(ODATE, 'YYYY/MM/DD'), 1, 4) = '2023'
+		    WHERE SUBSTR(TO_CHAR(ODATE, 'YYYY/MM/DD'), 1, 4) = #{year}
 		    GROUP BY SUBSTR(TO_CHAR(ODATE, 'YYYY/MM/DD'), 6, 2)
 		    ORDER BY MM ASC
 	</select>

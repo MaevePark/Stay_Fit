@@ -29,8 +29,8 @@ public class SellerDashboardServiceImpl implements SellerDashboardService {
 	}
 	
 	@Override
-	public List<AdminDashboard3> selectChart3() throws Exception {
-		return dao.selectChart3();
+	public List<AdminDashboard3> selectChart3(String year) throws Exception {
+		return dao.selectChart3(year);
 	}
 
 

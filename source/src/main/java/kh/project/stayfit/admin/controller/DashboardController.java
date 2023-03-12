@@ -68,9 +68,9 @@ public class DashboardController {
 	// 세번째 차트
 	@PostMapping("/chart3")
 	@ResponseBody
-	public String selectChart3() throws Exception {
+	public String selectChart3(@RequestParam("year2") String year) throws Exception {
 		
-		List<AdminDashboard3> list = service.selectChart3();
+		List<AdminDashboard3> list = service.selectChart3(year);
 		
 		return new Gson().toJson(list);
 	}

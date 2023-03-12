@@ -275,8 +275,8 @@ $(function() {
 //	var header = $("meta[name='_csrf_header']").attr("content");
 //	var token = 'fetch';
 //	var header = "X-CSRF-TOKEN";
-  
-  var year = $("#dropdownbtn").val();
+
+  var year = $("#dropdownbtn1").val();
   
   $.ajax({
 	  url: "sellerChart1",
@@ -288,12 +288,12 @@ $(function() {
     	  
     	  let chartData = [];
           
-    	  // chartData에 12개 미만이 채워진다면 12개까지의 나머지 배열은 0으로 채워주기
+    	  // chartData에 12개 미만이 채워진다면 12개까지의 나머지 배열은 null로 채워주기
     	  for (let i = 0; i < 12; i++){    				  
 			   if (data[i]) {
 				   chartData.push(data[i].revenue);
 			   } else {
-			       chartData.push(0);
+			       chartData.push(null);
 			   }				  
     	  }
   	  
@@ -311,12 +311,12 @@ $(function() {
   });
 //--------------------------------------
 //<드롭다운 연도 선택시>
-$(".dropdown-item").click(function() {
+$(".dropdown-item.chart1").click(function() {
 	
-	$("#dropdownbtn").val($(this).data("value"));
-	$("#dropdownbtn").text($(this).text() + " ");
+	$("#dropdownbtn1").val($(this).data("value"));
+	$("#dropdownbtn1").text($(this).text() + " ");
 	
-	var year = $("#dropdownbtn").val();
+	var year = $("#dropdownbtn1").val();
 	  
 	  $.ajax({
 		  url: "sellerChart1",
@@ -328,12 +328,12 @@ $(".dropdown-item").click(function() {
 	    	  
 	    	  let chartData = [];
 	          
-	    	  // chartData에 12개 미만이 채워진다면 12개까지의 나머지 배열은 0으로 채워주기
+	    	  // chartData에 12개 미만이 채워진다면 12개까지의 나머지 배열은 null로 채워주기
 	    	  for (let i = 0; i < 12; i++){				  
 				   if (data[i]) {
 					   chartData.push(data[i].revenue);
 				   } else {
-				       chartData.push(0);
+				       chartData.push(null);
 				   }				  
 	    	  }
 	    	  
@@ -419,7 +419,7 @@ $(".dropdown-item").click(function() {
   statisticsChart.render();
 
   $.ajax({
-	  url: "chart2",
+	  url: "sellerChart2",
       type: "post",
       dataType:"json",
       success:function(data){
@@ -538,10 +538,11 @@ $(".dropdown-item").click(function() {
   const incomeChart = new ApexCharts(incomeChartEl, incomeChartConfig);
   incomeChart.render();
 
+  var year2 = $("#dropdownbtn2").val();
+  
   $.ajax({
-	  url: "chart3",
-	  //data: JSON.stringify(data),
-	  //contentType: 'application/json',
+	  url: "sellerChart3",
+	  data: { 'year2': year2 },
       type: "post",
       dataType:"json",
       success:function(data){
@@ -549,9 +550,14 @@ $(".dropdown-item").click(function() {
     	  
           let chartData = [];
           
-          for (let i = 0; i < data.length; i++){    				  
-        	  chartData.push(data[i].cnt);    				  
-		  }
+          // chartData에 12개 미만이 채워진다면 12개까지의 나머지 배열은 null로 채워주기
+    	  for (let i = 0; i < 12; i++){				  
+			   if (data[i]) {
+				   chartData.push(data[i].cnt);
+			   } else {
+			       chartData.push(null);
+			   }				  
+    	  }
   	  
           incomeChart.updateSeries([
         	  {
@@ -565,7 +571,45 @@ $(".dropdown-item").click(function() {
 				+ "error" + errordata + "\n");
 	  }
   });
+//--------------------------------------
+//<드롭다운 연도 선택시>
+$(".dropdown-item.chart3").click(function() {
+	
+  $("#dropdownbtn2").val($(this).data("value"));
+  $("#dropdownbtn2").text($(this).text() + " ");  
   
+  var year2 = $("#dropdownbtn2").val();
   
-  
+  $.ajax({
+	  url: "sellerChart3",
+	  data: { 'year2': year2 },
+      type: "post",
+      dataType:"json",
+      success:function(data){
+    	  console.log(data);
+    	  
+          let chartData = [];
+          
+          // chartData에 12개 미만이 채워진다면 12개까지의 나머지 배열은 null로 채워주기
+    	  for (let i = 0; i < 12; i++){				  
+			   if (data[i]) {
+				   chartData.push(data[i].cnt);
+			   } else {
+			       chartData.push(null);
+			   }				  
+    	  }
+  	  
+          incomeChart.updateSeries([
+        	  {
+        		  data: chartData
+        	  }
+          ]);
+      },
+	  error : function(request, status, errordata){
+		  alert("error code:" + request.status + "\n"
+				+ "message:" + request.responseText + "\n"
+				+ "error" + errordata + "\n");
+	  }
+  });
+});
 });

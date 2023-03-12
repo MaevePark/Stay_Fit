@@ -15,6 +15,6 @@ public interface SellerDashboardService {
 	public List<AdminDashboard2> selectChart2() throws Exception;
 	
 	// 세번째 차트
-	public List<AdminDashboard3> selectChart3() throws Exception;
+	public List<AdminDashboard3> selectChart3(String year) throws Exception;
 
 }
