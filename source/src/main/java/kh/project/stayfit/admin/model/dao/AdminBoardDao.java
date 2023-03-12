@@ -31,8 +31,8 @@ public class AdminBoardDao {
 	}
 
 	// 게시물 삭제
-	public int deleteBoard(String bid) throws Exception {
-		return sqlsession.delete("admin.deleteBoard", bid);
+	public int deleteBoard(List<String> bidList) throws Exception {
+		return sqlsession.delete("admin.deleteBoard", bidList);
 	}
 
 	// 신고댓글 목록 출력

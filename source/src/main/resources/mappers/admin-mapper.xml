@@ -133,9 +133,15 @@
 		    ORDER BY B.BID DESC
 	</select>
   	
-  	<delete id="deleteBoard" parameterType="string">
+  	<!-- 게시물 삭제 -->
+  	<delete id="deleteBoard" parameterType="list">
 		DELETE FROM BOARD
-		    WHERE BID = #{bid}
+		    WHERE BID IN
+		    <foreach item="bid" collection="list" open="(" separator="," close=")">
+		        #{bid}
+		    </foreach> 
+		  	<!-- collection : 컬렉션의 이름. List나 Array형태만 가능 -->
+		  	<!-- item : 전달받은 인자 값의 alias명. #{여기이름}과 동일 -->
   	</delete>
   
   	<!-- 신고댓글 -->

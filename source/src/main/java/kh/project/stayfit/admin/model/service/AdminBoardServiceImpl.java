@@ -23,8 +23,8 @@ public class AdminBoardServiceImpl implements AdminBoardService {
 
 	//게시물 삭제
 	@Override
-	public int deleteBoard(String bid) throws Exception {
-		return dao.deleteBoard(bid);
+	public int deleteBoard(List<String> bidList) throws Exception {
+		return dao.deleteBoard(bidList);
 	}
 	
 	//신고댓글목록조회

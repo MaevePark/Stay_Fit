@@ -56,9 +56,9 @@ public class AdminBoardController {
 	// 게시물 삭제
 	@PostMapping("/boarddelete")
 	@ResponseBody
-	public int deleteBoard(@RequestParam("bid") String bid) throws Exception {
+	public int deleteBoard(@RequestParam("bidList[]") List<String> bidList) throws Exception {
 		
-		int result = service.deleteBoard(bid);
+		int result = service.deleteBoard(bidList);
 
 		return result;
 	}

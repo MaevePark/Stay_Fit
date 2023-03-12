@@ -15,7 +15,7 @@ public interface AdminBoardService {
 	public List<AdminBoard> selectBoard(String searchword, String category, String state) throws Exception;
 	
 	//게시물삭제
-	public int deleteBoard(String bid) throws Exception;
+	public int deleteBoard(List<String> bidList) throws Exception;
 
 	//신고댓글목록조회
 	public List<AdminReport> selectReport(String reason, String sort) throws Exception;
