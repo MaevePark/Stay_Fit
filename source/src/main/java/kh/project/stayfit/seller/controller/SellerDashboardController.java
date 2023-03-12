@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -48,9 +49,9 @@ public class SellerDashboardController {
 	// 첫번째 차트
 	@PostMapping("/sellerChart1")
 	@ResponseBody
-	public String selectChart1() throws Exception {
+	public String selectChart1(@RequestParam("year") String year) throws Exception {
 
-		List<AdminDashboard1> list = service.selectChart1();
+		List<AdminDashboard1> list = service.selectChart1(year);
 
 		return new Gson().toJson(list);
 	}

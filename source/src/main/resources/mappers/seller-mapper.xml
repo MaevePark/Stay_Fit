@@ -3,10 +3,10 @@
 <mapper namespace="seller">
   
     <!-- 대시보드 - 첫번째 차트 -->
-	<select id="selectChart1" resultType="AdminDashboard1">
+	<select id="selectChart1" parameterType="string" resultType="AdminDashboard1">
 		SELECT SUBSTR(TO_CHAR(ODATE, 'YYYY/MM/DD'), 6, 2) AS MM, SUM(O.OCOUNT * P.PPRICE) AS REVENUE
 		    FROM "ORDER" O JOIN PRODUCT P ON O.PID = P.PID
-		    WHERE SUBSTR(TO_CHAR(ODATE, 'YYYY/MM/DD'), 1, 4) = '2022'
+		    WHERE SUBSTR(TO_CHAR(ODATE, 'YYYY/MM/DD'), 1, 4) = #{year}
 		    GROUP BY SUBSTR(TO_CHAR(ODATE, 'YYYY/MM/DD'), 6, 2)
 		    ORDER BY MM ASC
 	</select>
@@ -23,7 +23,7 @@
 	<select id="selectChart3" resultType="AdminDashboard3">
 		SELECT SUBSTR(TO_CHAR(ODATE, 'YYYY/MM/DD'), 6, 2) AS MM, COUNT(OID) AS CNT
 		    FROM "ORDER"
-		    WHERE SUBSTR(TO_CHAR(ODATE, 'YYYY/MM/DD'), 1, 4) = '2022'
+		    WHERE SUBSTR(TO_CHAR(ODATE, 'YYYY/MM/DD'), 1, 4) = '2023'
 		    GROUP BY SUBSTR(TO_CHAR(ODATE, 'YYYY/MM/DD'), 6, 2)
 		    ORDER BY MM ASC
 	</select>

@@ -276,10 +276,11 @@ $(function() {
 //	var token = 'fetch';
 //	var header = "X-CSRF-TOKEN";
   
+  var year = $("#dropdownbtn").val();
+  
   $.ajax({
 	  url: "sellerChart1",
-	  //data: JSON.stringify(data),
-	  //contentType: 'application/json',
+	  data: { 'year': year },
       type: "post",
       dataType:"json",
       success:function(data){
@@ -287,9 +288,14 @@ $(function() {
     	  
     	  let chartData = [];
           
-          for (let i = 0; i < data.length; i++){    				  
-        	  chartData.push(data[i].revenue);    				  
-		  }
+    	  // chartData에 12개 미만이 채워진다면 12개까지의 나머지 배열은 0으로 채워주기
+    	  for (let i = 0; i < 12; i++){    				  
+			   if (data[i]) {
+				   chartData.push(data[i].revenue);
+			   } else {
+			       chartData.push(0);
+			   }				  
+    	  }
   	  
           totalRevenueChart.updateSeries([
         	  {
@@ -303,7 +309,47 @@ $(function() {
 				+ "error" + errordata + "\n");
 	  }
   });
- 
+//--------------------------------------
+//<드롭다운 연도 선택시>
+$(".dropdown-item").click(function() {
+	
+	$("#dropdownbtn").val($(this).data("value"));
+	$("#dropdownbtn").text($(this).text() + " ");
+	
+	var year = $("#dropdownbtn").val();
+	  
+	  $.ajax({
+		  url: "sellerChart1",
+		  data: { 'year': year },
+	      type: "post",
+	      dataType:"json",
+	      success:function(data){
+	    	  console.log(data);
+	    	  
+	    	  let chartData = [];
+	          
+	    	  // chartData에 12개 미만이 채워진다면 12개까지의 나머지 배열은 0으로 채워주기
+	    	  for (let i = 0; i < 12; i++){				  
+				   if (data[i]) {
+					   chartData.push(data[i].revenue);
+				   } else {
+				       chartData.push(0);
+				   }				  
+	    	  }
+	    	  
+	          totalRevenueChart.updateSeries([
+	        	  {
+	        		  data: chartData
+	        	  }
+	          ]);
+	      },
+		  error : function(request, status, errordata){
+			  alert("error code:" + request.status + "\n"
+					+ "message:" + request.responseText + "\n"
+					+ "error" + errordata + "\n");
+		  }
+	  });
+});  
 
   // --------------------------------------------------------------------
   // <두번째 차트> - Order Statistics Chart

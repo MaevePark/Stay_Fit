@@ -6,7 +6,7 @@
 	<select id="selectChart1" parameterType="string" resultType="AdminDashboard1">
 		SELECT SUBSTR(TO_CHAR(ODATE, 'YYYY/MM/DD'), 6, 2) AS MM, SUM(O.OCOUNT * P.PPRICE * 0.1) AS REVENUE
 		    FROM "ORDER" O JOIN PRODUCT P ON O.PID = P.PID
-		    WHERE SUBSTR(TO_CHAR(ODATE, 'YYYY/MM/DD'), 1, 4) = ${year}
+		    WHERE SUBSTR(TO_CHAR(ODATE, 'YYYY/MM/DD'), 1, 4) = #{year}
 		    GROUP BY SUBSTR(TO_CHAR(ODATE, 'YYYY/MM/DD'), 6, 2)
 		    ORDER BY MM ASC
 	</select>
