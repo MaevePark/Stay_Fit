@@ -50,8 +50,14 @@
 	<c:if test="${sectionName eq 'mypage/mycart.jsp' }">
 		<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/mycart.css" type="text/css">
 	</c:if>
+	<c:if test="${sectionName eq 'mypage/myproduct.jsp' }">
+		<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/myproduct.css" type="text/css">
+	</c:if>
 	<c:if test="${sectionName eq 'mypage/myboard.jsp' }">
-		<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/mypage.css" type="text/css">
+		<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/myBoard.css" type="text/css">
+	</c:if>
+	<c:if test="${sectionName eq 'mypage/myprofile.jsp' }">
+		<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/myprofile.css" type="text/css">
 	</c:if>
 	<!-- mypage 끝 -->
 	
