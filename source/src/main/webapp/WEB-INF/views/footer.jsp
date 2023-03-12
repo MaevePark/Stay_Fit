@@ -42,7 +42,7 @@
                     <div class="footer__widget">
                         <h6>Tech Support</h6>
                         <p>KH Academy Gangnam Branch</p>
-                        <img alt="kh_logo" src="resources/img/khlogo.jpg">
+                        <img alt="kh_logo" src="<%=request.getContextPath() %>/resources/img/khlogo.jpg">
                     </div>
                 </div>
             </div>
