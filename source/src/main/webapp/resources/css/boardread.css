@@ -51,7 +51,7 @@
 
 /*수정, 삭제, 목록 버튼 끝*/
 
-/*댓글 이모티콘 영역  */
+/*댓글 이모티콘 */
 #emotion{
 	padding-top: 80px;
 }
@@ -103,7 +103,37 @@ label[for="3"] > input:checked{
 label[for="4"] > input:checked{
 	background:url(../img/board-read/cool2.png);
 }
+/*댓글 이모티콘  끝 */
 
+/*북마크 시작  */
+button .bookmark{
+	border : none;
+	background-color: transparent;
+  	cursor: pointer;
+}
+.default-img{
+	width: 40px;
+	height: 40px;
+	background-size : cover;	
+	background :url(../img/board-read/delbook.png) no-repeat;	
+}
+.active-img{
+	width: 40px;
+	height: 40px;
+	background-img :url(../img/board-read/bookmark.png);	
+	display : none;	
+	border : none;
+	box-sizing: content-box;
+}
+.active .default-img {
+  display: none;
+}
+
+.active .active-img {
+  display: block;
+  border: none;
+} 
+/* 북마크 끝  */
 
 /*댓글영역 시작*/
 /*댓글 작성  */

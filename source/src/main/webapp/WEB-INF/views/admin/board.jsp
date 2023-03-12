@@ -139,23 +139,16 @@
 			    </div>
 			  </div>
 
-              <p id="displayCount" style="margin-left: 20px"></p>
+              <p id="displayCount" style="margin: 0 0.5rem 1rem; display: inline-block"></p>
+              <p id="deleteBtn" style="margin: 0 0.5rem 1rem; display: inline-block"></p>
               
               <!-- Basic Bootstrap Table -->
               <div class="card">
                 <div class="table-responsive text-nowrap">
                   	
                   <table class="table">
-                    <thead>
-                      <tr>
-                        <th>게시물 ID</th>
-                        <th>게시판</th>
-                        <th>제목</th>
-                        <th>작성자</th>
-                        <th>조회수</th>
-                        <th>작성일</th>
-                        <th>상태</th>
-                      </tr>
+                    <thead id="dataTableHead">
+                      
                     </thead>
                     
                     <tbody id="dataTableBody" class="table-border-bottom-0"></tbody>
@@ -293,6 +286,27 @@ function getData() {
 // 2. 글 목록 출력 함수
 //현재 페이지(currentPage)와 페이지당 글 개수(dataPerPage) 반영
 function displayData(currentPage, dataPerPage) {
+	
+	// 1) 삭제버튼
+	let deleteBtnHtml = "<button type='button' class='btn btn-secondary btn-sm delete' style='display:none'>삭제</button>";
+	
+	// 2) 테이블 헤드 부분
+	let headHtml = "";
+	headHtml +=
+		"<tr>" +
+		    "<th style='padding-right: 0'>" +
+		    	"<input id='checkAll' class='form-check-input me-3' type='checkbox'>" +
+		    "</th>" +
+		    "<th style='padding-left: 0'>ID</th>" +
+		    "<th>게시판</th>" +
+		    "<th>제목</th>" +
+		    "<th>작성자</th>" +
+		    "<th>조회수</th>" +
+		    "<th>작성일</th>" +
+		    "<th>상태</th>" +
+	  	"</tr>";
+	
+	// 3) 테이블 데이터 부분
 	let chartHtml = "";
 	
 	//totalData가 0건인 경우
@@ -311,7 +325,8 @@ function displayData(currentPage, dataPerPage) {
 	for (let i = (currentPage - 1) * dataPerPage; i < Math.min((currentPage - 1) * dataPerPage + dataPerPage, totalData); i++) {
 		chartHtml += 
 			"<tr>" +
-				"<td>" + dataList[i].bid + "</td>" +
+				"<td style='padding-right: 0'><input class='form-check-input item' type='checkbox'></td>" +
+				"<td style='padding-left: 0'>" + dataList[i].bid + "</td>" +
 				"<td>" + dataList[i].bcname + "</td>" +
 				"<td>" + dataList[i].btitle + "</td>" +
 				"<td>" + dataList[i].mid + "</td>" +
@@ -322,13 +337,17 @@ function displayData(currentPage, dataPerPage) {
 					"<button type='button' class='btn btn-secondary btn-sm link'>글보기</button>" + 
 					"<input type='hidden' name='bid' value='" + dataList[i].bid + "'>" +
 				"</td>" +
-				"<td>" + 
-					"<button type='button' class='btn btn-secondary btn-sm delete'>글삭제</button>" + 
-					"<input type='hidden' name='bid' value='" + dataList[i].bid + "'>" +
-				"</td>" +
+				//"<td>" + 
+				//	"<button type='button' class='btn btn-secondary btn-sm delete'>글삭제</button>" + 
+				//	"<input type='hidden' name='bid' value='" + dataList[i].bid + "'>" +
+				//"</td>" +
 			"</tr>";
 	}
+	$("#deleteBtn").html(deleteBtnHtml);
+	$("#dataTableHead").html(headHtml);
 	$("#dataTableBody").html(chartHtml);
+	$("#checkAll").on("click", checkAllClickHandler); // checkAll 체크박스 클릭에 따른 동작
+	$(".item").on("click", checkClickHandler); // 각 체크박스 클릭에 따른 동작
 	$("button.link").on("click", linkClickHandler);
 	$("button.delete").on("click", boardDeleteHandler); // <삭제 방법 1>
 }
@@ -455,6 +474,44 @@ function resetData() {
 // 참고사이트 -> https://mchch.tistory.com/140
 //------------------------------------------------------------------------------
 
+// <체크박스 동작>
+// 1. checkAll 체크박스 클릭에 따른 동작
+function checkAllClickHandler() {
+	
+	// checkAll 체크박스가 체크되면 모든 체크박스 체크
+	if($(this).prop("checked")) {
+        $(".item").prop("checked", true);
+    } else {
+        $(".item").prop("checked", false);
+    }
+	
+	// 체크박스가 하나라도 체크되면 삭제 버튼 활성화
+    if($('.item:checked').length > 0) {
+    	$('button.delete').show();
+    } else {
+    	$('button.delete').hide();
+    }
+}
+// 2. 각 체크박스 클릭에 따른 동작
+function checkClickHandler() {
+	
+	// 모든 체크박스가 체크되면 checkAll 체크박스도 체크
+    if($(".item:checked").length < $(".item").length) {
+        $("#checkAll").prop("checked", false);
+    } else {
+        $("#checkAll").prop("checked", true);
+    }
+    
+ 	// 체크박스가 하나라도 체크되면 삭제 버튼 활성화
+    if ($(".item:checked").length > 0) {
+      $("button.delete").show();
+    } else {
+      $("button.delete").hide();
+    }
+}
+
+//------------------------------------------------------------------------------
+
 // <글보기 링크 이동>
 function linkClickHandler() {
 	
@@ -470,17 +527,22 @@ function linkClickHandler() {
 // 따라서 html태그들이 다 생성된 후의 위치에 click이벤트를 걸어줘야함!
 function boardDeleteHandler() {
 	
+	let checkedBoxes = $(".item:checked");
+	let bidList = []; // 선택된 bid 담을 배열
+	checkedBoxes.each(function() {
+		bidList.push($(this).parent().siblings().eq(0).text());
+	});
+	console.log(bidList);
+	
 	// 일단 정말 삭제할건지 다시 체크
 	if (confirm("정말 삭제하시겠습니까?") == true) { // 확인 클릭시
-		var bid = $(this).siblings("input[type=hidden]").val();
-		console.log(bid);
 	    
 	    $.ajax({
 	  		url : "boarddelete",
 	  		type : "post",
-	  		data: { 'bid' : bid },
+	  		data: { 'bidList' : bidList },
 	  		success: function(data){
-		  		if(data == 1) {
+		  		if(data > 0) {
 					alert("게시물 삭제 성공");
 				} else {
 					alert("게시물 삭제 실패");

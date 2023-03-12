@@ -74,7 +74,7 @@
 											<!-- 생년월일 - 년도 끝 -->	
 											
 											<!-- 생년월일 - 월 시작 -->
-											<div class="hero__search__categories">
+											<div class="hero__search__categories" id="categories">
 												<select class="select4" id="bmonth" name="bmonth">
 													<option value="1" selected>1</option>
 													<option value="2">2</option>
@@ -94,7 +94,7 @@
 											<!-- 생년월일 - 월 끝 -->
 											
 											<!-- 생년월일 - 일 시작 -->
-											<div class="hero__search__categories">
+											<div class="hero__search__categories" id="categories">
 												<select class="select4" id="bday" name="bday">
 													<option value="1"  selected>1</option>
 													<option value="2">2</option>
@@ -129,8 +129,9 @@
 													<option value="31">31</option>
 												</select>
 											</div>
-										</div> <span class="dash"> 일</span>
-										<!-- 생년월일 - 일 끝 -->
+											<span class="dash"> 일</span>
+											<!-- 생년월일 - 일 끝 -->
+										</div> 										
 									</td>
 								</tr>
 								<tr>
