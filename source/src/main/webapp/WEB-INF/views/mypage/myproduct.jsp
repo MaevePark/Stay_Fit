@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
 
@@ -39,9 +40,11 @@
 										<c:forEach items="${orderList}" var="list">
 											<tr>
 												<td><i class="fab fa-angular fa-lg text-danger me-3"></i><span>${list.PNAME}</span></td>
-												<td><span>${((list.PPRICE * (100 - list.PSALE))/100)/10*10}원</span></td>
+												<fmt:formatNumber var="price" value="${((list.PPRICE * (100 - list.PSALE))/100)/10*10}" pattern="###,###,##0" />
+												<td><span>${price }원</span></td>
 												<td><span>${list.OCOUNT}</span></td>
-												<td><span>${list.PPRICE * list.OCOUNT}원</span></td>
+												<fmt:formatNumber var="total" value="${list.PPRICE * list.OCOUNT}" pattern="###,###,##0" />
+												<td><span>${total}원</span></td>
 												<td>
 													<button onclick="location.href='${list.PLINK}'">
 														<span>상품 페이지로 이동</span>
