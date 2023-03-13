@@ -2,7 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src='<%=request.getContextPath() %>/resources/js/mypage/wish.js'></script>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!-- Blog Section Begin -->
 <input type="hidden" name="mid" id="mid" value="3">
@@ -32,9 +33,10 @@
 									</div>
 									<div class="product__item__text">
 										<h6>
-											<a href="#">${list.pname }</a>
+											<a href="${list.plink }" target="_blank">${list.pname }</a>
 										</h6>
-										<h5>${list.pprice }원</h5>
+										<fmt:formatNumber var="price" value="${list.pprice}" pattern="###,###,##0" />
+										<h5>${price }원</h5>
 									</div>
 								</div>
 							</div>
