@@ -40,14 +40,14 @@
 									onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"
 									onblur="this.value=this.value.replace(/[^0-9]/g,'')"
 									type="text" maxlength="6" name="cdnum" id="cdnum" class="form-control"
-									value="">
+									value="" disabled>
 							</div>
 							<div class="col-md-9 join-input-box">
 								<span id="mail-check-msg"></span>
 							</div>
 							<div class="col-md-9 join-input-box">
 								<label for="mname" class="form-label">닉네임</label> <input
-									type="text" name="mname" id="mname" class="form-control" oninput="checkName"
+									type="text" name="mname" id="mname" class="form-control"
 									value="" maxLength=12>
 							</div>
 							<div class="col-md-9 join-input-box">
@@ -84,12 +84,18 @@
 
 function joinCheck() {
     if (!checkEmail(form.memail.value)) {
-        return false;
+    	console.log("checkEmail ok");
+    	return false;
     } else if (!checkCdnum(form.cdnum.value)){
+    	console.log("checkCdnum ok");
     	return false;
     } else if (!checkName(form.mname.value)) {
+    	console.log("checkName ok")
         return false;
     } else if (!checkPassword(form.pwd1.value, form.pwd2.value)) {
+    	console.log("checkPassword ok")
+        return false;
+    }  else if (!checkMail()) { // checkMail 함수가 false를 반환하면 실행
         return false;
     } else{
         return true;	
@@ -125,6 +131,43 @@ function checkCdnum(cdnum) {
 		form.cdnum.focus();
 		return false;
 	}
+	$('#cdnum').blur(function () {
+		const inputCode = $(this).val();
+		const $resultMsg = $('#mail-check-msg');
+		const emailInput = $('#memail');
+		
+		
+		if(inputCode === code){
+			$resultMsg.html('인증 성공');
+			$resultMsg.css('color','green');
+			$('#btnChkMail').attr('disabled',true);
+		}else{
+			try{
+				code;
+			}catch(e){
+				alert('인증번호를 이메일을 통해 받아주세요.');
+			}
+			$resultMsg.html('인증번호가 불일치 합니다. 다시 확인해주세요!');
+			$resultMsg.css('color','red');
+			$(this).focus();
+			return false;
+		}
+	});
+	return true;
+}
+function checkName(mname) {
+    if (!checkExistData(mname, "닉네임을")){
+    	form.mname.focus();
+    	return false;
+    }
+        
+    var nameRegExp = /^[가-힣a-zA-Z0-9]{2,12}$/;
+    if (!nameRegExp.test(mname)) {
+        alert("닉네임은 2~12자의 한글, 영문, 숫자를 입력해주세요.");
+        form.mname.focus();
+        return false;
+    }
+    return true; //확인이 완료되었을 때
 }
 
 function checkPassword(pwd1, pwd2) {
@@ -149,20 +192,6 @@ function checkPassword(pwd1, pwd2) {
     if (pwd1 != pwd2) {
         alert("비밀번호와 일치하지 않습니다. 다시 입력해주세요.");
         form.pwd2.focus();
-        return false;
-    }
-    return true; //확인이 완료되었을 때
-}
-function checkName(mname) {
-    if (!checkExistData(mname, "닉네임을")){
-    	form.mname.focus();
-    	return false;
-    }
-        
-    var nameRegExp = /^[가-힣a-zA-Z0-9]{2,12}$/;
-    if (!nameRegExp.test(mname)) {
-        alert("닉네임은 2~12자의 한글, 영문, 숫자를 입력해주세요.");
-        form.mname.focus();
         return false;
     }
     return true; //확인이 완료되었을 때
@@ -194,17 +223,16 @@ $('#btnChkMail').click(function(){
 	});
 }); 
 
-$('#cdnum').blur(function () {
+<!--$('#cdnum').blur(function () {
 	const inputCode = $(this).val();
 	const $resultMsg = $('#mail-check-msg');
 	const emailInput = $('#memail');
+	
 	
 	if(inputCode === code){
 		$resultMsg.html('인증 성공');
 		$resultMsg.css('color','green');
 		$('#btnChkMail').attr('disabled',true);
-		$('#memail').attr('readonly',true);
-		$('#cdnum').attr('disabled', true);
 	}else{
 		try{
 			code;
@@ -213,11 +241,14 @@ $('#cdnum').blur(function () {
 		}
 		$resultMsg.html('인증번호가 불일치 합니다. 다시 확인해주세요!');
 		$resultMsg.css('color','red');
+		$(this).focus();
+		return false;
 	}
-});
+});-->
 
 function checkMail(){
 	var memail = $('#memail').val();
+	var isMailValid = false;
 	$.ajax({
 		url:'mailChk',
 		type:'post',
@@ -228,18 +259,21 @@ function checkMail(){
 				console.log(ok);
 				$('.mail_check_ok').css("display","");
 				$('.mail_check_already').css("display", "none");
-				console.log(memail);
+				isMailValid = true; // memail이 유효한 경우 true 반환
 			}else{
 				var already = document.getElementsByClassName("mail_check_already")[0];
 				console.log(already);
 				$('.mail_check_already').css("display","");
 				$('.mail_check_ok').css("display", "none");
+				form.memail.focus();
+				isMailValid = false;
 			}
 		},
 		error:function(){
 			alert("회원가입 중 오류가 발생했습니다.")
 		}
 	});
+	return isMailValid;
 };
 
 </script>
