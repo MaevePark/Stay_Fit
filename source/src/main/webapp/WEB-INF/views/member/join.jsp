@@ -16,7 +16,7 @@
 				</p>
 			</div>
 			<div class="input-form col-md-12 mx-auto">
-				<form name="form" class="validation-form" id="joinform" method="POST" onsubmit="return joinCheck()">
+				<form name="form" id="joinform" method="post" action="<%=request.getContextPath()%>/member/joinAction">
 					<div class="member-form">
 						<div class="row join-wrap">
 							<div class="col-md-9 join-input-box">
@@ -74,8 +74,8 @@
 									class="member-btn btn btn-secondary">취소</a>
 							</div>
 							<div class="col-md-6 text-lg-end join-button-box">
-								<button type="submit" class="member-btn btn btn-success"
-									id="btnJoin">확인</button>
+								<button type="button" class="member-btn btn btn-success"
+									id="btnJoin" onclick="joinMember()">확인</button>
 							</div>
 						</div>
 					</div>
@@ -88,21 +88,22 @@
 <script>
 var code;
 function joinCheck() {
-    if (!checkEmail(form.memail.value)) {
-    	console.log("checkEmail ok");
-    	return false;
-    } else if (!checkCdnum(form.cdnum.value)){
-    	console.log("checkCdnum ok");
-    	return false;
-    } else if (!checkName(form.mname.value)) {
-    	console.log("checkName ok")
-        return false;
-    } else if (!checkPassword(form.pwd1.value, form.pwd2.value)) {
-    	console.log("checkPassword ok")
-        return false;
-    }  else if (!checkMail()) { // checkMail 함수가 false를 반환하면 실행
-        return false;
-    } else if($('#mailCodeChkVal').val() != 1) {
+//     if (!checkEmail(form.memail.value)) {
+//     	console.log("checkEmail ok");
+//     	return false;
+//     } else if (!checkCdnum(form.cdnum.value)){
+//     	console.log("checkCdnum ok");
+//     	return false;
+//     } else if (!checkName(form.mname.value)) {
+//     	console.log("checkName ok")
+//         return false;
+//     } else if (!checkPassword(form.pwd1.value, form.pwd2.value)) {
+//     	console.log("checkPassword ok")
+//         return false;
+//     }  else if (!checkMail()) { // checkMail 함수가 false를 반환하면 실행
+//         return false;
+//     } else 
+	if($('#mailCodeChkVal').val() != 1) {
     	return false;
     } else if($('#mailChkVal').val() != 1) {
     	return false;
@@ -233,7 +234,7 @@ $('#btnChkMail').click(function(){
 				} else{
 					alert("이메일이 전송되었습니다. 메일함을 확인해 주세요. \n 기다려도 메일이 오지 않는다면 메일 주소 혹은 스팸함을 확인해 주세요.");
 					checkInput.attr('disabled',false);
-					$('#memail').attr('disabled', true);
+					$('#memail').attr('readonly', true);
 				}
 			}			
 		});
@@ -295,12 +296,13 @@ function checkMail(){
 				$('#btnChkMail').attr('disabled',false);
 				$('#mailCodeChkVal').val(0);
 			}
+			return isMailValid;
 		},
 		error:function(){
 			alert("DB 접속 에러");
 		}
 	});
-	return isMailValid;
+	
 };
 
 function checkCode(codeInput) {
@@ -387,7 +389,16 @@ function pwChk2(el) {
 	}
 }
 
-
+function joinMember() {
+	if(!joinCheck()) {
+		//false
+		alert("실패!!");
+	} else {
+		//true
+		$('#joinform').submit();
+	}
+	
+}
 
 
 

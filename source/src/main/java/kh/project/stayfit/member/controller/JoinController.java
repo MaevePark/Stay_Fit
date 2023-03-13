@@ -4,6 +4,7 @@ package kh.project.stayfit.member.controller;
 import java.io.PrintWriter;
 import java.util.Random;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,10 +43,26 @@ public class JoinController {
 		return mv;
 	}
 	
-	@PostMapping("/join")
-	public String join(Member member) {
+	@PostMapping("/joinAction")
+	public String join(
+			HttpServletRequest request
+			, @RequestParam(name="memail") String memail
+			, @RequestParam(name="mname") String mname
+			, @RequestParam(name="mpw") String mpw
+			
+			) {
+		Member vo = new Member();
+		System.out.println("----------------------------------------------------------------------");
+		System.out.println("memail : "+memail);
+		System.out.println("mname : "+mname);
+		System.out.println("mpw : "+mpw);
+		
+		
+		vo.setMemail(memail);
+		vo.setMname(mname);
+		vo.setMpw(mpw);
 		System.out.println("Controler Join");
-		memberService.join(member);
+		memberService.join(vo);
 		return "redirect:/member/login";
 	}
 	
