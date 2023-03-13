@@ -13,7 +13,7 @@ public interface ProductService {
 	public int updateProduct(SellerProduct vo) throws Exception;
 
 	// 상품삭제
-	public int deleteProduct(String pid) throws Exception;
+	public int deleteProduct(List<String> pidList) throws Exception;
 	
 	// 상품등록
 	public int insertProduct(SellerProduct vo) throws Exception;

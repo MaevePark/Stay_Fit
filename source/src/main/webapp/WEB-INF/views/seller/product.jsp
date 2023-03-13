@@ -139,24 +139,15 @@
 			    </div>
 			  </div>
 			  
-			  <p id="displayCount" style="margin-left: 20px"></p>
+			  <p id="displayCount" style="margin: 0 0.5rem 1rem; display: inline-block"></p>
+              <p id="deleteBtn" style="margin: 0 0.5rem 1rem; display: inline-block"></p>
 			  
               <!-- Basic Bootstrap Table -->
               <div class="card">
                 <div class="table-responsive text-nowrap">
                   	
                   <table class="table">
-                    <thead>
-                      <tr>
-                        <th>ID</th>
-                        <th>카테고리</th>
-                        <th>상품명</th>
-                        <th>이미지</th>
-                        <th>판매가</th>
-                        <th>판매량</th>
-                        <th>재고수량</th>
-                      </tr>
-                    </thead>
+                    <thead id="dataTableHead"></thead>
                     <tbody id="dataTableBody" class="table-border-bottom-0"></tbody>
                   </table>
                 </div>
@@ -353,6 +344,27 @@ function getData() {
 // 2. 글 목록 출력 함수
 //현재 페이지(currentPage)와 페이지당 글 개수(dataPerPage) 반영
 function displayData(currentPage, dataPerPage) {
+	
+	// 1) 삭제버튼
+	let deleteBtnHtml = "<button type='button' class='btn btn-secondary btn-sm delete' style='display:none'>삭제</button>";
+	
+	// 2) 테이블 헤드 부분
+	let headHtml = "";
+	headHtml +=
+		"<tr>" +
+		    "<th style='padding-right: 0'>" +
+		    	"<input id='checkAll' class='form-check-input me-3' type='checkbox'>" +
+		    "</th>" +
+		    "<th style='padding-left: 0'>ID</th>" +
+		    "<th>카테고리</th>" +
+		    "<th>상품명</th>" +
+		    "<th>이미지</th>" +
+		    "<th>판매가</th>" +
+		    "<th>판매량</th>" +
+		    "<th>재고수량</th>" +
+	  	"</tr>";
+	
+	// 3) 테이블 데이터 부분
 	let chartHtml = "";
 	
 	//totalData가 0건인 경우
@@ -371,7 +383,8 @@ function displayData(currentPage, dataPerPage) {
 	for (let i = (currentPage - 1) * dataPerPage; i < Math.min((currentPage - 1) * dataPerPage + dataPerPage, totalData); i++) {
 		chartHtml += 
 			"<tr>" +
-				"<td>" + dataList[i].pid + "</td>" +
+				"<td style='padding-right: 0'><input class='form-check-input item' type='checkbox'></td>" +
+				"<td style='padding-left: 0'>" + dataList[i].pid + "</td>" +
 				"<td>" + dataList[i].cname + "</td>" +
 				"<td>" + dataList[i].pname + "</td>" +
 				"<td>" + 
@@ -388,17 +401,18 @@ function displayData(currentPage, dataPerPage) {
 					"<button type='button' class='btn btn-secondary btn-sm link'>상품보기</button>" + 
 					"<input type='hidden' name='plink' value='" + dataList[i].plink + "'>" +
 				"</td>" +
-				"<td style='padding-right:0;'>" + 
+				"<td>" + 
 					"<button type='button' class='btn btn-secondary btn-sm update' data-bs-toggle='modal' data-bs-target='#updateModal'>상품수정</button>" + 
 					"<input type='hidden' name='image' value='" + dataList[i].pimage + "'>" +
 					"<input type='hidden' name='pricenum' value='" + dataList[i].pricenum + "'>" +
 				"</td>" +
-				"<td>" + 
-					"<button type='button' class='btn btn-secondary btn-sm delete'>상품삭제</button>" + 
-				"</td>" +
 			"</tr>";
 	}
+	$("#deleteBtn").html(deleteBtnHtml);
+	$("#dataTableHead").html(headHtml);
 	$("#dataTableBody").html(chartHtml);
+	$("#checkAll").on("click", checkAllClickHandler); // checkAll 체크박스 클릭에 따른 동작
+	$(".item").on("click", checkClickHandler); // 각 체크박스 클릭에 따른 동작
 	$("button.link").on("click", linkClickHandler);
 	$("button.update").on("click", modalShowHandler);
 	$("button.delete").on("click", productDeleteHandler);
@@ -524,6 +538,45 @@ function resetData() {
 // 참고사이트 -> https://mchch.tistory.com/140
 
 //------------------------------------------------------------------------------
+
+// <체크박스 동작>
+// 1. checkAll 체크박스 클릭에 따른 동작
+function checkAllClickHandler() {
+	
+	// checkAll 체크박스가 체크되면 모든 체크박스 체크
+	if($(this).prop("checked")) {
+        $(".item").prop("checked", true);
+    } else {
+        $(".item").prop("checked", false);
+    }
+	
+	// 체크박스가 하나라도 체크되면 삭제 버튼 활성화
+    if($('.item:checked').length > 0) {
+    	$('button.delete').show();
+    } else {
+    	$('button.delete').hide();
+    }
+}
+// 2. 각 체크박스 클릭에 따른 동작
+function checkClickHandler() {
+	
+	// 모든 체크박스가 체크되면 checkAll 체크박스도 체크
+    if($(".item:checked").length < $(".item").length) {
+        $("#checkAll").prop("checked", false);
+    } else {
+        $("#checkAll").prop("checked", true);
+    }
+    
+ 	// 체크박스가 하나라도 체크되면 삭제 버튼 활성화
+    if ($(".item:checked").length > 0) {
+    	$('button.delete').show();
+    } else {
+    	$('button.delete').hide();
+    }
+}
+
+//------------------------------------------------------------------------------
+
 // <상품 보기 링크 이동>
 function linkClickHandler() {
 	
@@ -538,13 +591,12 @@ function linkClickHandler() {
 function modalShowHandler() {
 	
 	// 상품ID, 상품명, 판매가, 재고수량, 상품URL
-	let pid = $(this).parent().siblings().eq(0).text();
-	let pname = $(this).parent().siblings().eq(2).text();
+	let pid = $(this).parent().siblings().eq(1).text();
+	let pname = $(this).parent().siblings().eq(3).text();
 	let pimage = $(this).siblings("input[name=image]").val();
-	console.log(pimage);
 	let pricenum = $(this).siblings("input[name=pricenum]").val();
-	let pstock = $(this).parent().siblings().eq(6).text();
-	let plink = $(this).parent().siblings().eq(7).children("input[type=hidden]").val();
+	let pstock = $(this).parent().siblings().eq(7).text();
+	let plink = $(this).parent().siblings().eq(8).children("input[type=hidden]").val();
 
 	$("#pid").val(pid);
 	$("#pname").val(pname);
@@ -643,17 +695,22 @@ function productUpdate(e) {
 
 function productDeleteHandler() {
 	
+	let checkedBoxes = $(".item:checked");
+	let pidList = []; // 선택된 pid 담을 배열
+	checkedBoxes.each(function() {
+		pidList.push($(this).parent().siblings().eq(0).text());
+	});
+	console.log(pidList);
+	
 	// 일단 정말 삭제할건지 다시 체크
 	if (confirm("정말 삭제하시겠습니까?") == true) { // 확인 클릭시
-		let pid = $(this).parent().siblings().eq(0).text();
-		console.log(pid);
 	    
 	    $.ajax({
 	  		url : "productdelete",
 	  		type : "post",
-	  		data: { 'pid' : pid },
+	  		data: { 'pidList' : pidList },
 	  		success: function(data){
-		  		if(data == 1) {
+		  		if(data > 0) {
 					alert("상품 삭제 성공");
 				} else {
 					alert("상품 삭제 실패");

@@ -151,9 +151,9 @@ public class ProductController {
 	// 상품 삭제
 	@PostMapping("/productdelete")
 	@ResponseBody
-	public int deleteProduct(@RequestParam("pid") String pid) throws Exception {
+	public int deleteProduct(@RequestParam("pidList[]") List<String> pidList) throws Exception {
 		
-		int result = service.deleteProduct(pid);
+		int result = service.deleteProduct(pidList);
 
 		return result;
 	}

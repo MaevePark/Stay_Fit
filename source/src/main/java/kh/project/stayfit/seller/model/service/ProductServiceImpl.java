@@ -29,8 +29,8 @@ public class ProductServiceImpl implements ProductService{
 	
 	// 상품삭제
 	@Override
-	public int deleteProduct(String pid) throws Exception {
-		return dao.deleteProduct(pid);
+	public int deleteProduct(List<String> pidList) throws Exception {
+		return dao.deleteProduct(pidList);
 	}
 
 	// 상품등록

@@ -34,8 +34,8 @@ public class ProductDao {
 	}
 	
 	// 상품삭제
-	public int deleteProduct(String pid) throws Exception {
-		return sqlsession.delete("seller.deleteProduct", pid);
+	public int deleteProduct(List<String> pidList) throws Exception {
+		return sqlsession.delete("seller.deleteProduct", pidList);
 	}
 
 	// 상품등록

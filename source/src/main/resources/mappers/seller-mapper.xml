@@ -78,9 +78,12 @@
   	</update>
   	
   	<!-- 상품삭제 -->
-  	<delete id="deleteProduct" parameterType="string">
+  	<delete id="deleteProduct" parameterType="list">
 		DELETE FROM PRODUCT
-		    WHERE PID = #{pid}
+		    WHERE PID IN
+		    <foreach item="pid" collection="list" open="(" separator="," close=")">
+		        #{pid}
+		    </foreach> 
   	</delete>
   	
   	<!-- 상품등록 -->
