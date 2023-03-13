@@ -21,7 +21,7 @@
 						<div class="row join-wrap">
 							<div class="col-md-9 join-input-box">
 								<label for="email" class="form-label">이메일</label> <input
-									type="text" name="memail" id="memail" class="form-control" pattern="[^-\s]+" oninput="checkMail"
+									type="text" name="memail" id="memail" class="form-control" pattern="[^-\s]+" onkeyup="checkMail()"
 									placeholder="email@stayfit.com" value="">
 							</div>
 							<div class="col-md-3 join-button-box">
@@ -31,8 +31,8 @@
 								</button>
 							</div>
 							<div class="col-md-9 join-input-box">
-							<span class="mail_check_ok">사용 가능한 이메일입니다.</span>
-							<span class="mail_check_already">사용 불가한 이메일입니다. 다시 입력해주세요.</span>
+							<span class="mail_check_ok" style="display: none">사용 가능한 이메일입니다.</span>
+							<span class="mail_check_already" style="display: none">사용 불가한 이메일입니다. 다시 입력해주세요.</span>
 							</div>
 							<div class="col-md-9 join-input-box">
 								<label for="cdnum" class="form-label">인증번호</label> <input 
@@ -219,18 +219,21 @@ $('#cdnum').blur(function () {
 function checkMail(){
 	var memail = $('#memail').val();
 	$.ajax({
-		url:'/mailChk',
+		url:'mailChk',
 		type:'post',
 		data:{memail : memail},
 		success:function(result){
 			if(result == 0){
+				var ok = document.getElementsByClassName("mail_check_ok")[0];
+				console.log(ok);
 				$('.mail_check_ok').css("display","");
 				$('.mail_check_already').css("display", "none");
 				console.log(memail);
 			}else{
+				var already = document.getElementsByClassName("mail_check_already")[0];
+				console.log(already);
 				$('.mail_check_already').css("display","");
 				$('.mail_check_ok').css("display", "none");
-				$('#memail').val('');
 			}
 		},
 		error:function(){

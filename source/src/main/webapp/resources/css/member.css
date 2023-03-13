@@ -140,11 +140,9 @@ a:hover{
 }
 .mail_check_ok{
 	color:green;
-	display:none;
 }
 .mail_check_already{
 	color:red;
-	display:none;
 }
 .name_check_ok{
 	color:green;

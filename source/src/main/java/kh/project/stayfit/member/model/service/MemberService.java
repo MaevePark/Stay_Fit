@@ -9,5 +9,5 @@ public interface MemberService {
 	public Member viewMember(Member member);
 //	public int login(Member m, HttpSession session);
 	public int join(Member member); // insert(String, String, String): int
-	public int mailChk(String a); // mailChk(String): int
+	public int mailChk(String memail); // mailChk(String): int
 }
