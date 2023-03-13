@@ -21,16 +21,20 @@ public class HealthCenterController {
 	private HealthCenterService service;
 
 	// 게시글 목록 조회, 글 검색
-	@GetMapping(value = { "/centerlist", "listsearch" })
+	@GetMapping("/centerlist")
 	@ResponseBody
-	public ModelAndView selectCenterList(ModelAndView mv, 
+	public ModelAndView selectCenter(ModelAndView mv, @RequestParam(name = "page", defaultValue = "1") int page,
 			@RequestParam(name = "lid", defaultValue = "0") int lid,
-			@RequestParam(name = "keyword", required=false, defaultValue = "") String keyword) throws Exception {
-
-		List<HealthCenter> list = service.selectCenter(lid, keyword);
-
+			@RequestParam(name = "category", required=false) String category,
+			@RequestParam(name = "keyword", required=false) String keyword) throws Exception {
+		
+		// TODO 페이징 시작
+		// TODO 페이징 끝
+		
+		List<HealthCenter> list = service.selectCenter(lid, category, keyword);
+		
 		mv.addObject("centerList", list);
-		mv.addObject("sectionName", "health/centerlist.jsp");
+		mv.addObject("sectionName", "health/centerlist.jsp");	
 		mv.setViewName("index");
 
 		return mv;

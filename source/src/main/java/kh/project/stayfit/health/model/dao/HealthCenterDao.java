@@ -17,10 +17,11 @@ public class HealthCenterDao {
 	private SqlSession sqlSession;
 
 	// 게시글 목록 조회, 글 검색
-	public List<HealthCenter> selectCenter(int lid, String keyword) throws Exception {
-		Map<String, Object> param = new HashMap<String, Object>();
-		param.put("lid", lid);
-		param.put("keyword", keyword);
-		return sqlSession.selectList("healthcenter.selectCenter",param);
+	public List<HealthCenter> selectCenter(int lid, String category, String keyword) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("lid", lid);
+		map.put("category", category);
+		map.put("keyword", keyword);
+		return sqlSession.selectList("healthcenter.selectCenter", map);
 	}
 }
