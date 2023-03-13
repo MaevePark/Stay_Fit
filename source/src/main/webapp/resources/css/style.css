@@ -2034,17 +2034,6 @@ ol {
 	position: relative;
 }
 
-.blog__pagination:before {
-	position: absolute;
-	left: 0;
-	top: -29px;
-	height: 1px;
-	width: 100%;
-	background: #000000;
-	opacity: 0.1;
-	content: "";
-}
-
 /*---------------------
   Blog Sidebar
 -----------------------*/
