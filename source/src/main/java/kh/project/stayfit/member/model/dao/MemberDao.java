@@ -9,4 +9,5 @@ public interface MemberDao {
 	public Member viewMember(Member member);
 	public void logout(HttpSession session);
 	public int join(Member member);
+	public int mailChk(String memail); // mailChk(String): int
 }

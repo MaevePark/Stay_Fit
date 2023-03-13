@@ -71,37 +71,50 @@ a:hover{
 .btn_kakao{
 	background:#FFE90A;
 	border:1px solid #FFE90A; 
+}
+.btn_kakao a{ 
 	color:#3A1D1D;
 }
 .btn_kakao img{
-	margin: 0px 0px 0px -50px;
+	margin: 0px 0px 0px -55px;
 }
 .btn_kakao:hover{
 	border:1px solid #3A1D1D;
-	background:#3A1D1D;
+	background:#3A1D1D;	
+}
+.btn_kakao:hover a{
 	color:#FFE90A;
 }
 .btn_naver{
 	background:#00C73C;
 	border:1px solid #00C73C;
+}
+.btn_naver a{
 	color:white;
 }
 .btn_naver img{
-	margin: 0px 0px 0px -256px;
+	margin: 0px 0px 0px -72px;
 }
 .btn_naver:hover{
 	border:1px solid #00C73C;
 	background:white;
+}
+.btn_naver:hover a{
 	color:#00C73C;
 }
 .btn_google{
 	border: 1px solid #4285F4;
+}
+.btn_google a{
+	color: black;
 }
 .btn_google img{
 	margin: 0px 0px 0px -80px;
 }
 .btn_google:hover{
 	background:#4285F4;
+}
+.btn_google:hover a{
 	color:white;
 }
 .login-txt{
@@ -124,4 +137,21 @@ a:hover{
 }
 .join-wrap{
 	width:600px;
+}
+.mail_check_ok{
+	color:green;
+	display:none;
+}
+.mail_check_already{
+	color:red;
+	display:none;
+}
+.name_check_ok{
+	color:green;
+	display:none;
+		
+}
+.name_check_already{
+	color:red;
+	display:none;
 }

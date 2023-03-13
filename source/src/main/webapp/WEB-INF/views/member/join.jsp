@@ -21,7 +21,7 @@
 						<div class="row join-wrap">
 							<div class="col-md-9 join-input-box">
 								<label for="email" class="form-label">이메일</label> <input
-									type="text" name="memail" id="memail" class="form-control" pattern="[^-\s]+"
+									type="text" name="memail" id="memail" class="form-control" pattern="[^-\s]+" oninput="checkMail"
 									placeholder="email@stayfit.com" value="">
 							</div>
 							<div class="col-md-3 join-button-box">
@@ -31,11 +31,15 @@
 								</button>
 							</div>
 							<div class="col-md-9 join-input-box">
+							<span class="mail_check_ok">사용 가능한 이메일입니다.</span>
+							<span class="mail_check_already">사용 불가한 이메일입니다. 다시 입력해주세요.</span>
+							</div>
+							<div class="col-md-9 join-input-box">
 								<label for="cdnum" class="form-label">인증번호</label> <input 
 									onkeydown="this.value=this.value.replace(/[^0-9]/g,'')"
 									onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"
 									onblur="this.value=this.value.replace(/[^0-9]/g,'')"
-									type="text" disabled="disabled" maxlength="6" name="cdnum" id="cdnum" class="form-control"
+									type="text" maxlength="6" name="cdnum" id="cdnum" class="form-control"
 									value="">
 							</div>
 							<div class="col-md-9 join-input-box">
@@ -43,8 +47,12 @@
 							</div>
 							<div class="col-md-9 join-input-box">
 								<label for="mname" class="form-label">닉네임</label> <input
-									type="text" name="mname" id="mname" class="form-control"
+									type="text" name="mname" id="mname" class="form-control" oninput="checkName"
 									value="" maxLength=12>
+							</div>
+							<div class="col-md-9 join-input-box">
+								<span class="name_check_ok">사용 가능한 닉네임입니다.</span>
+								<span class="name_check_already">사용 불가한 닉네임입니다. 다시 입력해주세요.</span>
 							</div>
 							<div class="col-md-9 join-input-box">
 								<label for="pwd1" class="form-label">비밀번호</label> <input
@@ -100,11 +108,6 @@ function checkEmail(memail) {
     //이메일이 입력되었는지 확인하기
     if (!checkExistData(memail, "이메일을")){
     	form.memail.focus();
-    	$resultMsg.html('');
-		$('#btnChkMail').attr('disabled',false);
-		$('#memail').attr('readonly',false);
-		$('#cdnum').attr('disabled', false);
-		$('#cdnum').value('');
     	return false;	
     }
 
@@ -116,18 +119,12 @@ function checkEmail(memail) {
     }
     return true; //확인이 완료되었을 때
 }
-function checkCdNum(cdnum){
-	if(!checkExistData(cdnum, "인증번호를")){
+
+function checkCdnum(cdnum) {
+	if(!checkExistData(cdnum,"인증번호를")){
 		form.cdnum.focus();
 		return false;
 	}
-	var cdnumRegExp = /^\d{6}$/;
-	if (!cdnumRegExp.test(cdnum)){
-		alert("인증번호 6자리를 입력해주세요.")
-		form.cdnum.focus();
-		return false;
-	}
-	return true;
 }
 
 function checkPassword(pwd1, pwd2) {
@@ -188,7 +185,7 @@ $('#btnChkMail').click(function(){
 			console.log("data : " +  data);
 			code = data;
 			if(isNaN(code)) {
-				alert("이메일 전송에 실패하였습니다. 다시 시도해주세요.")
+				alert("이메일 전송에 실패하였습니다. 다시 시도해주세요.");
 			} else{
 				alert("이메일이 전송되었습니다. 메일함을 확인해 주세요.");
 				checkInput.attr('disabled',false);
@@ -209,9 +206,37 @@ $('#cdnum').blur(function () {
 		$('#memail').attr('readonly',true);
 		$('#cdnum').attr('disabled', true);
 	}else{
+		try{
+			code;
+		}catch(e){
+			alert('인증번호를 이메일을 통해 받아주세요.');
+		}
 		$resultMsg.html('인증번호가 불일치 합니다. 다시 확인해주세요!');
 		$resultMsg.css('color','red');
 	}
 });
+
+function checkMail(){
+	var memail = $('#memail').val();
+	$.ajax({
+		url:'/mailChk',
+		type:'post',
+		data:{memail : memail},
+		success:function(result){
+			if(result == 0){
+				$('.mail_check_ok').css("display","");
+				$('.mail_check_already').css("display", "none");
+				console.log(memail);
+			}else{
+				$('.mail_check_already').css("display","");
+				$('.mail_check_ok').css("display", "none");
+				$('#memail').val('');
+			}
+		},
+		error:function(){
+			alert("회원가입 중 오류가 발생했습니다.")
+		}
+	});
+};
 
 </script>

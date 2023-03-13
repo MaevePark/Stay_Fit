@@ -44,6 +44,7 @@ public class JoinController {
 	
 	@PostMapping("/join")
 	public String join(Member member) {
+		System.out.println("Controler Join");
 		memberService.join(member);
 		return "redirect:/member/login";
 	}
@@ -56,12 +57,11 @@ public class JoinController {
 		
 		return mv;
 	}
-	@GetMapping("/mailchk")
+	@PostMapping("/mailChk")
 	@ResponseBody
-	public String mailchk(@RequestParam(name="memail") String memail) {
-		System.out.println("이메일 인증 요청 들어옴");
-		System.out.println("이메일 인증 이메일 : " + memail);
-		return mailService.EmailForm(memail);
+	public int mailchk(@RequestParam("memail") String memail) {
+		int result= memberService.mailChk(memail);
+		return result; 
 	}
 	
 	@PostMapping("/send")

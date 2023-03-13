@@ -44,9 +44,10 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int mailChk(String a) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int mailChk(String memail) {
+		int result = memberDao.mailChk(memail);
+		System.out.println("result: " + result);
+		return result;
 	}
 
 //	@Override

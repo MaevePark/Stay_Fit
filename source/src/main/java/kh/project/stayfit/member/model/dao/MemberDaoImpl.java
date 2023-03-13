@@ -50,8 +50,8 @@ public class MemberDaoImpl implements MemberDao{
 //	public int insert(String a ,String b , String c) { // insert(String, String, String): int
 //		return 0; 
 //	}
-	public int mailChk(String a) { // mailChk(String): int
-		return 0;
+	public int mailChk(String memail) { // mailChk(String): int
+		return sqlSession.selectOne("mailChk", memail);
 	} 
 	
 }

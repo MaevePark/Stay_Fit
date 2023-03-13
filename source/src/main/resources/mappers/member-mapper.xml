@@ -17,5 +17,9 @@
  	VALUES ((SELECT NVL(MAX(MID),0)+1 FROM USERAUTH))
  	select * from dual
  	</insert>
+ 	
+ 	<select id="mailChk" parameterType="String" resultType="int">
+ 		SELECT COUNT(MEMAIL) FROM MEMBER WHERE MEMAIL = #{memail}
+ 	</select>
   
 </mapper>

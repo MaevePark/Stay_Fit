@@ -3,11 +3,24 @@
   document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
     
+//    events : [
+//    	{
+//    	title: '<img src="<%=request.getContextPath()%>/resources/img/diary/scale.png">' 
+//    		+ (breakfast + snack1 + lunch + snack2 + dinner + snack3) + "\n"
+//    		+ '<img src="<%=request.getContextPath()%>/resources/img/diary/scale.png">\n'
+//    		+ weight + "\n"
+//    		+ '<img src="<%=request.getContextPath()%>/resources/img/diary/scale.png">\n'
+//    		+ exercise ,
+//		start : '2023-03-13',// ddate,
+//		end : '2023-03-13'
+//    	}
+//	  ]
+    
     var calendar = new FullCalendar.Calendar(calendarEl, {
       headerToolbar: {
-        left: 'prev,next today',
+        left: 'prev,next',
         center: 'title',
-        right: 'dayGridMonth,listMonth'
+        right: 'today'
       },
       
       titleFormat : function(date) {
@@ -22,9 +35,10 @@
 	  
 	  dateClick:function(){
 		  $("#calendar-modal").modal("show");
-	  }
+	  },
+	  
     });
-
+    
     calendar.render();
   });
 
@@ -36,7 +50,7 @@
 	  $ajax({
 		  type:'POST',
 		  url:'/diary-write',
-		  data:{ weight: weight},
+		  data:{ weight: weight },
 		  success: function(data){
 			  //fullcalendar에 아이콘과 함께 표시
 		  },
@@ -75,15 +89,20 @@ function search() {
 					console.log(value.nutList);
 					var nutrition = value.nutList;
 					
-					for(var i=0; i< nutrition.length; i++) {
-						var list = nutrition[i];
-						
-						
-					}
+					var tbody = $(".search-table tbody");
 					
-			},
-			error: function(request, status, error) {
-				alert("code" + request.status + "\n" + "message : " + request.responseText + "\nerror" + error);
+					tbody.empty()
+					
+					for(var i=0; i< nutrition.length; i++) {
+						var nut = nutrition[i];
+						
+						var row = $("<tr></tr>") // 새로운 행 생성
+						$("<td>" + nut.product + "</td>").appendTo(row); // 셀 추가
+						$("<td>" + nut.capunit + "</td>").appendTo(row);
+						$("<td>" + nut.kcal + "</td>").appendTo(row);
+						$("<td>").html('<button class="btn btn-primary btn-add" data-meal="${meal.id}"><i class="bi bi-plus-square"></i></button>').appendTo(row);
+						tbody.append(row); // 행을 테이블에 추가
+					}
 			}
 		});
 	}
@@ -106,21 +125,67 @@ function search() {
 						var exercise = value.exrcList;
 						
 						for(var i=0; i< exercise.length; i++) {
-							var list = exercise[i];
+							var exrc = exercise[i];
 							
+							var row = $("<tr></tr>") // 새로운 행 생성
+							$("<td>" + exrc.exercise + "</td>").appendTo(row); // 셀 추가
+							$("<td>" + '5분' + "</td>").appendTo(row);
+							$("<td>" + exrc.five_m_kcal + "</td>").appendTo(row);
+							$("<td>").html('<button class="btn btn-primary btn-add" data-meal="${exrc.exid}"><i class="bi bi-plus-square"></i></button>').appendTo(row);
+							tbody.append(row); // 행을 테이블에 추가
 							
+							$("<td>" + exrc.exercise + "</td>").appendTo(row); // 셀 추가
+							$("<td>" + '10분' + "</td>").appendTo(row);
+							$("<td>" + exrc.ten_m_kcal + "</td>").appendTo(row);
+							$("<td>").html('<button class="btn btn-primary btn-add" data-meal="${exrc.exid}"><i class="bi bi-plus-square"></i></button>').appendTo(row);
+							tbody.append(row); // 행을 테이블에 추가
+							
+							$("<td>" + exrc.exercise + "</td>").appendTo(row); // 셀 추가
+							$("<td>" + '30분' + "</td>").appendTo(row);
+							$("<td>" + exrc.thirty_m_kcal + "</td>").appendTo(row);
+							$("<td>").html('<button class="btn btn-primary btn-add" data-meal="${exrc.exid}"><i class="bi bi-plus-square"></i></button>').appendTo(row);
+							tbody.append(row); // 행을 테이블에 추가
+							
+							$("<td>" + exrc.exercise + "</td>").appendTo(row); // 셀 추가
+							$("<td>" + '1시간' + "</td>").appendTo(row);
+							$("<td>" + exrc.one_h_kcal + "</td>").appendTo(row);
+							$("<td>").html('<button class="btn btn-primary btn-add" data-meal="${exrc.exid}"><i class="bi bi-plus-square"></i></button>').appendTo(row);
+							tbody.append(row); // 행을 테이블에 추가
 						}
 						
 				},
-				error: function(request, status, error) {
-					alert("code" + request.status + "\n" + "message : " + request.responseText + "\nerror" + error);
-				}
 			});
 		}
 	}
   
-  
-  
-  
-  
-  
+  function isNumberKey(event) {
+
+      var charCode = (event.which) ? event.which : event.keyCode;
+
+      if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57))
+          return false;
+      // Textbox value    
+      var value = event.srcElement.value;    
+      // 소수점(.)이 두번 이상 나오지 못하게
+      var pattern0 = /^\d*[.]\d*$/; // 현재 value값에 소수점(.) 이 있으면 . 입력불가
+      if (pattern0.test(_value)) {
+          if (charCode == 46) {
+              return false;
+          }
+      }
+      var pattern1 = /^\d{3}$/; // 현재 value값이 3자리 숫자이면 . 만 입력가능
+      if (pattern1.test(value)) {
+          if (charCode != 46) {
+              alert("3자리 숫자만 입력가능합니다");
+              return false;
+          }
+      }
+      // 소수점 둘째자리까지만 입력가능
+      var pattern2 = /^\d*[.]\d{2}$/; // 현재 value값이 소수점 둘째짜리 숫자이면 더이상 입력 불가
+      if (pattern2.test(value)) {
+          alert("소수점 둘째자리까지만 입력가능합니다.");
+          return false;
+      }  
+      return true;
+  }
+

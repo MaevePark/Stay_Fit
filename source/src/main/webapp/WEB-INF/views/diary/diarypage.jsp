@@ -43,9 +43,10 @@ window.onload = function() {
 					<div class="weight-group">
 						<span class="modal-txt">몸무게 : </span> 
 						<input type="text" class="diary-modal-input"
-							id="weight-input" onkeydown="this.value=this.value.replace(/[^0-9]/g,'')"
-							onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"
-							onblur="this.value=this.value.replace(/[^0-9]/g,'')">
+							id="weight-input" onkeydown="this.value=this.value.replace(/[^\.0-9]/g,'')"
+							onkeyup="this.value=this.value.replace(/[^\.0-9]/g,'')"
+							onkeypress="return isNumberKey(event)"
+							onblur="this.value=this.value.replace(/[^-\.0-9]/g,'')">
 							<span>&nbsp;&nbsp;kg</span>
 					</div>
 					<div class="btn-group-toggle radio-group" data-toggle="buttons">
@@ -79,40 +80,46 @@ window.onload = function() {
 					</div>
 					<div class="search-group">
 						<input type="text" class="diary-modal-input" data-toggle="modal" data-target="#search-meal" placeholder="식단메뉴 검색">
-							<table class="result-table">
+							<table class="table table-striped table-hover">
 								<thead>
 									<tr>
-										<th class="td-menu">식단 메뉴</th>
-										<th>단위</th>
-										<th class="td-kcal">섭취 칼로리</th>
-										<th>메뉴 제거</th>
+										<th scope="col" class="td-menu">식단 메뉴</th>
+										<th scope="col">단위</th>
+										<th scope="col" class="td-kcal">섭취 칼로리</th>
+										<th scope="col">제거</th>
 									</tr>
 								</thead>
 								<tbody>
 									<c:forEach items="${meal.id}">
+										<!-- 식단명 -->
 										<td>${meal.product}</td>
+										<!-- 1회 제공량 -->
 										<td>${meal.capunit}</td>
+										<!-- 섭취 칼로리 -->
 										<td>${meal.kcal}</td>
-										<td><button class="btn btn-light minus-box">-</button></td>
+										<td><button class="btn btn-light minus-box"><i class="bi bi-dash-square"></i></button></td>
 									</c:forEach>
 								</tbody>
 							</table>
 						<input type="text" class="diary-modal-input" data-toggle="modal" data-target="#search-training" placeholder="운동 검색">
-							<table class="result-table">
+							<table class="table table-striped table-hover">
 								<thead>
 									<tr>
-										<td class="td-menu">운동 종류</td>
-										<td>단위</td>
-										<td class="td-kcal">소모 칼로리</td>
-										<td>제거</td>
+										<th scope="col" class="td-menu">운동 종류</th>
+										<th scope="col">단위</th>
+										<th scope="col" class="td-kcal">소모 칼로리</th>
+										<th scope="col">제거</th>
 									</tr>
 								</thead>
 								<tbody>
 									<c:forEach items="${exrc.id}">
+										<!-- 운동명 -->
 										<td>${exrc.exercise}</td>
+										<!-- 단위(분) -->
 										<td>1</td>
+										<!-- 소모 칼로리 -->
 										<td>${exrc.kcal}</td>
-										<td><button class="btn btn-light minus-box">-</button></td>
+										<td><button class="btn btn-light minus-box"><i class="bi bi-dash-square"></i></button></td>
 									</c:forEach>
 								</tbody>
 							</table>
@@ -151,19 +158,26 @@ window.onload = function() {
 							</div>
 						</div>
 					</form>
-						<table>
-							<tr><th>음식명</th><th>단위</th><th>섭취 칼로리</th><th>추가</th></tr>
+						<table class="search-table table table-striped table-hover">
+							<tr>
+							<th scope="col">음식명</th>
+							<th scope="col">단위</th>
+							<th scope="col">섭취 칼로리</th>
+							<th scope="col">추가</th>
+							</tr>
 							
-							<c:forEach items="${meal}" var="meal">
+							<tbody>
+								<c:forEach items="${meal}" var="meal">
 								<tr>
 									<td>${meal.product}</td>
 									<td>${meal.capunit}</td>
 									<td>${meal.kcal}</td>
 									<td>
-										<button class="btn btn-primary btn-add" data-meal="${meal.id}">+</button>
+										<button class="btn btn-primary btn-add" data-meal="${meal.id}"><i class="bi bi-plus-square"></i></button>
 									</td>
 								</tr>
 							</c:forEach>
+							</tbody>
 						</table>
 				</div>
 			</div>
@@ -194,19 +208,49 @@ window.onload = function() {
 							</div>
 						</div>
 					</form>
-						<table>
-							<tr><th>운동</th><th>단위</th><th>소모 칼로리</th><th>추가</th></tr>
-							
+						<table class="search-table table table-striped table-hover">
+							<tr>
+							<th scope="col">운동</th>
+							<th scope="col">단위</th>
+							<th scope="col">소모 칼로리</th>
+							<th scope="col">추가</th>
+							</tr>
+							<tbody>
 							<c:forEach items="${exrc}" var="exrc">
 								<tr>
 									<td>${exrc.exercise}</td>
-									<td>${exrc.time}</td>
+									<td>5분</td>
 									<td>${exrc.kcal}</td>
 									<td>
-										<button class="btn btn-primary btn-add" data-exrc="${exrc.id}">+</button>
+										<button class="btn btn-primary btn-add" data-exrc="${exrc.id}"><i class="bi bi-plus-square"></i></button>
+									</td>
+								</tr>
+								<tr>
+									<td>${exrc.exercise}</td>
+									<td>10분</td>
+									<td>${exrc.kcal}</td>
+									<td>
+										<button class="btn btn-primary btn-add" data-exrc="${exrc.id}"><i class="bi bi-plus-square"></i></button>
+									</td>
+								</tr>
+								<tr>
+									<td>${exrc.exercise}</td>
+									<td>30분</td>
+									<td>${exrc.kcal}</td>
+									<td>
+										<button class="btn btn-primary btn-add" data-exrc="${exrc.id}"><i class="bi bi-plus-square"></i></button>
+									</td>
+								</tr>
+								<tr>
+									<td>${exrc.exercise}</td>
+									<td>1시간</td>
+									<td>${exrc.kcal}</td>
+									<td>
+										<button class="btn btn-primary btn-add" data-exrc="${exrc.id}"><i class="bi bi-plus-square"></i></button>
 									</td>
 								</tr>
 							</c:forEach>
+							</tbody>
 						</table>
 				</div>
 			</div>
