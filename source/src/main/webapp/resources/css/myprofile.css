@@ -1,0 +1,131 @@
+@charset "UTF-8";
+
+
+#profile_area {
+	width: 100%;
+	display: flex;
+}
+
+#profile_area > div:first-child {
+	width: 50%;
+	border: 1px solid red;
+}
+#profile_area > div:first-child > div {
+	margin-bottom: 30px;
+}
+
+
+.changeBtn {
+	width: 300px;
+	margin-top: 10px;
+	
+	font-size: 14px;
+    color: #ffffff;
+    font-weight: 800;
+    text-transform: uppercase;
+    display: inline-block;
+    padding: 13px 30px 12px;
+    background: #7fad39;
+    border: none;
+}
+
+/*프로필 사진 시작*/
+#profileImg_area > div:first-child {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    overflow: hidden;
+}
+
+#profileImg_area > div:first-child > img{
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+#profileImg_area > div:last-child {
+	display: flex;
+	justify-content: center;
+}
+/*프로필 사진 끝*/
+
+/*닉네임 시작*/
+#nameArea {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+#nameArea span {
+	width: 300px;
+	text-align: left;
+	font-size: 20px;
+}
+/*닉네임 끝*/
+
+/*비밀번호 시작*/
+#pwdArea {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+/*비밀번호 끝*/
+
+
+
+
+
+
+
+/*프로필 변경 영역*/
+#profile_area > #editArea{
+	width: 50%;
+	height: 1200px;
+	border: 1px solid blue;
+}
+
+#editArea input {
+	width: 300px;
+	height: 46px;
+}
+#editArea button {
+	width: 300px;
+	margin-top: 10px;
+	
+	font-size: 14px;
+    color: #ffffff;
+    font-weight: 800;
+    text-transform: uppercase;
+    display: inline-block;
+    padding: 13px 30px 12px;
+    background: #7fad39;
+    border: none;
+}
+
+#profImgInputArea {
+	position: relative;
+	top:260px;
+}
+
+#nameInputArea {
+	position: absolute;
+	top:460px;
+}
+
+#pwdInputArea {
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	top:545px;
+}
+#pwChkMsg1, #pwChkMsg2 {
+	width: 300px;
+	height: 45px;
+}
+
+#submitBtnArea {
+	position: absolute;
+	top:720px;
+}
+
+
+

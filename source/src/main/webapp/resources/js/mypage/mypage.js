@@ -1,4 +1,16 @@
 window.onload = function() {
+	//비밀번호 유효성 체크
+	var regExp = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@!%*#?&])[A-Za-z\d@!%*#?&]{8,16}$/;
+	$('#pw').keyup(function(event) {
+		if(!$('#pw').val().test(regExp)) {
+			document.getElementById('pwChkMsg').innerText = "비밀번호는 8~16자로 영문, 숫자, 특수 기호를 조합하여 입력해주세요.";
+			
+		} else {
+			document.getElementById('pwChkMsg').innerText = "사용 가능한 비밀번호입니다.";
+		}
+	});
+	
+	
 	
 }
 
@@ -38,8 +50,10 @@ function changePwd() {
 	if($('#pwdInputArea').childElementCount > 0) {
 	} else {
 			var parent = document.getElementById("pwdInputArea");
-			const html = '<input type="password" name="pwd">'+
-						'<input type="password" name="pwd2">';
+			const html = '<input type="password" name="pwd" id="pw1" onkeyup="pwChk1()">'+
+						'<span id="pwChkMsg1"></span>'+
+						'<input type="password" name="pwd2" id="pw2" onkeyup="pwChk2()">'+
+						'<span id="pwChkMsg2"></span>';
 			parent.innerHTML = html;
 			
 			if($('#submitBtn').length < 1) {
@@ -49,3 +63,29 @@ function changePwd() {
 			}
 	}
 }
+
+
+function pwChk1() {
+	var regExp = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@!%*#?&])[A-Za-z\d@!%*#?&]{8,16}$/;
+	var pw1 = document.getElementById("pw1");
+	var pwChkMsg = document.getElementById('pwChkMsg1');
+	if(!regExp.test(pw1.value)) {
+		pwChkMsg.innerText = "비밀번호는 8~16자로 영문, 숫자, 특수 기호를 조합하여 입력해주세요.";
+		pwChkMsg.style.color = "red";
+	} else {
+		pwChkMsg.innerText = "사용 가능한 비밀번호입니다.";
+		pwChkMsg.style.color = "#7fad39";
+	}
+}
+function pwChk2() {
+	var pw1 = document.getElementById("pw1");
+	var pw2 = document.getElementById("pw2");
+	var pwChkMsg = document.getElementById('pwChkMsg2');
+	if(pw1.value !== pw2.value) {
+		pwChkMsg.innerText = "비밀번호가 일치하지 않습니다.";
+		pwChkMsg.style.color = "red";
+	} else {
+		pwChkMsg.innerText = "";
+	}
+}
+
