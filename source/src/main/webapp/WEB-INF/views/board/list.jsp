@@ -1,16 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>  
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!-- <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script> -->
 
-<section class="blog spad">
-	<div class="container">
+<div class="container">
+	<section class="blog spad">
 		<div class="row">
 			<!-- 게시판 카테고리  -->
 			<jsp:include page="/WEB-INF/views/board/boardcategory.jsp"></jsp:include>
 			<!-- 게시판 카테고리 끝 -->
-			
+
 			<div class="col-lg-10 col-md-10">
 				<div class="row">
 
@@ -45,7 +45,7 @@
 						<form action="<%=request.getContextPath()%>/board/list"
 							name="search_form" method="get">
 							<div class="hero__search__categories">
-								<select name="bcid" id="bcid" value="${bcid} ">
+								<select name="bcid" id="bcid">
 									<option value="0"
 										<%if (request.getParameter("bcid").equals("0")) {%> selected
 										<%}%>>공지사항</option>
@@ -54,20 +54,27 @@
 										<%}%>>식단</option>
 									<option value="2"
 										<%if (request.getParameter("bcid").equals("2")) {%> selected
-										<%}%>>팁&노하우</option>
+										<%}%>>팁&amp;노하우</option>
 									<option value="3"
 										<%if (request.getParameter("bcid").equals("3")) {%> selected
-										<%}%>>고민&질문</option>
+										<%}%>>고민&amp;질문</option>
 								</select>
 							</div>
 							<div class="hero__search__categories">
 								<select name="search" id="search">
-									<option value="all" selected>전체</option>
-									<option value="writer">작성자</option>
-									<option value="btitle">제목</option>
+									<option value="all"
+										<%if (request.getParameter("search") == null || request.getParameter("search").equals("all")) {%>
+										selected <%}%>>전체</option>
+									<option value="writer"
+										<%if (request.getParameter("search") != null && request.getParameter("search").equals("writer")) {%>
+										selected <%}%>>작성자</option>
+									<option value="btitle"
+										<%if (request.getParameter("search") != null && request.getParameter("search").equals("btitle")) {%>
+										selected <%}%>>제목</option>
 								</select>
 							</div>
-							<input type="text" name="keyword" id="keyword" value="${keyword} " placeholder="검색어를 입력해주세요.">
+							<input type="text" name="keyword" id="keyword" value="${keyword}"
+								placeholder="검색어를 입력해주세요.">
 							<button type="submit" class="site-btn" id="btn_search">SEARCH</button>
 						</form>
 					</div>
@@ -116,76 +123,65 @@
 											</c:forEach>
 										</c:when>
 									</c:choose>
+									<tr style=" border-bottom: 2px solid #dee2e6;"></tr>
 									<!--여기까지  게시글 list -->
 								</tbody>
 							</table>
 						</div>
 					</div>
-					<!--게시판 글등록  버튼-->
+				</div>
+				<!--게시판 글등록  버튼-->
+				
 					<c:if test="${bcid != '0'}">
 						<div id="button_parent">
-							<button type="button" class="site-btn" onclick="location.href='write'">글등록</button>
+							<button type="button" class="site-btn"
+								onclick="location.href='write'">글등록</button>
 						</div>
 					</c:if>
 					<c:if test="${bcid == '0' && fn:contains(sessionScope.mrole, 'A')}">
 						<div id="button_parent">
-							<button type="button" class="site-btn" onclick="location.href='write'">글등록</button>
+							<button type="button" class="site-btn"
+								onclick="location.href='write'">글등록</button>
 						</div>
 					</c:if>
+		
 					<!-- 게시판 글등록 버튼 끝 -->
-
-					<!-- <div class="col-lg-12">
-						<div class="product__pagination blog__pagination">
-							<a href="#">1</a> <a href="#">2</a> <a href="#">3</a> <a href="#"><i
-								class="fa fa-long-arrow-right"></i></a>
-						</div>
-					</div> -->
-				</div>
+				<!-- 페이징 시작  -->
 				<div class="col-lg-12">
-					<div class="product__pagination blog__pagination">
+					<div class="product__pagination blog__pagination" style="background : none;">
 						<c:if test="${pagingMap.start != 1}">
-							<a href="<%=request.getContextPath()%>/${urlpattern }?bcid=${bcid}&page=1">
-								<< </a>
+							<a
+								href="<%=request.getContextPath()%>/${urlpattern }?bcid=${bcid}&search=${search}&keyword=${keyword}&page=1">
+								&lt;&lt; </a>
 						</c:if>
 						<c:if test="${pagingMap.currentPage != 1}">
 							<a
-								href="<%=request.getContextPath()%>/${urlpattern }?bcid=${bcid}&page=${pagingMap.currentPage -1}">
-								< </a>
+								href="<%=request.getContextPath()%>/${urlpattern }?bcid=${bcid}&search=${search}&keyword=${keyword}&page=${pagingMap.currentPage -1}">
+								&lt; </a>
 						</c:if>
 
 
 						<c:forEach begin="${pagingMap.start }" end="${pagingMap.end }"
 							var="num">
 							<a
-								href="<%=request.getContextPath()%>/${urlpattern }?bcid=${bcid}&page=${num}">${num}</a>
+								href="<%=request.getContextPath()%>/${urlpattern }?bcid=${bcid}&search=${search}&keyword=${keyword}&page=${num}">${num}</a>
 						</c:forEach>
 
 
 						<c:if test="${pagingMap.currentPage != pagingMap.totalPageCnt}">
 							<a
-								href="<%=request.getContextPath()%>/${urlpattern }?bcid=${bcid}&page=${pagingMap.currentPage +1}">
-								> </a>
+								href="<%=request.getContextPath()%>/${urlpattern }?bcid=${bcid}&search=${search}&keyword=${keyword}&page=${pagingMap.currentPage +1}">
+								&gt; </a>
 						</c:if>
 						<c:if test="${pagingMap.end != pagingMap.totalPageCnt}">
 							<a
-								href="<%=request.getContextPath()%>/${urlpattern }?bcid=${bcid}&page=${pagingMap.totalPageCnt }">
-								>> </a>
+								href="<%=request.getContextPath()%>/${urlpattern }?bcid=${bcid}&search=${search}&keyword=${keyword}&page=${pagingMap.totalPageCnt }">
+								&gt;&gt; </a>
 						</c:if>
 					</div>
 				</div>
+				<!-- 페이징 끝  -->
 			</div>
 		</div>
-		<!--   </div> -->
-</section>
-<script>
-	// 검색
-	 document.getElementByID("#btn_search").onclick = function() {
-		let search = document.getElementByName("search")[0].value;
-		let keyword = document.getElementByName("keyword")[0].value;
-		location.href = "/board/list" + "&search=" + search + "keyword="
-				+ keyword;
-	} 
-	
-	
-	
-</script>
+	</section>
+</div>
