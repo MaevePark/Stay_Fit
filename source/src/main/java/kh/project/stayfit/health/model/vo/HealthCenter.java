@@ -18,5 +18,4 @@ public class HealthCenter {
 	private String haddr; // 주소
 	private int lid; // 지역 ID
 	private String lname; // LOCATIONCODE 테이블의 LNAME
-	
 }

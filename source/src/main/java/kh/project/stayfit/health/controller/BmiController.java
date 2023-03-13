@@ -11,7 +11,8 @@ import kh.project.stayfit.health.model.vo.HealthInfoForBmi;
 @Controller
 @RequestMapping("/health")
 public class BmiController {
-
+	
+	// bmi 정보 입력
 	@GetMapping("/bmiwrite")
 	public ModelAndView bmiWrite(ModelAndView mv) {
 
@@ -20,7 +21,8 @@ public class BmiController {
 
 		return mv;
 	}
-
+	
+	// bmi 정보 출력
 	@PostMapping("/bmilist")
 	public ModelAndView bmiList(ModelAndView mv
 			, HealthInfoForBmi healthInfoVo) {

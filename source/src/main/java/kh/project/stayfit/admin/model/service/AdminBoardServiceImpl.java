@@ -1,6 +1,7 @@
 package kh.project.stayfit.admin.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,8 +42,8 @@ public class AdminBoardServiceImpl implements AdminBoardService {
 	
 	//신고 삭제
 	@Override
-	public int deleteReport(List<String> ridList, List<String> reporterList) throws Exception {
-		return dao.deleteReport(ridList, reporterList);
+	public int deleteReport(List<Map<String, String>> list) throws Exception {
+		return dao.deleteReport(list);
 	}
 	
 	

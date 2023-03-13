@@ -108,27 +108,37 @@
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
 	<!-- 작성한 글 select -->
 	<select id="selectMyBoard" parameterType="map" resultType="map">
 		SELECT B.BID BID, B.BCID BCID, M.MNAME MNAME, B.BTITLE BTITLE
 		, B.BPICK BPICK, B.BCREATE BCREATE, B.BUPDATE BUPDATE, B.BVIEWCOUNT BVIEWCOUNT 
 			FROM BOARD B JOIN MEMBER M ON B.MID = M.MID 
 				WHERE B.MID=${mid } AND 
-			<if test="boardCategory != 1">
+			<if test="boardCategory != 0">
 				<choose>
-					<when test="boardCategory == 2">
+					<when test="boardCategory == 1">
 						B.BCID=0 AND 
 					</when>
-					<when test="boardCategory == 3">
+					<when test="boardCategory == 2">
 						B.BCID=1 AND 
 					</when>
-					<when test="boardCategory == 4">
+					<when test="boardCategory == 3">
 						B.BCID=2 AND 
+					</when>
+					<when test="boardCategory == 4">
+						B.BCID=3 AND 
 					</when>
 				</choose>
 			</if>
-			<if test="boardCategory == 1">
-				(B.BCID=0 OR B.BCID=1 OR B.BCID=2) AND 
+			<if test="boardCategory == 0">
+				(B.BCID=0 OR B.BCID=1 OR B.BCID=2 OR B.BCID=3) AND 
 			</if>
 			<if test="!searchword.equals('')">
 				<choose>
@@ -150,21 +160,24 @@
 	<select id="countMyBoard" parameterType="map" resultType="int">
 		SELECT COUNT(BID) 
 			FROM BOARD WHERE MID=${mid } AND 
-			<if test="boardCategory != 1">
+			<if test="boardCategory != 0">
 				<choose>
-					<when test="boardCategory == 2">
+					<when test="boardCategory == 1">
 						BCID=0 AND 
 					</when>
-					<when test="boardCategory == 3">
+					<when test="boardCategory == 2">
 						BCID=1 AND 
 					</when>
-					<when test="boardCategory == 4">
+					<when test="boardCategory == 3">
 						BCID=2 AND 
+					</when>
+					<when test="boardCategory == 4">
+						BCID=3 AND 
 					</when>
 				</choose>
 			</if>
-			<if test="boardCategory == 1">
-				(BCID=0 OR BCID=1 OR BCID=2) AND 
+			<if test="boardCategory == 0">
+				(BCID=0 OR BCID=1 OR BCID=2 OR BCID=3) AND 
 			</if>
 			<if test="!searchword.equals('')">
 				<choose>
@@ -182,24 +195,32 @@
 			</if>
 			BSTATE='A'
 	</select>
+	
+	
 	<!-- 작성한 댓글 select -->
 	<select id="selectMyReply" parameterType="map" resultType="map">
 		SELECT B.BCID, R.RID RID, R.BID BID, B.BTITLE BTITLE, R.RCONTENT RCONTENT, R.RCREATE RCREATE 
 			FROM BOARD B JOIN REPLY R  ON B.BID = R.RID
 			AND R.MID=${mid } 
 			WHERE 
-			<if test="boardCategory != 1">
+			<if test="boardCategory != 0">
 				<choose>
-					<when test="boardCategory == 2">
+					<when test="boardCategory == 1">
 						B.BCID=0 AND 
 					</when>
-					<when test="boardCategory == 3">
+					<when test="boardCategory == 2">
 						B.BCID=1 AND 
 					</when>
-					<when test="boardCategory == 4">
+					<when test="boardCategory == 3">
 						B.BCID=2 AND 
 					</when>
+					<when test="boardCategory == 4">
+						B.BCID=3 AND 
+					</when>
 				</choose>
+			</if>
+			<if test="boardCategory == 0">
+				(B.BCID=0 OR B.BCID=1 OR B.BCID=2 OR B.BCID=3) AND 
 			</if>
 			<if test="!searchword.equals('')">
 				<choose>
@@ -227,18 +248,24 @@
 			FROM BOARD B JOIN REPLY R  ON B.BID = R.RID
 			AND R.MID=${mid } 
 			WHERE 
-			<if test="boardCategory != 1">
+			<if test="boardCategory != 0">
 				<choose>
-					<when test="boardCategory == 2">
+					<when test="boardCategory == 1">
 						B.BCID=0 AND 
 					</when>
-					<when test="boardCategory == 3">
+					<when test="boardCategory == 2">
 						B.BCID=1 AND 
 					</when>
-					<when test="boardCategory == 4">
+					<when test="boardCategory == 3">
 						B.BCID=2 AND 
 					</when>
+					<when test="boardCategory == 4">
+						B.BCID=3 AND 
+					</when>
 				</choose>
+			</if>
+			<if test="boardCategory == 0">
+				(B.BCID=0 OR B.BCID=1 OR B.BCID=2 OR B.BCID=3) AND 
 			</if>
 			<if test="!searchword.equals('')">
 				<choose>
@@ -260,6 +287,8 @@
 			</if>
 			B.BSTATE='A' 
 	</select>
+	
+	
 	<!-- 북마크한 글 select -->
 	<select id="selectBMark" parameterType="map" resultType="map">
 		SELECT M.MNAME MNAME, B.BID BID, B.BCID BCID, B.BTITLE BTITLE, B.BPICK BPICK, B.BCREATE BCREATE, B.BUPDATE BUPDATE, B.BVIEWCOUNT BVIEWCOUNT 
@@ -267,8 +296,11 @@
 			JOIN MEMBER M ON B.MID = M.MID 
 			AND BM.MID=${mid } 
 			WHERE 
-			<if test="boardCategory != 1">
+			<if test="boardCategory != 0">
 				<choose>
+					<when test="boardCategory == 1">
+						B.BCID=0 AND 
+					</when>
 					<when test="boardCategory == 2">
 						B.BCID=1 AND 
 					</when>
@@ -279,6 +311,9 @@
 						B.BCID=3 AND 
 					</when>
 				</choose>
+			</if>
+			<if test="boardCategory == 0">
+				(B.BCID=0 OR B.BCID=1 OR B.BCID=2 OR B.BCID=3) AND 
 			</if>
 			<if test="!searchword.equals('')">
 				<choose>
@@ -301,8 +336,11 @@
 			FROM BOARD B JOIN BOOKMARK BM ON BM.BID = B.BID 
 			AND BM.MID=${mid } 
 			WHERE 
-			<if test="boardCategory != 1">
+			<if test="boardCategory != 0">
 				<choose>
+					<when test="boardCategory == 1">
+						B.BCID=0 AND 
+					</when>
 					<when test="boardCategory == 2">
 						B.BCID=1 AND 
 					</when>
@@ -313,6 +351,9 @@
 						B.BCID=3 AND 
 					</when>
 				</choose>
+			</if>
+			<if test="boardCategory == 0">
+				(B.BCID=0 OR B.BCID=1 OR B.BCID=2 OR B.BCID=3) AND 
 			</if>
 			<if test="!searchword.equals('')">
 				<choose>
@@ -332,6 +373,8 @@
 	<!-- 북마크한 글 delete -->
 <!-- 	<select id="deleteBMark" parameterType="map" resultType="map"> -->
 <!-- 	</select> -->
+
+
 	<!-- 공감 댓글 select -->
 	<select id="selectLikeReply" parameterType="map" resultType="map">
 		SELECT B.BCID, R.RID RID, R.BID BID, B.BTITLE BTITLE, R.RCONTENT RCONTENT , R.RCREATE RCREATE
@@ -339,8 +382,11 @@
 				JOIN REPLY R ON LR.RID = R.RID AND LR.MID=${mid} 
 				JOIN BOARD B ON B.BID = R.BID 
 			WHERE 
-			<if test="boardCategory != 1">
+			<if test="boardCategory != 0">
 				<choose>
+					<when test="boardCategory == 1">
+						B.BCID=0 AND 
+					</when>
 					<when test="boardCategory == 2">
 						B.BCID=1 AND 
 					</when>
@@ -351,6 +397,9 @@
 						B.BCID=3 AND 
 					</when>
 				</choose>
+			</if>
+			<if test="boardCategory == 0">
+				(B.BCID=0 OR B.BCID=1 OR B.BCID=2 OR B.BCID=3) AND 
 			</if>
 			<if test="!searchword.equals('')">
 				<choose>
@@ -379,8 +428,11 @@
 				JOIN REPLY R ON LR.RID = R.RID AND LR.MID=${mid} 
 				JOIN BOARD B ON B.BID = R.BID 
 			WHERE 
-			<if test="boardCategory != 1">
+			<if test="boardCategory != 0">
 				<choose>
+					<when test="boardCategory == 1">
+						B.BCID=0 AND 
+					</when>
 					<when test="boardCategory == 2">
 						B.BCID=1 AND 
 					</when>
@@ -391,6 +443,9 @@
 						B.BCID=3 AND 
 					</when>
 				</choose>
+			</if>
+			<if test="boardCategory == 0">
+				(B.BCID=0 OR B.BCID=1 OR B.BCID=2 OR B.BCID=3) AND 
 			</if>
 			<if test="!searchword.equals('') or searchword != null">
 				<choose>

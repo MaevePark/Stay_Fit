@@ -3,7 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/mypage.css">
+
 
 
 <!-- Blog Section Begin -->
@@ -26,19 +26,19 @@
 							<table class="table" id="orderTable">
 								<thead>
 									<tr>
-										<th>상품명</th>
-										<th>가격</th>
-										<th>수량</th>
-										<th>총액</th>
-										<th>상품 페이지</th>
+										<th id="pname">상품명</th>
+										<th id="pprice">가격</th>
+										<th id="pcount">수량</th>
+										<th id="totalprice">총액</th>
+										<th id="plink">상품 페이지</th>
 									</tr>
 								</thead>
 								<tbody class="table-border-bottom-0">
+									
 									<c:if test="${orderList.size() > 0 }">
 										<c:forEach items="${orderList}" var="list">
 											<tr>
 												<td><i class="fab fa-angular fa-lg text-danger me-3"></i><span>${list.PNAME}</span></td>
-												<td><span>${list.PSALE}</span></td>
 												<td><span>${((list.PPRICE * (100 - list.PSALE))/100)/10*10}원</span></td>
 												<td><span>${list.OCOUNT}</span></td>
 												<td><span>${list.PPRICE * list.OCOUNT}원</span></td>

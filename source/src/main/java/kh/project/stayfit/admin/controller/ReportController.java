@@ -1,6 +1,9 @@
 package kh.project.stayfit.admin.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -71,7 +74,16 @@ public class ReportController {
 							@RequestParam("reporterList[]") List<String> reporterList
 							) throws Exception {
 		
-		int result = service.deleteReport(ridList, reporterList);
+		// list안에 map 형태 -> [(rid:1)(reporter:3), (rid:2)(reporter:3), ... ] -> 이러면 순서 유지 가능
+		List<Map<String, String>> list = new ArrayList<Map<String,String>>();
+		for(int i=0; i < ridList.size(); i++) {
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("rid", ridList.get(i));
+			map.put("reporter", reporterList.get(i));
+			list.add(map);
+		}
+		
+		int result = service.deleteReport(list);
 		
 		return result;
 	}

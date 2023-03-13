@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+/* 마이페이지 게시판 관련 시작 */
+th {
+	text-align: center;
+}
+td:not(:first-child) {
+	text-align: center;
+}
+
+table {
+  table-layout: fixed; /* 테이블 너비 고정 */
+  width: 100%; /* 테이블 전체 너비 설정 */
+}
+th, td {
+  white-space: nowrap; /* 줄바꿈 방지 */
+  overflow: hidden; /* 넘치는 내용 숨김 처리 */
+  text-overflow: ellipsis; /* 넘치는 내용 ...으로 표시 */
+}
+
+#pname {
+	width: 40%;
+}
+
+#pprice {
+	width: 15%;
+}
+
+#pcount {
+	width: 10%;
+}
+
+#totalprice {
+	width: 15%;
+}
+
+#plink {
+	width: 20%;
+}
+/* 마이페이지 게시판 관련 끝 */
