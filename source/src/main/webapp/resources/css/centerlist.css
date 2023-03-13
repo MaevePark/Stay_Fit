@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-/*검색창 시작*/
+/* 검색창 시작 */
 .hero__search__form {
 	margin-bottom: 15px;
 }
@@ -27,13 +27,26 @@
 .hero__search__form form input {
 	width: 60%
 }
-/*검색창 끝*/
+/* 검색창 끝 */
 
 /* 테이블 상단 요소 제거 시작 */
 .table thead th {
     border-top :none;
 }
 /* 테이블 상단 요소 제거 끝 */
+
+/* 테이블 overflow 되었을때 너비 고정 시작 */
+table {
+  table-layout: fixed; /* 테이블 너비 고정 */
+  width: 100%; /* 테이블 전체 너비 설정 */
+}
+
+th, td {
+  white-space: nowrap; /* 줄바꿈 방지 */
+  overflow: hidden; /* 넘치는 내용 숨김 처리 */
+  text-overflow: ellipsis; /* 넘치는 내용 ...으로 표시 */
+}
+/* 테이블 overflow 되었을때 너비 고정 끝 */
 
 /* 테이블 맨 아래 줄 제거 시작 */
 .table td, .table th {
@@ -43,3 +56,9 @@
     border-bottom: 1px solid #dee2e6;
 }
 /* 테이블 맨 아래 줄 제거 끝 */
+
+/* map 이미지 요소 클릭시 포인터 모양 변경 시작 */
+#maplink {
+	cursor: pointer;
+}
+/* map 이미지 요소 클릭시 포인터 모양 변경 시작 */
