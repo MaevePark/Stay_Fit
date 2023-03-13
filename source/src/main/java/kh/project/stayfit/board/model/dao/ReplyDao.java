@@ -26,6 +26,11 @@ public class ReplyDao {
 	public int write(Reply vo) throws Exception {
 		return sqlsession.insert("board.rwrite", vo);
 	}
+	
+	// 자식 댓글 작성
+	public int cwrite(Reply vo) throws Exception {
+		return sqlsession.insert("board.crwrite", vo);
+	}
 
 	// 댓글 수정
 	public int update(Reply vo) throws Exception {

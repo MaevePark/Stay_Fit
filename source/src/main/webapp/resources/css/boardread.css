@@ -136,24 +136,6 @@ button .bookmark{
 /* 북마크 끝  */
 
 /*댓글영역 시작*/
-/*댓글 작성  */
-.comment-write{
-	background: #f9f9f9;
-	border: 1px solid #ececec;
-	padding : 15px;
-	position: relative;
-	margint-top :12px;
-}
-.textarea{
-	width:591px; 
-	height:65px; 
-	border: 1px solid #c8c8c8;
-	background: #fff;
-	color #a2a2a2;
-	line-height: 1.4;
-	padding : 5px;
-	font-size:13px;
-}
 /*댓글리스트  */
 #replyArea {
 	display: flex;
@@ -196,4 +178,47 @@ button .bookmark{
     background-color: #dc3545;;
     color: white;
 }
+/*댓글 작성  */
+.write_reply_form{
+	background: #ffffff;
+	/* border: 2px solid #7fad39; */
+	border: 2px solid rgba(0, 0, 0, 0.1);
+	border-radius: 6px;
+	padding : 16px 10px 10px 18px;
+	box-sizing : border-box;
+}
+.write_reply_form .reply-inbox{
+	position: relative;
+	margin-bottom:10px;
+}
+.reply-inbox .writer-name{
+	display: block;
+	margin-bottom: 10px;
+	font-weight: 700;
+}
+textarea{
+	width: 100%; 
+	height: 35px; 
+	resize: none;
+	font-size:13px;
+	display: block;
+	overflow: hidden;
+	overflow-wrap: break-word;
+	line-height: 1.4;
+	padding : 5px;
+	border : none;
+}
+#rep_write{
+	float: right;
+	font-size: 14px;
+    color: #ffffff;
+    font-weight: 800;
+    text-transform: uppercase;
+    display: inline-block;
+    padding: 7px 15px 6px;
+    background: #7fad39;
+    border: none;
+}
+
+/*댓글 작성 끝  */
 /*댓글영역 끝*/

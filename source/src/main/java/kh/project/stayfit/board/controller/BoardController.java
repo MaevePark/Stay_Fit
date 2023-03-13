@@ -31,12 +31,43 @@ public class BoardController {
 	private BoardService srv;
 	@Autowired
 	private ReplyService lsrv;
+
+	// 글목록 출력
+//	@GetMapping("/list")
+//	public ModelAndView boardlist(ModelAndView mv) throws Exception {
+////		List<Board> blist = srv.boardlist(bcid);
+//		mv.addObject("sectionName", "board/list.jsp");
+////		mv.addObject("boardlist", blist);
+//		mv.setViewName("index");
+//
+//		return mv;
+//	}
+	// 게시판링크
+//	@GetMapping(value = {"","/"})
+//	public String boardlist(int bcid, String search, String keyword, int page, int limits) throws Exception {
+//		List<Board> searchlist = srv.boardlist(bcid, search, keyword, page, limits);
+//		return "redirect: /list?bcid";
+//	}
+
+	// 글목록 출력(검색추가)
+//	@GetMapping(value = {"/list","/listsearch"})
+//	@ResponseBody
+//	public ModelAndView list(ModelAndView mv ,@RequestParam(name = "bcid", defaultValue = "0") int bcid,
+//			@RequestParam(name = "search", required=false, defaultValue = "") String search,
+//			@RequestParam(name = "keyword", required=false, defaultValue = "") String keyword) throws Exception {
+//		List<Board> searchlist = srv.boardlist(bcid, search, keyword);
+//		
+//		mv.addObject("boardlist", searchlist);
+//		mv.addObject("sectionName", "board/list.jsp");
+//		mv.setViewName("index");
+//		return mv;
+//	}
 	
 	//글목록 출력 + 검색 + 페이징
-	@GetMapping(value = {"/list","/listsearch"})
+	@GetMapping("/list")
 	@ResponseBody
 	public ModelAndView list(ModelAndView mv , @RequestParam(name = "page", defaultValue = "1") int page,
-			@RequestParam(name = "bcid", defaultValue = "0") int bcid,
+			@RequestParam(name = "bcid", defaultValue = "") int bcid,
 			@RequestParam(name = "search", required=false, defaultValue = "") String search,
 			@RequestParam(name = "keyword", required=false, defaultValue = "") String keyword,
 			HttpServletRequest request) throws Exception {
@@ -52,12 +83,9 @@ public class BoardController {
 		HttpSession session = request.getSession();
 		session.removeAttribute("s");
 		
-		if(request.getSession().getAttribute("mid") != null) {
-			int mid = (int)request.getSession().getAttribute("mid");
-			mv.addObject("writer", mid);
-		}
-		
-		mv.addObject("bcid", bcid);
+		mv.addObject("bcid", bcid); 
+		mv.addObject("keyword", keyword);
+		mv.addObject("search", search);
 		mv.addObject("boardlist", searchlist);
 		mv.addObject("sectionName", "board/list.jsp");
 		mv.addObject("urlpattern", "board/list");

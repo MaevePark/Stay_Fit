@@ -42,10 +42,10 @@
 
 					<!-- 검색창 시작 -->
 					<div class="hero__search__form">
-						<form action="<%=request.getContextPath()%>/board/listsearch"
+						<form action="<%=request.getContextPath()%>/board/list"
 							name="search_form" method="get">
 							<div class="hero__search__categories">
-								<select name="bcid" id="bcid">
+								<select name="bcid" id="bcid" value="${bcid} ">
 									<option value="0"
 										<%if (request.getParameter("bcid").equals("0")) {%> selected
 										<%}%>>공지사항</option>
@@ -67,8 +67,7 @@
 									<option value="btitle">제목</option>
 								</select>
 							</div>
-							<input type="text" name="keyword" id="keyword" value=""
-								placeholder="검색어를 입력해주세요.">
+							<input type="text" name="keyword" id="keyword" value="${keyword} " placeholder="검색어를 입력해주세요.">
 							<button type="submit" class="site-btn" id="btn_search">SEARCH</button>
 						</form>
 					</div>
@@ -145,12 +144,12 @@
 				<div class="col-lg-12">
 					<div class="product__pagination blog__pagination">
 						<c:if test="${pagingMap.start != 1}">
-							<a href="<%=request.getContextPath()%>/${urlpattern }?page=1">
+							<a href="<%=request.getContextPath()%>/${urlpattern }?bcid=${bcid}&page=1">
 								<< </a>
 						</c:if>
 						<c:if test="${pagingMap.currentPage != 1}">
 							<a
-								href="<%=request.getContextPath()%>/${urlpattern }?page=${pagingMap.currentPage -1}">
+								href="<%=request.getContextPath()%>/${urlpattern }?bcid=${bcid}&page=${pagingMap.currentPage -1}">
 								< </a>
 						</c:if>
 
@@ -158,18 +157,18 @@
 						<c:forEach begin="${pagingMap.start }" end="${pagingMap.end }"
 							var="num">
 							<a
-								href="<%=request.getContextPath()%>/${urlpattern }?page=${num}">${num}</a>
+								href="<%=request.getContextPath()%>/${urlpattern }?bcid=${bcid}&page=${num}">${num}</a>
 						</c:forEach>
 
 
 						<c:if test="${pagingMap.currentPage != pagingMap.totalPageCnt}">
 							<a
-								href="<%=request.getContextPath()%>/${urlpattern }?page=${pagingMap.currentPage +1}">
+								href="<%=request.getContextPath()%>/${urlpattern }?bcid=${bcid}&page=${pagingMap.currentPage +1}">
 								> </a>
 						</c:if>
 						<c:if test="${pagingMap.end != pagingMap.totalPageCnt}">
 							<a
-								href="<%=request.getContextPath()%>/${urlpattern }?page=${pagingMap.totalPageCnt }">
+								href="<%=request.getContextPath()%>/${urlpattern }?bcid=${bcid}&page=${pagingMap.totalPageCnt }">
 								>> </a>
 						</c:if>
 					</div>
@@ -179,13 +178,13 @@
 		<!--   </div> -->
 </section>
 <script>
-	// 1. 검색기능 첫번째 성공
-	document.getElementByID("#btn_search").onclick = function() {
+	// 검색
+	 document.getElementByID("#btn_search").onclick = function() {
 		let search = document.getElementByName("search")[0].value;
 		let keyword = document.getElementByName("keyword")[0].value;
-		location.href = "/board/listsearch" + "&search=" + search + "keyword="
+		location.href = "/board/list" + "&search=" + search + "keyword="
 				+ keyword;
-	}
+	} 
 	
 	
 	

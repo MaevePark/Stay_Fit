@@ -25,6 +25,11 @@ public class ReplyServiceImpl implements ReplyService {
 	public int write(Reply vo) throws Exception {
 		return dao.write(vo);
 	}
+	// 자식 댓글 작성
+	@Override
+	public int cwrite(Reply vo) throws Exception {
+		return dao.cwrite(vo);
+	}
 
 	// 댓글 수정
 	@Override

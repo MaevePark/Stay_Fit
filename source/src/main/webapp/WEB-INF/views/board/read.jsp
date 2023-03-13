@@ -100,27 +100,29 @@
 					<!-- 수정, 삭제, 목록 버튼 여기까지  -->
 
 					<!-- 북마크  -->
-					<div style = "border : none;">
+					<div style="border: none;">
 						<button class="bookmark" value="${read.bid}">
-							<img class="default-img"/>
-							<img class="active-img"/>
+							<img class="default-img" /> <img class="active-img" />
 						</button>
-							<span>북마크</span>
+						<span>북마크</span>
 					</div>
 					<!-- 북마크 끝  -->
 
 					<!-- 댓글 -->
 					<div id="replyArea">
 						<!--댓글 리스트  -->
-						<table id="readReply">
-							<c:choose>
-								<c:when test="${empty reply }">
+						<!-- <table id="readReply"> -->
+						<c:choose>
+							<c:when test="${empty reply }">
+								<table id="readReply">
 									<tr>
 										<td colspan="5" align="center">작성된 댓글이 없습니다</td>
 									</tr>
-								</c:when>
-								<c:when test="${!empty reply}">
-									<c:forEach var="repl" items="${reply}">
+								</table>
+							</c:when>
+							<c:when test="${!empty reply}">
+								<c:forEach var="repl" items="${reply}">
+									<table id="readReply">
 										<tr>
 											<td style="width: 400px">
 												<!-- overflow: hidden때문에 임시부여 수정예정 -->
@@ -132,15 +134,15 @@
 													<%-- <div id="old-reply" style="dispay:none;">${repl.rcontent }
 													</div> --%>
 													<div class="reply-form">
-														<!--기존 댓글 정보  -->
+														<!-- 기존 댓글 정보  -->
 														<div id="old-reply" class="old-reply">
 															<c:out value="${repl.rcontent }" />
 														</div>
-														<!--댓글 수정 폼  -->
-														<div id="comment-form" class="comment-form"
-															style="display: none;">
-															<input type="text" id="comment-input"
-																class="comment-input">
+														<!-- 기존 댓글 정보  끝-->
+														
+														<!-- 댓글 수정 폼  -->
+														<div id="comment-form" class="comment-form" style="display: none;">
+															<input type="text" id="comment-input" class="comment-input">
 															<div class="container">
 																<button id="submit-button"
 																	class="modify-rid btn btn-primary btn-sm btn-light"
@@ -149,73 +151,77 @@
 																	class="btn btn-primary btn-sm btn-light">취소</button>
 															</div>
 														</div>
-														<c:if test="${repl.mid == writer }">
-															<div class="container">
-
-																<!-- <button id="modify-button" onclick="showForm()" class="btn btn-sm btn-modify">수정</button> -->
-																<button id="modi-reply" class="btn btn-sm btn-modify"
-																	value="${repl.rid }">수정</button>
-																<button id="del-reply" type="button"
-																	onclick="rdel(${repl.rid})" class="btn btn-sm btn-del">삭제</button>
-																<button id="repl-repl" type="button"
-																	class="btn btn-primary btn-sm btn-light">답글</button>
-															</div>
-														</c:if>
-														<c:if test="${repl.mid != writer }">
-															<div class="container">
-																<button
-																	class="btn btn-primary btn-sm btn-light like-button"
-																	value="${repl.rid }">공감</button>
-																<button type="button"
-																	class="btn btn-primary btn-sm btn-light">신고</button>
-																<button type="button"
-																	class="btn btn-primary btn-sm btn-light">답글</button>
-															</div>
-														</c:if>
+														<!-- 댓글 수정 폼  끝-->
+														
+														<!-- 댓글  버튼변화-->
+														<div class="container">
+															<c:if test="${repl.mid == writer }">
+																<button id="modi-reply" class="btn btn-sm btn-modify" value="${repl.rid }">수정</button>
+																<button id="del-reply" type="button" onclick="rdel(${repl.rid})" class="btn btn-sm btn-del">삭제</button>
+															</c:if>
+															<c:if test="${repl.mid != writer }">
+																<button class="btn btn-primary btn-sm btn-light like-button" value="${repl.rid }">공감</button>
+																<button type="button" class="btn btn-primary btn-sm btn-light">신고</button>
+															</c:if>
+															<button id="child-reply" class="btn btn-primary btn-sm btn-light">답글</button>
+														</div>
+														<!-- 댓글  버튼변화 끝-->
 													</div>
 												</div>
 											</td>
 											<td></td>
 											<td><fmt:formatDate pattern="YY/MM/dd HH:MM"
 													value="${repl.rcreate}" /></td>
-											<%-- <td>
-											<c:if test="${repl.mid == writer }">
-													<div class="container">
-														
-														<!-- <button id="modify-button" onclick="showForm()" class="btn btn-sm btn-modify">수정</button> -->
-														<button id="modify-button" class="btn btn-sm btn-modify">수정</button>
-														<button type="button" onclick="rdel(${repl.rid})" class="btn btn-sm btn-del">삭제</button>
-														<button type="button" class="btn btn-primary btn-sm btn-light">답글</button>
-													</div>
-												</c:if> 
-												<c:if test="${repl.mid != writer }">
-													<div class="container">
-														<button type="button" class="btn btn-primary btn-sm btn-light">공감</button>
-														<button type="button" class="btn btn-primary btn-sm btn-light">신고</button>
-														<button type="button" class="btn btn-primary btn-sm btn-light">답글</button>
-													</div>
-												</c:if>
-											</td> --%>
+
+
 										</tr>
-									</c:forEach>
-								</c:when>
-							</c:choose>
+									</table>
+									<!-- 답댓글 작성  -->
+									<table id="child-form-${rid}" style="display: none;">
+										<tr>
+											<td>
+												<div class="write_reply_form">
+													<div class="reply-inbox">
+														<strong class="writer-name">${writer}</strong>
+														<textarea name="rcontent" id="rcontent" rows="3" placeholder="댓글을  작성해주세요"></textarea>
+													</div>
+													<div>
+														<a role="button" type="submit" id="child_reg">등록</a>
+														<a role="button" type="submit" id="child_del">취소</a>
+													</div>
+												</div>
+											</td>
+										</tr>
+									</table>
+									<!-- 답댓글 작성 끝  -->
+								</c:forEach>
+							</c:when>
+						</c:choose>
+						<!-- <td></td>
 							<td></td>
 							<td></td>
-							<td></td>
-						</table>
+						</table> -->
 						<!-- 댓글 리스트  끝 -->
 
 						<!-- 댓글 작성  -->
-						<div class="hero__search__form">
+						<%-- <div class="hero__search__form">
 							<form>
 								<input type="hidden" id="mid" name="mid" value="${writer }">
 								<input type="hidden" id="bid" name="bid" value="${read.bid }">
-								<input type="text" name="rcontent" id="rcontent"
-									placeholder="댓글을 작성해주세요">
-								<button type="submit" id="rep_write" onclick="rep_btn()"
-									class="site-btn">댓글 등록</button>
+								<textarea name="rcontent" id="rcontent" placeholder="댓글을 남겨보세요"></textarea>
+								<!-- <input type="text" name="rcontent" id="rcontent" placeholder="댓글을 작성해주세요"> -->
+								<button type="submit" id="rep_write" onclick="rep_btn()" class="site-btn">댓글 등록</button>
 							</form>
+						</div> --%>
+						<div class="write_reply_form">
+							<div class="reply-inbox">
+								<strong class="writer-name">${writer}</strong>
+								<textarea name="rcontent" id="rcontent" rows="3"
+									placeholder="댓글을  작성해주세요"></textarea>
+							</div>
+							<div>
+								<button type="submit" id="rep_write" onclick="rep_btn()">등록</button>
+							</div>
 						</div>
 						<!-- 댓글 작성 끝  -->
 					</div>
@@ -249,7 +255,7 @@ function del(bid){
 	}	
 }
 
-//댓글 작성
+//부모 댓글 작성
  function rep_btn(){
 	var rcontent = $("#rcontent").val();
 	var bid = ${read.bid};
@@ -275,7 +281,22 @@ function del(bid){
 		console.log(error);
 	});
 	
-} 
+}
+//답글 화면
+// 답글 버튼 클릭 시
+$(document).on('click','#child-reply',function(){
+	var rid = ${repl.rid}
+	var childForm = $('#child-form-' + rid);    
+	childForm.addClass('editing');  //현재수정중 구분용 editing추가
+	/* $reply.find('.old-reply, #modi-reply, #del-reply, #child-reply').hide(); */  //수정하기버튼과 기존댓글 숨기기 
+	childForm.show(); //수정폼 보이게하기 
+	
+	 /* $commentInput.focus(); */
+	
+	 /* console.log(content); */
+});
+
+
 
 //수정화면
 $(document).on('click','#modi-reply',function(){
@@ -286,7 +307,7 @@ $(document).on('click','#modi-reply',function(){
 	
 	$commentInput.val(content);  //commentInput에 수정된 댓글내용담기
 	$reply.addClass('editing');  //현재수정중 구분용 editing추가
-	$reply.find('.old-reply, #modi-reply, #del-reply, #repl-repl').hide();  //수정하기버튼과 기존댓글 숨기기 
+	$reply.find('.old-reply, #modi-reply, #del-reply, #child-reply').hide();  //수정하기버튼과 기존댓글 숨기기 
 	$editForm.show(); //수정폼 보이게하기 
 	
 	 $commentInput.focus();
@@ -297,7 +318,7 @@ $(document).on('click','#modi-reply',function(){
 $(document).on('click', '#cancel-button', function() {
 	var $reply = $(this).closest('.reply-form');
 	$reply.removeClass('editing');
-	$reply.find('.old-reply, #modi-reply, #del-reply, #repl-repl').show();
+	$reply.find('.old-reply, #modi-reply, #del-reply, #child-reply').show();
 	$reply.find('.comment-form').hide();
 	});
 	
@@ -435,5 +456,16 @@ $(document).ready(function(){
 		}
 	});
 });
+//textarea자동 높이 조절
+function adjustHeight() {
 
+	var textEle = $('textarea');
+
+	textEle[0].style.height = 'auto';
+
+	var textEleHeight = textEle.prop('scrollHeight');
+
+	textEle.css('height', textEleHeight);
+
+	};
 </script>
