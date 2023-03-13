@@ -60,7 +60,7 @@
 										<c:choose>
 											<c:when test="${empty centerList }">
 												<tr>
-													<td colspan="8" align="center">데이터가 없습니다.</td>
+													<td colspan="7" align="center">데이터가 없습니다.</td>
 												</tr>
 											</c:when>
 											<c:when test="${!empty centerList}">
