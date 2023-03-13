@@ -27,7 +27,7 @@
 				</h4>
 				
 				<div>
-					<form action="<%=request.getContextPath() %>/mypage/updateProfile" method="post" enctype="multipart/form-data">
+					<form action="<%=request.getContextPath() %>/mypage/updateProfile" method="post" enctype="multipart/form-data" id="profileForm">
 						<div id="profile_area">
 							<div>
 								<div id="profileImg_area">

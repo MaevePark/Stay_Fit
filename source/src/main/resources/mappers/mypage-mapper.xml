@@ -15,8 +15,8 @@
 			<if test="mname != null">
 				MNAME = #{mname}, 
 			</if>
-			<if test="mpw != null">
-				MPW = #{mpw}, 
+			<if test="pwd != null">
+				MPW = #{pwd}, 
 			</if>
 			<if test="profimg != null">
 				PROFIMG = #{profimg}, 

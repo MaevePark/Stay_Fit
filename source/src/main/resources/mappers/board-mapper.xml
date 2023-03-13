@@ -64,7 +64,7 @@
 	
 	<!-- 댓글 조회  -->
 	<select id="boardreply" resultType="Reply" parameterType="int">
-		SELECT mid, rid, profimg, mname, rcontent, rcreate, rstate FROM reply JOIN member USING(mid) WHERE bid = #{bid} ORDER BY rseq ASC, rcase
+		SELECT mid, rid, profimg, mname, rcontent, rcreate, rstate, rseq FROM reply JOIN member USING(mid) WHERE bid = #{bid} ORDER BY rseq ASC, rcase
 	</select>
 	
 	<!-- 부모 댓글 작성  -->
