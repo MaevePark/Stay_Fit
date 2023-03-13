@@ -16,13 +16,14 @@
 				</p>
 			</div>
 			<div class="input-form col-md-12 mx-auto">
-				<form name=form class="validation-form" id="joinform" method="POST" onsubmit="return joinCheck()">
+				<form name="form" class="validation-form" id="joinform" method="POST" onsubmit="return joinCheck()">
 					<div class="member-form">
 						<div class="row join-wrap">
 							<div class="col-md-9 join-input-box">
 								<label for="email" class="form-label">이메일</label> <input
 									type="text" name="memail" id="memail" class="form-control" pattern="[^-\s]+" onkeyup="checkMail()"
 									placeholder="email@stayfit.com" value="">
+									<input type="hidden" id="mailChkVal" value="0">
 							</div>
 							<div class="col-md-3 join-button-box">
 								<button type="button" id="btnChkMail" name="btnChkMail"
@@ -37,10 +38,12 @@
 							<div class="col-md-9 join-input-box">
 								<label for="cdnum" class="form-label">인증번호</label> <input 
 									onkeydown="this.value=this.value.replace(/[^0-9]/g,'')"
-									onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"
+									onkeyup="checkCode(this.value); this.value=this.value.replace(/[^0-9]/g,'')"
 									onblur="this.value=this.value.replace(/[^0-9]/g,'')"
+									onchange=""
 									type="text" maxlength="6" name="cdnum" id="cdnum" class="form-control"
 									value="" disabled>
+								<input type="hidden" id="mailCodeChkVal" value="0">
 							</div>
 							<div class="col-md-9 join-input-box">
 								<span id="mail-check-msg"></span>
@@ -57,12 +60,14 @@
 							<div class="col-md-9 join-input-box">
 								<label for="pwd1" class="form-label">비밀번호</label> <input
 									type="password" name="mpw" id="pwd1" class="form-control" autocomplete="off"
-									value="" maxLength=16>
+									value="" maxLength=16 onkeyup="pwChk1(this)">
+								<input type="hidden" value="0" id="pwChkVal1">
 							</div>
 							<div class="col-md-9 join-input-box">
 								<label for="pwd2" class="form-label">비밀번호 확인</label> <input
 									type="password" name="pwd2" id="pwd2" class="form-control" autocomplete="off"
-									value="" maxLength=16>
+									value="" maxLength=16 onkeyup="pwChk2(this)">
+								<input type="hidden" value="0" id="pwChkVal2">
 							</div>
 							<div class="col-md-6 text-lg-start join-button-box">
 								<a href="/stayfit/member/login"
@@ -81,7 +86,7 @@
 </section>
 
 <script>
-
+var code;
 function joinCheck() {
     if (!checkEmail(form.memail.value)) {
     	console.log("checkEmail ok");
@@ -97,6 +102,14 @@ function joinCheck() {
         return false;
     }  else if (!checkMail()) { // checkMail 함수가 false를 반환하면 실행
         return false;
+    } else if($('#mailCodeChkVal').val() != 1) {
+    	return false;
+    } else if($('#mailChkVal').val() != 1) {
+    	return false;
+    } else if($('#pwChkVal1').val() != 1) {
+    	return false;
+    } else if($('#pwChkVal2').val() != 1) {
+    	return false;
     } else{
         return true;	
     }
@@ -198,68 +211,79 @@ function checkPassword(pwd1, pwd2) {
 }
 
 $('#btnChkMail').click(function(){
-	var eamil = $('#memail').val(); // 이메일 주소값 얻어오기!
-	console.log('이메일 : ' + eamil); // 이메일 오는지 확인
+	var email = $('#memail').val(); // 이메일 주소값 얻어오기!
+	console.log('이메일 : ' + email); // 이메일 오는지 확인
 	var checkInput = $('#cdnum') // 인증번호 입력하는곳 
-	
-	$.ajax({
-		type : 'post',
-		url : 'send',
-		async: false,
-		data : {
-			memail : eamil
-			},
-		dataType : 'json',
-		success : function (data) {
-			console.log("data : " +  data);
-			code = data;
-			if(isNaN(code)) {
-				alert("이메일 전송에 실패하였습니다. 다시 시도해주세요.");
-			} else{
-				alert("이메일이 전송되었습니다. 메일함을 확인해 주세요.");
-				checkInput.attr('disabled',false);
-			}
-		}			
-	});
+	var mailChkVal = $('#mailChkVal').val();
+
+	if(mailChkVal == 1) {
+		$.ajax({
+			type : 'post',
+			url : 'send',
+			async: false,
+			data : {
+				memail : email
+				},
+			dataType : 'json',
+			success : function (data) {
+				console.log("data : " +  data);
+				code = data;
+				if(isNaN(code)) {
+					alert("이메일 전송에 실패하였습니다. 다시 시도해주세요.");
+				} else{
+					alert("이메일이 전송되었습니다. 메일함을 확인해 주세요. \n 기다려도 메일이 오지 않는다면 메일 주소 혹은 스팸함을 확인해 주세요.");
+					checkInput.attr('disabled',false);
+					$('#memail').attr('disabled', true);
+				}
+			}			
+		});
+	} else {
+		alert("사용 불가한 이메일입니다. 다시 입력해주세요.");
+	}
 }); 
 
-<!--$('#cdnum').blur(function () {
-	const inputCode = $(this).val();
-	const $resultMsg = $('#mail-check-msg');
-	const emailInput = $('#memail');
+// $('#cdnum').blur(function () {
+// 	const inputCode = $(this).val();
+// 	const $resultMsg = $('#mail-check-msg');
+// 	const emailInput = $('#memail');
 	
 	
-	if(inputCode === code){
-		$resultMsg.html('인증 성공');
-		$resultMsg.css('color','green');
-		$('#btnChkMail').attr('disabled',true);
-	}else{
-		try{
-			code;
-		}catch(e){
-			alert('인증번호를 이메일을 통해 받아주세요.');
-		}
-		$resultMsg.html('인증번호가 불일치 합니다. 다시 확인해주세요!');
-		$resultMsg.css('color','red');
-		$(this).focus();
-		return false;
-	}
-});-->
+// 	if(inputCode === code){
+// 		$resultMsg.html('인증 성공');
+// 		$resultMsg.css('color','green');
+// 		$('#btnChkMail').attr('disabled',true);
+// 	}else{
+// 		try{
+// 			code;
+// 		}catch(e){
+// 			alert('인증번호를 이메일을 통해 받아주세요.');
+// 		}
+// 		$resultMsg.html('인증번호가 불일치 합니다. 다시 확인해주세요!');
+// 		$resultMsg.css('color','red');
+// 		$(this).focus();
+// 		return false;
+// 	}
+// });
 
 function checkMail(){
+	var emailRegExp = /^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{2,3}$/;
 	var memail = $('#memail').val();
 	var isMailValid = false;
+	var mailChkVal = $('#mailChkVal');
 	$.ajax({
 		url:'mailChk',
 		type:'post',
 		data:{memail : memail},
 		success:function(result){
-			if(result == 0){
+			if(result == 0 && emailRegExp.test(memail)){
 				var ok = document.getElementsByClassName("mail_check_ok")[0];
 				console.log(ok);
 				$('.mail_check_ok').css("display","");
 				$('.mail_check_already').css("display", "none");
 				isMailValid = true; // memail이 유효한 경우 true 반환
+				mailChkVal.val(1);
+				$('#btnChkMail').attr('disabled',false);
+				$('#mailCodeChkVal').val(0);
 			}else{
 				var already = document.getElementsByClassName("mail_check_already")[0];
 				console.log(already);
@@ -267,13 +291,104 @@ function checkMail(){
 				$('.mail_check_ok').css("display", "none");
 				form.memail.focus();
 				isMailValid = false;
+				mailChkVal.val(0);
+				$('#btnChkMail').attr('disabled',false);
+				$('#mailCodeChkVal').val(0);
 			}
 		},
 		error:function(){
-			alert("회원가입 중 오류가 발생했습니다.")
+			alert("DB 접속 에러");
 		}
 	});
 	return isMailValid;
 };
+
+function checkCode(codeInput) {
+	var $resultMsg = $('#mail-check-msg');
+	var emailInput = $('#memail');
+	
+	
+	if(codeInput == code){
+		$resultMsg.html('인증 성공');
+		$resultMsg.css('color','green');
+		$('#btnChkMail').attr('disabled',true);
+		$('#mailCodeChkVal').val(1);
+	}else{
+		$resultMsg.html('인증번호가 불일치 합니다. 다시 확인해주세요!');
+		$resultMsg.css('color','red');
+		$('#mailCodeChkVal').val(0);
+	}
+}
+
+
+function pwChk1(el) {
+	var regExp = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@!%*#?&])[A-Za-z\d@!%*#?&]{8,16}$/;
+	var pwChkVal1 = $('#pwChkVal1');
+	var pw1 = document.getElementById("pwd1");
+	var pw1_parent = pw1.parentNode;
+	var new_child = document.createElement("span");
+	new_child.setAttribute("id", "popChild_1");
+	if($('#popChild_1').length > 0) {
+		var popChild = document.getElementById('popChild_1');
+		if(!regExp.test(pw1.value)) {
+			popChild.innerText = "비밀번호는 8~16자로 영문, 숫자, 특수 기호를 조합하여 입력해주세요.";
+			popChild.style.color = "red";
+			pwChkVal1.val(0);
+		} else {
+			popChild.innerText = "사용 가능한 비밀번호입니다.";
+			popChild.style.color = "#7fad39";
+			pwChkVal1.val(1);
+		}
+	} else {
+		pw1_parent.appendChild(new_child);
+		var popChild = document.getElementById('popChild_1');
+		if(!regExp.test(pw1.value)) {
+			popChild.innerText = "비밀번호는 8~16자로 영문, 숫자, 특수 기호를 조합하여 입력해주세요.";
+			popChild.style.color = "red";
+			pwChkVal1.val(0);
+		} else {
+			popChild.innerText = "사용 가능한 비밀번호입니다.";
+			popChild.style.color = "#7fad39";
+			pwChkVal1.val(1);
+		}
+	}
+}
+function pwChk2(el) {
+	var regExp = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@!%*#?&])[A-Za-z\d@!%*#?&]{8,16}$/;
+	var pwChkVal2 = $('#pwChkVal2');
+	var pw1 = document.getElementById("pwd1");
+	var pw2 = document.getElementById("pwd2");
+	var pw2_parent = pw2.parentNode;
+	var new_child = document.createElement("span");
+	new_child.setAttribute("id", "popChild_2");
+	if($('#popChild_2').length > 0) {
+		var popChild = document.getElementById('popChild_2');
+		if(pw1.value != pw2.value) {
+			popChild.innerText = "비밀번호가 일치하지 않습니다.";
+			popChild.style.color = "red";
+			pwChkVal2.val(0);
+		} else {
+			popChild.innerText = "비밀번호가 일치합니다.";
+			popChild.style.color = "#7fad39";
+			pwChkVal2.val(1);
+		}
+	} else {
+		pw2_parent.appendChild(new_child);
+		var popChild = document.getElementById('popChild_2');
+		if(pw1.value != pw2.value) {
+			popChild.innerText = "비밀번호가 일치하지 않습니다.";
+			popChild.style.color = "red";
+			pwChkVal2.val(0);
+		} else {
+			popChild.innerText = "비밀번호가 일치합니다.";
+			popChild.style.color = "#7fad39";
+			pwChkVal2.val(1);
+		}
+	}
+}
+
+
+
+
 
 </script>
