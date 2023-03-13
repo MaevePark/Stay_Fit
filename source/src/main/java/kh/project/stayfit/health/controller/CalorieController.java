@@ -12,6 +12,7 @@ import kh.project.stayfit.health.model.vo.HealthInfoForCalorie;
 @RequestMapping("/health")
 public class CalorieController {
 	
+	// calorie 정보 입력
 	@GetMapping("/caloriewrite")
 	public ModelAndView calorieWrite(ModelAndView mv) {
 		
@@ -21,6 +22,7 @@ public class CalorieController {
 		return mv;
 	}
 	
+	// calorie 정보 출력
 	@PostMapping("/calorielist")
 	public ModelAndView calorieList(ModelAndView mv
 			, HealthInfoForCalorie healthInfoVo) {
