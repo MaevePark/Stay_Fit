@@ -50,9 +50,9 @@
 									<thead>
 										<tr>
 											<th>지역</th>
-											<th>측정장소</th>
+											<th colspan="2">측정장소</th>
 											<th colspan="3">주소</th>
-											<th>전화번호</th>
+											<th colspan="2">전화번호</th>
 											<th>위치</th>
 										</tr>
 									</thead>
@@ -70,11 +70,11 @@
 														<!-- 지역 이름 -->														
 														<td>${centerList.lname }</td>
 														<!-- 측정 장소  -->
-														<td>${centerList.hplace }</td>
+														<td colspan="2">${centerList.hplace }</td>
 														<!-- 주소 -->
 														<td colspan="3">${centerList.haddr }</td>
 														<!-- 전화번호 -->
-														<td>${centerList.hpnum }</td>
+														<td colspan="2">${centerList.hpnum }</td>
 														<!-- 위치 링크 시작 -->
 														<!-- TODO map 데이터 추가 예정 -->
 														<td id="map">
