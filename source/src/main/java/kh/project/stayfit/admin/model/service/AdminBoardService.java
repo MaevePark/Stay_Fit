@@ -1,6 +1,7 @@
 package kh.project.stayfit.admin.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -24,5 +25,5 @@ public interface AdminBoardService {
 	public int deleteReply(List<String> ridList) throws Exception;
 	
 	//신고삭제
-	public int deleteReport(List<String> ridList, List<String> reporterList) throws Exception;
+	public int deleteReport(List<Map<String, String>> list) throws Exception;
 }

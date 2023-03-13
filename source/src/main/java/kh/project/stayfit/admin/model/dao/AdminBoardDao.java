@@ -52,12 +52,8 @@ public class AdminBoardDao {
 	}
 	
 	// 신고 삭제
-	public int deleteReport(List<String> ridList, List<String> reporterList) throws Exception {
+	public int deleteReport(List<Map<String, String>> list) throws Exception {
 		
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("ridList", ridList);
-		map.put("reporterList", reporterList);
-		
-		return sqlsession.delete("admin.deleteReport", map);
+		return sqlsession.delete("admin.deleteReport", list);
 	}
 }
