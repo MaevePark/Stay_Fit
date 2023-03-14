@@ -191,6 +191,12 @@ button .bookmark{
     color: white;
 }
 /*댓글 작성  */
+.child0{
+	padding: 12px 23px 10px 0px !important;
+	}
+.reply-img{
+	position:absolute;
+}
 .write_reply_form{
 	background: #ffffff;
 	/* border: 2px solid #7fad39; */
