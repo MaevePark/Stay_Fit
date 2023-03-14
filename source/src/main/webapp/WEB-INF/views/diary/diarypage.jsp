@@ -152,7 +152,7 @@ window.onload = function() {
 						<div class="input-group">
 							<input type="text" class="form-control" id="searchMeal" placeholder="식단 메뉴명에 대한 검색어를 입력하세요.">
 							<div class="input-group-append">
-								<button type="button" class="btn btn-secondary" id="btnSrcMeal" onclick="search()">
+								<button type="button" class="btn btn-secondary" id="btnSrcMeal" onclick="searchMeal()">
 								<i class="fa fa-search"></i>
 								</button>
 							</div>
@@ -202,7 +202,7 @@ window.onload = function() {
 						<div class="input-group">
 							<input type="text" class="form-control" id="searchExrc" placeholder="운동 종류에 대한 검색어를 입력하세요.">
 							<div class="input-group-append">
-								<button type="button" class="btn btn-secondary" id="btnSrcExrc">
+								<button type="button" class="btn btn-secondary" id="btnSrcExrc" onclick="searchExrc()">
 								<i class="fa fa-search"></i>
 								</button>
 							</div>

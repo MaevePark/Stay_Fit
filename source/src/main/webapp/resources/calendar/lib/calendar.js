@@ -29,7 +29,7 @@
       selectable: true,
       
       eventClick:function(){
-		  var model = $("#calendar-modal");
+		  var modal = $("#calendar-modal");
 		  modal.modal();
 	  },
 	  
@@ -73,7 +73,7 @@
   })
   
   
-function search() {
+function searchMeal() {
 	let searchInput = document.getElementById('searchMeal');
 	if(searchInput.value !== "") {
 		$.ajax({
@@ -85,7 +85,7 @@ function search() {
 			},
 			dataType: "json",
 			success: function(value) {
-					console.log("아아아아아아아아 여기는 return된 데이이이이이이터");
+					console.log("------------여기는 return된 데이터------------");
 					console.log(value.nutList);
 					var nutrition = value.nutList;
 					
@@ -108,7 +108,7 @@ function search() {
 	}
 }
   
-  function search() {
+  function searchExrc() {
 		let searchInput = document.getElementById('searchExrc');
 		if(searchInput.value !== "") {
 			$.ajax({
@@ -168,7 +168,7 @@ function search() {
       var value = event.srcElement.value;    
       // 소수점(.)이 두번 이상 나오지 못하게
       var pattern0 = /^\d*[.]\d*$/; // 현재 value값에 소수점(.) 이 있으면 . 입력불가
-      if (pattern0.test(_value)) {
+      if (pattern0.test(value)) {
           if (charCode == 46) {
               return false;
           }
