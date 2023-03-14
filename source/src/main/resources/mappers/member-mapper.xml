@@ -3,7 +3,7 @@
 <mapper namespace="member">
   
 	<select id="loginCheck" resultType="string">
-	SELECT MNAME FROM MEMBER WHERE MEMAIL = #{memail} AND MPW = #{mpw}
+	SELECT MNAME FROM MEMBER WHERE MEMAIL = #{memail} AND MPW = #{mpw} AND ENABLED = '1'
  	</select>
  	
  	<select id="viewMember" resultType="Member">

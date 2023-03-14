@@ -1,6 +1,7 @@
 package kh.project.stayfit.diary.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import kh.project.stayfit.diary.model.vo.Diary;
 import kh.project.stayfit.diary.model.vo.Exercise;
@@ -13,7 +14,7 @@ public interface DiaryService {
 
 	public List<Exercise> searchExrc(String keyword) throws Exception;
 	//캘린더 출력
-	public List<Diary> selectList(String a, int b) throws Exception; // select(String, int): List<Diary>
+	public List<Diary> selectList(Map<String, Object> dataMap) throws Exception; // select(String, int): List<Diary>
 	//캘린더 수정
 	public int update(String a, int b, int c) throws Exception; // update(String, int, 수정한 파라미터): int
 	//캘린더 삭제

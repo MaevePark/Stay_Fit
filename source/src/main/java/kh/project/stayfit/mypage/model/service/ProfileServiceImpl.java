@@ -32,8 +32,7 @@ public class ProfileServiceImpl implements ProfileService {
 	}
 	//계정 탈퇴
 	@Override
-	public int delProfile(int a) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public int delProfile(int mid) throws Exception {
+		return dao.delProfile(mid);
 	}
 }

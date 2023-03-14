@@ -47,7 +47,7 @@
 								</div>
 								<div>
 									<span>
-										<a href="">회원 탈퇴</a>
+										<a href="<%=request.getContextPath() %>/mypage/leave">회원 탈퇴</a>
 									</span>
 								</div>
 							</div>

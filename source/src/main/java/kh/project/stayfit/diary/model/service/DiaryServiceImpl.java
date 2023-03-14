@@ -1,6 +1,7 @@
 package kh.project.stayfit.diary.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,9 +32,8 @@ public class DiaryServiceImpl implements DiaryService {
 	
 	//캘린더 출력
 	@Override
-	public List<Diary> selectList(String a, int b) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Diary> selectList(Map<String, Object> dataMap) throws Exception {
+		return dao.selectList(dataMap);
 	}
 	//캘린더 수정
 	@Override

@@ -24,9 +24,17 @@
 			MUPDATE=SYSTIMESTAMP 
 				WHERE MID = ${mid}
 	</update>
-	
-	
-	
+	<!-- 계정 탈퇴 -->
+	<update id="delProfile" parameterType="int">
+		UPDATE MEMBER 
+			SET ENABLED = '0' 
+			WHERE MID = ${mid}
+	</update>
+	<update id="delBoard" parameterType="int">
+		UPDATE BOARD 
+			SET BSTATE = 'D'
+			WHERE MID = ${mid}
+	</update>
 	
 	
 	
