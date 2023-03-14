@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="diary">
+	<resultMap type="Diary" id="DiaryMap">
+		<result property="ddate" column="DDATE" />
+		<result property="mid" column="MID" />
+		<result property="breakfast" column="BREAKFAST" />
+		<result property="breakfast_menu" column="BREAKFAST_MENU" />
+		<result property="snack1" column="SNACK1" />
+		<result property="snack1_menu" column="SNACK1_MENU" />
+		<result property="lunch" column="LUNCH" />
+		<result property="lunch_menu" column="LUNCH_MENU" />
+		<result property="snack2" column="SNACK2" />
+		<result property="snack2_menu" column="SNACK2_MENU" />
+		<result property="dinner" column="DINNER" />
+		<result property="dinner_menu" column="DINNER_MENU" />
+		<result property="snack3" column="SNACK3" />
+		<result property="snack3_menu" column="SNACK3_MENU" />
+		<result property="exercise" column="EXERCISE" />
+		<result property="weight" column="WEIGHT" />
+	</resultMap>
  	
 	<insert id="diaryWrite" parameterType="Diary">
  	INSERT INTO DIARY VALUES #{ddate}, #{mid}, #{breakfast}, #{breakfast_menu}, #{snack1}, #{snack1_menu}, #{lunch}, #{lunch_menu}, #{snack2}, #{snack2_menu}, #{dinner}, #{dinner_menu}, #{snack3}, #{snack3_menu}, #{exercise}, #{weight}
@@ -12,7 +30,7 @@
 	<select id="searchExec" parameterType="String" resultType="Exercise">
 		SELECT EXID, EXERCISE, FIVE_M_KCAL, TEN_M_KCAL, THIRTY_M_KCAL, ONE_H_KCAL FROM EXERCISE WHERE EXERCISE LIKE '%'||#{keyword}||'%'
 	</select>
-	<select id="diaryList" parameterType="map" resultType="Diary">
+	<select id="diaryList" parameterType="map" resultMap="DiaryMap">
 		SELECT * 
 			FROM DIARY WHERE 
 				<if test="!date.equals('')">
