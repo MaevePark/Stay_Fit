@@ -87,8 +87,8 @@ window.onload = function() {
 									<tr>
 										<th class="menu_name" scope="col" class="td-menu">식단 메뉴</th>
 										<th class="sersize" scope="col">1회 제공량</th>
-										<th scope="col" class="td-kcal">섭취 칼로리</th>
-										<th scope="col">제거</th>
+										<th class="td-kcal" scope="col">섭취 칼로리</th>
+										<th class="remove_col" scope="col">제거</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -101,8 +101,8 @@ window.onload = function() {
 									<tr>
 										<th class="menu_name" scope="col" class="td-menu">운동 종류</th>
 										<th class="duration" scope="col">시간</th>
-										<th scope="col" class="td-kcal">소모 칼로리</th>
-										<th scope="col">제거</th>
+										<th class="td-kcal" scope="col">소모 칼로리</th>
+										<th class="remove_col" scope="col">제거</th>
 									</tr>
 								</thead>
 								<tbody>

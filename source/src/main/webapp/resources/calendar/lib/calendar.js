@@ -58,6 +58,22 @@
 	  });
   });
   
+  $('.kcal-radio').click(function() {
+	    var totalKcal = 0;
+	    
+	    // 선택된 라디오 버튼의 값을 가져와서 해당되는 테이블에서 칼로리 값을 가져와서 합산
+	    var radioValue = $(this).val();
+	    $('#' + radioValue + 'mealTable tr').each(function() {
+	      var kcal = parseInt($(this).find('td:eq(2)').text());
+	      if (!isNaN(kcal)) {
+	        totalKcal += kcal;
+	      }
+	    });
+	    
+	    // 합산된 칼로리 값을 라디오 버튼의 텍스트로 변경
+	    $(this).siblings('.btn-kcal').text(totalKcal);
+	  });
+  
   $('#btnSrcMeal').on('click keypress', function(event) {
 	  if(event.type ==='click' || event.keyCode === 13){
 		  var keyword = $('#searchMeal').val();
