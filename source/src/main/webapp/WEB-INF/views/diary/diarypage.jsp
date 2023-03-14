@@ -28,7 +28,9 @@ window.onload = function() {
 	
 	
 	
-	<div id="calendar-modal" class="modal fade" data-backdrop="static">
+	<div id="calendar-modal" class="modal fade" data-backdrop="static" 
+		data-bs-keyboard="false" tabindex="-1"
+		aria-labelledby="staticBackdropLabel" aria-hidden="true">
 		<!-- Add Modal -->
 		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
 			<div class="modal-content">
@@ -83,44 +85,28 @@ window.onload = function() {
 							<table id="mealTable" class="table table-striped table-hover">
 								<thead>
 									<tr>
-										<th scope="col" class="td-menu">식단 메뉴</th>
-										<th scope="col">단위</th>
+										<th class="menu_name" scope="col" class="td-menu">식단 메뉴</th>
+										<th class="sersize" scope="col">1회 제공량</th>
 										<th scope="col" class="td-kcal">섭취 칼로리</th>
 										<th scope="col">제거</th>
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${meal.id}">
-										<!-- 식단명 -->
-										<td>${meal.product}</td>
-										<!-- 1회 제공량 -->
-										<td>${meal.capunit}</td>
-										<!-- 섭취 칼로리 -->
-										<td>${meal.kcal}</td>
-										<td><button class="btn btn-light minus-box"><i class="bi bi-dash-square"></i></button></td>
-									</c:forEach>
+									
 								</tbody>
 							</table>
 						<input type="text" class="diary-modal-input" data-toggle="modal" data-target="#search-training" placeholder="운동 검색">
 							<table id="exerciseTable" class="table table-striped table-hover">
 								<thead>
 									<tr>
-										<th scope="col" class="td-menu">운동 종류</th>
-										<th scope="col">단위</th>
+										<th class="menu_name" scope="col" class="td-menu">운동 종류</th>
+										<th class="duration" scope="col">시간</th>
 										<th scope="col" class="td-kcal">소모 칼로리</th>
 										<th scope="col">제거</th>
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${exrc.id}">
-										<!-- 운동명 -->
-										<td>${exrc.exercise}</td>
-										<!-- 단위(분) -->
-										<td>1</td>
-										<!-- 소모 칼로리 -->
-										<td>${exrc.kcal}</td>
-										<td><button class="btn btn-light minus-box"><i class="bi bi-dash-square"></i></button></td>
-									</c:forEach>
+									
 								</tbody>
 							</table>
 						</div>
@@ -158,26 +144,18 @@ window.onload = function() {
 							</div>
 						</div>
 					</form>
-						<table class="search-meal-table table table-striped table-hover">
+						<table class="search-meal-table table table-striped table-hover"
+							style="vertical-align: middle">
 							<thead>
 							<tr>
-							<th scope="col">음식명</th>
-							<th scope="col">단위</th>
+							<th class="menu_name" scope="col">음식명</th>
+							<th scope="col">1회 제공량</th>
 							<th scope="col">섭취 칼로리</th>
 							<th scope="col">추가</th>
 							</tr>
 							</thead>
 							<tbody>
-							<!--	<c:forEach items="${meal}" var="meal">
-								<tr>
-									<td>${meal.product}</td>
-									<td>${meal.capunit}</td>
-									<td>${meal.kcal}</td>
-									<td>
-										<button class="btn btn-primary btn-add" data-meal="${meal.id}"><i class="bi bi-plus-square"></i></button>
-									</td>
-								</tr>
-							</c:forEach>	-->
+					
 							</tbody>
 						</table>
 				</div>
@@ -203,16 +181,17 @@ window.onload = function() {
 						<div class="input-group">
 							<input type="text" class="form-control" id="searchExrc" placeholder="운동 종류에 대한 검색어를 입력하세요.">
 							<div class="input-group-append">
-								<button type="button" class="btn btn-secondary" id="btnSrcExrc" onclick="searchExrc()">
+								<button type="button" class="btn btn-secondary" id="btnSrcExrc">
 								<i class="fa fa-search"></i>
 								</button>
 							</div>
 						</div>
 					</form>
-						<table class="search-exrc-table table table-striped table-hover">
+						<table class="search-exrc-table table table-striped table-hover"
+							style="vertical-align: middle">
 							<thead>
 							<tr>
-							<th scope="col">운동</th>
+							<th class="exrc_name" scope="col">운동</th>
 							<th scope="col">단위</th>
 							<th scope="col">소모 칼로리</th>
 							<th scope="col">추가</th>
