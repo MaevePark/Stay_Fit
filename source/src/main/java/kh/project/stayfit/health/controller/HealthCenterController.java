@@ -25,33 +25,32 @@ public class HealthCenterController {
 
 	// 게시글 목록 조회, 글 검색, 페이징
 	@GetMapping("/centerlist")
-	public ModelAndView selectCenterlist(ModelAndView mv, 
+	public ModelAndView selectCenterlist(ModelAndView mv,
 			@RequestParam(name = "page", defaultValue = "1") int page,
 			@RequestParam(name = "lid", defaultValue = "0") int lid,
-			@RequestParam(name = "category", required=false, defaultValue = "") String category,
-			@RequestParam(name = "keyword", required=false, defaultValue = "") String keyword) throws Exception {
-		
+			@RequestParam(name = "search", defaultValue = "") String search,
+			@RequestParam(name = "keyword", defaultValue = "") String keyword) throws Exception {
 		
 		int limits = 10; // 한 페이지당 보여줄 게시글 수
 		int pageLimit = 2;  // 한 번에 보여줄 페이지 수
-		int totalPageCnt = service.totalPageCnt(lid, category, keyword);		
-		Map<String, Object> pagingMap = Paging.paging(page, totalPageCnt, limits, pageLimit); 
+		int totalPageCnt = service.totalPageCnt(lid, search, keyword); // 전체 게시글 수
 		
-		List<HealthCenter> list = service.selectCenterlist(lid, category, keyword, page, limits);
+		// 게시글 목록 조회, 글 검색
+		List<HealthCenter> list = service.selectCenterlist(lid, search, keyword, page, limits);
 		
-	
-		mv.addObject("lid", lid); 
-		mv.addObject("category", category);
-		mv.addObject("keyword", keyword);
-		
-		mv.addObject("centerList", list);
+		// 페이징
+		Map<String, Object> pagingMap = Paging.paging(page, totalPageCnt, limits, pageLimit);
+
+		mv.addObject("search", search); // 지역 카테고리
+		mv.addObject("keyword", keyword); // 검색어
+		mv.addObject("centerList", list); // 글 목록
+		mv.addObject("pagingMap", pagingMap); // 페이징
 		mv.addObject("sectionName", "health/centerlist.jsp");
-		mv.addObject("urlpattern", "health/centerlist.jsp");
-		mv.addObject("pagingMap", pagingMap);
+		mv.addObject("urlpattern", "health/centerlist");
 		mv.setViewName("index");
 		return mv;
 	}
-	
+
 	@ExceptionHandler(Exception.class) // 든 Exception시 여기로
     public ModelAndView exceptionHandler(Exception e /*, ModelAndView mv -> 작성시 오류발생*/) {
         // 프로젝트초기에는 e.printStackTrace(); 로 로그 봐야함. 나중에 지우기
