@@ -81,13 +81,9 @@ public class DiaryController {
 			for(int i=0; i < diaryList.size(); i++) {
 				Diary diary = diaryList.get(i);
 				String ddate = formatter.format(diary.getDdate());
-				System.out.println("ddate : "+ddate);
 				int fullKcal = diary.getBreakfast() + diary.getSnack1() + diary.getLunch() + diary.getSnack2() + diary.getDinner() + diary.getSnack3();
-				System.out.println("fullKcal : "+fullKcal);
 				int weight = diary.getWeight();
-				System.out.println("weight : "+weight);
 				int burnKcal = diary.getExercise();
-				System.out.println("burnKcal : "+burnKcal);
 				
 				System.out.println("이건 "+i+"번째 반복");
 				
@@ -110,13 +106,12 @@ public class DiaryController {
 			}
 			
 			String result = new GsonBuilder().create().toJson(calendarList);
-			System.out.println(calendarList.size());
 
 			response.setContentType("application/json"); // 인코딩 설정 추가
 	        response.setCharacterEncoding("UTF-8"); // 인코딩 설정 추가
 			
 			PrintWriter out = response.getWriter();
-			out.append(new GsonBuilder().create().toJson(diaryList));
+			out.append(new GsonBuilder().create().toJson(result));
 			out.flush();
 			out.close();
 		} catch (Exception e) {
