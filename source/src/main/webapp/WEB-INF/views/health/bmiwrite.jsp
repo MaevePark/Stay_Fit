@@ -26,9 +26,9 @@
 									<th>성별</th>				
 									<td>									
 										<input type="radio" class="radio" id="gender" name="gender"
-											value="F"><label class="pre" for="female">여자 </label>
+											value="F" checked="checked"><label class="pre" for="female">여자 </label>
 										<input type="radio" class="radio" id="gender" name="gender"
-											value="M" checked="checked"><label class="pre" for="male"> 남자</label>
+											value="M"><label class="pre" for="male"> 남자</label>
 									</td>
 								</tr>
 								<tr>
@@ -38,7 +38,6 @@
 											<!-- 생년월일 - 년도 시작 -->
 											<input type="text" class="ipt2" style="width: 95px"
 												id="byear" name="byear"
-												value="2000"
 												onkeydown="this.value=this.value.replace(/[^0-9]/g,'')"
 												onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"
 												onblur="this.value=this.value.replace(/[^0-9]/g,'')"
@@ -110,7 +109,6 @@
 									<th>키</th>
 									<td><input type="text" class="ipt2" style="width: 95px"
 										id="stature" name="stature" maxlength="3"
-										value="175"
 										onkeydown="this.value=this.value.replace(/[^0-9]/g,'')"
 										onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"
 										onblur="this.value=this.value.replace(/[^0-9]/g,'')"><span
@@ -120,7 +118,6 @@
 									<th>체중</th>
 									<td><input type="text" class="ipt2" style="width: 95px"
 										id="weight" name="weight" maxlength="3"
-										value="75"
 										onkeydown="this.value=this.value.replace(/[^0-9]/g,'')"
 										onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"
 										onblur="this.value=this.value.replace(/[^0-9]/g,'')"><span
