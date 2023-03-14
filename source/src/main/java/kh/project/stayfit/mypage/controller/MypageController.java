@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
@@ -44,30 +45,6 @@ public class MypageController {
 	private ProfileService profileservice;
 	@Autowired
 	private MyProductService productservice;
-	
-//	@GetMapping({"*"})
-//	public ModelAndView profileAccess(
-//			HttpServletRequest request,
-//			ModelAndView mv
-//			, @RequestParam(name="mid", defaultValue = "-1") int mid
-//			) {
-//		System.out.println("mid = "+mid);
-//		if(request.getSession().getAttribute("mid") != null) {
-//			mid = (int) request.getSession().getAttribute("mid");
-//			System.out.println("mid = "+mid);
-//		}
-//		
-//		if(mid == -1) {
-//			System.out.println("mid = "+mid);
-//			mv.addObject("sectionName", "member/login.jsp");
-//			mv.addObject("urlpattern", "member/login");
-//		} else {
-//			
-//		}
-//		
-//		
-//		return mv;
-//	}
 	
 	@GetMapping({"/profile", "/", ""}) // 사용자 정보
 	public ModelAndView myProfile(
@@ -162,7 +139,7 @@ public class MypageController {
 			) throws Exception {
 		Map<String, Object> upload_result = new HashMap<String, Object>();
 
-// multipartFile 이 있을 때 : '새로운 사진 업로드'시
+		// multipartFile 이 있을 때 : '새로운 사진 업로드'시
 		if (multipartFile != null) {
 
 			String savedFileName = FileSave.saveFile2(
@@ -178,20 +155,20 @@ public class MypageController {
 			cloudinary.config.secure = true;
 
 			try {
-// https://res.cloudinary.com/doxmm0ofz/image/upload/v1677233838/fd689c23-b84a-4d19-8292-87cfdc656201_w_20220207180134_5798062860.jpg
+				// https://res.cloudinary.com/doxmm0ofz/image/upload/v1677233838/fd689c23-b84a-4d19-8292-87cfdc656201_w_20220207180134_5798062860.jpg
 				String originalImage = vo.getProfimg(); // 기존 이미지 url
 				System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 				System.out.println("originalImage : "+originalImage);
 				System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-// <url에서 마지막 / 와 . 사이에 글자만 잘라내기>
-// 1. 마지막 /와 .의 인덱스를 찾기
+				// <url에서 마지막 / 와 . 사이에 글자만 잘라내기>
+				// 1. 마지막 /와 .의 인덱스를 찾기
 				int lastSlashIndex = originalImage.lastIndexOf('/');
 				int lastDotIndex = originalImage.lastIndexOf('.');
-// 2. 인덱스를 이용하여 마지막 /와 . 사이에 있는 문자열을 추출
+				// 2. 인덱스를 이용하여 마지막 /와 . 사이에 있는 문자열을 추출
 				String publicId = originalImage.substring(lastSlashIndex + 1, lastDotIndex);
 				System.out.println(publicId); // 출력: fd689c23-b84a-4d19-8292-87cfdc656201_w_20220207180134_5798062860
 
-// 이미지 업로드
+				// 이미지 업로드
 				Map params1 = ObjectUtils.asMap("use_filename", true, "unique_filename", false, "overwrite", true);
 				Map result = cloudinary.uploader().upload(localFilePath + savedFileName, params1); // 업로드시 map형태로 파일정보를
 																									// 리턴함.
@@ -199,7 +176,7 @@ public class MypageController {
 				String newUrl = result.get("secure_url").toString();
 				System.out.println("★★★ newUrl : " + newUrl);
 
-// 기존 이미지가 있었다면 그 이미지 삭제
+				// 기존 이미지가 있었다면 그 이미지 삭제
 				if ((originalImage != null && !originalImage.equals("")) && !originalImage.equals("https://res.cloudinary.com/doxmm0ofz/image/upload/v1675945711/profile/defaultprofile_rmpnyj.jpg")) {
 					try {
 						cloudinary.uploader().destroy(publicId, ObjectUtils.emptyMap());
@@ -215,11 +192,49 @@ public class MypageController {
 				e.printStackTrace();
 			}
 		}
-
-// multipartFile 이 없을 때 : '이전 사진으로' 클릭시, 또는 파일선택창에서 '취소' 클릭시  -> input type="hidden"으로 받아 온 기존 pimage 그대로 DB에 유지
-
+		// multipartFile 이 없을 때 : '이전 사진으로' 클릭시, 또는 파일선택창에서 '취소' 클릭시  -> input type="hidden"으로 받아 온 기존 pimage 그대로 DB에 유지
 		return upload_result;
 	}
+	
+	//회원 탈퇴
+	@GetMapping("/leave")
+	public ModelAndView delProfile(
+			ModelAndView mv
+			, HttpServletRequest request
+			) {
+		int mid = -1;
+		int result = 0;
+
+		if(request.getSession().getAttribute("mid") != null) {
+			mid = (int) request.getSession().getAttribute("mid");
+			System.out.println("mid = "+mid);
+		}
+		
+		if(mid == -1) {
+			mv.addObject("sectionName", "member/login.jsp");
+			mv.addObject("urlpattern", "member/login");
+			
+		} else {
+			try {
+				result = profileservice.delProfile(mid);
+				System.out.println("result : " + result);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			HttpSession session = request.getSession(false);
+			if(session != null) {
+				session.invalidate();
+			}
+			
+			mv.setViewName("redirect:/");
+		}
+		return mv;
+	}	
+	
+	
+	
+	
 	
 	@GetMapping("/wish") // 찜목록 호출
 	public ModelAndView myWish(
@@ -376,12 +391,6 @@ public class MypageController {
 			}
 		}
 	}
-	
-	
-	
-	
-	
-	
 	
 	// 장바구니
 	@GetMapping("/cart")
@@ -622,9 +631,6 @@ public class MypageController {
 		}
 	}
 	
-	
-	
-	
 	@GetMapping("/order") // 구매기록
 	public ModelAndView myProduct(
 			HttpServletRequest request,
@@ -709,8 +715,6 @@ public class MypageController {
 		}
 	}
 	
-	
-	
 	@GetMapping("/board") // 북마크, 작성한 글
 	public ModelAndView myBoard(
 			HttpServletRequest request,
@@ -752,13 +756,5 @@ public class MypageController {
 		
 		return mv;
 	}
-	
-	
-	
-	
-
-	
-	
-	
 	
 }

@@ -5,6 +5,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import kh.project.stayfit.mypage.model.vo.MypageMember;
@@ -30,7 +31,22 @@ public class ProfileDao {
 		return sqlsession.update("mypage.updateProfile", updateMap);
 	}
 	//계정 탈퇴
-	public int delProfile(int a) throws Exception {
-		return 0;
+	@Transactional
+	public int delProfile(int mid) throws Exception {
+		int result = 0;
+		int result1 = 0;
+		int result2 = 0;
+		
+		result1 = sqlsession.update("mypage.delProfile", mid);
+		if(result1 > 0) {
+			result2 = sqlsession.update("mypage.delBoard", mid);
+			if(result2 > 0) {
+				result = 1;
+			}
+		} else {
+			result = -1;
+		}
+		
+		return result;
 	}
 }

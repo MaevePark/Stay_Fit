@@ -11,5 +11,5 @@ public interface ProfileService {
 	//사용자 정보 변경
 	public int editProfile(Map<String, Object> updateMap) throws Exception; //editProfile(String, String, MultipartFile, int): int
 	//계정 탈퇴
-	public int delProfile(int a) throws Exception; //delProfile(int): int
+	public int delProfile(int mid) throws Exception; //delProfile(int): int
 }
