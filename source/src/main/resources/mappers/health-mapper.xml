@@ -6,9 +6,9 @@
 	<select id="selectCenter" parameterType="map" resultType="HealthCenter">
 		SELECT LC.LID, LC.LNAME, H.HPLACE, H.HADDR, H.HPNUM FROM HEALTHCENTER H JOIN LOCATIONCODE LC ON H.LID = LC.LID	
 		<where>	       
-			<!-- category 파라미터 값이 null 또는 빈 문자열이 아닐 경우, H.HPLACE 와 LC.LNAME 필드 중에 category 값을 포함 하는 레코드 검색 조건 -->
-	        <if test="category != null and category != ''">
-		  		AND (H.HPLACE LIKE '%'|| #{category} ||'%' OR LC.LNAME LIKE '%'|| #{category} ||'%')
+			<!-- search 파라미터 값이 null 또는 빈 문자열이 아닐 경우, H.HPLACE 와 LC.LNAME 필드 중에 search 값을 포함 하는 레코드 검색 조건 -->
+	        <if test="search != null and search != ''">
+		  		AND (H.HPLACE LIKE '%'|| #{search} ||'%' OR LC.LNAME LIKE '%'|| #{search} ||'%')
 			</if>
 			<!-- keyword 파라미터 값이 null 또는 빈 문자열이 아닐 경우, H.HPLACE 와 LC.LNAME 필드 중에 keyword 값을 포함 하는 레코드 검색 조건 -->
 			<if test="keyword != null and keyword != ''">
@@ -18,14 +18,14 @@
 	</select>
 	
 	<!-- 게시물 총 개수  -->
- 	<select id="totalPageCnt" parameterType="map" resultType="int">
-		SELECT COUNT(H.LID) FROM HEALTHCENTER H JOIN LOCATIONCODE LC ON H.LID = LC.LID
+	<select id="totalPageCnt" parameterType="map" resultType="int">
+		SELECT COUNT(H.HPLACE) FROM HEALTHCENTER H JOIN LOCATIONCODE LC ON H.LID = LC.LID
 		<where>    
-			<!-- category 파라미터 값이 null 또는 빈 문자열이 아닐 경우, H.HPLACE 와 LC.LNAME 필드 중에 category 값을 포함 하는 레코드 검색 조건 -->
-	        <if test="category != null and category != ''">
-		  		AND (H.HPLACE LIKE '%'|| #{category} ||'%' OR LC.LNAME LIKE '%'|| #{category} ||'%')
+			<!-- search 파라미터 값이 null 또는 빈 문자열이 아닐 경우, H.HPLACE 와 LC.LNAME 필드 중에 search 값을 포함 하는 레코드 검색 조건 -->
+	        <if test="search != null and search != ''">
+		  		AND (H.HPLACE LIKE '%'|| #{search} ||'%' OR LC.LNAME LIKE '%'|| #{search} ||'%')
 			</if>
-			<!-- category 파라미터 값이 null 또는 빈 문자열이 아닐 경우, H.HPLACE 와 LC.LNAME 필드 중에 category 값을 포함 하는 레코드 검색 조건 -->
+			<!-- search 파라미터 값이 null 또는 빈 문자열이 아닐 경우, H.HPLACE 와 LC.LNAME 필드 중에 search 값을 포함 하는 레코드 검색 조건 -->
 			<if test="keyword != null and keyword != ''">
 	            AND (H.HPLACE LIKE '%'|| #{keyword} ||'%' OR LC.LNAME LIKE '%'|| #{keyword} ||'%')
 	        </if>	        
