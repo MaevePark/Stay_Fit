@@ -1,6 +1,7 @@
 package kh.project.stayfit.diary.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +32,8 @@ public class DiaryDao {
 		return sqlsession.selectList("diary.searchExrc", keyword);
 	}
 	//캘린더 출력
-	public List<Diary> selectList(String a, int b) throws Exception {
-		return null;
+	public List<Diary> selectList(Map<String, Object> dataMap) throws Exception {
+		return sqlsession.selectList("diary.diaryList", dataMap);
 	}
 	//캘린더 수정
 	public int update(String a, int b, int c) throws Exception {

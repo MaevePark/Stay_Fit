@@ -1,7 +1,13 @@
 package kh.project.stayfit.diary.controller;
 
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,13 +31,56 @@ public class DiaryController {
 	private DiaryService diaryService;
 	
 	@GetMapping("/diary")
-	public ModelAndView diary(ModelAndView mv) {
-		
-		mv.addObject("sectionName", "diary/diarypage.jsp");
+	public ModelAndView diary(
+			ModelAndView mv
+			, HttpServletRequest request
+			) {
+		//mid값 호출
+		int mid = -1;
+		mid = (int) request.getSession().getAttribute("mid");
+
+		if(mid != -1) {
+			mv.addObject("sectionName", "diary/diarypage.jsp");
+			mv.addObject("urlpattern", "diary");
+		} else {
+			mv.addObject("sectionName", "member/login.jsp");
+			mv.addObject("urlpattern", "member/login");
+		}
 		mv.setViewName("index");
 		
 		return mv;
 	}
+	
+	@PostMapping("/callDiary")
+	public void callDiary(
+			ModelAndView mv
+			, HttpServletRequest request
+			, HttpServletResponse response
+			, @RequestParam(name="date", defaultValue="") String date
+			) {
+		//mid값 호출
+		int mid = -1;
+		mid = (int) request.getSession().getAttribute("mid");
+
+		try {
+			List<Diary> diaryList = new ArrayList<Diary>();
+			Map<String, Object> dataMap = new HashMap<String, Object>();
+			dataMap.put("date", date);
+			dataMap.put("mid", mid);
+			diaryList = diaryService.selectList(dataMap);
+			PrintWriter out = response.getWriter();
+			out.append(new GsonBuilder().create().toJson(diaryList));
+			out.flush();
+			out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	
+	
 	@PostMapping("/diary-write")
 	@ResponseBody
 	public String writeDiary(Diary diary) throws Exception {
