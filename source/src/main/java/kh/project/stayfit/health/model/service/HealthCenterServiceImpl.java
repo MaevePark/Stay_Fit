@@ -17,7 +17,13 @@ public class HealthCenterServiceImpl implements HealthCenterService {
 	
 	// 게시글 목록 조회, 글 검색
 	@Override
-	public List<HealthCenter> selectCenter(int lid, String category, String keyword) throws Exception {
-		return dao.selectCenter(lid, category, keyword);
+	public List<HealthCenter> selectCenterlist(int lid, String category, String keyword, int page, int limits) throws Exception {
+		return dao.selectCenterlist(lid, category, keyword, page, limits);
+	}
+	
+	// 게시글 총 개수
+	@Override
+	public int totalPageCnt(int lid, String category, String keyword) throws Exception {
+		return dao.totalPageCnt(lid, category, keyword);
 	}
 }
