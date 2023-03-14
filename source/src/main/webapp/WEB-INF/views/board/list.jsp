@@ -17,21 +17,21 @@
 					<%
 						String boardTitle = "";
 						switch (request.getParameter("bcid")) {
-							case "0" :
-								boardTitle = "공지사항";
-								break;
+						case "0":
+							boardTitle = "공지사항";
+							break;
 
-							case "1" :
-								boardTitle = "식단";
-								break;
+						case "1":
+							boardTitle = "식단";
+							break;
 
-							case "2" :
-								boardTitle = "팁&노하우";
-								break;
+						case "2":
+							boardTitle = "팁&노하우";
+							break;
 
-							case "3" :
-								boardTitle = "고민&질문";
-								break;
+						case "3":
+							boardTitle = "고민&질문";
+							break;
 						}
 					%>
 					<h4 class="fw-bold py-3 mb-4">
@@ -123,32 +123,18 @@
 											</c:forEach>
 										</c:when>
 									</c:choose>
-									<tr style=" border-bottom: 2px solid #dee2e6;"></tr>
+									<tr style="border-bottom: 2px solid #dee2e6;"></tr>
 									<!--여기까지  게시글 list -->
 								</tbody>
 							</table>
 						</div>
 					</div>
 				</div>
-				<!--게시판 글등록  버튼-->
-				
-					<c:if test="${bcid != '0'}">
-						<div id="button_parent">
-							<button type="button" class="site-btn"
-								onclick="location.href='write'">글등록</button>
-						</div>
-					</c:if>
-					<c:if test="${bcid == '0' && fn:contains(sessionScope.mrole, 'A')}">
-						<div id="button_parent">
-							<button type="button" class="site-btn"
-								onclick="location.href='write'">글등록</button>
-						</div>
-					</c:if>
-		
-					<!-- 게시판 글등록 버튼 끝 -->
+
 				<!-- 페이징 시작  -->
 				<div class="col-lg-12">
-					<div class="product__pagination blog__pagination" style="background : none;">
+					<div class="product__pagination blog__pagination"
+						style="background: none;">
 						<c:if test="${pagingMap.start != 1}">
 							<a
 								href="<%=request.getContextPath()%>/${urlpattern }?bcid=${bcid}&search=${search}&keyword=${keyword}&page=1">
@@ -181,6 +167,21 @@
 					</div>
 				</div>
 				<!-- 페이징 끝  -->
+
+				<!--게시판 글등록  버튼-->
+				<c:if test="${bcid != '0'}">
+					<div id="button_parent">
+						<button type="button" class="site-btn"
+							onclick="location.href='write'">글등록</button>
+					</div>
+				</c:if>
+				<c:if test="${bcid == '0' && fn:contains(sessionScope.mrole, 'A')}">
+					<div id="button_parent">
+						<button type="button" class="site-btn"
+							onclick="location.href='write'">글등록</button>
+					</div>
+				</c:if>
+				<!-- 게시판 글등록 버튼 끝 -->
 			</div>
 		</div>
 	</section>
