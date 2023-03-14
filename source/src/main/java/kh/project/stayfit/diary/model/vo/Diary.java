@@ -26,11 +26,17 @@ public class Diary{
 	private Date ddate;
 	private int mid;
 	private int breakfast;
+	private int breakfast_menu;
 	private int snack1;
+	private int snack1_menu;
 	private int lunch;
+	private int lunch_menu;
 	private int snack2;
+	private int snack2_menu;
 	private int dinner;
+	private int dinner_menu;
 	private int snack3;
+	private int snack3_menu;
 	private int exercise;
 	private int weight;
 	
