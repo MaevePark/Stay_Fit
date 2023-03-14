@@ -76,8 +76,7 @@ public class DiaryController {
 			dataMap.put("date", date);
 			dataMap.put("mid", mid);
 			diaryList = diaryService.selectList(dataMap);
-<<<<<<< Updated upstream
-=======
+			
 			List<Calendar> calendarList = new ArrayList<Calendar>();
 			for(int i=0; i < diaryList.size(); i++) {
 				Diary diary = diaryList.get(i);
@@ -116,7 +115,6 @@ public class DiaryController {
 			response.setContentType("application/json"); // 인코딩 설정 추가
 	        response.setCharacterEncoding("UTF-8"); // 인코딩 설정 추가
 			
->>>>>>> Stashed changes
 			PrintWriter out = response.getWriter();
 			out.append(new GsonBuilder().create().toJson(diaryList));
 			out.flush();

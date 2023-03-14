@@ -235,4 +235,6 @@ window.onload = function() {
 <script
 	src="<%=request.getContextPath()%>/resources/calendar/lib/calendar.js"></script>
 <script
+	src="<%=request.getContextPath()%>/resources/calendar/lib/calendarAction.js"></script>
+<script
 	src="https://cdn.jsdelivr.net/npm/chart.js@4.2.0/dist/chart.umd.min.js"></script>
