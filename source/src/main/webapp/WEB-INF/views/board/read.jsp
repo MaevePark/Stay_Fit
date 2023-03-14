@@ -113,15 +113,14 @@
 							</c:when>
 							<c:when test="${!empty reply}">
 								<c:forEach var="repl" items="${reply}">
-									<div id="readReply" style="padding: 12px 23px 10px 0">
+									<div id="readReply" class="child${repl.rcase }" style="padding: 12px 23px 10px 47px">
 										<ul style="list-style: none">
-											<li style="width: 100%; border-top: 1px solid #dee2e6;">
+											<li id="eachreply" style="width: 100%; border-top: 1px solid #dee2e6;">
 												<!-- overflow: hidden때문에 임시부여 수정예정 -->
-												
 												<div class="">
-													<img id="profimg" src="${repl.profimg }" />
+													<img id="profimg" class="reply-img" src="${repl.profimg }" />
 												</div>
-												<div class="">
+												<div class="" style="padding-left:47px">
 													<div class="reply-info" style="margint-bottom: 5px;">
 														<span style="margin-right: 10px;">${repl.mname }</span> <span><fmt:formatDate
 																pattern="YY/MM/dd HH:MM" value="${repl.rcreate}" /></span>
@@ -343,6 +342,7 @@ function del(bid){
 		}
 		});
 	});
+
 
 
 //수정화면
