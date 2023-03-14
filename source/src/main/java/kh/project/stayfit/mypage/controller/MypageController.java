@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,6 +55,7 @@ public class MypageController {
 			) {
 		MypageMember vo = new MypageMember();
 		int mid = -1;
+		
 		if(request.getSession().getAttribute("mid") != null) {
 			mid = (int) request.getSession().getAttribute("mid");
 			System.out.println("mid = "+mid);
@@ -756,5 +759,58 @@ public class MypageController {
 		
 		return mv;
 	}
+	
+	
+	
+	
+	
+//	@ExceptionHandler(NumberFormatException.class)
+//	public ModelAndView handlerBoardNumberFormatException(NumberFormatException e/* 오류발생 ,ModelAndView mv  */) {
+//		ModelAndView mv = new ModelAndView(); 
+////		mv.addObject("errMsg", "숫자만입력해야합니다.");
+////		mv.setViewName("/error/NFerror");
+//		mv.setViewName("redirect:/board");
+//		return mv;
+//	}
+//	@ExceptionHandler(DataIntegrityViolationException.class)
+//	public ModelAndView handlerBoardSQLException(DataIntegrityViolationException e/* 오류발생 ,ModelAndView mv  */) {
+//		ModelAndView mv = new ModelAndView(); 
+//		mv.addObject("errMsg", "올바르지 않은 데이터로 전송에 실패했습니다.");
+//		mv.setViewName("/error/NFerror");
+//		return mv;
+//	}
+//	
+//	@ExceptionHandler(NullPointerException.class)
+//	public ModelAndView handlerNullPointerException(NullPointerException e/* 오류발생 ,ModelAndView mv  */) {
+//		ModelAndView mv = new ModelAndView(); 
+//		mv.addObject("errMsg", "로그인 후에 이용 가능한 컨텐츠입니다.");
+//		mv.setViewName("/error/NFerror");
+//		return mv;
+//	}
+	
+	@ExceptionHandler(Exception.class)
+	public ModelAndView handlerBoardException(Exception e/* 오류발생 ,ModelAndView mv  */) {
+		e.printStackTrace();
+		ModelAndView mv = new ModelAndView(); 
+		mv.addObject("errMsg", e.getMessage());
+		mv.setViewName("/AccessDenied");
+		return mv;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
