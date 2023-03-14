@@ -18,18 +18,16 @@ public class HealthCenterDao {
 	private SqlSession sqlSession;
 
 	// 게시글 목록 조회, 글 검색
-	public List<HealthCenter> selectCenterlist(int lid, String category, String keyword, int currentPageNum, int limits) throws Exception {
+	public List<HealthCenter> selectCenterlist(int lid, String search, String keyword, int currentPageNum, int limits) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("lid", lid);
-		map.put("category", category);
+		map.put("search", search);
 		map.put("keyword", keyword);
 		return sqlSession.selectList("healthcenter.selectCenter", map, new RowBounds((currentPageNum-1)*limits, limits));
 	}
 	// 개시글 총 개수
-	public int totalPageCnt(int lid, String category, String keyword) {
+	public int totalPageCnt(String search, String keyword) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("lid", lid);
-		map.put("category", category);
+		map.put("search", search);
 		map.put("keyword", keyword);
 		return sqlSession.selectOne("healthcenter.totalPageCnt", map);
 	}

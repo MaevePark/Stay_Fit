@@ -20,21 +20,21 @@
 						<form action="<%=request.getContextPath()%>/health/centerlist"
 							name="search_form" method="get">
 							<div class="hero__search__categories">
-								<select name="category" id="category">
-								    <option value="" ${empty category ? 'selected="selected"' : ''}>전체</option>
-								    <option value="서울특별시" ${category == '서울특별시' ? 'selected="selected"' : ''}>서울특별시</option>
-								    <option value="부산광역시" ${category == '부산광역시' ? 'selected="selected"' : ''}>부산광역시</option>
-								    <option value="인천광역시" ${category == '인천광역시' ? 'selected="selected"' : ''}>인천광역시</option>
-								    <option value="대전광역시" ${category == '대전광역시' ? 'selected="selected"' : ''}>대전광역시</option>
-								    <option value="대구광역시" ${category == '대구광역시' ? 'selected="selected"' : ''}>대구광역시</option>
-								    <option value="광주광역시" ${category == '광주광역시' ? 'selected="selected"' : ''}>광주광역시</option>
-								    <option value="울산광역시" ${category == '울산광역시' ? 'selected="selected"' : ''}>울산광역시</option>
-								    <option value="경기도" ${category == '경기도' ? 'selected="selected"' : ''}>경기도</option>
-								    <option value="전라도" ${category == '전라도' ? 'selected="selected"' : ''}>전라도</option>
-								    <option value="경상도" ${category == '경상도' ? 'selected="selected"' : ''}>경상도</option>
-								    <option value="강원도" ${category == '강원도' ? 'selected="selected"' : ''}>강원도</option>
-								    <option value="충청도" ${category == '충청도' ? 'selected="selected"' : ''}>충청도</option>
-								    <option value="제주도" ${category == '제주도' ? 'selected="selected"' : ''}>제주도</option>
+								<select name="search" id="search">
+								    <option value="" ${empty search ? 'selected="selected"' : ''}>전체</option>
+								    <option value="서울특별시" ${search == '서울특별시' ? 'selected="selected"' : ''}>서울특별시</option>
+								    <option value="부산광역시" ${search == '부산광역시' ? 'selected="selected"' : ''}>부산광역시</option>
+								    <option value="인천광역시" ${search == '인천광역시' ? 'selected="selected"' : ''}>인천광역시</option>
+								    <option value="대전광역시" ${search == '대전광역시' ? 'selected="selected"' : ''}>대전광역시</option>
+								    <option value="대구광역시" ${search == '대구광역시' ? 'selected="selected"' : ''}>대구광역시</option>
+								    <option value="광주광역시" ${search == '광주광역시' ? 'selected="selected"' : ''}>광주광역시</option>
+								    <option value="울산광역시" ${search == '울산광역시' ? 'selected="selected"' : ''}>울산광역시</option>
+								    <option value="경기도" ${search == '경기도' ? 'selected="selected"' : ''}>경기도</option>
+								    <option value="전라도" ${search == '전라도' ? 'selected="selected"' : ''}>전라도</option>
+								    <option value="경상도" ${search == '경상도' ? 'selected="selected"' : ''}>경상도</option>
+								    <option value="강원도" ${search == '강원도' ? 'selected="selected"' : ''}>강원도</option>
+								    <option value="충청도" ${search == '충청도' ? 'selected="selected"' : ''}>충청도</option>
+								    <option value="제주도" ${search == '제주도' ? 'selected="selected"' : ''}>제주도</option>
 								</select>						
 							</div>							
 							<input type="text" name="keyword" id="keyword" value="${keyword}" placeholder="지역을 입력해주세요.">
@@ -112,26 +112,26 @@
 					<div class="col-lg-12">
 						<div class="product__pagination">
 							<c:if test="${pagingMap.start != 1}">
-								<a href="<%=request.getContextPath()%>/${urlpattern }?category=${category}&keyword=${keyword}&page=1">
+								<a href="<%=request.getContextPath()%>/${urlpattern }?search=${search}&keyword=${keyword}&page=1">
 									<< </a>
 							</c:if>
 							<c:if test="${pagingMap.currentPage != 1}">
-								<a	href="<%=request.getContextPath()%>/${urlpattern }?category=${category}&keyword=${keyword}&page=${pagingMap.currentPage -1}">
+								<a	href="<%=request.getContextPath()%>/${urlpattern }?search=${search}&keyword=${keyword}&page=${pagingMap.currentPage -1}">
 									< </a>
 							</c:if>
 
 							<c:forEach begin="${pagingMap.start }" end="${pagingMap.end }"
 								var="num">
-								<a	href="<%=request.getContextPath()%>/${urlpattern }?category=${category}&keyword=${keyword}&page=${num}">${num}
+								<a	href="<%=request.getContextPath()%>/${urlpattern }?search=${search}&keyword=${keyword}&page=${num}">${num}
 								</a>
 							</c:forEach>
 
 							<c:if test="${pagingMap.currentPage != pagingMap.totalPageCnt}">
-								<a	href="<%=request.getContextPath()%>/${urlpattern }?category=${category}&keyword=${keyword}&page=${pagingMap.currentPage +1}">
+								<a	href="<%=request.getContextPath()%>/${urlpattern }?search=${search}&keyword=${keyword}&page=${pagingMap.currentPage +1}">
 									> </a>
 							</c:if>
 							<c:if test="${pagingMap.end != pagingMap.totalPageCnt}">
-								<a	href="<%=request.getContextPath()%>/${urlpattern }?category=${category}&keyword=${keyword}&page=${pagingMap.totalPageCnt }">
+								<a	href="<%=request.getContextPath()%>/${urlpattern }?search=${search}&keyword=${keyword}&page=${pagingMap.totalPageCnt }">
 									>> </a>
 							</c:if>
 						</div>
