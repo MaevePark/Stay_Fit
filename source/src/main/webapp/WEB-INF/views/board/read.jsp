@@ -15,38 +15,20 @@
 			<jsp:include page="/WEB-INF/views/board/boardcategory.jsp"></jsp:include>
 			<!-- 게시판 카테고리 첨부 끝 -->
 			<div class="col-lg-10 col-md-10">
-				<div class="row">
-					<!-- 글검색인데 삭제예정  -->
-					<div class="hero__search__form">
-						<form action="#">
-							<div class="hero__search__categories">
-								<select name="">
-									<option value="1" selected>카테고리 전체</option>
-									<option value="2">식단</option>
-									<option value="3">팁&노하우</option>
-									<option value="4">고민&질문</option>
-								</select>
-							</div>
-							<div class="hero__search__categories">
-								<select name="search">
-									<option value="1" selected>전체</option>
-									<option value="2">작성자</option>
-									<option value="3">제목</option>
-								</select>
-							</div>
-							<input type="text" placeholder="검색어를 입력해주세요.">
-							<button type="submit" class="site-btn">SEARCH</button>
-						</form>
-					</div>
-					<!-- 글검색인데 삭제예정  여기까지-->
+				<div>
+					<button type="button" id="list_btn"
+						onclick="location.href='list?bcid=${read.bcid}'">목록</button>
+				</div>
+				<div class=""
+					style="border: 1px solid #ebecef; border-radius: 6px; padding: 29px 29px 0;">
 					<!-- 게시글  -->
 					<table id="readContent">
 						<tr>
-							<td>${read.btitle}</td>
+							<td><h3>${read.btitle}</h3></td>
 							<td>${read.bviewcount}</td>
 						</tr>
 						<tr>
-							<td>${read.mname}</td>
+							<td><img id="profimg" src="${read.profimg }" />${read.mname}</td>
 							<td><fmt:formatDate pattern="YY/MM/dd"
 									value="${read.bcreate}" /></td>
 						</tr>
@@ -99,50 +81,63 @@
 					</div>
 					<!-- 수정, 삭제, 목록 버튼 여기까지  -->
 
-					<!-- 북마크  -->
-					<div style="border: none;">
-						<button class="bookmark" value="${read.bid}">
-							<img class="default-img" /> <img class="active-img" />
-						</button>
-						<span>북마크</span>
+					<div class="total-box">
+						<!-- 북마크  -->
+						<div style="border: none; display: inline-block;">
+							<button class="bookmark" value="${read.bid}">
+								<img class="default-img" /> <img class="active-img" />
+							</button>
+							<span>북마크</span>
+						</div>
+						<!-- 북마크 끝  -->
+						<a> <span>댓글수예정</span>
+						</a>
 					</div>
-					<!-- 북마크 끝  -->
 
 					<!-- 댓글 -->
-					<div id="replyArea">
+					<div id="replyArea"
+						style="margin-top: 17px; border-top: 2px solid #dee2e6;">
+						<div style="margin-left: 5px;">
+							<h5>댓글</h5>
+						</div>
 						<!--댓글 리스트  -->
-						<!-- <table id="readReply"> -->
 						<c:choose>
 							<c:when test="${empty reply }">
-								<table id="readReply">
-									<tr>
-										<td colspan="5" align="center">작성된 댓글이 없습니다</td>
-									</tr>
-								</table>
+								<ul id="readReply" style="list-style: none">
+									<li style="border-top: 1px solid #dee2e6; margin-top: 12px;">
+										<div
+											style="columns: 5; text-align: center; padding: 12px 23px 0 0;">작성된
+											댓글이 없습니다</div>
+									</li>
+								</ul>
 							</c:when>
 							<c:when test="${!empty reply}">
 								<c:forEach var="repl" items="${reply}">
-									<table id="readReply">
-										<tr>
-											<td style="width: 400px">
+									<div id="readReply" style="padding: 12px 23px 10px 0">
+										<ul style="list-style: none">
+											<li style="width: 100%; border-top: 1px solid #dee2e6;">
 												<!-- overflow: hidden때문에 임시부여 수정예정 -->
-												<div class="blog__sidebar__recent__item__pic">
+												
+												<div class="">
 													<img id="profimg" src="${repl.profimg }" />
 												</div>
-												<div class="blog__sidebar__recent__item__text">
-													<span>${repl.mname }</span>
-													<%-- <div id="old-reply" style="dispay:none;">${repl.rcontent }
-													</div> --%>
+												<div class="">
+													<div class="reply-info" style="margint-bottom: 5px;">
+														<span style="margin-right: 10px;">${repl.mname }</span> <span><fmt:formatDate
+																pattern="YY/MM/dd HH:MM" value="${repl.rcreate}" /></span>
+													</div>
 													<div class="reply-form">
 														<!-- 기존 댓글 정보  -->
 														<div id="old-reply" class="old-reply">
 															<c:out value="${repl.rcontent }" />
 														</div>
 														<!-- 기존 댓글 정보  끝-->
-														
+
 														<!-- 댓글 수정 폼  -->
-														<div id="comment-form" class="comment-form" style="display: none;">
-															<input type="text" id="comment-input" class="comment-input">
+														<div id="comment-form" class="comment-form"
+															style="display: none;">
+															<input type="text" id="comment-input"
+																class="comment-input">
 															<div class="container">
 																<button id="submit-button"
 																	class="modify-rid btn btn-primary btn-sm btn-light"
@@ -152,79 +147,78 @@
 															</div>
 														</div>
 														<!-- 댓글 수정 폼  끝-->
-														
+
 														<!-- 댓글  버튼변화-->
 														<div class="container">
 															<c:if test="${repl.mid == writer }">
-																<button id="modi-reply" class="btn btn-sm btn-modify" value="${repl.rid }">수정</button>
-																<button id="del-reply" type="button" onclick="rdel(${repl.rid})" class="btn btn-sm btn-del">삭제</button>
+																<button id="modi-reply" class="btn btn-sm btn-modify"
+																	value="${repl.rid }">수정</button>
+																<button id="del-reply" type="button"
+																	onclick="rdel(${repl.rid})" class="btn btn-sm btn-del">삭제</button>
 															</c:if>
 															<c:if test="${repl.mid != writer }">
-																<button class="btn btn-primary btn-sm btn-light like-button" value="${repl.rid }">공감</button>
-																<button type="button" class="btn btn-primary btn-sm btn-light">신고</button>
+																<button
+																	class="btn btn-primary btn-sm btn-light like-button"
+																	value="${repl.rid }">공감</button>
+																<button type="button"
+																	class="btn btn-primary btn-sm btn-light">신고</button>
 															</c:if>
-															<button id="child-reply" class="btn btn-primary btn-sm btn-light">답글</button>
+															<button id="child-reply"
+																class="btn btn-primary btn-sm btn-light"
+																value="${repl.rid}">답글</button>
 														</div>
 														<!-- 댓글  버튼변화 끝-->
+
+														<!-- 답댓글 작성  -->
+														<div id="child-form-${repl.rid }"
+															class="write_reply_form child-form"
+															style="margin: 12px 0 29px; display: none;">
+															<div class="reply-inbox">
+																<strong class="writer-name">${writer}</strong> <input
+																	type="hidden" id="rseq" value="${repl.rseq }">
+																<textarea name="ccontent" id="ccontent" rows="3"
+																	placeholder="${repl.mname }에게 답글을  작성해주세요"></textarea>
+																<div>
+																	<div style="margin-bottom: 10px;">
+																		<button type="submit" id="child_reg"
+																			value="${repl.rid }">등록</button>
+																		<button type="submit" class="child_del"
+																			value="${repl.rid}">취소</button>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<!-- 답댓글 작성  끝-->
 													</div>
 												</div>
-											</td>
-											<td></td>
-											<td><fmt:formatDate pattern="YY/MM/dd HH:MM"
-													value="${repl.rcreate}" /></td>
+											</li>
+										</ul>
+									</div>
 
-
-										</tr>
-									</table>
-									<!-- 답댓글 작성  -->
-									<table id="child-form-${rid}" style="display: none;">
-										<tr>
-											<td>
-												<div class="write_reply_form">
-													<div class="reply-inbox">
-														<strong class="writer-name">${writer}</strong>
-														<textarea name="rcontent" id="rcontent" rows="3" placeholder="댓글을  작성해주세요"></textarea>
-													</div>
-													<div>
-														<a role="button" type="submit" id="child_reg">등록</a>
-														<a role="button" type="submit" id="child_del">취소</a>
-													</div>
-												</div>
-											</td>
-										</tr>
-									</table>
-									<!-- 답댓글 작성 끝  -->
 								</c:forEach>
 							</c:when>
 						</c:choose>
-						<!-- <td></td>
-							<td></td>
-							<td></td>
-						</table> -->
 						<!-- 댓글 리스트  끝 -->
 
-						<!-- 댓글 작성  -->
-						<%-- <div class="hero__search__form">
-							<form>
-								<input type="hidden" id="mid" name="mid" value="${writer }">
-								<input type="hidden" id="bid" name="bid" value="${read.bid }">
-								<textarea name="rcontent" id="rcontent" placeholder="댓글을 남겨보세요"></textarea>
-								<!-- <input type="text" name="rcontent" id="rcontent" placeholder="댓글을 작성해주세요"> -->
-								<button type="submit" id="rep_write" onclick="rep_btn()" class="site-btn">댓글 등록</button>
-							</form>
-						</div> --%>
-						<div class="write_reply_form">
-							<div class="reply-inbox">
-								<strong class="writer-name">${writer}</strong>
-								<textarea name="rcontent" id="rcontent" rows="3"
-									placeholder="댓글을  작성해주세요"></textarea>
-							</div>
+					</div>
+					<div
+						style="margin-top: 12px; margin-bottom: 17px; border-top: 2px solid #ebecef; height: auto;">
+					</div>
+					<!-- 댓글작성 시작  -->
+					<div class="write_reply_form" style="margin: 12px 0 29px;">
+						<div class="reply-inbox">
+							<strong class="writer-name">${writer}</strong>
+							<textarea name="rcontent" id="rcontent" rows="3"
+								placeholder="댓글을  작성해주세요"></textarea>
 							<div>
-								<button type="submit" id="rep_write" onclick="rep_btn()">등록</button>
+								<div style="margin-bottom: 10px;">
+									<button type="submit" id="rep_write" onclick="rep_btn()">등록</button>
+								</div>
 							</div>
 						</div>
-						<!-- 댓글 작성 끝  -->
 					</div>
+
+					<!-- 댓글 작성 끝  -->
 				</div>
 			</div>
 		</div>
@@ -255,17 +249,24 @@ function del(bid){
 	}	
 }
 
+
 //부모 댓글 작성
  function rep_btn(){
-	var rcontent = $("#rcontent").val();
-	var bid = ${read.bid};
 	var mid = ${writer}; 
+	var bid = ${read.bid};
+	var rcontent = $("#rcontent").val();
+	if (!rcontent) {
+		   alert('내용을 입력해주세요.');
+		   return;
+		 }
+	
 	
 	var reply = {
 			"rcontent" : rcontent,
 			"bid" : bid,
 			"mid" : mid
 	};
+	console.log(reply);
 	
 	$.ajax({
 		type : "POST",
@@ -282,20 +283,66 @@ function del(bid){
 	});
 	
 }
+
+
 //답글 화면
 // 답글 버튼 클릭 시
-$(document).on('click','#child-reply',function(){
-	var rid = ${repl.rid}
-	var childForm = $('#child-form-' + rid);    
-	childForm.addClass('editing');  //현재수정중 구분용 editing추가
-	/* $reply.find('.old-reply, #modi-reply, #del-reply, #child-reply').hide(); */  //수정하기버튼과 기존댓글 숨기기 
-	childForm.show(); //수정폼 보이게하기 
-	
-	 /* $commentInput.focus(); */
-	
-	 /* console.log(content); */
-});
 
+ $(document).ready(function(){
+	  $(".reply-form").on("click", "#child-reply", function(){
+		  var rid = $(this).val();
+	    // 열려있는 모든 child-form을 닫습니다.
+	    $(".child-form").hide();
+		  console.log(rid);
+		  $("#child-form-"+rid).show();
+	  });
+
+	  $(".reply-form").on("click", ".child_del", function(){
+		  var rid = $(this).val();
+	    $("#child-form-"+rid).hide();
+	  });
+	}); 
+	
+//답글 작성 
+ $(document).on('click', '#child_reg', function() {
+	var bid = ${read.bid};
+	var mid = ${writer}; 
+	var rid= $(this).val();
+	var $reply = $(this).parents('#child-form-'+ rid);
+	var rseq = $reply.find('#rseq').val();
+	var rcontent = $reply.find('#ccontent').val();
+	
+	console.log(bid,mid,rcontent,rseq);
+	
+	if (rcontent == '') {
+	    alert('내용을 입력해주세요.');
+	    return;
+	}
+	
+	var child = {
+			"rcontent" : rcontent,
+			"bid" : bid,
+			"mid" : mid,
+			"rseq" : rseq,
+	};
+	
+	$.ajax({
+		type: "POST",  
+		url: "childwrite",
+		dataType : "Json",
+		contentType : 'application/json',
+		data : JSON.stringify(child),
+		success: function(response) {
+			alert('댓글이 등록되었습니다.');
+		  	console.log(response);
+		 	location.reload();     
+		},
+		error: function(xhr, status, error) {
+		  	console.error(error);
+		  	alert('댓글 등록에 실패하였습니다. 다시 시도해주세요.');
+		}
+		});
+	});
 
 
 //수정화면

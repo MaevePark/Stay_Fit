@@ -48,7 +48,17 @@
 #button_parent > button {
 	margin-left: 5px;
 }
-
+#list_btn{
+	font-size: 14px;
+    color: #ffffff;
+    font-weight: 800;
+    text-transform: uppercase;
+    display: inline-block;
+    padding: 7px 15px 6px;
+    background: #7fad39;
+    border: none;
+    border-radius : 6px;
+}
 /*수정, 삭제, 목록 버튼 끝*/
 
 /*댓글 이모티콘 */
@@ -143,8 +153,10 @@ button .bookmark{
 	
 }
 #replyArea > div:first-child {
-	display: flex;
-	justify-content: center;
+	/* display: flex; */
+	/* justify-content: center; */
+	padding-top: 12px;
+}
 }
 #readReply tr{
 	max-width: 100%;
@@ -214,10 +226,12 @@ textarea{
     color: #ffffff;
     font-weight: 800;
     text-transform: uppercase;
-    display: inline-block;
+    /* display: inline-block; */
+    display: absolute;
     padding: 7px 15px 6px;
     background: #7fad39;
     border: none;
+    border-radius : 6px;
 }
 
 /*댓글 작성 끝  */

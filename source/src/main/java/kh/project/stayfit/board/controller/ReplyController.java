@@ -37,6 +37,14 @@ public class ReplyController {
 		srv.write(vo);
 		return new Gson().toJson(vo);
 	}
+	
+	// 자식 댓글 작성
+	@PostMapping("/childwrite")
+	@ResponseBody
+	public String cwrite(@RequestBody Reply vo) throws Exception {
+		srv.cwrite(vo);
+		return new Gson().toJson(vo);
+	}
 
 	// 댓글 수정
 	@PostMapping("/replyupdate")

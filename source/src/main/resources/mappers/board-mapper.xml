@@ -38,7 +38,7 @@
 	
 	<!-- 게시물 상세조회  -->
 	 <select id="selectone" resultType="Board" parameterType="int">
-		select bc.bcid, b.bid, bcname, btitle, bcontent, m.mid, mname, bviewcount, bcreate 
+		select bc.bcid, b.bid, bcname, btitle, bcontent, m.mid, profimg, mname, bviewcount, bcreate 
 		from board b join bcategory bc on b.bcid = bc.bcid join member m on b.mid=m.mid where bid=#{bid}
 	</select> 
 	
@@ -64,19 +64,21 @@
 	
 	<!-- 댓글 조회  -->
 	<select id="boardreply" resultType="Reply" parameterType="int">
-		SELECT mid, rid, profimg, mname, rcontent, rcreate, rstate, rseq FROM reply JOIN member USING(mid) WHERE bid = #{bid} ORDER BY rseq ASC, rcase
+		SELECT mid, rid, profimg, mname, rcontent, rcreate, rstate, rseq, rcase FROM reply JOIN member USING(mid) WHERE bid = #{bid} ORDER BY rseq ASC, rcase
 	</select>
 	
 	<!-- 부모 댓글 작성  -->
 	<insert id="rwrite" parameterType="Reply">
 		INSERT INTO reply(rid,bid,mid,rcontent,rseq) VALUES ((SELECT NVL(MAX(rid),0)+1 FROM reply), #{bid}, #{mid}, #{rcontent}, (SELECT NVL(MAX(rseq),0)+1 FROM reply WHERE BID=#{bid}))
 	</insert>
+	
 	<!-- 자식 댓글 작성  -->
 	<insert id="crwrite" parameterType="Reply">
 		INSERT INTO reply(rid,bid,mid,rcontent,rcase,rseq)
     	VALUES((SELECT NVL(MAX(rid),0)+1 FROM reply), #{bid}, #{mid}, #{rcontent}, (SELECT NVL(MAX(rcase),0)+1 
-   		FROM reply WHERE BID=#{bid} and rseq=#{rseq}), #{rseq});
+   		FROM reply WHERE BID=#{bid} and rseq=#{rseq}), #{rseq})
 	</insert>
+	
 	<!-- 댓글 수정  -->
 	<update id="rupdate" parameterType="Reply">
 		UPDATE REPLY SET rcontent=#{rcontent} WHERE rid=#{rid}
