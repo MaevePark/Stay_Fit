@@ -116,21 +116,24 @@ label[for="4"] > input:checked{
 /*댓글 이모티콘  끝 */
 
 /*북마크 시작  */
-button .bookmark{
+.bookmark{
+	width:40px;
+	height:40px;
 	border : none;
 	background-color: transparent;
   	cursor: pointer;
 }
 .default-img{
-	width: 40px;
-	height: 40px;
-	background-size : cover;	
-	background :url(../img/board-read/delbook.png) no-repeat;	
+	width:40px;
+	height:40px;
+	background-size: contain !important;
+	background :url(../img/board-read/delbook.png) no-repeat;
 }
 .active-img{
-	width: 40px;
-	height: 40px;
-	background-img :url(../img/board-read/bookmark.png);	
+	width:40px;
+	height:40px;
+	background-size: contain !important;
+	background :url(../img/board-read/bookmark.png) no-repeat;	
 	display : none;	
 	border : none;
 	box-sizing: content-box;
@@ -140,7 +143,7 @@ button .bookmark{
 }
 
 .active .active-img {
-  display: block;
+  display: inline-block;
   border: none;
 } 
 /* 북마크 끝  */
@@ -161,7 +164,7 @@ li{
 #replyArea {
 	display: flex;
 	flex-direction: column;
-	margin-top: 17px; 
+	margin-top: 5px; 
 	border-top: 2px solid #dee2e6;
 	
 }
