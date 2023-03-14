@@ -17,6 +17,6 @@ img {
 
 </head>
 <body>
-	<img alt="" src="<%=request.getContextPath()%>/resources/img/security/security_access_denied.jpg">
+	<img alt="" src="https://res.cloudinary.com/doxmm0ofz/image/upload/v1678800897/KakaoTalk_20230308_081533132_vd9rg8.jpg">
 </body>
 </html>
