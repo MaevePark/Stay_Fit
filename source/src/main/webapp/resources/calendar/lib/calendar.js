@@ -27,12 +27,10 @@
     	  return date.date.year +"년 "+(date.date.month +1) +"월";
       },
       selectable: true,
-      
       eventClick:function(){
 		  var modal = $("#calendar-modal");
 		  modal.modal();
 	  },
-	  
 	  dateClick:function(){
 		  $("#calendar-modal").modal("show");
 	  },

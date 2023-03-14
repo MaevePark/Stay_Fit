@@ -9,7 +9,10 @@ window.onload = function() {
 		},
 		dataType: "json",
 		success: function(result) {
-			
+			let events = JSON.parse(result).map(event => ({
+				  title: event.title.replace(/"/g, ''),
+				  start: event.start.replace(/"/g, '')
+				  }));
 			
 			let calendarEl = document.getElementById('calendar');
 			let calendar = new FullCalendar.Calendar(calendarEl, {
@@ -31,15 +34,22 @@ window.onload = function() {
 					  $("#calendar-modal").modal("show");
 				  },
 				  dayMaxEvents: true,
-				  events:JSON.parse(result).map(event => ({ title: event.title.replace(/"/g, ''), start: event.start.replace(/"/g, '') }))
+				  events: events,
+//				  eventRender: function(info) {
+//					    // 이벤트의 title 속성에서 HTML 태그를 가진 경우
+//					    if (info.event.title.match(/<.*>/)) {
+//					      // 배경색상 또는 텍스트 색상을 변경합니다.
+//					      info.el.style.backgroundColor = 'red';
+//					      info.el.style.color = 'white';
+//					    }
+//					  }
 			});
 					  
-			console.log(result);
+			console.log(events);
 			calendar.render();
-			//listUpData(result);
+			// listUpData(result);
 		},
 		error: function(result) {
-			console.log("응애");
 			let calendarEl = document.getElementById('calendar');
 			let calendar = new FullCalendar.Calendar(calendarEl, {
 				initialDate: new Date(),

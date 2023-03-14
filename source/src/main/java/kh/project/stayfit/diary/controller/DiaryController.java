@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.util.HtmlUtils;
 
 import com.google.gson.GsonBuilder;
 
@@ -76,6 +77,9 @@ public class DiaryController {
 			dataMap.put("date", date);
 			dataMap.put("mid", mid);
 			diaryList = diaryService.selectList(dataMap);
+			String imgTag1 = "<img src='/stayfit/resources/img/diary/dish.png' /> ";
+			String imgTag2 = "<img src='/stayfit/resources/img/diary/scale.png' /> ";
+			String imgTag3 = "<img src='/stayfit/resources/img/diary/dumbel.png' /> ";
 			
 			List<Calendar> calendarList = new ArrayList<Calendar>();
 			for(int i=0; i < diaryList.size(); i++) {
@@ -85,20 +89,16 @@ public class DiaryController {
 				int weight = diary.getWeight();
 				int burnKcal = diary.getExercise();
 				
-				System.out.println("이건 "+i+"번째 반복");
 				
 				for(int j=0; j<3; j++) {
 					Calendar calendar = new Calendar();
 					calendar.setStart(ddate);
 					if(j==0) {
-						System.out.println("칼로리");
-						calendar.setTitle(Integer.toString(fullKcal));
+						calendar.setTitle(imgTag1+Integer.toString(fullKcal));
 					} else if(j==1) {
-						System.out.println("운동량");
-						calendar.setTitle(Integer.toString(burnKcal));
+						calendar.setTitle(imgTag2+Integer.toString(burnKcal));
 					} else if(j==2) {
-						System.out.println("몸무게");
-						calendar.setTitle(Integer.toString(weight));
+						calendar.setTitle(imgTag3+Integer.toString(weight));
 						
 					}
 					calendarList.add(calendar);
