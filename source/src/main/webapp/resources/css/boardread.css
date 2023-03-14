@@ -147,9 +147,22 @@ button .bookmark{
 
 /*댓글영역 시작*/
 /*댓글리스트  */
+li{
+	list-style : none;
+}
+.no-rep-wrap{
+	border-top: 1px solid #dee2e6;
+	margin-top: 12px;
+}
+.no-reply{
+	text-align: center;
+	padding: 12px 23px 0 0;
+}
 #replyArea {
 	display: flex;
 	flex-direction: column;
+	margin-top: 17px; 
+	border-top: 2px solid #dee2e6;
 	
 }
 #replyArea > div:first-child {
@@ -157,17 +170,29 @@ button .bookmark{
 	/* justify-content: center; */
 	padding-top: 12px;
 }
+#readReply{
+	padding: 12px 23px 10px 47px;
 }
-#readReply tr{
-	max-width: 100%;
-	padding-left: 10px;
-	
+.child0{
+	padding: 12px 23px 10px 0px !important;
+	}
+.reply-image{
+	position:absolute;
+	margin-top : 10px;
 }
-#readReply td{
-	border : none;
+#eachreply{
+	width: 100%;
 	border-top: 1px solid #dee2e6;
-	padding: 0.75rem;
-	
+}
+.reply-inbox{
+	padding-left:47px;
+	margin-top :5px;
+}
+.reply-info{
+	margin-bottom: 5px;
+}
+.reply-info > span{
+	margin-right: 10px;
 }
 #profimg {
 	border-radius : 50%;
@@ -190,13 +215,11 @@ button .bookmark{
     background-color: #dc3545;;
     color: white;
 }
+
+
+
+
 /*댓글 작성  */
-.child0{
-	padding: 12px 23px 10px 0px !important;
-	}
-.reply-img{
-	position:absolute;
-}
 .write_reply_form{
 	background: #ffffff;
 	/* border: 2px solid #7fad39; */

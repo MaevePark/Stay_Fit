@@ -90,39 +90,35 @@
 							<span>북마크</span>
 						</div>
 						<!-- 북마크 끝  -->
-						<a> <span>댓글수예정</span>
+						<a> <span>aaa</span>
 						</a>
 					</div>
 
 					<!-- 댓글 -->
-					<div id="replyArea"
-						style="margin-top: 17px; border-top: 2px solid #dee2e6;">
+					<div id="replyArea">
 						<div style="margin-left: 5px;">
 							<h5>댓글</h5>
 						</div>
 						<!--댓글 리스트  -->
 						<c:choose>
 							<c:when test="${empty reply }">
-								<ul id="readReply" style="list-style: none">
-									<li style="border-top: 1px solid #dee2e6; margin-top: 12px;">
-										<div
-											style="columns: 5; text-align: center; padding: 12px 23px 0 0;">작성된
-											댓글이 없습니다</div>
+								<ul id="readReply">
+									<li class="no-rep-wrap">
+										<div class="no-reply">작성된 댓글이 없습니다</div>
 									</li>
 								</ul>
 							</c:when>
 							<c:when test="${!empty reply}">
 								<c:forEach var="repl" items="${reply}">
-									<div id="readReply" class="child${repl.rcase }" style="padding: 12px 23px 10px 47px">
-										<ul style="list-style: none">
-											<li id="eachreply" style="width: 100%; border-top: 1px solid #dee2e6;">
-												<!-- overflow: hidden때문에 임시부여 수정예정 -->
-												<div class="">
-													<img id="profimg" class="reply-img" src="${repl.profimg }" />
+									<div id="readReply" class="child${repl.rcase }">
+										<ul>
+											<li id="eachreply">
+												<div class="reply-image">
+													<img id="profimg" src="${repl.profimg }" />
 												</div>
-												<div class="" style="padding-left:47px">
-													<div class="reply-info" style="margint-bottom: 5px;">
-														<span style="margin-right: 10px;">${repl.mname }</span> <span><fmt:formatDate
+												<div class="reply-inbox">
+													<div class="reply-info">
+														<span>${repl.mname }</span> <span><fmt:formatDate
 																pattern="YY/MM/dd HH:MM" value="${repl.rcreate}" /></span>
 													</div>
 													<div class="reply-form">
