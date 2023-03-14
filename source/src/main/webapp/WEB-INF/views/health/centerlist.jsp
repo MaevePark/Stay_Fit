@@ -76,10 +76,9 @@
 														<!-- 전화번호 -->
 														<td colspan="2">${centerList.hpnum }</td>
 														<!-- 위치 링크 시작 -->
-														<!-- TODO map 데이터 추가 예정 -->
 														<td id="map">
 															<a id="maplink" onclick="healthCenterMap (															
-															    <c:if test="${centerList.lid eq 1 }">'강남구 보건소', '37.51630311339761', '127.04227756939835'</c:if>
+															    <c:if test="${centerList.lid eq 1 }">'강남구 보건소', '37.51630311339761', '127.04227756939835'</c:if>															    														    
 															    <c:if test="${centerList.lid eq 2 }">'강서구 보건소', '35.180235150684716', '128.9572976673653'</c:if>
 															    <c:if test="${centerList.lid eq 3 }">'강화군 보건소', '37.73728494653745', '126.48474092791898'</c:if>
 															    <c:if test="${centerList.lid eq 4 }">'대덕구 보건소', '36.44482868764453', '127.426551314056'</c:if>
@@ -91,11 +90,11 @@
 															    <c:if test="${centerList.lid eq 10 }">'거제시 보건소', '34.89168827150237', '128.6365616019532'</c:if>
 															    <c:if test="${centerList.lid eq 11 }">'강릉시 보건소', '37.74281029073316', '128.88275019847094'</c:if>
 															    <c:if test="${centerList.lid eq 12 }">'계룡시 보건소', '36.27307427576665', '127.2500603578764'</c:if>
-															    <c:if test="${centerList.lid eq 13 }">'서귀포시 동부 보건소', '33.27562881836351', '126.70342326443737'</c:if>													    
+															    <c:if test="${centerList.lid eq 13 }">'서귀포시 동부 보건소', '33.27562881836351', '126.70342326443737'</c:if>															    													
 															  );"><img
 																	src="<%=request.getContextPath()%>/resources/img/health/btn_spot.gif"
 																	alt="위치">
-															</a>
+															</a>															
 														</td>													
 														<!-- 위치 링크 끝 -->
 													</tr>
@@ -113,29 +112,26 @@
 					<div class="col-lg-12">
 						<div class="product__pagination">
 							<c:if test="${pagingMap.start != 1}">
-								<a href="<%=request.getContextPath()%>/${urlpattern }?page=1">
+								<a href="<%=request.getContextPath()%>/${urlpattern }?lid=${lid}&category=${category}&keyword=${keyword}&page=1">
 									<< </a>
 							</c:if>
 							<c:if test="${pagingMap.currentPage != 1}">
-								<a
-									href="<%=request.getContextPath()%>/${urlpattern }?page=${pagingMap.currentPage -1}">
+								<a	href="<%=request.getContextPath()%>/${urlpattern }?lid=${lid}&category=${category}&keyword=${keyword}&page=${pagingMap.currentPage -1}">
 									< </a>
 							</c:if>
 
 							<c:forEach begin="${pagingMap.start }" end="${pagingMap.end }"
 								var="num">
-								<a
-									href="<%=request.getContextPath()%>/${urlpattern }?page=${num}">${num}</a>
+								<a	href="<%=request.getContextPath()%>/${urlpattern }?lid=${lid}&category=${category}&keyword=${keyword}&page=${num}">${num}
+								</a>
 							</c:forEach>
 
 							<c:if test="${pagingMap.currentPage != pagingMap.totalPageCnt}">
-								<a
-									href="<%=request.getContextPath()%>/${urlpattern }?page=${pagingMap.currentPage +1}">
+								<a	href="<%=request.getContextPath()%>/${urlpattern }?lid=${lid}&category=${category}&keyword=${keyword}&page=${pagingMap.currentPage +1}">
 									> </a>
 							</c:if>
 							<c:if test="${pagingMap.end != pagingMap.totalPageCnt}">
-								<a
-									href="<%=request.getContextPath()%>/${urlpattern }?page=${pagingMap.totalPageCnt }">
+								<a	href="<%=request.getContextPath()%>/${urlpattern }?lid=${lid}&category=${category}&keyword=${keyword}&page=${pagingMap.totalPageCnt }">
 									>> </a>
 							</c:if>
 						</div>
