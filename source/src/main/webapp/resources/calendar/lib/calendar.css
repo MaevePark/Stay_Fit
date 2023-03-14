@@ -119,3 +119,19 @@
 .input-group{
 	margin-bottom: 1rem;
 }
+.btn-add-meal{
+	width:60px;
+	height:25px;
+}
+.btn-add-exrc{
+	width:60px;
+	height:25px;
+}
+.search-exrc-table{
+	margin: 0 auto;
+	text-align: center;
+}
+.search-meal-table{
+	margin: 0 auto;
+	text-align: center;
+}

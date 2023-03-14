@@ -60,31 +60,33 @@
 	  });
   });
   
-  $('#btnSrcMeal').click(function() {
-	  var keyword = $('#searchMeal').val();
-	  if(keyword.value !==""){
-		  $.ajax({
-			    url: "searchmeal",
-			    type: "get",
-			    data: { keyword: keyword },
-			    dataType: "json",
-			    success: function(value) {
-			      console.log("------------여기는 return된 데이터------------");
-			      console.log(value.nutList);
-			      var nutrition = value.nutList;
-			      var tbody = $(".search-meal-table tbody");
-			      tbody.empty()
-			      for (var i = 0; i < nutrition.length; i++) {
-			        var nut = nutrition[i];
-			        var row = $("<tr></tr>")
-			        $("<td>" + nut.product + "</td>").appendTo(row);
-			        $("<td>" + nut.sersize + nut.capunit + "</td>").appendTo(row);
-			        $("<td>" + nut.kcal + " kcal</td>").appendTo(row);
-			        $("<td>").html('<button class="btn btn-light btn-add-meal" data-meal="' + nut.id + '"><img src="<%=request.getContextPath() %>/resources/img/diary/add.png"></button>').appendTo(row);
-			        tbody.append(row);
-			      }
-			    }
-			  });  
+  $('#btnSrcMeal').on('click keypress', function(event) {
+	  if(event.type ==='click' || event.keyCode === 13){
+		  var keyword = $('#searchMeal').val();
+		  if(keyword.value !==""){
+			  $.ajax({
+				    url: "searchmeal",
+				    type: "get",
+				    data: { keyword: keyword },
+				    dataType: "json",
+				    success: function(value) {
+				      console.log("------------여기는 return된 데이터------------");
+				      console.log(value.nutList);
+				      var nutrition = value.nutList;
+				      var tbody = $(".search-meal-table tbody");
+				      tbody.empty()
+				      for (var i = 0; i < nutrition.length; i++) {
+				        var nut = nutrition[i];
+				        var row = $("<tr></tr>")
+				        $("<td>" + nut.product + "</td>").appendTo(row);
+				        $("<td>" + nut.sersize + nut.capunit + "</td>").appendTo(row);
+				        $("<td>" + nut.kcal + " kcal</td>").appendTo(row);
+				        $('<td style="padding-top: 0px;">').html('<button class="btn-add-meal" data-meal="' + nut.id + '"><img src="/stayfit/resources/img/diary/add.png"></button>').appendTo(row);
+				        tbody.append(row);
+				      }
+				 }
+			});  
+		  }  
 	  }
 	});
   $('#btnSrcExrc').click(function(){
@@ -104,30 +106,33 @@
 					for(var i=0; i< exercise.length; i++) {
 						var exrc = exercise[i];
 						
-						var row = $("<tr></tr>") // 새로운 행 생성
-						$("<td>" + exrc.exercise + "</td>").appendTo(row); // 셀 추가
-						$("<td>" + '5분' + "</td>").appendTo(row);
-						$("<td>" + exrc.five_m_kcal + "</td>").appendTo(row);
-						$("<td>").html('<button class="btn btn-primary btn-add-exrc" data-time="5"><img src="<%=request.getContextPath() %>/resources/img/diary/add.png"></button>').appendTo(row);
-						tbody.append(row); // 행을 테이블에 추가
+						var row_5 = $("<tr></tr>") // 새로운 행 생성
+						var row_10 = $("<tr></tr>")
+						var row_30 = $("<tr></tr>")
+						var row_60 = $("<tr></tr>") 
+						$("<td>" + exrc.exercise + "</td>").appendTo(row_5); // 셀 추가
+						$("<td>" + '5분' + "</td>").appendTo(row_5);
+						$("<td>" + exrc.five_m_kcal + "</td>").appendTo(row_5);
+						$("<td style='padding-top: 0px;'>").html('<button class="btn-add-exrc" data-exrc="'+exrc.exid+'"><img src="/stayfit/resources/img/diary/add.png"></button>').appendTo(row_5);
 						
-						$("<td>" + exrc.exercise + "</td>").appendTo(row); // 셀 추가
-						$("<td>" + '10분' + "</td>").appendTo(row);
-						$("<td>" + exrc.ten_m_kcal + "</td>").appendTo(row);
-						$("<td>").html('<button class="btn btn-primary btn-add-exrc" data-time="10"><img src="<%=request.getContextPath() %>/resources/img/diary/add.png"></button>').appendTo(row);
-						tbody.append(row); // 행을 테이블에 추가
+						$("<td>" + exrc.exercise + "</td>").appendTo(row_10); // 셀 추가
+						$("<td>" + '10분' + "</td>").appendTo(row_10);
+						$("<td>" + exrc.ten_m_kcal + "</td>").appendTo(row_10);
+						$("<td style='padding-top: 0px;'>").html('<button class="btn-add-exrc" data-exrc="'+exrc.exid+'"><img src="/stayfit/resources/img/diary/add.png"></button>').appendTo(row_10);
 						
-						$("<td>" + exrc.exercise + "</td>").appendTo(row); // 셀 추가
-						$("<td>" + '30분' + "</td>").appendTo(row);
-						$("<td>" + exrc.thirty_m_kcal + "</td>").appendTo(row);
-						$("<td>").html('<button class="btn btn-primary btn-add-exrc" data-time="30"><img src="<%=request.getContextPath() %>/resources/img/diary/add.png"></button>').appendTo(row);
-						tbody.append(row); // 행을 테이블에 추가
+						$("<td>" + exrc.exercise + "</td>").appendTo(row_30); // 셀 추가
+						$("<td>" + '30분' + "</td>").appendTo(row_30);
+						$("<td>" + exrc.thirty_m_kcal + "</td>").appendTo(row_30);
+						$("<td style='padding-top: 0px;'>").html('<button class="btn-add-exrc" data-exrc="'+exrc.exid+'"><img src="/stayfit/resources/img/diary/add.png"></button>').appendTo(row_30);
 						
-						$("<td>" + exrc.exercise + "</td>").appendTo(row); // 셀 추가
-						$("<td>" + '1시간' + "</td>").appendTo(row);
-						$("<td>" + exrc.one_h_kcal + "</td>").appendTo(row);
-						$("<td>").html('<button class="btn btn-primary btn-add-exrc" data-time="60"><img src="<%=request.getContextPath() %>/resources/img/diary/add.png"></button>').appendTo(row);
-						tbody.append(row); // 행을 테이블에 추가
+						$("<td>" + exrc.exercise + "</td>").appendTo(row_60); // 셀 추가
+						$("<td>" + '1시간' + "</td>").appendTo(row_60);
+						$("<td>" + exrc.one_h_kcal + "</td>").appendTo(row_60);
+						$("<td style='padding-top: 0px;'>").html('<button class="btn-add-exrc" data-exrc="'+exrc.exid+'"><img src="/stayfit/resources/img/diary/add.png"></button>').appendTo(row_60);
+						tbody.append(row_5); // 행을 테이블에 추가
+						tbody.append(row_10);
+						tbody.append(row_30);
+						tbody.append(row_60);
 					}
 			  }
 		  });  
@@ -158,7 +163,7 @@
 				$newRow.append($("<td>").text(mealName));
 				$newRow.append($("<td>").text(mealCapunit));
 				$newRow.append($("<td>").text(mealCalories));
-				$newRow.append($("<td>").html('<button class="btn btn-light minus-box btn-remove-menu"><i class="bi bi-dash-square"></i></button>'));
+				$newRow.append($("<td>").html('<button class="minus-box btn-remove-menu"><img src="/stayfit/resources/img/diary/remove.png"></button>'));
 				rowCount++;
 				$("#mealTable tbody").append($newRow)
 			}
@@ -167,7 +172,7 @@
   $('.btn-remove-menu').click(function(){
 	  var rowId = $(this).closest('tr').attr('id');
 	  $.ajax({
-		    url: '/deletemeal',
+		    url: '/removemeal',
 		    type: 'POST',
 		    data: { mealId: rowId },
 		    success: function(response) {
@@ -176,57 +181,6 @@
 		    }
 	  });
   });
-  function searchExrc() {
-		let searchInput = document.getElementById('searchExrc');
-		if(searchInput.value !== "") {
-			$.ajax({
-				url: "searchexrc",
-				type: "get",
-				async: false,
-				data: {
-					keyword: searchInput.value
-				},
-				dataType: "json",
-				success: function(value) {
-						console.log("아아아아아아아아 여기는 return된 데이이이이이이터");
-						console.log(value.exrcList);
-						var exercise = value.exrcList;
-						var tbody = $(".search-exrc-table tbody");
-						
-						for(var i=0; i< exercise.length; i++) {
-							var exrc = exercise[i];
-							
-							var row = $("<tr></tr>") // 새로운 행 생성
-							$("<td>" + exrc.exercise + "</td>").appendTo(row); // 셀 추가
-							$("<td>" + '5분' + "</td>").appendTo(row);
-							$("<td>" + exrc.five_m_kcal + "</td>").appendTo(row);
-							$("<td>").html('<button class="btn btn-primary btn-add-exrc" data-time="5"><i class="bi bi-plus-square"></i></button>').appendTo(row);
-							tbody.append(row); // 행을 테이블에 추가
-							
-							$("<td>" + exrc.exercise + "</td>").appendTo(row); // 셀 추가
-							$("<td>" + '10분' + "</td>").appendTo(row);
-							$("<td>" + exrc.ten_m_kcal + "</td>").appendTo(row);
-							$("<td>").html('<button class="btn btn-primary btn-add-exrc" data-time="10"><i class="bi bi-plus-square"></i></button>').appendTo(row);
-							tbody.append(row); // 행을 테이블에 추가
-							
-							$("<td>" + exrc.exercise + "</td>").appendTo(row); // 셀 추가
-							$("<td>" + '30분' + "</td>").appendTo(row);
-							$("<td>" + exrc.thirty_m_kcal + "</td>").appendTo(row);
-							$("<td>").html('<button class="btn btn-primary btn-add-exrc" data-time="30"><i class="bi bi-plus-square"></i></button>').appendTo(row);
-							tbody.append(row); // 행을 테이블에 추가
-							
-							$("<td>" + exrc.exercise + "</td>").appendTo(row); // 셀 추가
-							$("<td>" + '1시간' + "</td>").appendTo(row);
-							$("<td>" + exrc.one_h_kcal + "</td>").appendTo(row);
-							$("<td>").html('<button class="btn btn-primary btn-add-exrc" data-time="60"><i class="bi bi-plus-square"></i></button>').appendTo(row);
-							tbody.append(row); // 행을 테이블에 추가
-						}
-						
-				},
-			});
-		}
-	}
-  
   $('.btn-add-exrc').click(function(){
 	var exerciseName = $(this).closest('tr').find('td:eq(1)').text();
 	var exerciseTime = $(this).data('time');
@@ -250,7 +204,7 @@
 			$newRow.append($("<td>").text(exerciseName));
 			$newRow.append($("<td>").text(exerciseTime));
 			$newRow.append($("<td>").text(exerciseCalories));
-			$newRow.append($("<td>").html('<button class="btn btn-light minus-box btn-remove-exrc"><i class="bi bi-dash-square"></i></button>'));
+			$newRow.append($("<td>").html('<button class="minus-box btn-remove-exrc"><img src="/stayfit/resources/img/diary/remove.png"></button>'));
 			rowCount++;
 			$("#exerciseTable tbody").append($newRow)
 		}
@@ -259,7 +213,7 @@
   $('.btn-remove-exrc').click(function(){
 	  var rowId = $(this).closest('tr').attr('id');
 	  $.ajax({
-		    url: '/delete-exrc',
+		    url: '/removeexrc',
 		    type: 'POST',
 		    data: { exrcId: rowId },
 		    success: function(response) {
