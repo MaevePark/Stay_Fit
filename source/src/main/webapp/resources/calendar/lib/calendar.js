@@ -12,7 +12,7 @@
 //    		+ '<img src="<%=request.getContextPath()%>/resources/img/diary/scale.png">\n'
 //    		+ exercise ,
 //		start : '2023-03-13',// ddate,
-//		end : '2023-03-13'
+//		end : '2023-03-13' //ddate
 //    	}
 //	  ]
     
@@ -49,7 +49,7 @@
 	  
 	  $ajax({
 		  type:'POST',
-		  url:'/diary-write',
+		  url:'/diarywrite',
 		  data:{ weight: weight },
 		  success: function(data){
 			  //fullcalendar에 아이콘과 함께 표시
@@ -57,8 +57,8 @@
 		  error: function(){
 			  console.log('실패');
 		  }
-	  })
-  })
+	  });
+  });
 //  $('#btnSrcMeal').click(function(){
 //	  var keyword = $('#searchMeal').val();
 //	  $.ajax({
@@ -69,8 +69,6 @@
 //		  }
 //	  })
 //  })
-  $(document).on('click', '.btn-add', function(){
-  })
   
   
 function searchMeal() {
@@ -100,14 +98,55 @@ function searchMeal() {
 						$("<td>" + nut.product + "</td>").appendTo(row); // 셀 추가
 						$("<td>" + nut.capunit + "</td>").appendTo(row);
 						$("<td>" + nut.kcal + "</td>").appendTo(row);
-						$("<td>").html('<button class="btn btn-primary btn-add" data-meal="${meal.id}"><i class="bi bi-plus-square"></i></button>').appendTo(row);
+						$("<td>").html('<button class="btn btn-primary btn-add-meal" data-meal="${meal.id}"><i class="bi bi-plus-square"></i></button>').appendTo(row);
 						tbody.append(row); // 행을 테이블에 추가
 					}
 			}
 		});
 	}
 }
-  
+  $('.btn-add-meal').click(function(){
+		var mealName = $(this).closest('tr').find('td:eq(1)').text();
+		var mealCapunit = $(this).closest('tr').find('td:eq(2)').text();
+		var mealCalories = $(this).closest('tr').find('td:eq(3)').text();
+		
+		var mealData = {
+			name : mealName,
+			capunit : mealCapunit,
+			calroies : mealCalories
+		};
+		
+		$.ajax({
+			type: "POST",
+			url: "/diarywrite",
+			data: {
+				mealName : mealName,
+				mealCapunit : mealCapunit,
+				mealCalories : mealCalories
+			},
+			success:function(response){
+				var $newRow = $("<tr>").attr('id', 'meal-row-' + rowCount);
+				$newRow.append($("<td>").text(mealName));
+				$newRow.append($("<td>").text(mealCapunit));
+				$newRow.append($("<td>").text(mealCalories));
+				$newRow.append($("<td>").html('<button class="btn btn-light minus-box btn-remove-menu"><i class="bi bi-dash-square"></i></button>'));
+				rowCount++;
+				$("#mealTable tbody").append($newRow)
+			}
+		});
+	  });
+  $('.btn-remove-menu').click(function(){
+	  var rowId = $(this).closest('tr').attr('id');
+	  $.ajax({
+		    url: '/delete-meal',
+		    type: 'POST',
+		    data: { mealId: rowId },
+		    success: function(response) {
+		      // 삭제 요청이 성공한 경우, 테이블에서 해당 행 삭제
+		      $('#' + rowId).remove();
+		    }
+	  });
+  });
   function searchExrc() {
 		let searchInput = document.getElementById('searchExrc');
 		if(searchInput.value !== "") {
@@ -131,25 +170,25 @@ function searchMeal() {
 							$("<td>" + exrc.exercise + "</td>").appendTo(row); // 셀 추가
 							$("<td>" + '5분' + "</td>").appendTo(row);
 							$("<td>" + exrc.five_m_kcal + "</td>").appendTo(row);
-							$("<td>").html('<button class="btn btn-primary btn-add" data-meal="${exrc.exid}"><i class="bi bi-plus-square"></i></button>').appendTo(row);
+							$("<td>").html('<button class="btn btn-primary btn-add-exrc" data-time="5"><i class="bi bi-plus-square"></i></button>').appendTo(row);
 							tbody.append(row); // 행을 테이블에 추가
 							
 							$("<td>" + exrc.exercise + "</td>").appendTo(row); // 셀 추가
 							$("<td>" + '10분' + "</td>").appendTo(row);
 							$("<td>" + exrc.ten_m_kcal + "</td>").appendTo(row);
-							$("<td>").html('<button class="btn btn-primary btn-add" data-meal="${exrc.exid}"><i class="bi bi-plus-square"></i></button>').appendTo(row);
+							$("<td>").html('<button class="btn btn-primary btn-add-exrc" data-time="10"><i class="bi bi-plus-square"></i></button>').appendTo(row);
 							tbody.append(row); // 행을 테이블에 추가
 							
 							$("<td>" + exrc.exercise + "</td>").appendTo(row); // 셀 추가
 							$("<td>" + '30분' + "</td>").appendTo(row);
 							$("<td>" + exrc.thirty_m_kcal + "</td>").appendTo(row);
-							$("<td>").html('<button class="btn btn-primary btn-add" data-meal="${exrc.exid}"><i class="bi bi-plus-square"></i></button>').appendTo(row);
+							$("<td>").html('<button class="btn btn-primary btn-add-exrc" data-time="30"><i class="bi bi-plus-square"></i></button>').appendTo(row);
 							tbody.append(row); // 행을 테이블에 추가
 							
 							$("<td>" + exrc.exercise + "</td>").appendTo(row); // 셀 추가
 							$("<td>" + '1시간' + "</td>").appendTo(row);
 							$("<td>" + exrc.one_h_kcal + "</td>").appendTo(row);
-							$("<td>").html('<button class="btn btn-primary btn-add" data-meal="${exrc.exid}"><i class="bi bi-plus-square"></i></button>').appendTo(row);
+							$("<td>").html('<button class="btn btn-primary btn-add-exrc" data-time="60"><i class="bi bi-plus-square"></i></button>').appendTo(row);
 							tbody.append(row); // 행을 테이블에 추가
 						}
 						
@@ -158,6 +197,47 @@ function searchMeal() {
 		}
 	}
   
+  $('.btn-add-exrc').click(function(){
+	var exerciseName = $(this).closest('tr').find('td:eq(1)').text();
+	var exerciseTime = $(this).data('time');
+	var exerciseCalories = $(this).closest('tr').find('td:eq(3)').text();
+	
+	var exerciseData = {
+		name : exerciseName,
+		calories : exerciseCalories,
+		time : exerciseTime
+	};
+	
+	$.ajax({
+		type: "POST",
+		url: "/diarywrite",
+		data: {
+			exerciseName : exerciseName,
+			exerciseCalories : exerciseCalories
+		},
+		success:function(response){
+			var $newRow = $("<tr>").attr('id', 'exrc-row-' + rowCount);
+			$newRow.append($("<td>").text(exerciseName));
+			$newRow.append($("<td>").text(exerciseTime));
+			$newRow.append($("<td>").text(exerciseCalories));
+			$newRow.append($("<td>").html('<button class="btn btn-light minus-box btn-remove-exrc"><i class="bi bi-dash-square"></i></button>'));
+			rowCount++;
+			$("#exerciseTable tbody").append($newRow)
+		}
+	});
+  });
+  $('.btn-remove-exrc').click(function(){
+	  var rowId = $(this).closest('tr').attr('id');
+	  $.ajax({
+		    url: '/delete-exrc',
+		    type: 'POST',
+		    data: { exrcId: rowId },
+		    success: function(response) {
+		      // 삭제 요청이 성공한 경우, 테이블에서 해당 행 삭제
+		      $('#' + rowId).remove();
+		    }
+	  });
+  });
   function isNumberKey(event) {
 
       var charCode = (event.which) ? event.which : event.keyCode;

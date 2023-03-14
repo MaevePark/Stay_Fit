@@ -81,7 +81,7 @@ public class DiaryController {
 	
 	
 	
-	@PostMapping("/diary-write")
+	@PostMapping("/diarywrite")
 	@ResponseBody
 	public String writeDiary(Diary diary) throws Exception {
 		
