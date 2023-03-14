@@ -80,7 +80,7 @@ window.onload = function() {
 					</div>
 					<div class="search-group">
 						<input type="text" class="diary-modal-input" data-toggle="modal" data-target="#search-meal" placeholder="식단메뉴 검색">
-							<table class="table table-striped table-hover">
+							<table id="mealTable" class="table table-striped table-hover">
 								<thead>
 									<tr>
 										<th scope="col" class="td-menu">식단 메뉴</th>
@@ -102,7 +102,7 @@ window.onload = function() {
 								</tbody>
 							</table>
 						<input type="text" class="diary-modal-input" data-toggle="modal" data-target="#search-training" placeholder="운동 검색">
-							<table class="table table-striped table-hover">
+							<table id="exerciseTable" class="table table-striped table-hover">
 								<thead>
 									<tr>
 										<th scope="col" class="td-menu">운동 종류</th>
@@ -264,7 +264,5 @@ window.onload = function() {
 	src="<%=request.getContextPath()%>/resources/calendar/lib/main.js"></script>
 <script
 	src="<%=request.getContextPath()%>/resources/calendar/lib/calendar.js"></script>
-<script
-	src="<%=request.getContextPath()%>/resources/calendar/lib/calendarAction.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/chart.js@4.2.0/dist/chart.umd.min.js"></script>

@@ -75,7 +75,7 @@ function searchMeal() {
 	let searchInput = document.getElementById('searchMeal');
 	if(searchInput.value !== "") {
 		$.ajax({
-			url: "searchmeal",
+			url: "/searchmeal",
 			type: "get",
 			async: false,
 			data: {
@@ -118,7 +118,7 @@ function searchMeal() {
 		
 		$.ajax({
 			type: "POST",
-			url: "/diarywrite",
+			url: "/nutwrite",
 			data: {
 				mealName : mealName,
 				mealCapunit : mealCapunit,
@@ -238,6 +238,8 @@ function searchMeal() {
 		    }
 	  });
   });
+  
+  //몸무게 입력란 유효성 체크
   function isNumberKey(event) {
 
       var charCode = (event.which) ? event.which : event.keyCode;
