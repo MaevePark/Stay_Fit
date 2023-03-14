@@ -25,13 +25,14 @@
 								<tr>
 									<th>성별</th>
 									<td><input type="radio" class="radio" id="female" name="gender"
-										value="F" checked="checked"><label class="pre" for="female">
+										value="F" ><label class="pre" for="female">
 											여자 </label> <input type="radio" class="radio" id="male" name="gender"
-										value="M"><label class="pre" for="male"> 남자</label></td>
+										value="M" checked="checked"><label class="pre" for="male"> 남자</label></td>
 								</tr>
 								<tr>
 									<th>키</th>
 									<td><input type="text" class="ipt2" style="width: 95px"
+									value="175"
 										id="stature" name="stature" maxlength="3"
 										onkeydown="this.value=this.value.replace(/[^0-9]/g,'')"
 										onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"
@@ -41,6 +42,7 @@
 								<tr>
 									<th>체중</th>
 									<td><input type="text" class="ipt2" style="width: 95px"
+									value="80"
 										id="weight" name="weight" maxlength="3"
 										onkeydown="this.value=this.value.replace(/[^0-9]/g,'')"
 										onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"
@@ -50,6 +52,7 @@
 								<tr>
 									<th>목표 체중</th>
 									<td><input type="text" class="ipt2" style="width: 95px"
+									value="75"
 										id="goal_weight" name="goal_weight" maxlength="3"
 										onkeydown="this.value=this.value.replace(/[^0-9]/g,'')"
 										onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"
@@ -63,6 +66,7 @@
 											<!-- 생년월일 - 년도 시작 -->
 											<input type="text" class="ipt2" style="width: 95px"
 												id="byear" name="byear"
+												value="2000"
 												onkeydown="this.value=this.value.replace(/[^0-9]/g,'')"
 												onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"
 												onblur="this.value=this.value.replace(/[^0-9]/g,'')"
@@ -134,6 +138,7 @@
 									<th>체중 감량 기간</th>
 									<td><input type="text" class="ipt2" style="width: 95px"
 										id="goal_term" name="goal_term"
+										value="2"
 										onkeydown="this.value=this.value.replace(/[^0-9]/g,'')"
 										onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"
 										onblur="this.value=this.value.replace(/[^0-9]/g,'')"
