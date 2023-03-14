@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 
 import kh.project.stayfit.admin.model.service.AdminMemberService;
+import kh.project.stayfit.admin.model.vo.AdminDashboard1;
 import kh.project.stayfit.admin.model.vo.AdminMember;
 
 @Controller
@@ -54,6 +55,15 @@ public class MemberController {
 		return new Gson().toJson(list);
 	}
 	
+	// 활동통계 차트
+	@PostMapping("/modalchart")
+	@ResponseBody
+	public String selectChart(@RequestParam("mid") String mid, @RequestParam("chart") String chart) throws Exception {
+
+		List<AdminDashboard1> list = service.selectChart(mid, chart);
+
+		return new Gson().toJson(list);
+	}
 	
 	@ExceptionHandler(Exception.class) // 모든 Exception시 여기로
 	public ModelAndView exceptionHandler(Exception e /*, ModelAndView mv -> 작성시 오류발생 */) {

@@ -43,6 +43,7 @@
 
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/admin/assets/vendor/libs/apex-charts/apex-charts.css" />
 
     <!-- Page CSS -->
   	<style>
@@ -151,7 +152,7 @@
                   <table class="table">
                     <thead>
                       <tr>
-                        <th>프로필사진</th>
+                        <th></th>
                         <th>회원 ID</th>
                         <th>이메일</th>
                         <th>닉네임</th>
@@ -170,7 +171,50 @@
               
               </div>
               <!--/ Basic Bootstrap Table -->
-
+              
+			  <!-- 모달창 -->
+	          <div class="modal fade" id="statisticsModal" tabindex="-1" style="display: none;" aria-hidden="true">
+	            <div class="modal-dialog modal-dialog-centered" style="max-width: 50rem" role="document">
+	              <div class="modal-content">
+	                <div class="modal-header">
+	                  <h5 class="modal-title" id="modalCenterTitle">활동 통계</h5>
+	                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	                </div>
+	                <div class="modal-body">
+	                
+			            <!-- Expense Overview -->
+		                <div class="order-1 mb-4">
+		                  <div class="card h-100">
+		                    <div class="card-header">
+		                      <ul class="nav nav-pills" role="tablist">
+		                        <input type="hidden" id="selectChart" value="1">
+		                        <li class="nav-item">
+		                          <button type="button" class="nav-link active" data-value="1" role="tab">총 주문금액</button>
+		                        </li>
+		                        <li class="nav-item">
+		                          <button type="button" class="nav-link" data-value="2" role="tab">게시글 수</button>
+		                        </li>
+		                        <li class="nav-item">
+		                          <button type="button" class="nav-link" data-value="3" role="tab">댓글 수</button>
+		                        </li>
+		                      </ul>
+		                    </div>
+		                    <div class="card-body px-0">
+		                      <div class="tab-content p-0">
+		                        <div class="tab-pane fade show active" id="navs-tabs-line-card-income" role="tabpanel">
+		                          <div id="modalChart"></div>
+		                        </div>
+		                      </div>
+		                    </div>
+		                  </div>
+		                </div>
+		                <!--/ Expense Overview -->
+		              
+	                </div>
+	              </div>
+	            </div>
+	          </div>
+	          
             </div>
             <!-- / Content -->
 
@@ -204,11 +248,13 @@
     <!-- endbuild -->
 
     <!-- Vendors JS -->
+    <script src="<%=request.getContextPath()%>/resources/admin/assets/vendor/libs/apex-charts/apexcharts.js"></script>
 
     <!-- Main JS -->
     <script src="<%=request.getContextPath() %>/resources/admin/assets/js/main.js"></script>
 
     <!-- Page JS -->
+    <script src="<%=request.getContextPath()%>/resources/admin/assets/js/dashboards-analytics3.js"></script>
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
@@ -315,9 +361,14 @@ function displayData(currentPage, dataPerPage) {
 				"<td>" + dataList[i].replycnt + "</td>" +
 				"<td>" + dataList[i].payment + "</td>" +
 				"<td>" + dataList[i].mcreate + "</td>" +
+				"<td style='padding-left:0; padding-right:0;'>" + 
+					"<button type='button' class='btn btn-secondary btn-sm statistics' data-bs-toggle='modal' data-bs-target='#statisticsModal'>활동 통계</button>" + 
+					"<input type='hidden' name='mid' value='" + dataList[i].mid + "'>" +
+				"</td>" +
 			"</tr>";
 	}
 	$("#dataTableBody").html(chartHtml);
+	$("button.statistics").on("click", modalShowHandler);
 }
 
 // 3. 페이징  함수 

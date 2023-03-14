@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kh.project.stayfit.admin.model.vo.AdminDashboard1;
 import kh.project.stayfit.admin.model.vo.AdminMember;
 
 @Repository
@@ -28,5 +29,16 @@ public class AdminMemberDao {
 		
 		return sqlsession.selectList("admin.selectMember", map);
 	}
-
+	
+	// 차트
+	public List<AdminDashboard1> selectChart(String mid, String chart) throws Exception{
+		
+		if(chart.equals("1")) {
+			return sqlsession.selectList("admin.selectModalChart1", mid);
+		} else if(chart.equals("2")) {
+			return sqlsession.selectList("admin.selectModalChart2", mid);
+		} else {
+			return sqlsession.selectList("admin.selectModalChart3", mid);
+		}
+	}
 }

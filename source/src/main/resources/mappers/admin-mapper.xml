@@ -56,6 +56,36 @@
 			</choose>
 	</select>
 	
+	<!-- 이걸 넘겨주게 된다면 이걸 받는 컨트롤러의 리턴타입은 AdminDashboard1 또는 List<AdminDashboard1> -->
+	<resultMap type="AdminDashboard1" id="chartMap"> <!-- id는 밑의 resultMap=""에 사용 -->
+		<result column="cnt" property="revenue"/> <!-- column(DB의 컬럼명)과 property(자바vo의 필드명)가 다를때 유용함 -->
+	</resultMap>
+	
+	<!-- 활동통계 차트 -->
+	<select id="selectModalChart1" parameterType="string" resultType="AdminDashboard1">
+		SELECT SUBSTR(TO_CHAR(ODATE, 'YYYY/MM/DD'), 6, 2) AS MM, SUM(O.OCOUNT * P.PPRICE * 0.1) AS REVENUE
+		    FROM "ORDER" O JOIN PRODUCT P ON O.PID = P.PID
+		    WHERE SUBSTR(TO_CHAR(ODATE, 'YYYY/MM/DD'), 1, 4) = '2023' AND O.MID = #{mid}
+		    GROUP BY SUBSTR(TO_CHAR(ODATE, 'YYYY/MM/DD'), 6, 2)
+		    ORDER BY MM ASC
+	</select>
+	
+	<select id="selectModalChart2" parameterType="string" resultMap="chartMap">
+		SELECT SUBSTR(TO_CHAR(BCREATE, 'YYYY/MM/DD'), 6, 2) AS MM, COUNT(BID) AS CNT
+		    FROM BOARD
+		    WHERE SUBSTR(TO_CHAR(BCREATE, 'YYYY/MM/DD'), 1, 4) = '2023' AND MID = #{mid}
+		    GROUP BY SUBSTR(TO_CHAR(BCREATE, 'YYYY/MM/DD'), 6, 2)
+		    ORDER BY MM ASC
+	</select>
+	
+	<select id="selectModalChart3" parameterType="string" resultMap="chartMap">
+		SELECT SUBSTR(TO_CHAR(RCREATE, 'YYYY/MM/DD'), 6, 2) AS MM, COUNT(RID) AS CNT
+		    FROM REPLY
+		    WHERE SUBSTR(TO_CHAR(RCREATE, 'YYYY/MM/DD'), 1, 4) = '2023' AND MID = #{mid}
+		    GROUP BY SUBSTR(TO_CHAR(RCREATE, 'YYYY/MM/DD'), 6, 2)
+		    ORDER BY MM ASC
+	</select>
+	
 	<!-- 상품목록 -->
   	<select id="selectProduct" parameterType="map" resultType="SellerProduct">
 		SELECT P.PID, C.CNAME, P.PNAME, P.PIMAGE, TO_CHAR(P.PPRICE, '999,999,999') AS PRICECHAR, P.PPRICE AS PRICENUM, P.PSALES, P.PSTOCK, P.PLINK
