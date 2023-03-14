@@ -37,18 +37,18 @@ public class DiaryController {
 			) {
 		//mid값 호출
 		int mid = -1;
-		if(request.getSession().getAttribute("mid") != null) {
-			mid = (int) request.getSession().getAttribute("mid");
+		if(request.getSession().getAttribute("mid") == null){
+//			mv.addObject("sectionName", "member/login.jsp");
+//			mv.addObject("urlpattern", "member/login");
+			mv.setViewName("redirect:/member/login");
+			return mv;
 		}
+		mid = (int) request.getSession().getAttribute("mid");
 		if(mid != -1) {
-			mv.addObject("sectionName", "diary/diarypage.jsp");
-			mv.addObject("urlpattern", "diary");
-		} else {
-			mv.addObject("sectionName", "member/login.jsp");
-			mv.addObject("urlpattern", "member/login");
+		mv.addObject("sectionName", "diary/diarypage.jsp");
+		mv.addObject("urlpattern", "diary/diarypage");
 		}
 		mv.setViewName("index");
-		
 		return mv;
 	}
 	
@@ -69,13 +69,8 @@ public class DiaryController {
 			dataMap.put("date", date);
 			dataMap.put("mid", mid);
 			diaryList = diaryService.selectList(dataMap);
-			String result = new GsonBuilder().create().toJson(diaryList);
-
-			response.setContentType("application/json"); // 인코딩 설정 추가
-	        response.setCharacterEncoding("UTF-8"); // 인코딩 설정 추가
-			
 			PrintWriter out = response.getWriter();
-			out.append(result);
+			out.append(new GsonBuilder().create().toJson(diaryList));
 			out.flush();
 			out.close();
 		} catch (Exception e) {
@@ -84,9 +79,9 @@ public class DiaryController {
 		
 	}
 	
-
-
-
+	
+	
+	
 	@PostMapping("/diarywrite")
 	@ResponseBody
 	public String writeDiary(Diary diary) throws Exception {
