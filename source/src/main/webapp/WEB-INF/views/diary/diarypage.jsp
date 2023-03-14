@@ -152,22 +152,23 @@ window.onload = function() {
 						<div class="input-group">
 							<input type="text" class="form-control" id="searchMeal" placeholder="식단 메뉴명에 대한 검색어를 입력하세요.">
 							<div class="input-group-append">
-								<button type="button" class="btn btn-secondary" id="btnSrcMeal" onclick="searchMeal()">
+								<button type="button" class="btn btn-secondary" id="btnSrcMeal">
 								<i class="fa fa-search"></i>
 								</button>
 							</div>
 						</div>
 					</form>
-						<table class="search-table table table-striped table-hover">
+						<table class="search-meal-table table table-striped table-hover">
+							<thead>
 							<tr>
 							<th scope="col">음식명</th>
 							<th scope="col">단위</th>
 							<th scope="col">섭취 칼로리</th>
 							<th scope="col">추가</th>
 							</tr>
-							
+							</thead>
 							<tbody>
-								<c:forEach items="${meal}" var="meal">
+							<!--	<c:forEach items="${meal}" var="meal">
 								<tr>
 									<td>${meal.product}</td>
 									<td>${meal.capunit}</td>
@@ -176,7 +177,7 @@ window.onload = function() {
 										<button class="btn btn-primary btn-add" data-meal="${meal.id}"><i class="bi bi-plus-square"></i></button>
 									</td>
 								</tr>
-							</c:forEach>
+							</c:forEach>	-->
 							</tbody>
 						</table>
 				</div>
@@ -208,48 +209,17 @@ window.onload = function() {
 							</div>
 						</div>
 					</form>
-						<table class="search-table table table-striped table-hover">
+						<table class="search-exrc-table table table-striped table-hover">
+							<thead>
 							<tr>
 							<th scope="col">운동</th>
 							<th scope="col">단위</th>
 							<th scope="col">소모 칼로리</th>
 							<th scope="col">추가</th>
 							</tr>
+							</thead>
 							<tbody>
-							<c:forEach items="${exrc}" var="exrc">
-								<tr>
-									<td>${exrc.exercise}</td>
-									<td>5분</td>
-									<td>${exrc.kcal}</td>
-									<td>
-										<button class="btn btn-primary btn-add" data-exrc="${exrc.id}"><i class="bi bi-plus-square"></i></button>
-									</td>
-								</tr>
-								<tr>
-									<td>${exrc.exercise}</td>
-									<td>10분</td>
-									<td>${exrc.kcal}</td>
-									<td>
-										<button class="btn btn-primary btn-add" data-exrc="${exrc.id}"><i class="bi bi-plus-square"></i></button>
-									</td>
-								</tr>
-								<tr>
-									<td>${exrc.exercise}</td>
-									<td>30분</td>
-									<td>${exrc.kcal}</td>
-									<td>
-										<button class="btn btn-primary btn-add" data-exrc="${exrc.id}"><i class="bi bi-plus-square"></i></button>
-									</td>
-								</tr>
-								<tr>
-									<td>${exrc.exercise}</td>
-									<td>1시간</td>
-									<td>${exrc.kcal}</td>
-									<td>
-										<button class="btn btn-primary btn-add" data-exrc="${exrc.id}"><i class="bi bi-plus-square"></i></button>
-									</td>
-								</tr>
-							</c:forEach>
+							
 							</tbody>
 						</table>
 				</div>

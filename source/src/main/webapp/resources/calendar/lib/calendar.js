@@ -59,52 +59,81 @@
 		  }
 	  });
   });
-//  $('#btnSrcMeal').click(function(){
-//	  var keyword = $('#searchMeal').val();
-//	  $.ajax({
-//		  url: '/search-meal',
-//		  data: {keyword: keyword},
-//		  success: function(data){
-//			  $('#diarypage').html(data);
-//		  }
-//	  })
-//  })
   
-  
-function searchMeal() {
-	let searchInput = document.getElementById('searchMeal');
-	if(searchInput.value !== "") {
-		$.ajax({
-			url: "/searchmeal",
-			type: "get",
-			async: false,
-			data: {
-				keyword: searchInput.value
-			},
-			dataType: "json",
-			success: function(value) {
-					console.log("------------여기는 return된 데이터------------");
-					console.log(value.nutList);
-					var nutrition = value.nutList;
+  $('#btnSrcMeal').click(function() {
+	  var keyword = $('#searchMeal').val();
+	  if(keyword.value !==""){
+		  $.ajax({
+			    url: "searchmeal",
+			    type: "get",
+			    data: { keyword: keyword },
+			    dataType: "json",
+			    success: function(value) {
+			      console.log("------------여기는 return된 데이터------------");
+			      console.log(value.nutList);
+			      var nutrition = value.nutList;
+			      var tbody = $(".search-meal-table tbody");
+			      tbody.empty()
+			      for (var i = 0; i < nutrition.length; i++) {
+			        var nut = nutrition[i];
+			        var row = $("<tr></tr>")
+			        $("<td>" + nut.product + "</td>").appendTo(row);
+			        $("<td>" + nut.sersize + nut.capunit + "</td>").appendTo(row);
+			        $("<td>" + nut.kcal + " kcal</td>").appendTo(row);
+			        $("<td>").html('<button class="btn btn-light btn-add-meal" data-meal="' + nut.id + '"><img src="<%=request.getContextPath() %>/resources/img/diary/add.png"></button>').appendTo(row);
+			        tbody.append(row);
+			      }
+			    }
+			  });  
+	  }
+	});
+  $('#btnSrcExrc').click(function(){
+	  var keyword = $('#searchExrc').val();
+	  if(keyword.value !==""){
+		  $.ajax({
+			  url: "searchexrc",
+			  type:"get",
+			  data: {keyword:keyword},
+			  dataType:"json",
+			  success: function(value){
+				  console.log("------------여기는 return된 데이터------------");
+				  console.log(value.exrcList);
+				  var exercise = value.exrcList;
+					var tbody = $(".search-exrc-table tbody");
 					
-					var tbody = $(".search-table tbody");
-					
-					tbody.empty()
-					
-					for(var i=0; i< nutrition.length; i++) {
-						var nut = nutrition[i];
+					for(var i=0; i< exercise.length; i++) {
+						var exrc = exercise[i];
 						
 						var row = $("<tr></tr>") // 새로운 행 생성
-						$("<td>" + nut.product + "</td>").appendTo(row); // 셀 추가
-						$("<td>" + nut.capunit + "</td>").appendTo(row);
-						$("<td>" + nut.kcal + "</td>").appendTo(row);
-						$("<td>").html('<button class="btn btn-primary btn-add-meal" data-meal="${meal.id}"><i class="bi bi-plus-square"></i></button>').appendTo(row);
+						$("<td>" + exrc.exercise + "</td>").appendTo(row); // 셀 추가
+						$("<td>" + '5분' + "</td>").appendTo(row);
+						$("<td>" + exrc.five_m_kcal + "</td>").appendTo(row);
+						$("<td>").html('<button class="btn btn-primary btn-add-exrc" data-time="5"><img src="<%=request.getContextPath() %>/resources/img/diary/add.png"></button>').appendTo(row);
+						tbody.append(row); // 행을 테이블에 추가
+						
+						$("<td>" + exrc.exercise + "</td>").appendTo(row); // 셀 추가
+						$("<td>" + '10분' + "</td>").appendTo(row);
+						$("<td>" + exrc.ten_m_kcal + "</td>").appendTo(row);
+						$("<td>").html('<button class="btn btn-primary btn-add-exrc" data-time="10"><img src="<%=request.getContextPath() %>/resources/img/diary/add.png"></button>').appendTo(row);
+						tbody.append(row); // 행을 테이블에 추가
+						
+						$("<td>" + exrc.exercise + "</td>").appendTo(row); // 셀 추가
+						$("<td>" + '30분' + "</td>").appendTo(row);
+						$("<td>" + exrc.thirty_m_kcal + "</td>").appendTo(row);
+						$("<td>").html('<button class="btn btn-primary btn-add-exrc" data-time="30"><img src="<%=request.getContextPath() %>/resources/img/diary/add.png"></button>').appendTo(row);
+						tbody.append(row); // 행을 테이블에 추가
+						
+						$("<td>" + exrc.exercise + "</td>").appendTo(row); // 셀 추가
+						$("<td>" + '1시간' + "</td>").appendTo(row);
+						$("<td>" + exrc.one_h_kcal + "</td>").appendTo(row);
+						$("<td>").html('<button class="btn btn-primary btn-add-exrc" data-time="60"><img src="<%=request.getContextPath() %>/resources/img/diary/add.png"></button>').appendTo(row);
 						tbody.append(row); // 행을 테이블에 추가
 					}
-			}
-		});
-	}
-}
+			  }
+		  });  
+	  }
+  });
+
   $('.btn-add-meal').click(function(){
 		var mealName = $(this).closest('tr').find('td:eq(1)').text();
 		var mealCapunit = $(this).closest('tr').find('td:eq(2)').text();
@@ -138,7 +167,7 @@ function searchMeal() {
   $('.btn-remove-menu').click(function(){
 	  var rowId = $(this).closest('tr').attr('id');
 	  $.ajax({
-		    url: '/delete-meal',
+		    url: '/deletemeal',
 		    type: 'POST',
 		    data: { mealId: rowId },
 		    success: function(response) {
@@ -162,6 +191,7 @@ function searchMeal() {
 						console.log("아아아아아아아아 여기는 return된 데이이이이이이터");
 						console.log(value.exrcList);
 						var exercise = value.exrcList;
+						var tbody = $(".search-exrc-table tbody");
 						
 						for(var i=0; i< exercise.length; i++) {
 							var exrc = exercise[i];
