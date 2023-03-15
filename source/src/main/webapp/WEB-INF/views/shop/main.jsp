@@ -76,13 +76,14 @@
 											</div>
 										</div>
 									</c:when>
-									
+
+
 									<c:when test="${product.psale <= 0}">
 										<div class="product__item">
 											<div class="product__item__pic set-bg" data-setbg="${product.pimage }">
 												<ul class="product__item__pic__hover">
 													<li><a class="addWish" data-pid="${product.pid }" onclick="sendWish(this)"><i class="fa fa-heart"></i></a></li>
-													<li><a class="fa fa-shopping-cart" data-pid="${product.pid }" onclick="addCart(this)"></a></li>
+													<li><a class="fa fa-shopping-cart" data-pid="${product.pid }" onclick="sendCart(this)"></a></li>
 												</ul>
 											</div>
 											
