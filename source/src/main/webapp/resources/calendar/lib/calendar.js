@@ -164,7 +164,20 @@
 		$("<td style='vertical-align: middle;'>" + sersize + '</td>').appendTo(row);
 		$("<td style='vertical-align: middle;'>" + kcal + '</td>').appendTo(row);
 		$("<td style='padding-top: 0px; vertical-align: middle;'>").html('<button class="minus-box btn-remove-menu"><img src="/stayfit/resources/img/diary/remove.png"></button>').appendTo(row);
-		$("#mealTable tbody").append(row)
+		$("#mealTable tbody").append(row);
+		
+		
+		
+		//라디오버튼에 리스트업 된 음식 칼로리 합연산 시작
+		var foodTable = document.querySelector('#mealTable').querySelectorAll('tbody > tr');
+		var foodKcal = 0;
+		for(var i=0; i<foodTable.length; i++) {
+			foodKcal += parseInt((foodTable[i].querySelector(':nth-child(3)').innerText.replace(' kcal', '')));
+			console.log(foodTable[i].querySelector(':nth-child(3)'));
+		}
+		var parent = document.querySelector('.btn-kcal.active');
+		parent.innerText = foodKcal + 'kcal';
+		//라디오버튼에 리스트업 된 음식 칼로리 합연산 끝
 	  });
   
   $(document).on('click', '.btn-remove-menu', function(){
