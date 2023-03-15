@@ -19,6 +19,12 @@ public class ReplyServiceImpl implements ReplyService {
 		List<Reply> rlist = dao.replylist(bid);
 		return rlist;
 	}
+	
+	//댓글 list 갯수
+	@Override
+	public int rtotalCnt(int bid) throws Exception{
+		return dao.rtotalCnt(bid);
+	}
 
 	// 부모 댓글 작성
 	@Override
@@ -80,18 +86,12 @@ public class ReplyServiceImpl implements ReplyService {
 	public int delbook(int mid, int bid) throws Exception {
 		return dao.delbook(mid, bid);
 	}
-
-//	//대댓글 작성
-//	@Override
-//	public int answer(Reply) throws Exception{
-//		return ;
-//	}
-
-//	//댓글 신고
-//	@Override
-//	public int report(Reply, int) throws Exception{
-//		return ;
-//	}
+	
+	//댓글 신고
+	@Override
+    public int report(int mid, int rid, int repid) {
+        return dao.report(mid, rid, repid);
+    }
 
 //	//답변 선택
 //	@Override
