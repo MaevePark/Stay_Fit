@@ -132,7 +132,7 @@ public class DiaryController {
 	@ResponseBody
 	public String writeDiary(Diary diary) throws Exception {
 		
-		diaryService.diarywirte(diary);
+		diaryService.diarywrite(diary);
 		return "success";
 	}
 	
