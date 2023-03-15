@@ -9,7 +9,7 @@ import kh.project.stayfit.diary.model.vo.Nutrition;
 
 public interface DiaryService {
 	//캘린더 작성
-	public int diarywirte(Diary diary) throws Exception; // insert(??)
+	public int diarywrite(Diary diary) throws Exception; // insert(??)
 	public List<Nutrition> searchMeal(String keyword) throws Exception;
 
 	public List<Exercise> searchExrc(String keyword) throws Exception;

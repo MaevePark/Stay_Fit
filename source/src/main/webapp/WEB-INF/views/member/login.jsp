@@ -13,6 +13,8 @@
 				</div>
 			</div>
 		</div>
+		
+		<!-- 로그인 정보 입력 폼 시작-->
 		<form name="loginform">
 		<div class="member-form">
 			<div class="member-wrap">
@@ -65,10 +67,13 @@
 			</div>
 		</div>
 		</form>
+		<!-- 로그인 정보 입력 폼 끝-->
 	</div>
 </section>
 
 <script type="text/javascript">
+
+//로그인
 		$("#btnLogin").click(function(){
 			var msg = "${msg}"
 			var memail = $("#memail").val();
@@ -77,12 +82,18 @@
 			if(!memail){
 				alert("이메일을 입력해주세요.");
 				$("#memail").focus();
-				return;
+				return false;
 			}
+			var emailRegExp = /^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{2,3}$/;
+			if (!emailRegExp.test(memail)) {
+		        alert("이메일 형식이 올바르지 않습니다.");
+		        $("#memail").focus();
+		        return false;
+		    }
 			if(!mpw){
 			alert("비밀번호를 입력해주세요.");
 			$("#mpw").focus();
-			return;
+			return false;
 			}
 			if(msg!=""){
 				alert(msg);

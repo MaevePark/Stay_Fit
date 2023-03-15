@@ -22,7 +22,7 @@
 							<div class="col-md-9 join-input-box">
 								<label for="email" class="form-label">이메일</label> <input
 									type="text" name="memail" id="memail" class="form-control" pattern="[^-\s]+" onkeyup="checkMail()"
-									placeholder="email@stayfit.com" value="">
+									autocomplete="off" placeholder="email@stayfit.com" value="">
 									<input type="hidden" id="mailChkVal" value="0">
 							</div>
 							<div class="col-md-3 join-button-box">

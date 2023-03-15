@@ -18,8 +18,8 @@ public class DiaryServiceImpl implements DiaryService {
 	
 	//캘린더 작성
 	@Override
-	public int diarywirte(Diary diary) throws Exception {
-		return dao.diarywirte(diary);
+	public int diarywrite(Diary diary) throws Exception {
+		return dao.diarywrite(diary);
 	}
 	
 	public List<Nutrition> searchMeal(String keyword) throws Exception{

@@ -33,6 +33,8 @@ public class JoinController {
 	MemberService memberService;
 	@Autowired
 	MemberMailService mailService;
+	@Autowired
+	Member member;
 	
 	@GetMapping("/join")
 	public ModelAndView join(ModelAndView mv) {
@@ -74,6 +76,36 @@ public class JoinController {
 		
 		return mv;
 	}
+	@PostMapping("/sendpw")
+	public void sendPw(HttpServletResponse response, @RequestParam(name="email1") String memail) {
+		memberService.pwfind(response, member);
+		String result = null;
+		int newPw;
+		Random r = new Random();
+		int pwNum = r.nextInt(88888888) + 11111111;
+		System.out.println("새 비밀번호 : " + pwNum);
+		newPw = pwNum;
+		try {
+			PrintWriter out = response.getWriter();
+			try {
+				SimpleMailMessage message = new SimpleMailMessage();
+				message.setTo(memail);
+				message.setSubject("STAYFIT 회원 임시 비밀번호 입니다.");
+				message.setText("STAYFIT을 방문해주셔서 감사합니다.\n \n" +
+						"새 비밀번호는 " + newPw + " 입니다. \n \n" + 
+						"해당 비밀번호로 STAYFIT에 로그인하실 수 있습니다. \n \n" +
+						"계정의 보안을 위해 로그인 후 새로운 비밀번호로 변경하시길 바랍니다.");
+				mailSender.send(message);
+				result = Integer.toString(newPw);
+			} catch (Exception e) {
+				result = "fail";
+			}
+			out.append(new GsonBuilder().create().toJson(result));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("result : "+result);
+	}
 	@PostMapping("/mailChk")
 	@ResponseBody
 	public int mailchk(@RequestParam("memail") String memail) {
@@ -94,8 +126,8 @@ public class JoinController {
 			try {
 				SimpleMailMessage message = new SimpleMailMessage();
 				message.setTo(memail);
-				message.setSubject("회원 가입 인증 이메일 입니다.");
-				message.setText("홈페이지를 방문해주셔서 감사합니다.\n \n" +
+				message.setSubject("STAYFIT 회원 가입 인증 이메일 입니다.");
+				message.setText("STAYFIT을 방문해주셔서 감사합니다.\n \n" +
 						"인증 번호는 " + authNum + " 입니다. \n \n" + 
 						"해당 인증번호를 인증번호 확인란에 기입하여 주세요.");
 				mailSender.send(message);

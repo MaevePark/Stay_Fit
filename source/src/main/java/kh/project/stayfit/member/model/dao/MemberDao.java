@@ -10,4 +10,5 @@ public interface MemberDao {
 	public void logout(HttpSession session);
 	public int join(Member member);
 	public int mailChk(String memail); // mailChk(String): int
+	public int updatePw(Member member);
 }

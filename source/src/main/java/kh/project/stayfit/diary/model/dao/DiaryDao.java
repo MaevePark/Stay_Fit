@@ -17,7 +17,7 @@ public class DiaryDao {
 	private SqlSession sqlsession;
 	
 	//캘린더 작성
-	public int diarywirte(Diary diary) throws Exception {  // insert(??)
+	public int diarywrite(Diary diary) throws Exception {  // insert(??)
 		
 		return sqlsession.insert("diary.diarywirte", diary);	
 	}

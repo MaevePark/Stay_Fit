@@ -21,5 +21,9 @@
  	<select id="mailChk" parameterType="String" resultType="int">
  		SELECT COUNT(MEMAIL) FROM MEMBER WHERE MEMAIL = #{memail}
  	</select>
+ 	
+ 	<update id="updatePw">
+ 		UPDATE MEMBER SET MPW = #{mpw} where MEMAIL = #{memail}
+ 	</update>
   
 </mapper>

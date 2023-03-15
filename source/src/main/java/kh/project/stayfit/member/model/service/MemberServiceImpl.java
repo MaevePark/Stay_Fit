@@ -2,6 +2,8 @@ package kh.project.stayfit.member.model.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kh.project.stayfit.member.model.dao.MemberDao;
@@ -31,11 +33,6 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.viewMember(member);
 	}
 	
-//	@Autowired
-//	public int login(Member m, HttpSession session) {
-//		return 0;
-//	}
-
 	@Override
 	public int join(Member member) {
 		int result = 0;
@@ -48,6 +45,10 @@ public class MemberServiceImpl implements MemberService {
 		int result = memberDao.mailChk(memail);
 		System.out.println("result: " + result);
 		return result;
+	}
+	@Override
+	public void pwfind(HttpServletResponse response, Member member) {
+		memberDao.updatePw(member);
 	}
 
 //	@Override

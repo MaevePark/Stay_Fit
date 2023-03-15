@@ -31,8 +31,7 @@ window.onload = function() {
 	
 	
 	<div id="calendar-modal" class="modal fade" data-backdrop="static" 
-		data-bs-keyboard="false" tabindex="-1"
-		aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
 		<!-- Add Modal -->
 		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
 			<div class="modal-content">

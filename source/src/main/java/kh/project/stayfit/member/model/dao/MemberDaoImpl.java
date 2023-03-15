@@ -54,4 +54,9 @@ public class MemberDaoImpl implements MemberDao{
 		return sqlSession.selectOne("mailChk", memail);
 	} 
 	
+	@Override
+	public int updatePw(Member member) {
+		return sqlSession.update("updatePw", member);
+	}
+	
 }
