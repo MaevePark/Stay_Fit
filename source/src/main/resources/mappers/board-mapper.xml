@@ -5,7 +5,7 @@
 	<!-- 게시물 목록 조회 & 검색  -->
 	<select id="selectboard" resultType="Board" parameterType="map">
 		select b.bid, bcname, btitle, m.mname, bviewcount, bcreate from board b join bcategory bc on b.bcid = bc.bcid join member m on b.mid=m.mid
-		where b.bcid=#{bcid} 
+		where b.bcid=#{bcid} and BSTATE = 'A'
 			<if test='search.equals("all")'>
 				and (btitle like '%'||#{keyword}||'%' OR m.mname like '%'||#{keyword}||'%')
 			</if>
@@ -22,7 +22,7 @@
 	<select id="totalCnt" resultType="int" parameterType="map">
 		select count(bcid) 
     	from (board join member on board.mid=member.mid)
-    	where bcid=#{bcid}
+    	where bcid=#{bcid} and BSTATE = 'A'
     		<if test='search.equals("all")'>
 				and (btitle like '%'||#{keyword}||'%' OR mname like '%'||#{keyword}||'%')
 			</if>
