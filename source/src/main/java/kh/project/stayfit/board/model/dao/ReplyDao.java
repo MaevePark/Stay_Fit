@@ -24,7 +24,7 @@ public class ReplyDao {
 	
 	//댓글 list 갯수
 	public int rtotalCnt(int bid) {
-		return sqlsession.selectOne("rtotalCnt", bid);
+		return sqlsession.selectOne("board.rtotalCnt", bid);
 	}
 
 	// 부모 댓글 작성
@@ -96,11 +96,11 @@ public class ReplyDao {
 	}
 	//댓글 신고
     public int report(int mid, int rid, int repid) {
-        Map<String, Integer> paramMap = new HashMap<>();
-        paramMap.put("mid", mid);
-        paramMap.put("rid", rid);
-        paramMap.put("repid", repid);
-        return sqlsession.insert("board.report", paramMap);
+        Map<String, Integer> map = new HashMap<>();
+        map.put("mid", mid);
+        map.put("rid", rid);
+        map.put("repid", repid);
+        return sqlsession.insert("board.report", map);
     }
 
 

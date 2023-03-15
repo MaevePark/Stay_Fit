@@ -16,5 +16,5 @@ public class Rreport {
 	private int mid;
 	private int rid;
 	private int repid;
-	private TIMESTAMP rcreate; //String?? oracle.sql?? java.sql??
+	private TIMESTAMP rcreate;
 }

@@ -111,7 +111,8 @@ public class ReplyController {
 	@ResponseBody
 	public String report(@RequestParam(value = "mid") int mid,
             @RequestParam(value = "rid") int rid,
-            @RequestParam(value = "repid") int repid) {
+            @RequestParam(value = "repid") int repid) throws Exception {
+		srv.report(mid, rid, repid);
 		return "success";
 	}
 	

@@ -26,10 +26,10 @@ public class Board {
 	private int bcid;
 	private int mid;
 	private String btitle;
-	private String bcontent; //String?? CLOB??
+	private String bcontent; 
 	private int bpick;
-	private Timestamp bcreate; //String?? oracle.sql?? java.sql??
-	private Timestamp bupdate; //String?? oracle.sql?? java.sql??
+	private Timestamp bcreate; 
+	private Timestamp bupdate; 
 	private char bstate;
 	private int bviewcount;
 	private String bcname;

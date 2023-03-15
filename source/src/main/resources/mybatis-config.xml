@@ -34,6 +34,7 @@
 		
 		<typeAlias type="kh.project.stayfit.board.model.vo.Board" alias="Board"/>
 		<typeAlias type="kh.project.stayfit.board.model.vo.Reply" alias="Reply"/>
+		<typeAlias type="kh.project.stayfit.board.model.vo.Rreport" alias="Rreport"/>
 		
 		<typeAlias type="kh.project.stayfit.member.model.vo.Member" alias="Member"/>
 		

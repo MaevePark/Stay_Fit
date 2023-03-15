@@ -110,7 +110,7 @@
 	</delete>
 	
 	<!-- 댓글 신고  -->
-	<insert id="report" parameterType="int">
+	<insert id="report" parameterType="map">
 		INSERT INTO RREPORT (mid,rid,repid) VALUES(#{mid}, #{rid}, #{repid})
 	</insert>
 	
