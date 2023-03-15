@@ -11,4 +11,8 @@ public class Calendar {
 	private String title;
 	private String start;
 	private String end;
+	private String backgroundColor;
+	private String borderColor;
+	private String textColor;
+	private String emotImg;
 }

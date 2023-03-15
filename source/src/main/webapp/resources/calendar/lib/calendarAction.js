@@ -11,7 +11,11 @@ window.onload = function() {
 		success: function(result) {
 			let events = JSON.parse(result).map(event => ({
 				  title: event.title.replace(/"/g, ''),
-				  start: event.start.replace(/"/g, '')
+				  start: event.start.replace(/"/g, ''),
+				  backgroundColor: event.backgroundColor.replace(/"/g, ''),
+				  borderColor: event.borderColor.replace(/"/g, ''),
+				  textColor: event.textColor.replace(/"/g, ''),
+				  emotImg: event.emotImg.replace(/"/g, '')
 				  }));
 			
 			let calendarEl = document.getElementById('calendar');
@@ -26,7 +30,7 @@ window.onload = function() {
 			    	  return date.date.year +"년 "+(date.date.month +1) +"월";
 			      },
 			      selectable: true,
-			      eventClick:function(){
+			      eventClick:function(date){
 					  var model = $("#calendar-modal");
 					  modal.modal();
 				  },
@@ -35,19 +39,17 @@ window.onload = function() {
 				  },
 				  dayMaxEvents: true,
 				  events: events,
-//				  eventRender: function(info) {
-//					    // 이벤트의 title 속성에서 HTML 태그를 가진 경우
-//					    if (info.event.title.match(/<.*>/)) {
-//					      // 배경색상 또는 텍스트 색상을 변경합니다.
-//					      info.el.style.backgroundColor = 'red';
-//					      info.el.style.color = 'white';
-//					    }
-//					  }
+				  eventRender: function(event, element) {
+					  if(emotImg) {
+						  console.log("으엥?"+event);
+						  eventElement.find("div.fc-event-title").inner(title);		
+					  }
+					  		  
+					},
 			});
 					  
 			console.log(events);
 			calendar.render();
-			// listUpData(result);
 		},
 		error: function(result) {
 			let calendarEl = document.getElementById('calendar');

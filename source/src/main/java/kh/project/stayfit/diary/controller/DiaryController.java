@@ -94,13 +94,19 @@ public class DiaryController {
 					Calendar calendar = new Calendar();
 					calendar.setStart(ddate);
 					if(j==0) {
-						calendar.setTitle(imgTag1+Integer.toString(fullKcal));
+						calendar.setTitle(Integer.toString(fullKcal));
+						calendar.setEmotImg(imgTag1);
 					} else if(j==1) {
-						calendar.setTitle(imgTag2+Integer.toString(burnKcal));
+						calendar.setTitle(Integer.toString(burnKcal));
+						calendar.setEmotImg(imgTag2);
 					} else if(j==2) {
-						calendar.setTitle(imgTag3+Integer.toString(weight));
+						calendar.setTitle(Integer.toString(weight));
+						calendar.setEmotImg(imgTag3);
 						
 					}
+					calendar.setBackgroundColor("white");
+					calendar.setBorderColor("white");
+					calendar.setTextColor("black");
 					calendarList.add(calendar);
 				}
 			}
