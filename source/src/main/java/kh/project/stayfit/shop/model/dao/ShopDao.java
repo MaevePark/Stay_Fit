@@ -49,37 +49,14 @@ public class ShopDao {
 	public int insertCart(ShopCart vo) throws Exception {
 		return sqlsession.insert("shop.insertCart", vo);
 	}
-	
-	
-	
-	
-//	//추천 상품
-//	public List<Product> selectCustomProduct(int, ???) throws Exception{
-//		return sqlsession.;
-//	}
-	
-//	//상품 조건별 출력(검색), 페이징
-//	public List<Product> selectProduct(String, String, int, int, int, int) throws Exception{
-//		return sqlsession.;
-//	}
-//	public int selectTotalCnt(String, String, int, int) throws Exception{
-//		return sqlsession.;
-//	}
 
-//	//찜 목록에 추가
-//	public int addWish(int, int, int) throws Exception{
-//		return sqlsession.;
-//	}
-
-	
-	
 	//영양데이터 insert
 	public int insertNutrition(List<Nutrition> nvoList) throws Exception{
 		int result = 0;
 		result = sqlsession.insert("shop.insertNutrition", nvoList);
 		return result;
 	}
-	
+	//주문기록 insert
 	public int insertProduct(List<ShopProduct> nvoList) throws Exception{
 		int result = 0;
 		result = sqlsession.insert("shop.insertProduct", nvoList);

@@ -154,7 +154,7 @@ public class ShopController {
 //		return mv;
 //	}
 	
-//	private void crawl() {
+//	private void crawl1() {
 //		WebDriver driver = null;
 //		WebDriverWait wait = null;
 //		try {
