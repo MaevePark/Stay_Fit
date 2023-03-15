@@ -22,7 +22,7 @@
  		SELECT COUNT(MEMAIL) FROM MEMBER WHERE MEMAIL = #{memail}
  	</select>
  	
- 	<update id="updatePw">
+ 	<update id="updatePw" parameterType="Member">
  		UPDATE MEMBER SET MPW = #{mpw} where MEMAIL = #{memail}
  	</update>
   
