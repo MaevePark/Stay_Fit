@@ -40,7 +40,7 @@
 									onkeydown="this.value=this.value.replace(/[^0-9]/g,'')"
 									onkeyup="checkCode(this.value); this.value=this.value.replace(/[^0-9]/g,'')"
 									onblur="this.value=this.value.replace(/[^0-9]/g,'')"
-									onchange=""
+									onchange="" autocomplete="off"
 									type="text" maxlength="6" name="cdnum" id="cdnum" class="form-control"
 									value="" disabled>
 								<input type="hidden" id="mailCodeChkVal" value="0">
@@ -51,7 +51,7 @@
 							<div class="col-md-9 join-input-box">
 								<label for="mname" class="form-label">닉네임</label> <input
 									type="text" name="mname" id="mname" class="form-control"
-									value="" maxLength=12>
+									value="" maxLength=12 autocomplete="off">
 							</div>
 							<div class="col-md-9 join-input-box">
 								<span class="name_check_ok">사용 가능한 닉네임입니다.</span>
@@ -89,18 +89,12 @@
 var code;
 function joinCheck() {
      if (!checkEmail(form.memail.value)) {
-     	console.log("checkEmail ok");
-     	return false;
+    	return false;
      } else if (!checkCdnum(form.cdnum.value)){
-     	console.log("checkCdnum ok");
      	return false;
      } else if (!checkName(form.mname.value)) {
-     	console.log("checkName ok")
          return false;
      } else if (!checkPassword(form.pwd1.value, form.pwd2.value)) {
-     	console.log("checkPassword ok")
-         return false;
-     }  else if (!checkMail()) { // checkMail 함수가 false를 반환하면 실행
          return false;
      } else 
 	if($('#mailCodeChkVal').val() != 1) {
@@ -141,9 +135,15 @@ function checkEmail(memail) {
 }
 
 function checkCdnum(cdnum) {
+	var cdnumRegExp = /^[0-9]{6,6}$/;
 	if(!checkExistData(cdnum,"인증번호를")){
 		form.cdnum.focus();
 		return false;
+	}
+	if(!cdnumRegExp.test(cdnum)){
+		 alert("인증번호 6자리 숫자를 입력해주세요.");
+	        form.cdnum.focus();
+	        return false;
 	}
 	$('#cdnum').blur(function () {
 		const inputCode = $(this).val();
@@ -284,7 +284,7 @@ function checkMail(){
 				isMailValid = true; // memail이 유효한 경우 true 반환
 				mailChkVal.val(1);
 				$('#btnChkMail').attr('disabled',false);
-				$('#mailCodeChkVal').val(0);
+				$('#mailCodeChkVal').val(1);
 			}else{
 				var already = document.getElementsByClassName("mail_check_already")[0];
 				console.log(already);

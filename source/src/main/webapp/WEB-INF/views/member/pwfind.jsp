@@ -72,4 +72,30 @@ $("#btnPwFind").click(function(){
 		alert("사용 불가한 이메일입니다. 다시 입력해주세요.");
 	}
 });
+function checkMail(){
+	var email = $('#email1').val();
+	var isMailValid = false;
+	var pwFindVal = $('#pwFindVal');
+	$.ajax({
+		url:'mailChk',
+		type:'post',
+		data:{memail : email},
+		success:function(result){
+			if(result == 0 && emailRegExp.test(memail)){
+				console.log(ok);
+				isMailValid = true; // memail이 유효한 경우 true 반환
+				pwFindVal.val(1);
+			}else{
+				form.email1.focus();
+				isMailValid = false;
+				pwFindVal.val(0);
+			}
+			return isMailValid;
+		},
+		error:function(){
+			alert("DB 접속 에러");
+		}
+	});
+	
+};
 </script>

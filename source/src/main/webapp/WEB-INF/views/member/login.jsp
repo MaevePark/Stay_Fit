@@ -20,7 +20,7 @@
 			<div class="member-wrap">
 				<div class="login-input-box">
 					<input type="text" class="underline login-txt" id="memail" name="memail"
-						placeholder="이메일 입력">
+						placeholder="이메일 입력" autocomplete="off">
 				</div>
 				<div class="login-input-box">
 					<input type="password" class="underline login-txt" id="mpw" name="mpw"
@@ -97,10 +97,12 @@
 			}
 			if(msg!=""){
 				alert(msg);
+				return false;
+			} else{
+				document.loginform.action="<%=request.getContextPath()%>/member/login";
+				document.loginform.method="post";
+				document.loginform.submit();	
 			}
-			document.loginform.action="<%=request.getContextPath()%>/member/login";
-			document.loginform.method="post";
-			document.loginform.submit();
 		});
 	
 	
