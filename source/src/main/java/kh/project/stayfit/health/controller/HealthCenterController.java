@@ -33,7 +33,7 @@ public class HealthCenterController {
 		
 		int limits = 15; // 한 페이지당 보여줄 게시글 수
 		int pageLimit = 5;  // 한 번에 보여줄 페이지 수
-		int totalPageCnt = service.totalPageCnt(lid, search, keyword); // 전체 게시글 수
+		int totalPageCnt = service.totalPageCnt(search, keyword); // 전체 게시글 수
 		
 		// 게시글 목록 조회, 글 검색
 		List<HealthCenter> list = service.selectCenterlist(lid, search, keyword, page, limits);
