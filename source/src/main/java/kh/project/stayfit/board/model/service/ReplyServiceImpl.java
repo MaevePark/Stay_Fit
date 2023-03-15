@@ -19,10 +19,10 @@ public class ReplyServiceImpl implements ReplyService {
 		List<Reply> rlist = dao.replylist(bid);
 		return rlist;
 	}
-	
-	//댓글 list 갯수
+
+	// 댓글 list 갯수
 	@Override
-	public int rtotalCnt(int bid) throws Exception{
+	public int rtotalCnt(int bid) throws Exception {
 		return dao.rtotalCnt(bid);
 	}
 
@@ -31,6 +31,7 @@ public class ReplyServiceImpl implements ReplyService {
 	public int write(Reply vo) throws Exception {
 		return dao.write(vo);
 	}
+
 	// 자식 댓글 작성
 	@Override
 	public int cwrite(Reply vo) throws Exception {
@@ -68,30 +69,11 @@ public class ReplyServiceImpl implements ReplyService {
 		return dao.unlike(rid, mid);
 	}
 
-	//북마크 카운트
+	// 댓글 신고
 	@Override
-	public int checkbook(int mid, int bid) throws Exception {
-		int count = dao.checkbook(mid, bid);
-		return count;
+	public int report(int mid, int rid, int repid) {
+		return dao.report(mid, rid, repid);
 	}
-
-	//북마크
-	@Override
-	public int book(int mid, int bid) throws Exception {
-		return dao.book(mid, bid);
-	}
-
-	//북마크 취소
-	@Override
-	public int delbook(int mid, int bid) throws Exception {
-		return dao.delbook(mid, bid);
-	}
-	
-	//댓글 신고
-	@Override
-    public int report(int mid, int rid, int repid) {
-        return dao.report(mid, rid, repid);
-    }
 
 //	//답변 선택
 //	@Override

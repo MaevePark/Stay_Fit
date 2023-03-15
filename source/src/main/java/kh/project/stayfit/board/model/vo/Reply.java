@@ -28,4 +28,5 @@ public class Reply {
 	private Timestamp rcreate;
 	private String mname;
 	private String profimg;
+	private int repid;
 }

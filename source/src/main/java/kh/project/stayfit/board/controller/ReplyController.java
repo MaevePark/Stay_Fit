@@ -1,17 +1,13 @@
 package kh.project.stayfit.board.controller;
 
-import java.net.CacheResponse;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 
 import kh.project.stayfit.board.model.service.ReplyService;
-import kh.project.stayfit.board.model.vo.Board;
 import kh.project.stayfit.board.model.vo.Reply;
 
 @Controller
@@ -84,28 +79,6 @@ public class ReplyController {
 		return map;
 	}
 
-	// 북마크
-	@PostMapping("/book")
-	@ResponseBody
-	public Map<String, String> bookmark(HttpSession session, @RequestParam("bid") int bid) throws Exception {
-
-		int mid = (int) session.getAttribute("mid"); // 세션에서 회원번호 가져오기
-
-		int count = srv.checkbook(mid, bid); // 해당 댓글에 대한 회원의 좋아요 상태 확인
-		Map<String, String> map = new HashMap<>();
-
-		if (count == 0) { // 좋아요를 누르지 않은 경우
-			srv.book(mid,bid); // 좋아요 추가
-			map.put("result", "success");
-			map.put("action", "book");
-		} else { // 좋아요를 이미 누른 경우
-			srv.delbook(mid,bid); // 좋아요 제거
-			map.put("result", "success");
-			map.put("action", "delbook");
-		}
-		return map;
-	}
-	
 	//댓글 신고
 	@PostMapping("/replyreport")
 	@ResponseBody

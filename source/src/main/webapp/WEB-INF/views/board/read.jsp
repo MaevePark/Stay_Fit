@@ -173,22 +173,22 @@
 																					<input type="hidden" name="rid" value="rid">
 																					<input type="radio" id="0" name="report" value="0">
 																					<label for="0" class="text-center">광고/상업성
-																						게시글</label> <br> <input type="radio" id="1"
+																						댓글</label> <br> <input type="radio" id="1"
 																						name="report" value="1"> <label for="1"
-																						class="text-center">비방/욕설 게시글</label> <br> <input
+																						class="text-center">비방/욕설 댓글</label> <br> <input
 																						type="radio" id="2" name="report" value="2">
 																					<label for="2" class="text-center">개인정보 유출
-																						게시글</label> <br> <input type="radio" id="3"
+																						댓글</label> <br> <input type="radio" id="3"
 																						name="report" value="3"> <label for="3"
-																						class="text-center">청소년 유해 게시글</label> <br> <input
+																						class="text-center">청소년 유해 댓글</label> <br> <input
 																						type="radio" id="4" name="report" value="4">
 																					<label for="4" class="text-center">명예훼손/저작권
-																						침해 게시글</label> <br> <input type="radio" id="5"
+																						침해 댓글</label> <br> <input type="radio" id="5"
 																						name="report" value="4"> <label for="5"
-																						class="text-center">도배성 게시글</label><br> <input
+																						class="text-center">도배성 댓글</label><br> <input
 																						type="radio" id="6" name="emotion" value="4">
 																					<label for="6" class="text-center">불명확/추측성
-																						게시글</label>
+																						댓글</label>
 																				</div>
 																			</form>
 
@@ -539,78 +539,46 @@ $(document).ready(function(){
 		}
 	});
 });
+
 //댓글 신고
-//모달창 mname전달 
-/*  function openModal(mname) {
-        var modalTitle = document.getElementById("modal-title");
-        modalTitle.innerHTML = mname + "님을 신고합니다";
-        $('#myModal').modal('show');
-    } */
-//모달창에 데이터 전달
- <%-- function openModal(mname, rid) {
-		 var modalTitle = document.getElementById("modal-title");
-     	modalTitle.innerHTML = mname + "님을 신고합니다";
-	    /* $('#myModal #modal-title').text(mname); */
-	    $('#myModal #report input[name="rid"]').val(rid);
-	    $('#myModal').modal('show');
-	}
-//모달창 신고 
- $("#myModal .modal-footer .btn-danger").click(function() {
-	    var selectedValue = $('input[name="report"]:checked').val();
-	    var rid = $("#report").val();
-	    var data = {
-	        "mid": <%= session.getAttribute("mid") %>,
-	        "rid": rid,
-	        "repid": selectedValue
-	    };
-	    console.log(data);
-	    $.ajax({
-	        type: "POST",
-	        url: "replyreport",
-	        data: data,
-	        success: function(result) {
-	            alert("신고 접수 되었습니다.");
-	        },
-	        error: function(xhr, status, error) {
-	            alert("신고에 실패하였습니다.");
-	        }
-	    });
-	}); --%>
-	
+//모달창 데이터 전달
 	function openModal(mname, rid) {
 	    var modalTitle = document.getElementById("modal-title");
 	    modalTitle.innerHTML = mname + "님을 신고합니다";
-
-	    // 수정된 부분: rid 값을 data 객체에 추가하여 전달
+ 
 	    var data = { "rid": rid };
 	    $('#myModal #report input[name="rid"]').val(data.rid);
 
 	    $('#myModal').modal('show');
 	}
 
-	$("#myModal .modal-footer .btn-danger").click(function() {
-	    var selectedValue = $('input[name="report"]:checked').val();
-	    
-	    // 수정된 부분: data 객체에 mid, repid 추가
-	    var data = {
-	        "mid": <%= session.getAttribute("mid") %>,
-	        "rid": $('input[name="rid"]').val(),
-	        "repid": selectedValue
-	    };
-	    
-	    console.log(data);
-	    $.ajax({
-	        type: "POST",
-	        url: "replyreport",
-	        data: data,
-	        success: function(result) {
-	            alert("신고 접수 되었습니다.");
-	        },
-	        error: function(xhr, status, error) {
-	            alert("신고에 실패하였습니다.");
-	        }
-	    });
-	});	
+//모달창 신고 클릭 
+$(document).ready(function() {
+    $('#myModal .modal-footer .btn-danger').click(function() {
+        var selectedValue = $('input[name="report"]:checked').val();
+
+     
+        var data = {
+            "mid": <%= session.getAttribute("mid") %>,
+            "rid": $('input[name="rid"]').val(),
+            "repid": selectedValue
+        };
+
+        console.log(data);
+        $.ajax({
+            type: "POST",
+            url: "replyreport",
+            data: data,
+            success: function(result) {
+                alert("신고 접수 되었습니다.");
+            },
+            error: function(xhr, status, error) {
+                alert("신고에 실패하였습니다.");
+            }
+        });
+    });
+});
+
 //북마크
 $(document).ready(function(){
 	$(document).on('click','.bookmark',function(){

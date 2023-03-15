@@ -33,15 +33,6 @@ public interface ReplyService {
 	// 댓글 좋아요 삭제
 	public int unlike(int rid, int mid) throws Exception;
 
-	// 북마크 카운트
-	public int checkbook(int mid, int bid) throws Exception;
-
-	// 북마크
-	public int book(int mid, int bid) throws Exception;
-
-	// 북마크 취소
-	public int delbook(int mid, int bid) throws Exception;
-
 	//댓글 신고
 	public int report(int mid, int rid, int repid) throws Exception;
 	

@@ -1,5 +1,6 @@
 package kh.project.stayfit.board.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -185,6 +186,27 @@ public class BoardController {
 		return result;
 	}
 	
+	// 북마크
+		@PostMapping("/book")
+		@ResponseBody
+		public Map<String, String> bookmark(HttpSession session, @RequestParam("bid") int bid) throws Exception {
+
+			int mid = (int) session.getAttribute("mid"); // 세션에서 회원번호 가져오기
+
+			int count = srv.checkbook(mid, bid); // 해당 댓글에 대한 회원의 좋아요 상태 확인
+			Map<String, String> map = new HashMap<>();
+
+			if (count == 0) { // 좋아요를 누르지 않은 경우
+				srv.book(mid,bid); // 좋아요 추가
+				map.put("result", "success");
+				map.put("action", "book");
+			} else { // 좋아요를 이미 누른 경우
+				srv.delbook(mid,bid); // 좋아요 제거
+				map.put("result", "success");
+				map.put("action", "delbook");
+			}
+			return map;
+		}
 	//오류
 	@ExceptionHandler(Exception.class) // 모든 Exception시 여기로
     public ModelAndView exceptionHandler(Exception e /*ModelAndView mv 작성시 오류 발생*/) {
