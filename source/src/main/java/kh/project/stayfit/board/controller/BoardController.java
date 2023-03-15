@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -183,4 +184,15 @@ public class BoardController {
 		int result = srv.bdelete(bid);
 		return result;
 	}
+	
+	//오류
+	@ExceptionHandler(Exception.class) // 모든 Exception시 여기로
+    public ModelAndView exceptionHandler(Exception e /*ModelAndView mv 작성시 오류 발생*/) {
+        // 프로젝트초기에는 e.printStackTrace(); 로 로그 봐야함. 나중에 지우기
+        e.printStackTrace();
+        ModelAndView mv = new ModelAndView(); 
+        mv.addObject("errMsg", e.getMessage());
+        mv.setViewName("/AccessDenied");
+        return mv;
+    }
 }
