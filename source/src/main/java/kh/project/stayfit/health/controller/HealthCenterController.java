@@ -31,8 +31,8 @@ public class HealthCenterController {
 			@RequestParam(name = "search", defaultValue = "") String search,
 			@RequestParam(name = "keyword", defaultValue = "") String keyword) throws Exception {
 		
-		int limits = 10; // 한 페이지당 보여줄 게시글 수
-		int pageLimit = 2;  // 한 번에 보여줄 페이지 수
+		int limits = 15; // 한 페이지당 보여줄 게시글 수
+		int pageLimit = 5;  // 한 번에 보여줄 페이지 수
 		int totalPageCnt = service.totalPageCnt(lid, search, keyword); // 전체 게시글 수
 		
 		// 게시글 목록 조회, 글 검색
