@@ -33,8 +33,6 @@ public class JoinController {
 	MemberService memberService;
 	@Autowired
 	MemberMailService mailService;
-	@Autowired
-	Member member;
 	
 	@GetMapping("/join")
 	public ModelAndView join(ModelAndView mv) {
@@ -77,7 +75,7 @@ public class JoinController {
 		return mv;
 	}
 	@PostMapping("/sendpw")
-	public void sendPw(HttpServletResponse response, @RequestParam(name="email1") String memail) {
+	public void sendPw(HttpServletResponse response, Member member, @RequestParam(name="email1") String memail) {
 		memberService.pwfind(response, member);
 		String result = null;
 		int newPw;
