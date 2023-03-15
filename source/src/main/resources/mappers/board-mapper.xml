@@ -58,7 +58,7 @@
 	
 	<!-- 게시물 삭제  -->
 	<delete id="bdelete" parameterType="int">
-		delete from board where bid=#{bid}
+		UPDATE BOARD SET BSTATE = 'D' WHERE BID = #{bid}
 	</delete>
 	
 	<!-- 북마크 카운트  -->
