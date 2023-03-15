@@ -64,7 +64,7 @@
 						<div class="button_parent">
 							<button type="button" class="site-btn btn-submit" id="save">수정</button>
 							<button type="button" class="site-btn btn-list" onclick="location.href='list">목록으로</button>
-							<button type="button" class="site-btn btn-preview">미리보기</button>
+							<!-- <button type="button" class="site-btn btn-preview">미리보기</button> -->
 						</div>
 					</form>
 				</div>

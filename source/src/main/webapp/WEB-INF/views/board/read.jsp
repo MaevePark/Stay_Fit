@@ -2,10 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!--index로 이동함 삭제예정  -->
-<%-- <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/boardread.css" type="text/css">  --%>
-<!--  <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>  -->
-<!-- 여기까지 삭제  -->
 
 <!-- 게시판 상세페이지 -->
 <section class="blog spad">
@@ -15,10 +11,10 @@
 			<jsp:include page="/WEB-INF/views/board/boardcategory.jsp"></jsp:include>
 			<!-- 게시판 카테고리 첨부 끝 -->
 			<div class="col-lg-10 col-md-10">
-				<div>
+				<%-- <div>
 					<button type="button" id="list_btn"
 						onclick="location.href='list?bcid=${read.bcid}'">목록</button>
-				</div>
+				</div> --%>
 				<div class=""
 					style="border: 1px solid #ebecef; border-radius: 6px; padding: 29px 29px 0;">
 					<!-- 게시글  -->
@@ -143,13 +139,6 @@
 																		src="<%=request.getContextPath()%>/resources/img/board-read/like.png"
 																		alt="like-img">
 																</button>
-																<%-- <button type="button" class="report-button">
-																	<img class="report-img"
-																		src="<%=request.getContextPath()%>/resources/img/board-read/siren.png"
-																		alt="siren-img">
-																</button> --%>
-																<!-- 테스트 진행중 -->
-
 																<button type="button" class="report-button" onclick="openModal('${repl.mname}', '${repl.rid}')" data-toggle="modal" data-target="#myModal">
 																	<img class="report-img"
 																		src="<%=request.getContextPath()%>/resources/img/board-read/siren.png"
@@ -251,7 +240,7 @@
 															class="write_reply_form child-form"
 															style="margin: 12px 0 29px; display: none;">
 															<div class="reply-inbox">
-																<strong class="writer-name">${writer}</strong> <input
+																<strong class="writer-name">${loginuser}</strong> <input
 																	type="hidden" id="rseq" value="${repl.rseq }">
 																<textarea name="ccontent" id="ccontent" rows="3"
 																	placeholder="${repl.mname }에게 답글을  작성해주세요"></textarea>
@@ -287,10 +276,10 @@
 							<strong class="writer-name">${loginuser}</strong>
 							<textarea name="rcontent" id="rcontent" rows="3"
 								placeholder="댓글을  작성해주세요"></textarea>
-							<div>
 								<div style="margin-bottom: 10px;">
 									<button type="submit" id="rep_write" onclick="rep_btn()">등록</button>
 								</div>
+							<div>
 							</div>
 						</div>
 					</div>
@@ -330,6 +319,7 @@ function del(bid){
 //부모 댓글 작성
  function rep_btn(){
 	var mid = ${writer}; 
+	
 	var bid = ${read.bid};
 	var rcontent = $("#rcontent").val();
 	if (!rcontent) {

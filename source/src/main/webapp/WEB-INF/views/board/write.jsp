@@ -1,16 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!--index 이동 시작  -->
-<%-- <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/boardread.css" type="text/css"> index이동 삭제예정--%>
-<!-- jquery/bootstrap -->
-<!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
-<!--  summernote css/js -->
-<!-- <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>  -->
-<!--index이동 끝  삭제예정 -->
 
 <!-- 게시판 글작성 페이지 -->
 
@@ -53,7 +43,7 @@
 						<div class="button_parent">
 							<button type="submit" class="site-btn btn-submit">등록</button>
 							<button type="button" class="site-btn btn-list" onclick="location.href='list">목록으로</button>
-							<button type="button" class="site-btn btn-preview">미리보기</button>
+							<!-- <button type="button" class="site-btn btn-preview">미리보기</button> -->
 						</div>
 					</form>
 				</div>
