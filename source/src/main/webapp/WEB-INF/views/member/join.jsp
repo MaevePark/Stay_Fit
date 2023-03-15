@@ -16,7 +16,7 @@
 				</p>
 			</div>
 			<div class="input-form col-md-12 mx-auto">
-				<form name="form" id="joinform" method="post" action="<%=request.getContextPath()%>/member/joinAction">
+				<form name="form" id="joinform" method="post" action="<%=request.getContextPath()%>/member/joinAction" onsubmit="return joinCheck()">
 					<div class="member-form">
 						<div class="row join-wrap">
 							<div class="col-md-9 join-input-box">
@@ -88,21 +88,21 @@
 <script>
 var code;
 function joinCheck() {
-//     if (!checkEmail(form.memail.value)) {
-//     	console.log("checkEmail ok");
-//     	return false;
-//     } else if (!checkCdnum(form.cdnum.value)){
-//     	console.log("checkCdnum ok");
-//     	return false;
-//     } else if (!checkName(form.mname.value)) {
-//     	console.log("checkName ok")
-//         return false;
-//     } else if (!checkPassword(form.pwd1.value, form.pwd2.value)) {
-//     	console.log("checkPassword ok")
-//         return false;
-//     }  else if (!checkMail()) { // checkMail 함수가 false를 반환하면 실행
-//         return false;
-//     } else 
+     if (!checkEmail(form.memail.value)) {
+     	console.log("checkEmail ok");
+     	return false;
+     } else if (!checkCdnum(form.cdnum.value)){
+     	console.log("checkCdnum ok");
+     	return false;
+     } else if (!checkName(form.mname.value)) {
+     	console.log("checkName ok")
+         return false;
+     } else if (!checkPassword(form.pwd1.value, form.pwd2.value)) {
+     	console.log("checkPassword ok")
+         return false;
+     }  else if (!checkMail()) { // checkMail 함수가 false를 반환하면 실행
+         return false;
+     } else 
 	if($('#mailCodeChkVal').val() != 1) {
     	return false;
     } else if($('#mailChkVal').val() != 1) {
@@ -232,7 +232,7 @@ $('#btnChkMail').click(function(){
 				if(isNaN(code)) {
 					alert("이메일 전송에 실패하였습니다. 다시 시도해주세요.");
 				} else{
-					alert("이메일이 전송되었습니다. 메일함을 확인해 주세요. \n 기다려도 메일이 오지 않는다면 메일 주소 혹은 스팸함을 확인해 주세요.");
+					alert("이메일이 전송되었습니다. 메일함을 확인해 주세요.\n메일이 오지 않는다면 메일 주소 혹은 스팸함을 확인해 주세요.");
 					checkInput.attr('disabled',false);
 					$('#memail').attr('readonly', true);
 				}
@@ -333,7 +333,7 @@ function pwChk1(el) {
 	if($('#popChild_1').length > 0) {
 		var popChild = document.getElementById('popChild_1');
 		if(!regExp.test(pw1.value)) {
-			popChild.innerText = "비밀번호는 8~16자로 영문, 숫자, 특수 기호를 조합하여 입력해주세요.";
+			popChild.innerText = "비밀번호는 8~16자로 /n영문, 숫자, 특수 기호를 조합하여 입력해주세요.";
 			popChild.style.color = "red";
 			pwChkVal1.val(0);
 		} else {
@@ -345,7 +345,7 @@ function pwChk1(el) {
 		pw1_parent.appendChild(new_child);
 		var popChild = document.getElementById('popChild_1');
 		if(!regExp.test(pw1.value)) {
-			popChild.innerText = "비밀번호는 8~16자로 영문, 숫자, 특수 기호를 조합하여 입력해주세요.";
+			popChild.innerText = "비밀번호는 8~16자로 /n영문, 숫자, 특수 기호를 조합하여 입력해주세요.";
 			popChild.style.color = "red";
 			pwChkVal1.val(0);
 		} else {
@@ -391,8 +391,7 @@ function pwChk2(el) {
 
 function joinMember() {
 	if(!joinCheck()) {
-		//false
-		alert("실패!!");
+		
 	} else {
 		//true
 		$('#joinform').submit();

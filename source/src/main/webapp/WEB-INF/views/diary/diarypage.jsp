@@ -23,8 +23,10 @@ window.onload = function() {
 <input type="hidden" id="mid" name="mid" value="<%=mid%>">
 <%}%>
 
-<section>
-	<div id='calendar'></div>
+<section class="blog spad">
+	<div>
+		<div id='calendar'></div>
+	</div>
 	
 	
 	
