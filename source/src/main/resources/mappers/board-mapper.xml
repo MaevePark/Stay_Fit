@@ -67,6 +67,11 @@
 		SELECT mid, rid, profimg, mname, rcontent, rcreate, rstate, rseq, rcase FROM reply JOIN member USING(mid) WHERE bid = #{bid} ORDER BY rseq ASC, rcase
 	</select>
 	
+	<!-- 게시글별 댓글 갯수 -->
+	<select id="rtotalCnt" resultType="int" parameterType="int">
+		SELECT COUNT(RID) FROM REPLY WHERE BID = ${bid}
+	</select>
+	
 	<!-- 부모 댓글 작성  -->
 	<insert id="rwrite" parameterType="Reply">
 		INSERT INTO reply(rid,bid,mid,rcontent,rseq) VALUES ((SELECT NVL(MAX(rid),0)+1 FROM reply), #{bid}, #{mid}, #{rcontent}, (SELECT NVL(MAX(rseq),0)+1 FROM reply WHERE BID=#{bid}))
@@ -103,6 +108,11 @@
 	<delete id="dellike" parameterType="map">
 		DELETE FROM reply_like WHERE rid=#{rid} AND mid=#{mid}
 	</delete>
+	
+	<!-- 댓글 신고  -->
+	<insert id="report" parameterType="int">
+		INSERT INTO RREPORT (mid,rid,repid) VALUES(#{mid}, #{rid}, #{repid})
+	</insert>
 	
 	<!-- 북마크 카운트  -->
 	<select id="checkbook" parameterType="map" resultType="int">

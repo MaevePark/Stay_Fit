@@ -21,6 +21,11 @@ public class ReplyDao {
 		List<Reply> rlist = sqlsession.selectList("board.boardreply", bid);
 		return rlist;
 	}
+	
+	//댓글 list 갯수
+	public int rtotalCnt(int bid) {
+		return sqlsession.selectOne("rtotalCnt", bid);
+	}
 
 	// 부모 댓글 작성
 	public int write(Reply vo) throws Exception {
@@ -89,16 +94,15 @@ public class ReplyDao {
 		map.put("bid", bid);
 		return sqlsession.delete("board.delbook", map);
 	}
+	//댓글 신고
+    public int report(int mid, int rid, int repid) {
+        Map<String, Integer> paramMap = new HashMap<>();
+        paramMap.put("mid", mid);
+        paramMap.put("rid", rid);
+        paramMap.put("repid", repid);
+        return sqlsession.insert("board.report", paramMap);
+    }
 
-//	//대댓글 작성
-//	public int answer(Reply) throws Exception{
-//		return sqlsession.;
-//	}
-
-//	//댓글 신고
-//	public int report(Reply, int) throws Exception{
-//		return sqlsession.;
-//	}
 
 //	//답변 선택
 //	public int adopt(int, int, int, int) throws Exception{

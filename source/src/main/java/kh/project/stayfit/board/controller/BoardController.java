@@ -102,6 +102,8 @@ public class BoardController {
 		Board bone = srv.read(bid);
 		//댓글 리스트
 		List<Reply> rlist = lsrv.replylist(bid);
+		//댓글 카운트 
+		int rCnt = lsrv.rtotalCnt(bid);
 		
 		//한페이지 새로고침 방지 조회수 증가 session에 s 체크상태인 동시에 조회수 1증가 새로고침해도 조회수 증가 안 함 
 		//list로 이동 후 다시 들어가야지 조회수 증가 
@@ -117,8 +119,12 @@ public class BoardController {
 			int mid = (int)request.getSession().getAttribute("mid");
 			mv.addObject("writer", mid);
 		}
+		//댓글에 사용자 이름 출력하기 위해서 사용 
+		String loginuser = (String) session.getAttribute("mname");
+		mv.addObject("loginuser", loginuser); 
 		
-		mv.addObject("reply", rlist);
+		mv.addObject("rCnt", rCnt);  //댓글카운트
+		mv.addObject("reply", rlist); 
 		mv.addObject("sectionName", "board/read.jsp");
 		mv.addObject("read", bone);
 		mv.setViewName("index");
@@ -142,6 +148,7 @@ public class BoardController {
 		mv.setViewName("index");	
 		return mv;
 	}
+	
 	//게시글 등록
 	@PostMapping("/write")
 	public String write(Board vo) throws Exception {

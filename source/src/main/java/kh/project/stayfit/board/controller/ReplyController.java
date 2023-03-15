@@ -104,28 +104,15 @@ public class ReplyController {
 		}
 		return map;
 	}
+	
+	//댓글 신고
+	@PostMapping("/replyreport")
+	@ResponseBody
+	public String report(@RequestParam(value = "mid") int mid,
+            @RequestParam(value = "rid") int rid,
+            @RequestParam(value = "repid") int repid) {
+		return "success";
+	}
 
-//	@PostMapping("/replyreport")
-//	public ModelAndView report(ModelAndView mv) {
-////		Board bone = srv.read(bid);
-//
-//		mv.addObject("sectionName", "board/read.jsp");
-////		mv.addObject("read", bone);
-//		mv.setViewName("index");
-//
-//		return mv;
-//	}
-
-//
-//	@PostMapping("/replyadopt")
-//	public ModelAndView adopt(ModelAndView mv) {
-////		Board bone = srv.read(bid);
-//
-//		mv.addObject("sectionName", "board/read.jsp");
-////		mv.addObject("read", bone);
-//		mv.setViewName("index");
-//
-//		return mv;
-//	}
-
+	
 }

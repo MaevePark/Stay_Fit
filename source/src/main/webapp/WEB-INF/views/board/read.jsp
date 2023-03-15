@@ -81,18 +81,29 @@
 					</div>
 					<!-- 수정, 삭제, 목록 버튼 여기까지  -->
 
-					<div class="total-box">
-						<!-- 북마크  -->
-						<div style="border: none; display: inline-block;">
-							<button class="bookmark" value="${read.bid}">
-								<img class="default-img" /> <img class="active-img" />
-							</button>
-							<span>북마크</span>
+					<!-- 북마크 & 댓글 카운트 -->
+					<!-- 북마크  -->
+					<div class="container mt-3">
+						<div class="d-flex">
+							<div class="reply-img">
+								<img class="balloon-img"
+									src="<%=request.getContextPath()%>/resources/img/board-read/balloon.png"
+									alt="balloon">
+							</div>
+							<div class="count p-2">${rCnt}</div>
+							<div class="book-img">
+								<button class="bookmark" value="${read.bid}">
+									<img class="default-img"
+										src="<%=request.getContextPath()%>/resources/img/board-read/delbook.png"
+										alt="default-book"> <img class="active-img"
+										src="<%=request.getContextPath()%>/resources/img/board-read/bookmark.png"
+										alt="bookmark">
+								</button>
+							</div>
+							<div class="book-msg img-text">북마크</div>
 						</div>
-						<!-- 북마크 끝  -->
-						<a> <span>aaa</span>
-						</a>
 					</div>
+					<!-- 북마크 & 댓글 카운트 끝  -->
 
 					<!-- 댓글 -->
 					<div id="replyArea">
@@ -117,9 +128,86 @@
 													<img id="profimg" src="${repl.profimg }" />
 												</div>
 												<div class="reply-inbox">
-													<div class="reply-info">
-														<span>${repl.mname }</span> <span><fmt:formatDate
-																pattern="YY/MM/dd HH:MM" value="${repl.rcreate}" /></span>
+													<div class="reply-info d-flex justify-content-between">
+														<div>
+															<strong>${repl.mname }</strong> <span><fmt:formatDate
+																	pattern="YY/MM/dd HH:MM" value="${repl.rcreate}" /></span>
+														</div>
+														<!-- 공감, 신고 버튼 -->
+														<div class="d-flex flex-row">
+															<c:if test="${repl.mid != writer }">
+																<button class="like-button" value="${repl.rid }">
+																	<img class="unlike-img"
+																		src="<%=request.getContextPath()%>/resources/img/board-read/unlike.png"
+																		alt="unlike-img"> <img class="like-img"
+																		src="<%=request.getContextPath()%>/resources/img/board-read/like.png"
+																		alt="like-img">
+																</button>
+																<%-- <button type="button" class="report-button">
+																	<img class="report-img"
+																		src="<%=request.getContextPath()%>/resources/img/board-read/siren.png"
+																		alt="siren-img">
+																</button> --%>
+																<!-- 테스트 진행중 -->
+
+																<button type="button" class="report-button" onclick="openModal('${repl.mname}', '${repl.rid}')" data-toggle="modal" data-target="#myModal">
+																	<img class="report-img"
+																		src="<%=request.getContextPath()%>/resources/img/board-read/siren.png"
+																		alt="siren-img">
+																</button>
+																<!-- The Modal -->
+																<div class="modal fade" id="myModal">
+																	<div class="modal-dialog modal-dialog-centered">
+																		<div class="modal-content">
+
+																			<!-- Modal Header -->
+																			<div class="modal-header">
+																				 <h4 id="modal-title" class="modal-title">님을 신고합니다</h4>
+																				<button type="button" class="close"
+																					data-dismiss="modal">×</button>
+																			</div>
+
+																			<!-- Modal body -->
+																			<form>
+																				<div class="modal-body" id="report" >
+																					<input type="hidden" name="rid" value="rid">
+																					<input type="radio" id="0" name="report" value="0">
+																					<label for="0" class="text-center">광고/상업성
+																						게시글</label> <br> <input type="radio" id="1"
+																						name="report" value="1"> <label for="1"
+																						class="text-center">비방/욕설 게시글</label> <br> <input
+																						type="radio" id="2" name="report" value="2">
+																					<label for="2" class="text-center">개인정보 유출
+																						게시글</label> <br> <input type="radio" id="3"
+																						name="report" value="3"> <label for="3"
+																						class="text-center">청소년 유해 게시글</label> <br> <input
+																						type="radio" id="4" name="report" value="4">
+																					<label for="4" class="text-center">명예훼손/저작권
+																						침해 게시글</label> <br> <input type="radio" id="5"
+																						name="report" value="4"> <label for="5"
+																						class="text-center">도배성 게시글</label><br> <input
+																						type="radio" id="6" name="emotion" value="4">
+																					<label for="6" class="text-center">불명확/추측성
+																						게시글</label>
+																				</div>
+																			</form>
+
+																			<!-- Modal footer -->
+																			<div class="modal-footer">
+																				<button type="button" class="btn btn-danger"
+																					data-dismiss="modal">신고</button>
+																				<button type="button" class="btn btn-secondary"
+																					data-dismiss="modal">취소</button>
+																			</div>
+
+																		</div>
+																	</div>
+																</div>
+
+
+															</c:if>
+														</div>
+														<!-- 공감, 신고 버튼 끝 -->
 													</div>
 													<div class="reply-form">
 														<!-- 기존 댓글 정보  -->
@@ -151,13 +239,7 @@
 																<button id="del-reply" type="button"
 																	onclick="rdel(${repl.rid})" class="btn btn-sm btn-del">삭제</button>
 															</c:if>
-															<c:if test="${repl.mid != writer }">
-																<button
-																	class="btn btn-primary btn-sm btn-light like-button"
-																	value="${repl.rid }">공감</button>
-																<button type="button"
-																	class="btn btn-primary btn-sm btn-light">신고</button>
-															</c:if>
+
 															<button id="child-reply"
 																class="btn btn-primary btn-sm btn-light"
 																value="${repl.rid}">답글</button>
@@ -202,7 +284,7 @@
 					<!-- 댓글작성 시작  -->
 					<div class="write_reply_form" style="margin: 12px 0 29px;">
 						<div class="reply-inbox">
-							<strong class="writer-name">${writer}</strong>
+							<strong class="writer-name">${loginuser}</strong>
 							<textarea name="rcontent" id="rcontent" rows="3"
 								placeholder="댓글을  작성해주세요"></textarea>
 							<div>
@@ -457,8 +539,78 @@ $(document).ready(function(){
 		}
 	});
 });
+//댓글 신고
+//모달창 mname전달 
+/*  function openModal(mname) {
+        var modalTitle = document.getElementById("modal-title");
+        modalTitle.innerHTML = mname + "님을 신고합니다";
+        $('#myModal').modal('show');
+    } */
+//모달창에 데이터 전달
+ <%-- function openModal(mname, rid) {
+		 var modalTitle = document.getElementById("modal-title");
+     	modalTitle.innerHTML = mname + "님을 신고합니다";
+	    /* $('#myModal #modal-title').text(mname); */
+	    $('#myModal #report input[name="rid"]').val(rid);
+	    $('#myModal').modal('show');
+	}
+//모달창 신고 
+ $("#myModal .modal-footer .btn-danger").click(function() {
+	    var selectedValue = $('input[name="report"]:checked').val();
+	    var rid = $("#report").val();
+	    var data = {
+	        "mid": <%= session.getAttribute("mid") %>,
+	        "rid": rid,
+	        "repid": selectedValue
+	    };
+	    console.log(data);
+	    $.ajax({
+	        type: "POST",
+	        url: "replyreport",
+	        data: data,
+	        success: function(result) {
+	            alert("신고 접수 되었습니다.");
+	        },
+	        error: function(xhr, status, error) {
+	            alert("신고에 실패하였습니다.");
+	        }
+	    });
+	}); --%>
+	
+	function openModal(mname, rid) {
+	    var modalTitle = document.getElementById("modal-title");
+	    modalTitle.innerHTML = mname + "님을 신고합니다";
 
+	    // 수정된 부분: rid 값을 data 객체에 추가하여 전달
+	    var data = { "rid": rid };
+	    $('#myModal #report input[name="rid"]').val(data.rid);
 
+	    $('#myModal').modal('show');
+	}
+
+	$("#myModal .modal-footer .btn-danger").click(function() {
+	    var selectedValue = $('input[name="report"]:checked').val();
+	    
+	    // 수정된 부분: data 객체에 mid, repid 추가
+	    var data = {
+	        "mid": <%= session.getAttribute("mid") %>,
+	        "rid": $('input[name="rid"]').val(),
+	        "repid": selectedValue
+	    };
+	    
+	    console.log(data);
+	    $.ajax({
+	        type: "POST",
+	        url: "replyreport",
+	        data: data,
+	        success: function(result) {
+	            alert("신고 접수 되었습니다.");
+	        },
+	        error: function(xhr, status, error) {
+	            alert("신고에 실패하였습니다.");
+	        }
+	    });
+	});	
 //북마크
 $(document).ready(function(){
 	$(document).on('click','.bookmark',function(){
