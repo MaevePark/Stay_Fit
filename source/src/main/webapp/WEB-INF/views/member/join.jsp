@@ -333,7 +333,7 @@ function pwChk1(el) {
 	if($('#popChild_1').length > 0) {
 		var popChild = document.getElementById('popChild_1');
 		if(!regExp.test(pw1.value)) {
-			popChild.innerText = "비밀번호는 8~16자로 /n영문, 숫자, 특수 기호를 조합하여 입력해주세요.";
+			popChild.innerText = "비밀번호는 8~16자로\n영문, 숫자, 특수 기호를 조합하여 입력해주세요.";
 			popChild.style.color = "red";
 			pwChkVal1.val(0);
 		} else {
@@ -345,7 +345,7 @@ function pwChk1(el) {
 		pw1_parent.appendChild(new_child);
 		var popChild = document.getElementById('popChild_1');
 		if(!regExp.test(pw1.value)) {
-			popChild.innerText = "비밀번호는 8~16자로 /n영문, 숫자, 특수 기호를 조합하여 입력해주세요.";
+			popChild.innerText = "비밀번호는 8~16자로\n영문, 숫자, 특수 기호를 조합하여 입력해주세요.";
 			popChild.style.color = "red";
 			pwChkVal1.val(0);
 		} else {
