@@ -116,38 +116,44 @@ label[for="4"] > input:checked{
 /*댓글 이모티콘  끝 */
 
 /*북마크 시작  */
-.bookmark{
+.bookmark {
 	width:40px;
 	height:40px;
-	border : none;
-	background-color: transparent;
-  	cursor: pointer;
+  	border: none;
+ 	padding: 0;
+  	background: none;
+ 	cursor: pointer;
 }
 .default-img{
-	width:40px;
-	height:40px;
-	background-size: contain !important;
-	background :url(../img/board-read/delbook.png) no-repeat;
+  display: block;
+  width: 100%;
+  height: auto;
 }
 .active-img{
-	width:40px;
-	height:40px;
-	background-size: contain !important;
-	background :url(../img/board-read/bookmark.png) no-repeat;	
 	display : none;	
-	border : none;
-	box-sizing: content-box;
+  	width: 100%;
+  	height: auto;
 }
-.active .default-img {
-  display: none;
+.active .default-img{
+	display: none;
 }
-
-.active .active-img {
-  display: inline-block;
-  border: none;
-} 
-/* 북마크 끝  */
-
+.active .active-img{
+	display: block;
+}
+/*북마크끝  */
+/* 말풍선 이미지  */
+.balloon-img{
+	width :38px;
+	height : 38px;
+	
+}
+/*북마크와 댓글 카운트 공통 적용  */
+.img-text{
+	padding-top: 0.7rem;
+	padding-bottom:0.7rem;
+	font-size: 13px;
+	align-items: center; 
+}
 /*댓글영역 시작*/
 /*댓글리스트  */
 li{
@@ -202,6 +208,7 @@ li{
 	width : 40px;
 	height : 40px;
 }
+
 .btn-modify {
     color: #7fad39;;
     border-color: #7fad39;;
@@ -219,8 +226,47 @@ li{
     color: white;
 }
 
-
-
+/*댓글 공감 버튼*/
+.like-button {
+	width:20px;
+	height:20px;
+  	border: none;
+ 	padding: 0;
+  	background: none;
+ 	cursor: pointer;
+}
+.unlike-img{
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.like-img{
+	display : none;	
+  	width: 100%;
+  	height: auto;
+}
+.active .unlike-img{
+	display: none;
+}
+.active .like-img{
+	display: block;
+}
+/*댓글 공감 버튼 끝*/
+/*신고버튼  */
+.report-button {
+	width:20px;
+	height:20px;
+  	border: none;
+ 	padding: 0;
+  	background: none;
+ 	cursor: pointer;
+}
+.report-img{
+  display: block;
+  width: 100%;
+  height: auto;
+}
+/*신고버튼 끝  */
 
 /*댓글 작성  */
 .write_reply_form{
