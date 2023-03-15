@@ -10,5 +10,5 @@ public interface HealthCenterService {
 	public List<HealthCenter> selectCenterlist(int lid, String search, String keyword, int page, int limits) throws Exception;
 	
 	// 게시글 총 개수
-	public int totalPageCnt(int lid, String search, String keyword) throws Exception;
+	public int totalPageCnt(String search, String keyword) throws Exception;
 }

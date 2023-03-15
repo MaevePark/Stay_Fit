@@ -22,7 +22,7 @@ public class HealthCenterServiceImpl implements HealthCenterService {
 	}
 	// 게시글 총 개수
 	@Override
-	public int totalPageCnt(int lid, String search, String keyword) throws Exception {
+	public int totalPageCnt(String search, String keyword) throws Exception {
 		return dao.totalPageCnt(search, keyword);
 	}
 }
