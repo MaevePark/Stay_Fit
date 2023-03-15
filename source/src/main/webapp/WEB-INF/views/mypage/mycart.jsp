@@ -59,9 +59,9 @@
 											</c:if>
 											
 											<c:if test="${list.PSALE == 0 }">
-												<input class="price" type="hidden" value="${list.PPRICE/10*10 }">
-												<span>${list.PPRICE/10*10 }</span><span>원</span>
-												<c:set var="cost" value="${list.PPRICE }"></c:set>
+												<input class="price" type="hidden" value="${fp }">
+												<span>${finalPrice}</span><span>원</span>
+												<c:set var="cost" value="${fp }"></c:set>
 											</c:if>
 										</td>
 										<td class="shoping__cart__quantity">

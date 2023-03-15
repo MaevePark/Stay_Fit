@@ -12,13 +12,13 @@
 	<update id="updateProfile" parameterType="map">
 		UPDATE MEMBER 
 			SET 
-			<if test="mname != null">
+			<if test="mname != null and !mname.equals('')">
 				MNAME = #{mname}, 
 			</if>
-			<if test="pwd != null">
+			<if test="pwd != null and !pwd.equals('')">
 				MPW = #{pwd}, 
 			</if>
-			<if test="profimg != null">
+			<if test="profimg != null and !profimg.equals('')">
 				PROFIMG = #{profimg}, 
 			</if>	
 			MUPDATE=SYSTIMESTAMP 
@@ -126,7 +126,7 @@
 	<!-- 작성한 글 select -->
 	<select id="selectMyBoard" parameterType="map" resultType="map">
 		SELECT B.BID BID, B.BCID BCID, M.MNAME MNAME, B.BTITLE BTITLE
-		, B.BPICK BPICK, B.BCREATE BCREATE, B.BUPDATE BUPDATE, B.BVIEWCOUNT BVIEWCOUNT 
+		, B.BPICK BPICK, TO_CHAR(B.BCREATE, 'YYYY-MM-DD HH24:MI') BCREATE, TO_CHAR(B.BUPDATE, 'YYYY-MM-DD HH24:MI') BUPDATE, B.BVIEWCOUNT BVIEWCOUNT 
 			FROM BOARD B JOIN MEMBER M ON B.MID = M.MID 
 				WHERE B.MID=${mid } AND 
 			<if test="boardCategory != 0">
@@ -207,7 +207,7 @@
 	
 	<!-- 작성한 댓글 select -->
 	<select id="selectMyReply" parameterType="map" resultType="map">
-		SELECT B.BCID, R.RID RID, R.BID BID, B.BTITLE BTITLE, R.RCONTENT RCONTENT, R.RCREATE RCREATE 
+		SELECT B.BCID, R.RID RID, R.BID BID, B.BTITLE BTITLE, R.RCONTENT RCONTENT, TO_CHAR(R.RCREATE, 'YYYY-MM-DD HH24:MI') RCREATE 
 			FROM BOARD B JOIN REPLY R  ON B.BID = R.RID
 			AND R.MID=${mid } 
 			WHERE 
@@ -299,7 +299,7 @@
 	
 	<!-- 북마크한 글 select -->
 	<select id="selectBMark" parameterType="map" resultType="map">
-		SELECT M.MNAME MNAME, B.BID BID, B.BCID BCID, B.BTITLE BTITLE, B.BPICK BPICK, B.BCREATE BCREATE, B.BUPDATE BUPDATE, B.BVIEWCOUNT BVIEWCOUNT 
+		SELECT M.MNAME MNAME, B.BID BID, B.BCID BCID, B.BTITLE BTITLE, B.BPICK BPICK, TO_CHAR(B.BCREATE, 'YYYY-MM-DD HH24:MI') BCREATE, TO_CHAR(B.BUPDATE, 'YYYY-MM-DD HH24:MI:SS') BUPDATE, B.BVIEWCOUNT BVIEWCOUNT 
 			FROM BOARD B JOIN BOOKMARK BM ON BM.BID = B.BID 
 			JOIN MEMBER M ON B.MID = M.MID 
 			AND BM.MID=${mid } 
@@ -385,7 +385,7 @@
 
 	<!-- 공감 댓글 select -->
 	<select id="selectLikeReply" parameterType="map" resultType="map">
-		SELECT B.BCID, R.RID RID, R.BID BID, B.BTITLE BTITLE, R.RCONTENT RCONTENT , R.RCREATE RCREATE
+		SELECT B.BCID, R.RID RID, R.BID BID, B.BTITLE BTITLE, R.RCONTENT RCONTENT , TO_CHAR(R.RCREATE, 'YYYY-MM-DD HH24:MI') RCREATE
 			FROM REPLY_LIKE LR 
 				JOIN REPLY R ON LR.RID = R.RID AND LR.MID=${mid} 
 				JOIN BOARD B ON B.BID = R.BID 

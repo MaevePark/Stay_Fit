@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -182,8 +183,7 @@
 															<c:if test="${list.BCID  == 3}"><span>고민&질문</span></c:if>
 														</td>
 														<td><span>${list.RCONTENT }</span></td>
-														<fmt:formatDate var="createDate" value="${list.RCREATE }" pattern="YY/MM/dd HH:MM" />
-														<td><span>${createDate }</span></td>
+														<td><span>${list.RCREATE }</span></td>
 														<td><a class="boardTitle" href="<%=request.getContextPath()%>/board/read.do?bid=${list.BID}">${list.BTITLE }</a></td>
 													</tr>
 												</c:forEach>
