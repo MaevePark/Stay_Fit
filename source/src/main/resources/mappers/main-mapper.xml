@@ -5,21 +5,21 @@
 	<!-- 메인 게시판 공지사항  -->
 	<select id="notice" resultType="Board">
 		SELECT bid, btitle, bcreate FROM board b JOIN member m ON b.mid=m.mid
-		WHERE b.bcid = 0
+		WHERE b.bcid = 0 AND BSTATE='A' 
 		ORDER BY b.bid desc
 	</select>
 	 
 	<!-- 최신글  -->
 	<select id="recent" resultType="Board">
 		SELECT bid, profimg, bcname, btitle, mname FROM board b JOIN bcategory bc USING(bcid) JOIN member m ON b.mid=m.mid
-    	WHERE bcid !=0
+    	WHERE bcid !=0 AND BSTATE='A' 
     	ORDER BY bid DESC
 	</select> 
 	
 	<!-- 인기글  -->
 	<select id="popular" resultType="Board">
 	SELECT bid, profimg, bcname, btitle, mname FROM board b JOIN bcategory bc USING(bcid) JOIN member m ON b.mid=m.mid
-    WHERE bcid !=0
+    WHERE bcid !=0 AND BSTATE='A' 
     ORDER BY bviewcount DESC, bid DESC
 	</select>
 </mapper>
