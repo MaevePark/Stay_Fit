@@ -34,7 +34,7 @@ function changeName() {
 	if($('#nameInputArea').childElementCount > 0) {
 	} else {
 			var parent = document.getElementById("nameInputArea");
-			const html = '<input type="text" name="mname">';
+			const html = '<input type="text" name="mname" placeholder="변경할 닉네임을 입력해주세요.">';
 			parent.innerHTML = html;
 			
 			if($('#submitBtn').length < 1) {
@@ -50,9 +50,9 @@ function changePwd() {
 	if($('#pwdInputArea').childElementCount > 0) {
 	} else {
 			var parent = document.getElementById("pwdInputArea");
-			const html = '<input type="password" name="pwd" id="pw1" onkeyup="pwChk1()">'+
+			const html = '<input type="password" name="pwd" id="pw1" onkeyup="pwChk1()" placeholder="변경할 비밀번호를 입력해주세요.">'+
 						'<span id="pwChkMsg1"></span>'+
-						'<input type="password" name="pwd2" id="pw2" onkeyup="pwChk2()">'+
+						'<input type="password" name="pwd2" id="pw2" onkeyup="pwChk2()" placeholder="비밀번호를 다시 입력해주세요.">'+
 						'<span id="pwChkMsg2"></span>'+
 						'<input type="hidden" id="pwChkVal1" value="0">'+
 						'<input type="hidden" id="pwChkVal2" value="0">';
