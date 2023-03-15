@@ -338,7 +338,7 @@ function pwChk1(el) {
 			pwChkVal1.val(0);
 		} else {
 			popChild.innerText = "사용 가능한 비밀번호입니다.";
-			popChild.style.color = "#7fad39";
+			popChild.style.color = "green";
 			pwChkVal1.val(1);
 		}
 	} else {
@@ -350,7 +350,7 @@ function pwChk1(el) {
 			pwChkVal1.val(0);
 		} else {
 			popChild.innerText = "사용 가능한 비밀번호입니다.";
-			popChild.style.color = "#7fad39";
+			popChild.style.color = "green";
 			pwChkVal1.val(1);
 		}
 	}
@@ -371,7 +371,7 @@ function pwChk2(el) {
 			pwChkVal2.val(0);
 		} else {
 			popChild.innerText = "비밀번호가 일치합니다.";
-			popChild.style.color = "#7fad39";
+			popChild.style.color = "green";
 			pwChkVal2.val(1);
 		}
 	} else {
@@ -383,7 +383,7 @@ function pwChk2(el) {
 			pwChkVal2.val(0);
 		} else {
 			popChild.innerText = "비밀번호가 일치합니다.";
-			popChild.style.color = "#7fad39";
+			popChild.style.color = "green";
 			pwChkVal2.val(1);
 		}
 	}
