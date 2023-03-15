@@ -75,28 +75,14 @@
 														<td colspan="3">${center.haddr }</td>
 														<!-- 전화번호 -->
 														<td colspan="2">${center.hpnum }</td>
-														<!-- 위치 링크 시작 -->
+														<!-- kakao map 링크 시작 -->
 														<td id="map">
-															<a id="maplink" onclick="healthCenterMap (															
-															    <c:if test="${center.lid == 1 }">'강남구 보건소', '37.51630311339761', '127.04227756939835'</c:if>															    														    
-															    <c:if test="${center.lid == 2 }">'강서구 보건소', '35.180235150684716', '128.9572976673653'</c:if>
-															    <c:if test="${center.lid == 3 }">'강화군 보건소', '37.73728494653745', '126.48474092791898'</c:if>
-															    <c:if test="${center.lid == 4 }">'대덕구 보건소', '36.44482868764453', '127.426551314056'</c:if>
-															    <c:if test="${center.lid == 5 }">'남구 보건소', '35.85390139676481', '128.59152247146537'</c:if>
-															    <c:if test="${center.lid == 6 }">'광산구 보건소', '35.139648146235686', '126.79363757877468'</c:if>
-															    <c:if test="${center.lid == 7 }">'남구 보건소', '35.54535773288751', '129.33632823698335'</c:if>
-															    <c:if test="${center.lid == 8 }">'가평군 보건소', '37.83350180940176', '127.51060217146764'</c:if>
-															    <c:if test="${center.lid == 9 }">'강진군 보건소', '34.63833473188551', '126.77573097122912'</c:if>
-															    <c:if test="${center.lid == 10 }">'거제시 보건소', '34.89168827150237', '128.6365616019532'</c:if>
-															    <c:if test="${center.lid == 11 }">'강릉시 보건소', '37.74281029073316', '128.88275019847094'</c:if>
-															    <c:if test="${center.lid == 12 }">'계룡시 보건소', '36.27307427576665', '127.2500603578764'</c:if>
-															    <c:if test="${center.lid == 13 }">'서귀포시 동부 보건소', '33.27562881836351', '126.70342326443737'</c:if>															    													
-															  );"><img
+															<a id="maplink" onclick="healthCenterMap ('${center.hplace }','${center.haddr }');"><img
 																	src="<%=request.getContextPath()%>/resources/img/health/btn_spot.gif"
 																	alt="위치">
 															</a>															
 														</td>													
-														<!-- 위치 링크 끝 -->
+														<!-- kakao map 링크 끝 -->
 													</tr>
 												</c:forEach>
 												<!-- 보건소 list 끝 -->
@@ -113,11 +99,11 @@
 						<div class="product__pagination">
 							<c:if test="${pagingMap.start != 1}">
 								<a href="<%=request.getContextPath()%>/${urlpattern }?search=${search}&keyword=${keyword}&page=1">
-									<< </a>
+									&laquo; </a>
 							</c:if>
 							<c:if test="${pagingMap.currentPage != 1}">
 								<a	href="<%=request.getContextPath()%>/${urlpattern }?search=${search}&keyword=${keyword}&page=${pagingMap.currentPage -1}">
-									< </a>
+									&lt; </a>
 							</c:if>
 
 							<c:forEach begin="${pagingMap.start }" end="${pagingMap.end }"
@@ -128,11 +114,11 @@
 
 							<c:if test="${pagingMap.currentPage != pagingMap.totalPageCnt}">
 								<a	href="<%=request.getContextPath()%>/${urlpattern }?search=${search}&keyword=${keyword}&page=${pagingMap.currentPage +1}">
-									> </a>
+									&gt; </a>
 							</c:if>
 							<c:if test="${pagingMap.end != pagingMap.totalPageCnt}">
 								<a	href="<%=request.getContextPath()%>/${urlpattern }?search=${search}&keyword=${keyword}&page=${pagingMap.totalPageCnt }">
-									>> </a>
+									&raquo; </a>
 							</c:if>
 						</div>
 					</div>
@@ -143,14 +129,26 @@
 	</div>
 </section>
 <!-- Blog Section End -->
+<!-- 서비스 키 시작 !노출 주의! -->
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=373fbab82f1b76357a0cb714502f860d&libraries=services"></script>
+<!-- 서비스 키 끝 !노출 주의! -->
 <script>
 //<--------------------------------------------------------------------
 // 1. kakao map 이동 시작
-function healthCenterMap(location_name, latitude, longitude) {
-	window.open("https://map.kakao.com/link/map/" +
+function healthCenterMap(location_name, haddress) {
+	// 주소-좌표 변환 객체를 생성합니다
+	var geocoder = new kakao.maps.services.Geocoder();
+	// 주소로 좌표를 검색합니다
+	geocoder.addressSearch(haddress, function(result, status) {
+	    // 정상적으로 검색이 완료됐으면 
+	     if (status === kakao.maps.services.Status.OK) {
+			var latitude = result[0].y; // 위도
+			var longitude = result[0].x; // 경도
 			// link/map/장소이름,위도,경도 새로운 창으로 열기
-			location_name + ","	+ latitude + "," + longitude); 
-			
+	        window.open("https://map.kakao.com/link/map/" +
+	    		location_name + ","	+ latitude + "," + longitude); 
+	    } 
+	});    
 }
 // 1. kakao map 이동 끝
 //-------------------------------------------------------------------->
