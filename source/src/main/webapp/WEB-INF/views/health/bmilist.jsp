@@ -51,6 +51,7 @@
 						</tbody>
 					</table>
 					<div>
+					<br>
 						<p>
 							<span>비만도 기준</span> : <span>18.5 미만 저체중</span><span> /
 								18.5 ~ 22.9 정상</span><span> / 23.0 ~ 24.9 과체중</span><span> /
