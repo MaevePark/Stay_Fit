@@ -69,10 +69,10 @@ window.onload = function() {
 						<label class="rounded-circle btn btn-light btn-kcal" for="snack1">
 							<input type="radio" class="kcal-radio" name="snack1" id="snack1"
 							data-toggle="buttons"> kcal
-						</label> <label class="rounded-circle btn btn-light btn-kcal"> <input
+						</label> <label class="rounded-circle btn btn-light btn-kcal" for="snack2"> <input
 							type="radio" class="kcal-radio" name="snack2" id="snack2">
 							kcal
-						</label> <label class="rounded-circle btn btn-light btn-kcal"> <input
+						</label> <label class="rounded-circle btn btn-light btn-kcal" for="snack3"> <input
 							type="radio" class="kcal-radio" name="snack3" id="snack3">
 							kcal
 						</label>
@@ -114,7 +114,7 @@ window.onload = function() {
 					</div>
 				<div class="modal-footer">
 					<button type="button" class="btn-cancel btn btn-danger" data-dismiss="modal">취소</button>
-					<button type="submit" class="btn-add btn btn-success">등록</button>
+					<button type="button" class="btn-add btn btn-success" onclick="upload()">등록</button>
 				</div>
 				</form>
 			</div>
@@ -183,7 +183,7 @@ window.onload = function() {
 							<input type="text" class="form-control" id="searchExrc" placeholder="운동 종류에 대한 검색어를 입력하세요.">
 							<div class="input-group-append">
 								<button type="button" class="btn btn-secondary" id="btnSrcExrc">
-								<i class="fa fa-search"></i>
+									<i class="fa fa-search"></i>
 								</button>
 							</div>
 						</div>

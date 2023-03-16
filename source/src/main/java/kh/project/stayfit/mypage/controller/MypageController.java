@@ -3,7 +3,10 @@ package kh.project.stayfit.mypage.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,6 +40,7 @@ import kh.project.stayfit.mypage.model.vo.MypageCart;
 import kh.project.stayfit.mypage.model.vo.MypageMember;
 import kh.project.stayfit.mypage.model.vo.MypageOrder;
 import kh.project.stayfit.mypage.model.vo.MypageWish;
+import oracle.sql.TIMESTAMP;
 
 @Controller
 @RequestMapping("/mypage")
@@ -158,11 +162,7 @@ public class MypageController {
 			cloudinary.config.secure = true;
 
 			try {
-				// https://res.cloudinary.com/doxmm0ofz/image/upload/v1677233838/fd689c23-b84a-4d19-8292-87cfdc656201_w_20220207180134_5798062860.jpg
 				String originalImage = vo.getProfimg(); // 기존 이미지 url
-				System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-				System.out.println("originalImage : "+originalImage);
-				System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 				// <url에서 마지막 / 와 . 사이에 글자만 잘라내기>
 				// 1. 마지막 /와 .의 인덱스를 찾기
 				int lastSlashIndex = originalImage.lastIndexOf('/');
@@ -174,11 +174,7 @@ public class MypageController {
 				// 이미지 업로드
 				Map params1 = ObjectUtils.asMap("use_filename", true, "unique_filename", false, "overwrite", true);
 				Map result = cloudinary.uploader().upload(localFilePath + savedFileName, params1); // 업로드시 map형태로 파일정보를
-																									// 리턴함.
-				System.out.println("★★★ result : " + result);
 				String newUrl = result.get("secure_url").toString();
-				System.out.println("★★★ newUrl : " + newUrl);
-
 				// 기존 이미지가 있었다면 그 이미지 삭제
 				if ((originalImage != null && !originalImage.equals("")) && !originalImage.equals("https://res.cloudinary.com/doxmm0ofz/image/upload/v1675945711/profile/defaultprofile_rmpnyj.jpg")) {
 					try {
@@ -744,10 +740,24 @@ public class MypageController {
 		} else {
 			int totalCnt = boardservice.selectBoardTotalCnt(mid, type, boardCategory, searchRange, searchword);
 			Map<String, Object> pagingMap = Paging.paging(page, totalCnt, limits, pageLimit);
+			
+			List<Map<String, Object>> boardList = boardservice.selectBoardList(mid, type, boardCategory, searchRange, searchword, page, limits);
+			
+			//SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+			
+//			for(int i=0; i<boardList.size(); i++) {
+//				TIMESTAMP bcreate = (TIMESTAMP) boardList.get(i).get("BCREATE");
+//				TIMESTAMP bupdate = (TIMESTAMP) boardList.get(i).get("BUPDATE");
+//				
+//				
+//				
+//				String f_bcreate = bcreate.substring(0, bcreate.lastIndexOf(":"));
+//				String f_bupdate = bupdate.substring(0, bupdate.lastIndexOf(":"));
+//			}
 	
 			mv.addObject("sectionName", "mypage/myboard.jsp");
 			mv.addObject("urlpattern", "mypage/board");
-			mv.addObject("boardList", boardservice.selectBoardList(mid, type, boardCategory, searchRange, searchword, page, limits));
+			mv.addObject("boardList", boardList);
 			mv.addObject("pagingMap", pagingMap);
 			mv.addObject("type", type);
 			mv.addObject("boardCategory", boardCategory);
@@ -789,7 +799,7 @@ public class MypageController {
 //	}
 	
 	@ExceptionHandler(Exception.class)
-	public ModelAndView handlerBoardException(Exception e/* 오류발생 ,ModelAndView mv  */) {
+	public ModelAndView handlerMypageException(Exception e/* 오류발생 ,ModelAndView mv  */) {
 		e.printStackTrace();
 		ModelAndView mv = new ModelAndView(); 
 		mv.addObject("errMsg", e.getMessage());

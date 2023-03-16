@@ -77,9 +77,12 @@ public class DiaryController {
 			dataMap.put("date", date);
 			dataMap.put("mid", mid);
 			diaryList = diaryService.selectList(dataMap);
-			String imgTag1 = "<img src='/stayfit/resources/img/diary/dish.png' /> ";
-			String imgTag2 = "<img src='/stayfit/resources/img/diary/scale.png' /> ";
-			String imgTag3 = "<img src='/stayfit/resources/img/diary/dumbel.png' /> ";
+//			String imgTag1 = "<img src='/stayfit/resources/img/diary/dish.png' /> ";
+//			String imgTag2 = "<img src='/stayfit/resources/img/diary/dumbel.png' /> ";
+//			String imgTag3 = "<img src='/stayfit/resources/img/diary/scale.png' /> ";
+			String imgTag1 = "섭취량 : ";
+			String imgTag2 = "운동량 : ";
+			String imgTag3 = "몸무게 : ";
 			
 			List<Calendar> calendarList = new ArrayList<Calendar>();
 			for(int i=0; i < diaryList.size(); i++) {
@@ -94,15 +97,11 @@ public class DiaryController {
 					Calendar calendar = new Calendar();
 					calendar.setStart(ddate);
 					if(j==0) {
-						calendar.setTitle(Integer.toString(fullKcal));
-						calendar.setEmotImg(imgTag1);
+						calendar.setTitle(imgTag1 + Integer.toString(fullKcal) + "kcal");
 					} else if(j==1) {
-						calendar.setTitle(Integer.toString(burnKcal));
-						calendar.setEmotImg(imgTag2);
+						calendar.setTitle(imgTag2 + Integer.toString(burnKcal) + "kcal");
 					} else if(j==2) {
-						calendar.setTitle(Integer.toString(weight));
-						calendar.setEmotImg(imgTag3);
-						
+						calendar.setTitle(imgTag3 + Integer.toString(weight) + "kg");
 					}
 					calendar.setBackgroundColor("white");
 					calendar.setBorderColor("white");
@@ -128,9 +127,32 @@ public class DiaryController {
 	
 	
 	
+//	@PostMapping("/diarywrite")
+//	@ResponseBody
+//	public String writeDiary(Diary diary) throws Exception {
+//		
+//		diaryService.diarywrite(diary);
+//		return "success";
+//	}
+	
 	@PostMapping("/diarywrite")
 	@ResponseBody
-	public String writeDiary(Diary diary) throws Exception {
+	public String writeDiary(
+			@RequestParam("mid") int mid
+			, @RequestParam(name="breakfast", required=false) int breakfast
+			, @RequestParam(name="lunch", required=false) int lunch
+			, @RequestParam(name="dinner", required=false) int dinner
+			, @RequestParam(name="snack1", required=false) int snack1
+			, @RequestParam(name="snack2", required=false) int snack2
+			, @RequestParam(name="snack3", required=false) int snack3
+			, Diary diary
+			) throws Exception {
+		diary.setBreakfast(breakfast);
+		diary.setLunch(lunch);
+		diary.setDinner(dinner);
+		diary.setSnack1(snack1);
+		diary.setSnack2(snack2);
+		diary.setSnack3(snack3);
 		
 		diaryService.diarywrite(diary);
 		return "success";

@@ -89,22 +89,24 @@ function loadWish(el) {
 				for(let i=0; i<wishList.length; i++) {
 					var list = wishList[i];
 					html += '<div class="col-lg-4 col-md-6 col-sm-6">'+
-									'<div class="product__item">'+
-									'<div class="product__item__pic set-bg" '+
-										'data-setbg="'+list.pimage+'">'+
-										'<ul class="product__item__pic__hover">'+
-											'<li><a class="delWish" data-pid="'+list.pid+'" onclick="delWish(this)">X</a></li>'+
-											'<li><a class="fa fa-shopping-cart" data-pid="'+list.pid+'" onclick="sendCart(this)"></a></li>'+
-										'</ul>'+
-									'</div>'+
-									'<div class="product__item__text">'+
-										'<h6>'+
-											'<a href="#">'+list.pname+'</a>'+
-										'</h6>'+
-										'<h5>'+list.pprice+'원</h5>'+
-									'</div>'+
-								'</div>'+
-							'</div>';
+					'<div class="product__item">'+
+					'<div class="product__item__pic set-bg" '+
+						'data-setbg="'+list.pimage+'">'+
+						'<ul class="product__item__pic__hover">'+
+							'<li><a class="delWish" data-pid="'+list.pid+'" '+
+							'onclick="delWish(this)">X</a></li>'+
+							'<li><a class="fa fa-shopping-cart" '+
+							'data-pid="'+list.pid+'" onclick="sendCart(this)"></a></li>'+
+						'</ul>'+
+					'</div>'+
+					'<div class="product__item__text">'+
+						'<h6>'+
+							'<a href="#">'+list.pname+'</a>'+
+						'</h6>'+
+						'<h5>'+list.pprice+'원</h5>'+
+					'</div>'+
+				'</div>'+
+			'</div>';
 				}
 				html += '<jsp:include page="/WEB-INF/views/paging.jsp" />';
 			} else {

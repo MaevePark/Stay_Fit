@@ -106,9 +106,19 @@ public class JoinController {
 	}
 	@PostMapping("/mailChk")
 	@ResponseBody
-	public int mailchk(@RequestParam("memail") String memail) {
+	public void mailchk(@RequestParam("memail") String memail, HttpServletResponse response) {
 		int result= memberService.mailChk(memail);
-		return result; 
+		
+		try {
+			PrintWriter out = response.getWriter();
+			out.append(new GsonBuilder().create().toJson(result));
+			out.flush();
+			out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		//return result; 
 	}
 	
 	@PostMapping("/send")

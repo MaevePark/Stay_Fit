@@ -54,7 +54,7 @@ function loadCart(el) {
 						html += '<tr>'+
 									'<td class="shoping__cart__item"><img src="'+list.PIMAGE+'" alt="product_img">'+
 										'<h5>'+list.PNAME+'</h5></td>'+
-									'<td class="shoping__cart__price">'
+									'<td class="shoping__cart__price">'+
 										'<span class="price">'+Math.floor(list.PPRICE/10)*10+'</span><span>원</span>'+
 									'<td class="shoping__cart__quantity">'+
 										'<div class="quantity">'+
@@ -66,7 +66,7 @@ function loadCart(el) {
 									'</td>'+
 									'<td class="shoping__cart__total"><span>'+list.PPRICE*list.PCOUNT/10*10+'</span>원</td>'+
 									'<td class="shoping__cart__go_to_buy">'+
-										'<button type="button" onclick="insertRecord('+list.PID+')">구매하러 가기</button>'+
+										'<button type="button" onclick="insertRecord('+list.PID+', '+list.PLINK+')">구매하러 가기</button>'+
 									'</td>'+
 									'<td class="shoping__cart__item__close" data-pid='+list.PID+' onclick="delCart(this)"><span '+
 										'class="icon_close"></span></td>'+
@@ -209,6 +209,7 @@ function insertRecord(pid, url) {
 	console.log("pid : "+pid);
 	var pcount = document.querySelector('.pcount[data-pid=\"'+pid+'\"]').value
 	console.log("pcount : "+pcount);
+	console.log(url);
 	//주문기록으로 insert
 	$.ajax({
 		url:"insertOrder"

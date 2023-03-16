@@ -21,7 +21,18 @@
 	</resultMap>
  	
 	<insert id="diaryWrite" parameterType="Diary">
- 	INSERT INTO DIARY VALUES #{ddate}, #{mid}, #{breakfast}, #{breakfast_menu}, #{snack1}, #{snack1_menu}, #{lunch}, #{lunch_menu}, #{snack2}, #{snack2_menu}, #{dinner}, #{dinner_menu}, #{snack3}, #{snack3_menu}, #{exercise}, #{weight}
+	 	INSERT 
+	 		INTO DIARY 
+	 			VALUES (
+	 			#{ddate}, #{mid}
+	 			, #{breakfast}, #{breakfast_menu}
+	 			, #{snack1}, #{snack1_menu}
+	 			, #{lunch}, #{lunch_menu}
+	 			, #{snack2}, #{snack2_menu}
+	 			, #{dinner}, #{dinner_menu}
+	 			, #{snack3}, #{snack3_menu}
+	 			, #{exercise}, #{weight}
+	 			)
  	</insert>
   
 	<select id="searchMeal" parameterType="String" resultType="Nutrition">
