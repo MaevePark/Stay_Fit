@@ -62,11 +62,10 @@
 ## 6️⃣ Document
 <br>
 ##  1. 개발 일정
-<img width="1906" alt="image" src="https://user-images.githubusercontent.com/83773369/182081450-dbb3a95f-6235-4bcb-b460-4c9ed1a22c6d.png">
+<img width="1906" alt="image" src="![schedule](https://user-images.githubusercontent.com/107298972/227388977-74af1a16-3e92-4e74-9645-208e2dea225c.PNG)">
 
 <br>
 
-## 2. 유스케이스
 ## 2. 요구사항 정의서
 
 [요구사항 정의서 전체보기](https://docs.google.com/spreadsheets/d/1KwPPIOvbtx6iLBYWeOTz1Xbgg2AxTLXkiR6dffgKtKI/edit?usp=sharing)
@@ -88,7 +87,7 @@
 ## 3. ERD
 ## 5. ERD
 
-![6_9수정  5조_BAB 그룹웨어 (1)](https://user-images.githubusercontent.com/83773369/183255199-34af36d4-92c7-4e62-a529-e4f18b878851.png)
+![Stay Fit](https://user-images.githubusercontent.com/107298972/227388768-6fcbd194-965a-4459-8694-118eab1d4185.png))
 
 
 <br>
@@ -103,9 +102,15 @@
 ## 5. Class Diagram
 ## 7. Class Diagram
 
-
-![5조_클래스다이어그램(사원)](https://user-images.githubusercontent.com/83773369/183291755-7a47a40b-d0e7-4948-8748-310d47fc6194.png)
-![5조_클래스다이어그램(조직도)](https://user-images.githubusercontent.com/83773369/183291758-61e6ca73-eb6f-49d3-acb5-fcfeb930f3bb.png)
+![1](https://user-images.githubusercontent.com/107298972/227389844-1b654d0a-bd29-44e7-9fe2-8455a2ae4439.PNG)
+![2](https://user-images.githubusercontent.com/107298972/227389852-019c32c8-b1ad-4ff3-99d6-dcc26bd7e687.PNG)
+![3](https://user-images.githubusercontent.com/107298972/227389861-c1f82d1d-fa50-456a-aa39-2323b7166de8.PNG)
+![4](https://user-images.githubusercontent.com/107298972/227389870-78e53b56-4233-470f-905a-f392b20057fb.PNG)
+![5](https://user-images.githubusercontent.com/107298972/227389889-474fbfc5-4adc-4393-bd5d-bca19d46634b.PNG)
+![6](https://user-images.githubusercontent.com/107298972/227389893-bf749587-28a6-497c-bde4-92b21ed747d2.PNG)
+![7](https://user-images.githubusercontent.com/107298972/227389894-ea7737ca-3e5b-403c-9026-d2e577b31b4f.PNG)
+![8](https://user-images.githubusercontent.com/107298972/227389895-b42ed99b-1bfc-4496-a309-0742574cbd4d.PNG)
+![9](https://user-images.githubusercontent.com/107298972/227389898-8253f498-fed9-41b2-9116-a3d9a71448b4.PNG)
 
 <br>
 
