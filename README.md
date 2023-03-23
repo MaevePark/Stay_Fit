@@ -69,19 +69,19 @@
 ## 2. 유스케이스
 ## 2. 요구사항 정의서
 
-[요구사항 정의서 전체보기](https://docs.google.com/spreadsheets/d/1PUxP9JcGVrgsQoJxdzjprNQlSF0D2X3qWazKkthU9Xs/edit?usp=sharing)
+[요구사항 정의서 전체보기](https://docs.google.com/spreadsheets/d/1KwPPIOvbtx6iLBYWeOTz1Xbgg2AxTLXkiR6dffgKtKI/edit?usp=sharing)
 
 <br>
 
 ## 3. 화면설계서
 
-[화면설계서 전체보기](https://drive.google.com/file/d/1wIYphLNSAB6ILcB9ZYiuYVu_WX-BD-v3/view?usp=sharing)
+[화면설계서 전체보기](https://docs.google.com/presentation/d/17mvEzwbY7duA4sOmJir4F-DPswTtmLWUBR7I65_9Y1o/edit?usp=sharing)
 
 <br>
 
 ## 4. 유스케이스
 
-<img width="1707" alt="image" src="https://user-images.githubusercontent.com/83773369/182176678-d45a7246-a74e-4ac5-b700-2a4178a828fc.png">
+[유스케이스 전체보기](https://docs.google.com/document/d/1KHI92ZlRB0Qsj9PC6fZNTQDWgSINegyaeiXYcmmjYq4/edit?usp=sharing)
 
 <br>
 
