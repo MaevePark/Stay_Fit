@@ -574,6 +574,7 @@
 ## 5. ERD
 
 ![Stay Fit](https://user-images.githubusercontent.com/107298972/227388768-6fcbd194-965a-4459-8694-118eab1d4185.png)
+![Stay Fit](https://user-images.githubusercontent.com/101506107/227588110-0ddfb7ba-28b5-48ed-809c-ce72e5cef0bb.png)
 
 <br>
 
