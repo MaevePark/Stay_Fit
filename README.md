@@ -428,11 +428,120 @@
 </details>
 
 ---
+  
+<details>
+
+<summary><h3>✅ 판매자페이지 </h3></summary>
+
+<div markdown="1"> 
+
+<div align="center">
+
+<img alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png"> 
+대시보드 조회
+<img width="250" alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png">
+
+</div>
 
 <br>
+
+<div align="center">
+
+![9 대시보드](https://user-images.githubusercontent.com/107298972/227531059-075cc6bb-c551-442f-8202-32228a34d933.gif)
   
+</div>
 
+---
+  
+<div markdown="1"> 
 
+<div align="center">
+
+<img alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png"> 
+상품목록 조회, 검색, 상세이동
+<img width="250" alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png">
+
+</div>
+
+<br>
+
+<div align="center">
+
+![10 상품목록,검색,상세이동](https://user-images.githubusercontent.com/107298972/227531063-a2b6bf35-be20-4c24-994d-0c5df1c013ef.gif)
+  
+</div>
+  
+---
+  
+<div markdown="1"> 
+
+<div align="center">
+
+<img alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png"> 
+상품 수정
+<img width="250" alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png">
+
+</div>
+
+<br>
+
+<div align="center">
+
+![11 상품수정](https://user-images.githubusercontent.com/107298972/227531067-f59171b7-bbfd-4483-9f87-169b20529f45.gif)
+  
+</div>
+  
+<div align="center">
+<img width="100" alt="image" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1577544307/noticon/a7cmr2ibsfyuwcydpvny.png">
+</div>
+
+<img width="1887" alt="image" src="https://user-images.githubusercontent.com/107298972/227535749-8aaf9bea-e568-4f07-96fb-2c53de4d7328.PNG">  
+
+---
+  
+<div markdown="1"> 
+
+<div align="center">
+
+<img alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png"> 
+상품 삭제
+<img width="250" alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png">
+
+</div>
+
+<br>
+
+<div align="center">
+
+![12 상품삭제](https://user-images.githubusercontent.com/107298972/227531070-9508ad65-6bc7-486c-b252-672c10fa3282.gif)
+  
+</div>
+
+---
+  
+<div markdown="1"> 
+
+<div align="center">
+
+<img alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png"> 
+상품 등록
+<img width="250" alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png">
+
+</div>
+
+<br>
+
+<div align="center">
+
+![13 상품등록](https://user-images.githubusercontent.com/107298972/227531072-7144dafe-b262-4818-ad8f-368cb7a38e7c.gif)
+  
+</div>
+
+</details>
+  
+---
+
+<br>
 
 ## 6️⃣ Document
   
