@@ -49,7 +49,7 @@
 
 <details>
 
-<summary><h3>✅ 조직도 </h3></summary>
+<summary><h3>✅ 임승규님 파트 </h3></summary>
 
 <div markdown="1"> 
 
@@ -97,7 +97,7 @@
 
 <details>
 
-<summary><h3>✅ 조직도 </h3></summary>
+<summary><h3>✅ 전혜지님 파트 </h3></summary>
 
 <div markdown="1"> 
 
@@ -145,7 +145,7 @@
 
 <details>
 
-<summary><h3>✅ 조직도 </h3></summary>
+<summary><h3>✅ 박민지님 파트 </h3></summary>
 
 <div markdown="1"> 
 
@@ -193,7 +193,7 @@
 
 <details>
 
-<summary><h3>✅ 조직도 </h3></summary>
+<summary><h3>✅ 마이페이지, 쇼핑몰 페이지 </h3></summary>
 
 <div markdown="1"> 
 
