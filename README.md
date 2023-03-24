@@ -200,7 +200,7 @@
 <div align="center">
 
 <img alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png"> 
-기능 타이틀(아래에 움짤) 
+대시보드 조회
 <img width="250" alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png">
 
 </div>
@@ -209,35 +209,17 @@
 
 <div align="center">
 
-![1_조직도)조회,검색](https://user-images.githubusercontent.com/83773369/181914139-fe9856f3-6230-4ad8-902b-e4ab6c9ceb44.gif)
+![1 대시보드](https://user-images.githubusercontent.com/107298972/227531076-4e054c4e-6e0e-4877-8634-3c99d2503510.gif)
 
 </div>
-
----
-
-  (여기부터 ppt의 기능설명 첨부)
   
 <div align="center">
-
 <img width="100" alt="image" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1577544307/noticon/a7cmr2ibsfyuwcydpvny.png">
-
 </div>
 
-<img width="1887" alt="image" src="https://user-images.githubusercontent.com/83773369/181916270-7f9031d4-43bc-42be-8a7f-7475868189a0.png">
-
-- ppt 설명
-- ppt 설명
-- ppt 설명
-
-</details>
+<img width="1887" alt="image" src="https://user-images.githubusercontent.com/107298972/227531545-5fbbb22c-6e1e-403d-a1b3-7adf9128a01d.PNG">
 
 ---
-
-<br>
-
-<div align="center">
-<img width="200" alt="image" src="https://user-images.githubusercontent.com/107298972/227529715-549d17ec-38a8-4d80-aafe-569fd062756c.PNG">
-</div>
 
 <details>
 
