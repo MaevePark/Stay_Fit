@@ -573,8 +573,21 @@
 
 ## 5. ERD
 
-![Stay Fit](https://user-images.githubusercontent.com/107298972/227388768-6fcbd194-965a-4459-8694-118eab1d4185.png)
-![Stay Fit](https://user-images.githubusercontent.com/101506107/227588110-0ddfb7ba-28b5-48ed-809c-ce72e5cef0bb.png)
+![Stay Fit](https://user-images.githubusercontent.com/101506107/227589143-416c7eb6-5836-4017-afff-e3edd6992ea2.png)
+
+<br>
+
+<summary><h3>✅ 판매자페이지 </h3></summary>
+
+<div markdown="1"> 
+
+<div align="center">
+
+<img alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png"> 
+대시보드 조회
+<img width="250" alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png">
+
+</div>
 
 <br>
 
