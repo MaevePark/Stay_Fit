@@ -221,7 +221,7 @@
 
 ---
 
-<details>
+</details>
 
 <summary><h3>✅ 관리자페이지 </h3></summary>
 
