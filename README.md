@@ -219,9 +219,11 @@
 
 <img width="1887" alt="image" src="https://user-images.githubusercontent.com/107298972/227531545-5fbbb22c-6e1e-403d-a1b3-7adf9128a01d.PNG">
 
+</details>
+
 ---
 
-</details>
+<details>
 
 <summary><h3>✅ 관리자페이지 </h3></summary>
 
