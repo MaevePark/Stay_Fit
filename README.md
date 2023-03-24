@@ -84,23 +84,13 @@
 
 <br>
 
-## 3. ERD
 ## 5. ERD
 
 ![Stay Fit](https://user-images.githubusercontent.com/107298972/227388768-6fcbd194-965a-4459-8694-118eab1d4185.png))
 
-
 <br>
 
-## 4. Sequence Diagram
-## 6. Sequence Diagram
-
-![문서기안, 기안문 결재 행동 시퀀스](https://user-images.githubusercontent.com/83773369/183291735-3a9ba65b-5467-4507-8b57-49bd1c1ebbc6.png)
-
-<br>
-
-## 5. Class Diagram
-## 7. Class Diagram
+## 6. Class Diagram
 
 ![1](https://user-images.githubusercontent.com/107298972/227389844-1b654d0a-bd29-44e7-9fe2-8455a2ae4439.PNG)
 ![2](https://user-images.githubusercontent.com/107298972/227389852-019c32c8-b1ad-4ff3-99d6-dcc26bd7e687.PNG)
@@ -114,13 +104,13 @@
 
 <br>
 
-## 8. history
+## 7. Class-URL Mapping
 
-[history 전체보기](https://docs.google.com/spreadsheets/d/1kKlxIaIMGjbSzL5dVjH7ItHryRWPO7xc8TomtV1wfjw/edit?usp=sharing)
+[Class-URL Mapping 전체보기](https://docs.google.com/spreadsheets/d/1Y4mk1g244npNTQAbNHyhDn68mpwP-RezO1zHm3WwWRA/edit?usp=sharing)
 
 <br>
 
-## 9. Troubleshooting
+## 8. Troubleshooting
 
 [Troubleshooting 전체보기](https://docs.google.com/spreadsheets/d/18u4PkV01i9RTfLitqqGMHz5tFDioYFSgxeSm1G0rjR8/edit?usp=sharing)
 
