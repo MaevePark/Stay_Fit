@@ -577,20 +577,6 @@
 
 <br>
 
-<summary><h3>✅ 판매자페이지 </h3></summary>
-
-<div markdown="1"> 
-
-<div align="center">
-
-<img alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png"> 
-대시보드 조회
-<img width="250" alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png">
-
-</div>
-
-<br>
-
 ## 6. Class Diagram
 
 ![1](https://user-images.githubusercontent.com/107298972/227389844-1b654d0a-bd29-44e7-9fe2-8455a2ae4439.PNG)
