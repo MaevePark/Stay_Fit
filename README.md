@@ -214,6 +214,38 @@
 </div>
 
 ---
+  
+<div align="center">
+
+<img width="100" alt="image" src="https://user-images.githubusercontent.com/101506107/227667297-67523e8e-b303-4e06-9ac7-bc97b15eceb2.png">
+
+</div>
+
+</details>
+
+<details>
+
+<summary><h3>✅ 상품 페이지</h3></summary>
+
+<div markdown="1"> 
+
+<div align="center">
+
+<img alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png"> 
+찜목록
+<img width="250" alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png">
+
+</div>
+
+<br>
+
+<div align="center">
+
+![mypage_wish](https://user-images.githubusercontent.com/101506107/227664737-204a8b1e-aa95-4e39-b7d4-0e6ab7ba38bb.gif)
+
+</div>
+
+---
 
   (여기부터 ppt의 기능설명 첨부)
   
