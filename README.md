@@ -318,8 +318,6 @@
 ![비번 유효성 체크](https://user-images.githubusercontent.com/101506107/227667290-d8f3f2a6-043d-4064-ae9c-3010db17a17e.png)
   
 </div>
-
----
   
 </details>
 
