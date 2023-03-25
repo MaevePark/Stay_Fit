@@ -193,14 +193,14 @@
 
 <details>
 
-<summary><h3>✅ 마이페이지, 쇼핑몰 페이지 </h3></summary>
+<summary><h3>✅ 마이페이지</h3></summary>
 
 <div markdown="1"> 
 
 <div align="center">
 
 <img alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png"> 
-기능 타이틀(아래에 움짤) 
+찜목록
 <img width="250" alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png">
 
 </div>
@@ -209,7 +209,7 @@
 
 <div align="center">
 
-![1_조직도)조회,검색](https://user-images.githubusercontent.com/83773369/181914139-fe9856f3-6230-4ad8-902b-e4ab6c9ceb44.gif)
+![mypage_wish](https://user-images.githubusercontent.com/101506107/227664737-204a8b1e-aa95-4e39-b7d4-0e6ab7ba38bb.gif)
 
 </div>
 
@@ -222,12 +222,6 @@
 <img width="100" alt="image" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1577544307/noticon/a7cmr2ibsfyuwcydpvny.png">
 
 </div>
-
-<img width="1887" alt="image" src="https://user-images.githubusercontent.com/83773369/181916270-7f9031d4-43bc-42be-8a7f-7475868189a0.png">
-
-- ppt 설명
-- ppt 설명
-- ppt 설명
 
 </details>
 
