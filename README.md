@@ -206,14 +206,18 @@
 <br>
 
 <div align="center">
+  
 ![mypage_wish](https://user-images.githubusercontent.com/101506107/227664737-204a8b1e-aa95-4e39-b7d4-0e6ab7ba38bb.gif)
+  
 </div>
 
 ---
   
 <div align="center">
 <img width="100" alt="image" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1577544307/noticon/a7cmr2ibsfyuwcydpvny.png">
+  
 ![찜목록](https://user-images.githubusercontent.com/101506107/227667297-67523e8e-b303-4e06-9ac7-bc97b15eceb2.png)
+  
 </div>
 
 ---
@@ -229,14 +233,18 @@
 <br>
 
 <div align="center">
+  
 ![mypage_cart](https://user-images.githubusercontent.com/101506107/227665280-ca7e7fc3-7bdc-489f-a636-1491b09507bb.gif)
+  
 </div>
 
 ---
   
 <div align="center">
 <img width="100" alt="image" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1577544307/noticon/a7cmr2ibsfyuwcydpvny.png">
+  
 ![장바구니](https://user-images.githubusercontent.com/101506107/227667294-c337ad7e-0ab7-46e2-a0b6-f0a303d662db.png)
+  
 </div>
 
 ---
@@ -252,7 +260,9 @@
 <br>
 
 <div align="center">
+  
 ![mypage_board](https://user-images.githubusercontent.com/101506107/227664994-c7ebd094-f3a8-4f85-8b04-5c2a55b14d1b.gif)
+  
 </div>
 
 ---
@@ -268,7 +278,9 @@
 <br>
 
 <div align="center">
+  
 ![mypage_profile_1](https://user-images.githubusercontent.com/101506107/227665464-1afaacaf-f102-4e4b-9dfb-3027fe0bd55e.gif)
+  
 </div>
 
 ---
@@ -284,21 +296,27 @@
 <br>
 
 <div align="center">
+  
 ![mypage_profile_2](https://user-images.githubusercontent.com/101506107/227665547-3d9715a1-a5bb-481d-8611-1d33716042f4.gif)
+  
 </div>
 
 ---
   
 <div align="center">
 <img width="100" alt="image" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1577544307/noticon/a7cmr2ibsfyuwcydpvny.png">
+  
 ![프로필 사진](https://user-images.githubusercontent.com/101506107/227667301-4ad545b7-d2d0-4634-8b2e-368f4232b138.png)
+  
 </div>
 
 ---
 
 <div align="center">
 <img width="100" alt="image" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1577544307/noticon/a7cmr2ibsfyuwcydpvny.png">
+  
 ![비번 유효성 체크](https://user-images.githubusercontent.com/101506107/227667290-d8f3f2a6-043d-4064-ae9c-3010db17a17e.png)
+  
 </div>
 
 ---
@@ -322,13 +340,19 @@
 <br>
 
 <div align="center">
+  
 ![shop_wish cart_1](https://user-images.githubusercontent.com/101506107/227654505-8bf4625f-0117-49b1-98cc-1ca14bf9ca6f.gif)
+  
 </div>
 <div align="center">
+  
 ![shop_wish cart_2](https://user-images.githubusercontent.com/101506107/227654601-b84679c3-2f5c-4e85-bd9a-114b069c56c9.gif)
+  
 </div>
 <div align="center">
+  
 ![shop_wish cart_3](https://user-images.githubusercontent.com/101506107/227654723-481e27a3-d542-4ecb-ba6b-dcc98a0ebf70.gif)
+  
 </div>
 
 ---
@@ -342,13 +366,19 @@
 <br>
 
 <div align="center">
+  
 ![shop_product_1](https://user-images.githubusercontent.com/101506107/227657764-89908280-0050-4cbf-b051-8478bd23ce4e.gif)
+  
 </div>
 <div align="center">
+  
 ![shop_product_2](https://user-images.githubusercontent.com/101506107/227659758-0fc1fa30-5bfd-4eaf-bb4a-5e23b419ad07.gif)
+  
 </div>
 <div align="center">
+  
 ![shop_product_3](https://user-images.githubusercontent.com/101506107/227659818-9fc0e952-debf-49f2-993f-bfd80063eab2.gif)
+  
 </div>
 
 ---
