@@ -314,29 +314,48 @@
 <div markdown="1"> 
 
 <div align="center">
-
 <img alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png"> 
-찜목록
+상품 찜, 장바구니 추가
 <img width="250" alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png">
-
 </div>
 
 <br>
 
 <div align="center">
-
-![mypage_wish](https://user-images.githubusercontent.com/101506107/227664737-204a8b1e-aa95-4e39-b7d4-0e6ab7ba38bb.gif)
-
+![shop_wish cart_1](https://user-images.githubusercontent.com/101506107/227654505-8bf4625f-0117-49b1-98cc-1ca14bf9ca6f.gif)
+</div>
+<div align="center">
+![shop_wish cart_2](https://user-images.githubusercontent.com/101506107/227654601-b84679c3-2f5c-4e85-bd9a-114b069c56c9.gif)
+</div>
+<div align="center">
+![shop_wish cart_3](https://user-images.githubusercontent.com/101506107/227654723-481e27a3-d542-4ecb-ba6b-dcc98a0ebf70.gif)
 </div>
 
 ---
 
-  (여기부터 ppt의 기능설명 첨부)
+<div align="center">
+<img alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png"> 
+상품 검색
+<img width="250" alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png">
+</div>
+
+<br>
+
+<div align="center">
+![shop_product_1](https://user-images.githubusercontent.com/101506107/227657764-89908280-0050-4cbf-b051-8478bd23ce4e.gif)
+</div>
+<div align="center">
+![shop_product_2](https://user-images.githubusercontent.com/101506107/227659758-0fc1fa30-5bfd-4eaf-bb4a-5e23b419ad07.gif)
+</div>
+<div align="center">
+![shop_product_3](https://user-images.githubusercontent.com/101506107/227659818-9fc0e952-debf-49f2-993f-bfd80063eab2.gif)
+</div>
+
+---
   
 <div align="center">
-
 <img width="100" alt="image" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1577544307/noticon/a7cmr2ibsfyuwcydpvny.png">
-
+여기 ppt 자료 첨부
 </div>
 
 </details>
