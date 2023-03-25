@@ -219,10 +219,12 @@
 
 <img width="100" alt="image" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1577544307/noticon/a7cmr2ibsfyuwcydpvny.png">
 
-![mypage_profile_2](https://user-images.githubusercontent.com/101506107/227665547-3d9715a1-a5bb-481d-8611-1d33716042f4.gif)
+![찜목록](https://user-images.githubusercontent.com/101506107/227667297-67523e8e-b303-4e06-9ac7-bc97b15eceb2.png)
 
 </div>
 
+---
+  
 </details>
 
 <details>
