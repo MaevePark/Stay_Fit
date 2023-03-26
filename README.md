@@ -206,8 +206,8 @@ BMI 지수 조회, 연산
 <div align="center">
 
 <img alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png"> 
-인바디 측정 보건소 조회, 검색, 지도 api
-<img width="200" alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png">
+인바디측정보건소 조회, 검색, 지도 api
+<img width="250" alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png">
 
 </div>
 
