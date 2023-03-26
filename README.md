@@ -230,8 +230,6 @@ BMI 지수 조회, 연산
 </details>
 
 ---
-  
-<details>
 
 <br>
 
