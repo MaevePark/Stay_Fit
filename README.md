@@ -145,14 +145,14 @@
 
 <details>
 
-<summary><h3>✅ 박민지님 파트 </h3></summary>
+<summary><h3>✅ 건강관리 페이지 </h3></summary>
 
 <div markdown="1"> 
 
 <div align="center">
 
 <img alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png"> 
-기능 타이틀(아래에 움짤) 
+칼로리 처방 조회, 연산
 <img width="250" alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png">
 
 </div>
@@ -161,11 +161,32 @@
 
 <div align="center">
 
-![1_조직도)조회,검색](https://user-images.githubusercontent.com/83773369/181914139-fe9856f3-6230-4ad8-902b-e4ab6c9ceb44.gif)
+![1  칼로리 처방 조회, 연산_시연영상_ver 2](https://user-images.githubusercontent.com/111377620/227775760-d958db95-47b6-46a8-a6b2-a7517da92fd1.gif)
 
 </div>
 
 ---
+<div markdown="1"> 
+
+<div align="center">
+
+<img alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png"> 
+BMI 지수 조회, 연산
+<img width="250" alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png">
+
+</div>
+
+<br>
+
+<div align="center">
+
+![2  bmi 지수 조회, 연산_시연영상_ver 2](https://user-images.githubusercontent.com/111377620/227775771-68dec902-ea9a-4295-8fad-339babf1fafd.gif)
+
+</div>
+
+---
+
+
 
   (여기부터 ppt의 기능설명 첨부)
   
