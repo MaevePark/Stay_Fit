@@ -227,7 +227,11 @@ BMI 지수 조회, 연산
 ![1-2 보건소 목록 ](https://user-images.githubusercontent.com/111377620/227779320-71693e88-c1fd-42d0-84d6-a8ca7d565f5c.png)
 ![1-3 보건소 목록 ](https://user-images.githubusercontent.com/111377620/227779326-13e0ea6a-4243-4f89-bdfa-6ad3c293b0ea.png)
 
+</details>
+
 ---
+  
+<details>
 
 <br>
 
