@@ -185,7 +185,25 @@ BMI 지수 조회, 연산
 </div>
 
 ---
+<div markdown="1"> 
 
+<div align="center">
+
+<img alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png"> 
+인바디 측정 가능 보건소 목록 조회, 검색, 페이징, 지도 api
+<img width="250" alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png">
+
+</div>
+
+<br>
+
+<div align="center">
+
+![3  게시글 목록 조회, 검색, 페이징, kaka map api_시연영상_ver 3](https://user-images.githubusercontent.com/111377620/227777508-deecbc30-6fc7-4ccc-be45-4c69d38fd27e.gif)
+
+</div>
+
+---
 
 
   (여기부터 ppt의 기능설명 첨부)
