@@ -429,7 +429,7 @@ BMI 지수 조회, 연산
   
 <div align="center">
 <img width="100" alt="image" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1577544307/noticon/a7cmr2ibsfyuwcydpvny.png">
-여기 ppt 자료 첨부
+![상품 ](https://user-images.githubusercontent.com/101506107/230890733-daf9af82-9188-4102-90f0-d0e5ae41a08b.png)
 </div>
 
 </details>
