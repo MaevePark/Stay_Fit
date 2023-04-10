@@ -115,6 +115,39 @@
 
 ---
 
+<details>
+
+<summary><h3>✅ 다이어리 </h3></summary>
+
+<div markdown="1"> 
+
+<div align="center">
+<img alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png"> 
+다이어리
+<img width="250" alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png">
+</div>
+
+<br>
+
+<div align="center">
+
+![StayFit_Diary_Page](https://user-images.githubusercontent.com/101506107/230891257-f0058af8-38b0-4045-8a51-55e3cf44ca0c.gif)
+
+</div>
+
+---
+  
+<div align="center">
+<img width="100" alt="image" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1577544307/noticon/a7cmr2ibsfyuwcydpvny.png">
+</div>
+
+<img width="1887" alt="image" src="https://user-images.githubusercontent.com/101506107/230934421-03db95b9-6aea-401e-a45f-7ff9e5beb4b8.png">
+<img width="1887" alt="image" src="https://user-images.githubusercontent.com/101506107/230934434-283bf380-3a0c-4639-82ed-9d4bbcbca58b.png">
+
+</details>
+  
+---
+
 <br>
 
 <div align="center">
