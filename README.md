@@ -54,11 +54,33 @@
 <div markdown="1"> 
 
 <div align="center">
+<img alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png"> 
+로그인
+<img width="250" alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png">
+</div>
 
+<br>
+
+<div align="center">
+
+![StayFit_Login](https://user-images.githubusercontent.com/101506107/230891275-6e13e89f-2acf-46fb-b313-b23ad0553904.gif)
+
+</div>
+
+---
+  
+<div align="center">
+<img width="100" alt="image" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1577544307/noticon/a7cmr2ibsfyuwcydpvny.png">
+</div>
+
+<img width="1887" alt="image" src="https://user-images.githubusercontent.com/101506107/230932034-8e8df023-2d0c-4fb4-a82d-517dc7297930.png">
+
+---
+
+<div align="center">
 <img alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png"> 
 회원가입
 <img width="250" alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png">
-
 </div>
 
 <br>
@@ -75,19 +97,11 @@
 
 ---
 
-  (여기부터 ppt의 기능설명 첨부)
-  
 <div align="center">
-
 <img width="100" alt="image" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1577544307/noticon/a7cmr2ibsfyuwcydpvny.png">
-
 </div>
-
-<img width="1887" alt="image" src="https://user-images.githubusercontent.com/83773369/181916270-7f9031d4-43bc-42be-8a7f-7475868189a0.png">
-
-- ppt 설명
-- ppt 설명
-- ppt 설명
+<img width="1887" alt="image" src="https://user-images.githubusercontent.com/101506107/230932028-fefb20b2-a806-4995-94d2-3157aeeab630.png">
+<img width="1887" alt="image" src="https://user-images.githubusercontent.com/101506107/230932041-f088fbcc-821a-4909-bd14-6c8f2e4482ce.png">
 
 </details>
 
