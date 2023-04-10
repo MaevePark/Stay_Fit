@@ -49,7 +49,7 @@
 
 <details>
 
-<summary><h3>✅ 임승규님 파트 </h3></summary>
+<summary><h3>✅ 로그인 </h3></summary>
 
 <div markdown="1"> 
 
@@ -75,7 +75,15 @@
 
 <img width="1887" alt="image" src="https://user-images.githubusercontent.com/101506107/230932034-8e8df023-2d0c-4fb4-a82d-517dc7297930.png">
 
+</details>
+  
 ---
+  
+<details>
+
+<summary><h3>✅ 회원가입 </h3></summary>
+
+<div markdown="1"> 
 
 <div align="center">
 <img alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png"> 
