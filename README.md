@@ -56,7 +56,7 @@
 <div align="center">
 
 <img alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png"> 
-기능 타이틀(아래에 움짤) 
+회원가입
 <img width="250" alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png">
 
 </div>
@@ -65,7 +65,11 @@
 
 <div align="center">
 
-![1_조직도)조회,검색](https://user-images.githubusercontent.com/83773369/181914139-fe9856f3-6230-4ad8-902b-e4ab6c9ceb44.gif)
+![StayFit_Join_1](https://user-images.githubusercontent.com/101506107/230920121-3eaa743d-169b-46a9-8811-3051c8314717.gif)
+
+![StayFit_Join_2](https://user-images.githubusercontent.com/101506107/230920151-821b128c-bff3-4e80-bdda-961cf8add1e1.gif)
+
+![StayFit_Join_3](https://user-images.githubusercontent.com/101506107/230930258-c24391dc-50a3-44da-b79c-ae4499df4b1c.gif)
 
 </div>
 
