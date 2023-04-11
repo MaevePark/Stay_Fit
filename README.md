@@ -416,6 +416,8 @@
 </details>
 
 ---
+  
+<details>
 
 <summary><h3>✅ 건강관리 페이지 </h3></summary>
 
