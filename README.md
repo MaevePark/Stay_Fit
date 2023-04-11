@@ -334,8 +334,6 @@
 
 <img width="1887" alt="image" src="https://user-images.githubusercontent.com/101506107/231130755-15d868fb-3ec0-40b7-b272-bc389fd7af04.png">
 
-</details>
-
 ---
 
 <br>
@@ -344,7 +342,7 @@
 <img width="200" alt="image" src="https://user-images.githubusercontent.com/101506107/231130797-97ce6c59-bae9-49bd-8876-4b8a1b98f0da.png">
 </div>
 
-<details>
+</details>
   
 ---
   
