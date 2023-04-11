@@ -49,44 +49,103 @@
 
 <details>
 
-<summary><h3>✅ 임승규님 파트 </h3></summary>
+<summary><h3>✅ 로그인 </h3></summary>
 
 <div markdown="1"> 
 
 <div align="center">
-
 <img alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png"> 
-기능 타이틀(아래에 움짤) 
+로그인
 <img width="250" alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png">
-
 </div>
 
 <br>
 
 <div align="center">
 
-![1_조직도)조회,검색](https://user-images.githubusercontent.com/83773369/181914139-fe9856f3-6230-4ad8-902b-e4ab6c9ceb44.gif)
+![StayFit_Login](https://user-images.githubusercontent.com/101506107/230891275-6e13e89f-2acf-46fb-b313-b23ad0553904.gif)
+
+</div>
+
+---
+  
+<div align="center">
+<img width="100" alt="image" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1577544307/noticon/a7cmr2ibsfyuwcydpvny.png">
+</div>
+
+<img width="1887" alt="image" src="https://user-images.githubusercontent.com/101506107/230932034-8e8df023-2d0c-4fb4-a82d-517dc7297930.png">
+
+</details>
+  
+---
+  
+<details>
+
+<summary><h3>✅ 회원가입 </h3></summary>
+
+<div markdown="1"> 
+
+<div align="center">
+<img alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png"> 
+회원가입
+<img width="250" alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png">
+</div>
+
+<br>
+
+<div align="center">
+
+![StayFit_Join_1](https://user-images.githubusercontent.com/101506107/230920121-3eaa743d-169b-46a9-8811-3051c8314717.gif)
+
+![StayFit_Join_2](https://user-images.githubusercontent.com/101506107/230920151-821b128c-bff3-4e80-bdda-961cf8add1e1.gif)
+
+![StayFit_Join_3](https://user-images.githubusercontent.com/101506107/230930258-c24391dc-50a3-44da-b79c-ae4499df4b1c.gif)
 
 </div>
 
 ---
 
-  (여기부터 ppt의 기능설명 첨부)
-  
 <div align="center">
-
 <img width="100" alt="image" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1577544307/noticon/a7cmr2ibsfyuwcydpvny.png">
-
 </div>
-
-<img width="1887" alt="image" src="https://user-images.githubusercontent.com/83773369/181916270-7f9031d4-43bc-42be-8a7f-7475868189a0.png">
-
-- ppt 설명
-- ppt 설명
-- ppt 설명
+<img width="1887" alt="image" src="https://user-images.githubusercontent.com/101506107/230932028-fefb20b2-a806-4995-94d2-3157aeeab630.png">
+<img width="1887" alt="image" src="https://user-images.githubusercontent.com/101506107/230932041-f088fbcc-821a-4909-bd14-6c8f2e4482ce.png">
 
 </details>
 
+---
+
+<details>
+
+<summary><h3>✅ 다이어리 </h3></summary>
+
+<div markdown="1"> 
+
+<div align="center">
+<img alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png"> 
+다이어리
+<img width="250" alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png">
+</div>
+
+<br>
+
+<div align="center">
+
+![StayFit_Diary_Page](https://user-images.githubusercontent.com/101506107/230891257-f0058af8-38b0-4045-8a51-55e3cf44ca0c.gif)
+
+</div>
+
+---
+  
+<div align="center">
+<img width="100" alt="image" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1577544307/noticon/a7cmr2ibsfyuwcydpvny.png">
+</div>
+
+<img width="1887" alt="image" src="https://user-images.githubusercontent.com/101506107/230934421-03db95b9-6aea-401e-a45f-7ff9e5beb4b8.png">
+<img width="1887" alt="image" src="https://user-images.githubusercontent.com/101506107/230934434-283bf380-3a0c-4639-82ed-9d4bbcbca58b.png">
+
+</details>
+  
 ---
 
 <br>
@@ -429,7 +488,9 @@ BMI 지수 조회, 연산
   
 <div align="center">
 <img width="100" alt="image" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1577544307/noticon/a7cmr2ibsfyuwcydpvny.png">
-![상품 ](https://user-images.githubusercontent.com/101506107/230890733-daf9af82-9188-4102-90f0-d0e5ae41a08b.png)
+
+![product_crawl](https://user-images.githubusercontent.com/101506107/230890733-daf9af82-9188-4102-90f0-d0e5ae41a08b.png)
+
 </div>
 
 </details>
