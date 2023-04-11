@@ -284,7 +284,7 @@
 <img width="100" alt="image" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1577544307/noticon/a7cmr2ibsfyuwcydpvny.png">
 </div>
 
-<img width="1887" alt="image" src="https://user-images.githubusercontent.com/101506107/231130759-5e7d48e1-9962-4cca-84dc-3e109d5202f5.png">
+<img width="1887" alt="image" src="https://user-images.githubusercontent.com/101506107/231130797-97ce6c59-bae9-49bd-8876-4b8a1b98f0da.png">
   
 ---
 
@@ -333,14 +333,6 @@
 </div>
 
 <img width="1887" alt="image" src="https://user-images.githubusercontent.com/101506107/231130755-15d868fb-3ec0-40b7-b272-bc389fd7af04.png">
-
----
-
-<br>
-
-<div align="center">
-<img width="200" alt="image" src="https://user-images.githubusercontent.com/101506107/231130797-97ce6c59-bae9-49bd-8876-4b8a1b98f0da.png">
-</div>
 
 </details>
   
