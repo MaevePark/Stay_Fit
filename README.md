@@ -156,52 +156,266 @@
 
 <details>
 
-<summary><h3>✅ 전혜지님 파트 </h3></summary>
+<summary><h3>✅ 미니게시판 </h3></summary>
 
 <div markdown="1"> 
 
 <div align="center">
-
 <img alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png"> 
-기능 타이틀(아래에 움짤) 
+미니게시판 
 <img width="250" alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png">
-
 </div>
 
 <br>
 
 <div align="center">
 
-![1_조직도)조회,검색](https://user-images.githubusercontent.com/83773369/181914139-fe9856f3-6230-4ad8-902b-e4ab6c9ceb44.gif)
+이 라인에 움짤
 
 </div>
 
 ---
-
-  (여기부터 ppt의 기능설명 첨부)
   
 <div align="center">
-
 <img width="100" alt="image" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1577544307/noticon/a7cmr2ibsfyuwcydpvny.png">
-
 </div>
 
-<img width="1887" alt="image" src="https://user-images.githubusercontent.com/83773369/181916270-7f9031d4-43bc-42be-8a7f-7475868189a0.png">
-
-- ppt 설명
-- ppt 설명
-- ppt 설명
+<img width="1887" alt="image" src="https://user-images.githubusercontent.com/101506107/231130785-e4d08407-2719-4e1b-a058-71b5380d4e84.png">
 
 </details>
 
 ---
+
+<details>
+
+<summary><h3>✅ 커뮤니티 페이지 </h3></summary>
+
+<div markdown="1"> 
+
+<div align="center">
+<img alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png"> 
+페이징 및 글검색 
+<img width="250" alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png">
+</div>
+
+<br>
+
+<div align="center">
+
+![페이징글검색](https://user-images.githubusercontent.com/101506107/231118762-dbac5f4f-2441-465e-8461-aa9bb0711937.gif)
+
+</div>
+
+---
+  
+<div align="center">
+<img width="100" alt="image" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1577544307/noticon/a7cmr2ibsfyuwcydpvny.png">
+</div>
+
+<img width="1887" alt="image" src="https://user-images.githubusercontent.com/101506107/231130745-588c69ab-7b46-41f0-a9db-838495de1c1b.png">
+
+</details>
+
+---
+
+<details>
+
+<summary><h3>✅ 게시글 </h3></summary>
+
+<div markdown="1"> 
+
+<div align="center">
+<img alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png"> 
+관리자 글 작성 
+<img width="250" alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png">
+</div>
+
+<br>
+
+<div align="center">
+
+![관리자 글등록버튼및작성](https://user-images.githubusercontent.com/101506107/231118662-c133c392-712e-42bf-98ea-654987d5659f.gif)
+
+</div>
+
+---
+
+<div align="center">
+<img alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png"> 
+일반 사용자 글 작성 
+<img width="250" alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png">
+</div>
+
+<br>
+
+<div align="center">
+
+![글등록버튼 및 작성 - 유저](https://user-images.githubusercontent.com/101506107/231119142-d1f67d4a-1840-4e06-a2c7-9d5bea748dde.gif)
+
+</div>
+
+---
+  
+<div align="center">
+<img width="100" alt="image" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1577544307/noticon/a7cmr2ibsfyuwcydpvny.png">
+</div>
+
+<img width="1887" alt="image" src="https://user-images.githubusercontent.com/101506107/231130759-5e7d48e1-9962-4cca-84dc-3e109d5202f5.png">
+  
+---
+
+<div align="center">
+<img alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png"> 
+글 조회수 
+<img width="250" alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png">
+</div>
+
+<br>
+
+<div align="center">
+
+![게시글 조회수](https://user-images.githubusercontent.com/101506107/231119290-29be382a-4dc9-415a-a9c1-06ef6deecd25.gif)
+
+</div>
+
+---
+  
+<div align="center">
+<img width="100" alt="image" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1577544307/noticon/a7cmr2ibsfyuwcydpvny.png">
+</div>
+
+<img width="1887" alt="image" src="https://user-images.githubusercontent.com/101506107/231130797-97ce6c59-bae9-49bd-8876-4b8a1b98f0da.png">
+  
+---
+
+<div align="center">
+<img alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png"> 
+글 북마크 
+<img width="250" alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png">
+</div>
+
+<br>
+
+<div align="center">
+
+![게시글 북마크](https://user-images.githubusercontent.com/101506107/231118983-4126b100-049e-4982-bd19-66b3d4bc566f.gif)
+
+</div>
+
+---
+  
+<div align="center">
+<img width="100" alt="image" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1577544307/noticon/a7cmr2ibsfyuwcydpvny.png">
+</div>
+
+<img width="1887" alt="image" src="https://user-images.githubusercontent.com/101506107/231130791-a4f1037b-76fd-4213-b9a0-a609a4152246.png">
+  
+---
+
+<div align="center">
+<img alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png"> 
+글 수정&삭제 
+<img width="250" alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png">
+</div>
+
+<br>
+
+<div align="center">
+
+![게시글 수정 삭제](https://user-images.githubusercontent.com/101506107/231118844-f072c4cc-0a71-431d-8d3b-72b95951fac1.gif)
+
+</div>
+
+---
+  
+<div align="center">
+<img width="100" alt="image" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1577544307/noticon/a7cmr2ibsfyuwcydpvny.png">
+</div>
+
+<img width="1887" alt="image" src="https://user-images.githubusercontent.com/101506107/231130755-15d868fb-3ec0-40b7-b272-bc389fd7af04.png">
+
+</details>
+  
+---
+  
+<details>
+
+<summary><h3>✅ 댓글 </h3></summary>
+
+<div markdown="1"> 
+
+<div align="center">
+<img alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png"> 
+댓글 작성
+<img width="250" alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png">
+</div>
+
+<br>
+
+<div align="center">
+
+![댓글, 답댓글 작성](https://user-images.githubusercontent.com/101506107/231119108-ffbeaf0f-2f9d-4556-97b0-9e7a97065732.gif)
+
+</div>
+
+---
+  
+<div align="center">
+<img alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png"> 
+댓글 수정, 삭제
+<img width="250" alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png">
+</div>
+
+<br>
+
+<div align="center">
+
+![댓글 수정, 삭제](https://user-images.githubusercontent.com/101506107/231119045-d00c9025-bef9-4730-a267-b8a79f4e5c67.gif)
+
+</div>
+  
+<div align="center">
+<img width="100" alt="image" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1577544307/noticon/a7cmr2ibsfyuwcydpvny.png">
+</div>
+
+<img width="1887" alt="image" src="https://user-images.githubusercontent.com/101506107/231130763-87684816-08f8-4972-9f77-16e4e7b50c51.png">
+  
+---
+  
+<div markdown="1"> 
+
+<div align="center">
+<img alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png"> 
+댓글 공감&신고
+<img width="250" alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png">
+</div>
+
+<br>
+
+<div align="center">
+
+![댓글 공감, 신고](https://user-images.githubusercontent.com/101506107/231119062-30979543-0950-4d81-b986-771fe63e966e.gif)
+
+</div>
+  
+<div align="center">
+<img width="100" alt="image" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1577544307/noticon/a7cmr2ibsfyuwcydpvny.png">
+</div>
+
+<img width="1887" alt="image" src="https://user-images.githubusercontent.com/101506107/231130769-b11e819f-00d8-4d2c-b599-428b6d18fdba.png">
+<img width="1887" alt="image" src="https://user-images.githubusercontent.com/101506107/231130776-14bb8a78-0dc0-4dbe-92d4-61820ae5e7a1.png">
+
+</details>
+
+---
+
 
 <br>
 
 <div align="center">
 <img width="200" alt="image" src="https://user-images.githubusercontent.com/107298972/227529728-2d0acc6d-93e6-44db-b645-f06b494e8e8a.PNG">
 </div>
-
+  
 <details>
 
 <summary><h3>✅ 건강관리 페이지 </h3></summary>
