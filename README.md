@@ -180,7 +180,7 @@
 <img width="100" alt="image" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1577544307/noticon/a7cmr2ibsfyuwcydpvny.png">
 </div>
 
-<img width="1887" alt="image" src="ppt 짤">
+<img width="1887" alt="image" src="https://user-images.githubusercontent.com/101506107/231130785-e4d08407-2719-4e1b-a058-71b5380d4e84.png">
 
 </details>
 
@@ -188,7 +188,7 @@
 
 <details>
 
-<summary><h3>✅ 페이징 및 글검색 </h3></summary>
+<summary><h3>✅ 커뮤니티 페이지 </h3></summary>
 
 <div markdown="1"> 
 
@@ -202,7 +202,7 @@
 
 <div align="center">
 
-이 라인에 움짤
+![페이징글검색](https://user-images.githubusercontent.com/101506107/231118762-dbac5f4f-2441-465e-8461-aa9bb0711937.gif)
 
 </div>
 
@@ -212,7 +212,7 @@
 <img width="100" alt="image" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1577544307/noticon/a7cmr2ibsfyuwcydpvny.png">
 </div>
 
-<img width="1887" alt="image" src="ppt 짤">
+<img width="1887" alt="image" src="https://user-images.githubusercontent.com/101506107/231130745-588c69ab-7b46-41f0-a9db-838495de1c1b.png">
 
 </details>
 
@@ -220,7 +220,7 @@
 
 <details>
 
-<summary><h3>✅ 관리자 글 작성 </h3></summary>
+<summary><h3>✅ 게시글 </h3></summary>
 
 <div markdown="1"> 
 
@@ -234,7 +234,23 @@
 
 <div align="center">
 
-이 라인에 움짤
+![관리자 글등록버튼및작성](https://user-images.githubusercontent.com/101506107/231118662-c133c392-712e-42bf-98ea-654987d5659f.gif)
+
+</div>
+
+---
+
+<div align="center">
+<img alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png"> 
+일반 사용자 글 작성 
+<img width="250" alt="image" src="https://media.discordapp.net/attachments/692994434526085184/1002954522253074472/a0c55ca0bfe82413.png">
+</div>
+
+<br>
+
+<div align="center">
+
+![글등록버튼 및 작성 - 유저](https://user-images.githubusercontent.com/101506107/231119142-d1f67d4a-1840-4e06-a2c7-9d5bea748dde.gif)
 
 </div>
 
@@ -244,7 +260,7 @@
 <img width="100" alt="image" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1577544307/noticon/a7cmr2ibsfyuwcydpvny.png">
 </div>
 
-<img width="1887" alt="image" src="ppt 짤">
+<img width="1887" alt="image" src="https://user-images.githubusercontent.com/101506107/231130759-5e7d48e1-9962-4cca-84dc-3e109d5202f5.png">
 
 </details>
 
